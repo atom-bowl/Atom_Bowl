@@ -316,7 +316,7 @@
       cursor: pointer;
       background: rgba(79,124,255,0.18);
       color: var(--text);
-      transition: transform .15s, filter .15s, background .15s;
+      transition: transform .15s, filter .15s, background .15s, box-shadow .15s;
       user-select: none;
     }
 
@@ -325,6 +325,19 @@
       border-color: rgba(79,124,255,0.6);
       color: white;
     }
+
+    .btn.good {
+      background: rgba(57,217,138,0.18);
+      border-color: rgba(57,217,138,0.55);
+    }
+
+    .btn.bad {
+      background: rgba(255,107,107,0.16);
+      border-color: rgba(255,107,107,0.5);
+    }
+
+    .btn.good:hover { filter: brightness(1.12); box-shadow: 0 10px 30px rgba(57,217,138,0.12); }
+    .btn.bad:hover  { filter: brightness(1.12); box-shadow: 0 10px 30px rgba(255,107,107,0.12); }
 
     .btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
 
@@ -338,6 +351,7 @@
 
     .feedback.good { color: var(--good); }
     .feedback.bad { color: var(--bad); }
+
     .hidden { display: none !important; }
 
     .error {
@@ -388,12 +402,12 @@
     <div class="topbar">
       <div class="pill"><small>Timer</small> <span id="timer">10</span></div>
       <div class="pill"><small>Score</small> <span id="score">0</span></div>
-      <div class="pill"><small>Q</small> <span id="qnum">1</span>/<span id="qtotal">—</span></div>
+      <div class="pill"><small>Q</small> <span id="qnum">0</span>/<span id="qtotal">0</span></div>
       <div class="pill"><small>Mode</small> <span id="mode">—</span></div>
     </div>
 
     <div class="question-card">
-      <div class="buzz" id="buzz">Press <span class="kbd">SPACE</span> to buzz</div>
+      <div class="buzz" id="buzz">Loading…</div>
 
       <img id="questionImg" class="question-img" src="" alt="Question" />
 
@@ -413,11 +427,13 @@
 
       <div class="row">
         <button class="btn primary hidden" id="submitBtn" type="button">Submit</button>
+        <button class="btn good hidden" id="rightBtn" type="button">✅ Right</button>
+        <button class="btn bad hidden" id="wrongBtn" type="button">❌ Wrong</button>
         <button class="btn hidden" id="nextBtn" type="button">Next</button>
       </div>
 
       <p class="feedback" id="feedback"></p>
-      <div class="hint">Tip: W/X/Y/Z keys work after buzzing. Press Esc to go back.</div>
+      <div class="hint">Tip: W/X/Y/Z keys work after buzzing. Press Esc to go back. (Grading: R=Right, W=Wrong)</div>
     </div>
 
   </div>
@@ -428,9 +444,6 @@
     const overlay = document.getElementById('overlay');
     const hamburger = document.getElementById('hamburger');
 
-    hamburger.addEventListener('click', toggleNav);
-    overlay.addEventListener('click', toggleNav);
-
     function toggleNav() {
       const isOpen = nav.classList.toggle('open');
       overlay.classList.toggle('show');
@@ -438,27 +451,35 @@
       hamburger.textContent = isOpen ? '✕' : '☰';
     }
 
-    // Run config from practice_home (accept both legacy and current keys)
-const DEFAULT_RUN = {
-  mode: 'rapid', level: 'ANY', category: 'ANY', qaType: 'ANY', bonus: 'ANY',
-  count: 25, seconds: 10, setName: '', roundName: ''
-};
+    hamburger.addEventListener('click', toggleNav);
+    overlay.addEventListener('click', toggleNav);
 
-function safeParseJSON(s, fallback) {
-  try { return JSON.parse(s); } catch { return fallback; }
-}
+    // Run config from practice_home
+    const DEFAULT_RUN = {
+      mode: 'rapid',
+      level: 'ANY',
+      category: 'ANY',
+      qaType: 'ANY',
+      bonus: 'ANY',
+      count: 25,
+      seconds: 10,
+      setName: '',
+      roundName: ''
+    };
 
-// Prefer new key, fall back to old if present
-const cfgNew = safeParseJSON(localStorage.getItem('atom_practice_config'), null);
-const cfgOld = safeParseJSON(localStorage.getItem('atom_run'), null);
-const runCfg = { ...DEFAULT_RUN, ...(cfgOld || {}), ...(cfgNew || {}) };
+    function safeParseJSON(s, fallback) {
+      try { return JSON.parse(s); } catch { return fallback; }
+    }
 
-// Normalize possible field names from Practice Home
-runCfg.qaType = runCfg.qaType || runCfg.qtype || 'ANY';
-runCfg.seconds = runCfg.seconds || runCfg.time || DEFAULT_RUN.seconds;
-runCfg.count = runCfg.count || DEFAULT_RUN.count;
+    const cfgNew = safeParseJSON(localStorage.getItem('atom_practice_config'), null);
+    const cfgOld = safeParseJSON(localStorage.getItem('atom_run'), null);
+    const runCfg = { ...DEFAULT_RUN, ...(cfgOld || {}), ...(cfgNew || {}) };
 
-document.getElementById('mode').textContent = runCfg.mode;
+    runCfg.qaType = runCfg.qaType || runCfg.qtype || 'ANY';
+    runCfg.seconds = runCfg.seconds || runCfg.time || DEFAULT_RUN.seconds;
+    runCfg.count = runCfg.count || DEFAULT_RUN.count;
+
+    document.getElementById('mode').textContent = runCfg.mode;
 
     // DOM
     const img = document.getElementById('questionImg');
@@ -471,6 +492,8 @@ document.getElementById('mode').textContent = runCfg.mode;
     const buzzEl = document.getElementById('buzz');
     const choicesEl = document.getElementById('choices');
     const submitBtn = document.getElementById('submitBtn');
+    const rightBtn = document.getElementById('rightBtn');
+    const wrongBtn = document.getElementById('wrongBtn');
     const nextBtn = document.getElementById('nextBtn');
     const errEl = document.getElementById('err');
     const metaLeft = document.getElementById('metaLeft');
@@ -480,11 +503,13 @@ document.getElementById('mode').textContent = runCfg.mode;
     let bank = [];
     let questions = [];
     let index = 0;
-    let time = runCfg.seconds;
+    let time = 10;
     let timerId = null;
     let buzzed = false;
     let locked = false;
+    let awaitingGrade = false;
     let score = 0;
+    let runActive = false;
 
     function animateIn(el) {
       if (!el) return;
@@ -507,10 +532,50 @@ document.getElementById('mode').textContent = runCfg.mode;
 
     function norm(s) { return String(s || '').trim(); }
 
-    function extractMCKey(parsedAnswer) {
-      const s = norm(parsedAnswer).toUpperCase();
-      const first = s[0];
-      return ['W','X','Y','Z'].includes(first) ? first : '';
+    // Safe current question getter
+    function currentQ() {
+      if (!Array.isArray(questions) || questions.length === 0) return null;
+      if (index < 0 || index >= questions.length) return null;
+      return questions[index];
+    }
+
+    // Image path resolver
+    function resolveImgCandidates(q, field) {
+      const raw = String((q && q[field]) || '').trim();
+      if (!raw) return [];
+      if (/^https?:\/\//i.test(raw)) return [raw];
+
+      const p = raw.replace(/^\.\/+/, '').replace(/^\/+/, '');
+      if (p.startsWith('images/')) return [p];
+
+      const cands = [];
+      if (p.startsWith('ms/') || p.startsWith('hs/')) cands.push('images/' + p);
+
+      const lvl = String(q?.level || '').toLowerCase();
+      if (lvl === 'ms' || lvl === 'hs') cands.push(`images/${lvl}/${p}`);
+
+      cands.push('images/' + p);
+      cands.push(p);
+      return [...new Set(cands)];
+    }
+
+    function setImgWithFallback(imgEl, q, field) {
+      const cands = resolveImgCandidates(q, field);
+      let i = 0;
+      imgEl.onerror = null;
+      if (!cands.length) {
+        imgEl.src = '';
+        return;
+      }
+      imgEl.src = cands[i];
+      imgEl.onerror = () => {
+        i += 1;
+        if (i >= cands.length) {
+          imgEl.onerror = null;
+          return;
+        }
+        imgEl.src = cands[i];
+      };
     }
 
     function applyFilters(list) {
@@ -554,6 +619,7 @@ document.getElementById('mode').textContent = runCfg.mode;
         showError(`No matches for your run. Go back and loosen filters. (${parts.join(', ') || 'no filters'})`);
         return [];
       }
+
       hideError();
       filtered = shuffle(filtered);
       const n = Math.max(5, Math.min(100, parseInt(runCfg.count, 10) || 25));
@@ -563,12 +629,16 @@ document.getElementById('mode').textContent = runCfg.mode;
     function resetForQuestion() {
       buzzed = false;
       locked = false;
+      awaitingGrade = false;
+
       feedback.textContent = '';
       feedback.className = 'feedback';
 
       input.classList.add('hidden');
       submitBtn.classList.add('hidden');
       choicesEl.classList.add('hidden');
+      rightBtn.classList.add('hidden');
+      wrongBtn.classList.add('hidden');
       nextBtn.classList.add('hidden');
 
       buzzEl.innerHTML = 'Press <span class="kbd">SPACE</span> to buzz';
@@ -588,11 +658,16 @@ document.getElementById('mode').textContent = runCfg.mode;
     }
 
     function loadQuestion() {
-      const q = questions[index];
+      const q = currentQ();
+      if (!q) {
+        endRun('No question available.');
+        return;
+      }
+
       qnumEl.textContent = String(index + 1);
       qtotalEl.textContent = String(questions.length);
 
-      img.src = q.question_image;
+      setImgWithFallback(img, q, 'question_image');
       img.alt = `Question ${index + 1}`;
 
       input.value = '';
@@ -603,7 +678,9 @@ document.getElementById('mode').textContent = runCfg.mode;
     }
 
     function allowAnswerUI() {
-      const q = questions[index];
+      const q = currentQ();
+      if (!runActive || !q) return;
+
       buzzed = true;
       buzzEl.textContent = 'Buzzed';
       animateIn(buzzEl);
@@ -620,71 +697,116 @@ document.getElementById('mode').textContent = runCfg.mode;
       }
     }
 
-    function normalizeAnswerText(s) { return (s || '').toUpperCase().trim(); }
-
-    function isCorrectSA(user, correctText) {
-      const u = normalizeAnswerText(user);
-      const c = normalizeAnswerText(correctText);
-      if (!u) return false;
-      return c.includes(u);
+    function escapeHtml(s) {
+      return String(s)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
     }
 
-    function revealOutcome(isCorrect, correctDisplay) {
+    function revealManualGrade(userAnswer, correctAnswer) {
       locked = true;
+      awaitingGrade = true;
       clearInterval(timerId);
 
-      if (isCorrect) {
-        feedback.textContent = 'Correct';
+      const ua = norm(userAnswer) || '(no answer)';
+      const ca = norm(correctAnswer) || '(no official answer)';
+
+      feedback.innerHTML = `Your answer: <span style="color:var(--text)">${escapeHtml(ua)}</span><br>` +
+                          `Official: <span style="color:var(--muted)">${escapeHtml(ca)}</span>`;
+      feedback.className = 'feedback';
+      animateIn(feedback);
+
+      rightBtn.classList.remove('hidden');
+      wrongBtn.classList.remove('hidden');
+      animateIn(rightBtn);
+      animateIn(wrongBtn);
+
+      nextBtn.classList.add('hidden');
+    }
+
+    function applyGrade(isRight) {
+      if (!awaitingGrade) return;
+      awaitingGrade = false;
+
+      if (isRight) {
+        score += 1;
+        scoreEl.textContent = String(score);
         feedback.className = 'feedback good';
       } else {
-        feedback.textContent = `Answer: ${correctDisplay}`;
         feedback.className = 'feedback bad';
       }
+
       animateIn(feedback);
+      rightBtn.classList.add('hidden');
+      wrongBtn.classList.add('hidden');
 
       nextBtn.classList.remove('hidden');
       animateIn(nextBtn);
     }
 
     function submitSA() {
-      if (!buzzed || locked) return;
-      const q = questions[index];
-      const ok = isCorrectSA(input.value, q.parsed_answer);
-      if (ok) { score += 1; scoreEl.textContent = String(score); }
-      revealOutcome(ok, q.parsed_answer);
+      if (!runActive || !buzzed || locked) return;
+      const q = currentQ();
+      if (!q) return;
+      revealManualGrade(input.value, q.parsed_answer);
     }
 
     function pickMC(letter) {
-      if (!buzzed || locked) return;
-      const q = questions[index];
-      const correct = extractMCKey(q.parsed_answer);
-      const ok = normalizeAnswerText(letter) === correct;
-      if (ok) { score += 1; scoreEl.textContent = String(score); }
-      revealOutcome(ok, q.parsed_answer);
+      if (!runActive || !buzzed || locked) return;
+      const q = currentQ();
+      if (!q) return;
+      revealManualGrade(letter, q.parsed_answer);
     }
 
     function handleTimeout() {
-      if (locked) return;
-      const q = questions[index];
-      revealOutcome(false, q.parsed_answer);
+      if (!runActive || locked) return;
+      const q = currentQ();
+      if (!q) return;
+      revealManualGrade('', q.parsed_answer);
+    }
+
+    function endRun(reason) {
+      runActive = false;
+      clearInterval(timerId);
+      buzzEl.textContent = reason || 'Run complete';
+
+      img.src = '';
+      img.alt = '';
+
+      input.classList.add('hidden');
+      submitBtn.classList.add('hidden');
+      choicesEl.classList.add('hidden');
+      rightBtn.classList.add('hidden');
+      wrongBtn.classList.add('hidden');
+      nextBtn.classList.add('hidden');
+
+      const total = Array.isArray(questions) ? questions.length : 0;
+      feedback.textContent = total ? `Final score: ${score}/${total}` : '';
+      feedback.className = 'feedback';
+
+      qnumEl.textContent = String(total ? Math.min(index + 1, total) : 0);
+      qtotalEl.textContent = String(total);
+
+      // prevent stray state
+      buzzed = false;
+      locked = true;
+      awaitingGrade = false;
     }
 
     function nextQuestion() {
+      if (!runActive) return;
       if (!locked) return;
+      if (awaitingGrade) return;
+
       index += 1;
       if (index >= questions.length) {
-        clearInterval(timerId);
-        buzzEl.textContent = 'Run complete';
-        img.src = '';
-        img.alt = '';
-        input.classList.add('hidden');
-        submitBtn.classList.add('hidden');
-        choicesEl.classList.add('hidden');
-        nextBtn.classList.add('hidden');
-        feedback.textContent = `Final score: ${score}/${questions.length}`;
-        feedback.className = 'feedback';
+        endRun('Run complete');
         return;
       }
+
       loadQuestion();
     }
 
@@ -692,27 +814,42 @@ document.getElementById('mode').textContent = runCfg.mode;
     window.addEventListener('keydown', (e) => {
       if (e.code === 'Space') e.preventDefault();
 
+      if (e.key === 'Escape') {
+        window.location.href = 'practice_home.html';
+        return;
+      }
+
+      // Ignore keybinds until a run is active and a current question exists
+      const q = currentQ();
+      if (!runActive || !q) return;
+
+      if (awaitingGrade) {
+        const k2 = e.key.toUpperCase();
+        if (k2 === 'R') applyGrade(true);
+        if (k2 === 'W') applyGrade(false);
+        return;
+      }
+
       if (e.code === 'Space' && !buzzed && !locked) {
         allowAnswerUI();
         return;
       }
 
       if (e.code === 'Enter' && buzzed && !locked) {
-        const q = questions[index];
         if (q.type === 'SA') submitSA();
       }
 
       if (buzzed && !locked) {
         const k = e.key.toUpperCase();
-        const q = questions[index];
         if (q.type === 'MC' && ['W','X','Y','Z'].includes(k)) pickMC(k);
       }
 
       if (e.key.toUpperCase() === 'N' && locked) nextQuestion();
-      if (e.key === 'Escape') window.location.href = 'practice_home.html';
     }, { passive: false });
 
     submitBtn.addEventListener('click', submitSA);
+    rightBtn.addEventListener('click', () => applyGrade(true));
+    wrongBtn.addEventListener('click', () => applyGrade(false));
     nextBtn.addEventListener('click', nextQuestion);
 
     choicesEl.addEventListener('click', (e) => {
@@ -728,26 +865,61 @@ document.getElementById('mode').textContent = runCfg.mode;
       return Array.isArray(data) ? data : (data.questions || []);
     }
 
+    // Extra self-tests (console only)
     function runSelfTests() {
       console.assert(!!img && !!input && !!timerEl && !!choicesEl, 'DOM missing core elements');
-      console.assert(typeof loadQuestion === 'function', 'loadQuestion missing');
-      console.assert(typeof pickMC === 'function' && typeof submitSA === 'function', 'Core submit functions missing');
-      console.assert(typeof extractMCKey === 'function', 'extractMCKey missing');
+      console.assert(typeof currentQ === 'function', 'currentQ missing');
+
+      // Bounds tests
+      questions = [];
+      index = 0;
+      console.assert(currentQ() === null, 'currentQ should be null on empty');
+      questions = [{ type: 'SA', level: 'MS', question_image: 'ms/Sample-Set-1/m_round02/10_0.png' }];
+      index = 1;
+      console.assert(currentQ() === null, 'currentQ should be null on OOB index');
+      index = 0;
+      console.assert(!!currentQ(), 'currentQ should exist in bounds');
+
+      // Image resolver sanity
+      const qms = { level: 'MS', question_image: 'ms/Sample-Set-1/m_round02/10_0.png' };
+      const qhs = { level: 'HS', question_image: 'Sample-Set-1/round10/4_0.png' };
+      const c1 = resolveImgCandidates(qms, 'question_image');
+      const c2 = resolveImgCandidates(qhs, 'question_image');
+      console.assert(c1[0] === 'images/ms/Sample-Set-1/m_round02/10_0.png', 'ms path should prefix images/');
+      console.assert(c2.includes('images/hs/Sample-Set-1/round10/4_0.png'), 'HS fallback should include images/hs/...');
     }
 
     (async () => {
       runSelfTests();
+
+      // Reset mutated test state
+      questions = [];
+      index = 0;
+
       try {
         bank = await loadBank();
       } catch (e) {
         showError(String(e.message || e));
+        qnumEl.textContent = '0';
         qtotalEl.textContent = '0';
+        buzzEl.textContent = 'Missing questions.json';
         return;
       }
 
       questions = buildRunQuestions();
-      if (!questions.length) { qtotalEl.textContent = '0'; return; }
       qtotalEl.textContent = String(questions.length);
+      qnumEl.textContent = questions.length ? '1' : '0';
+
+      if (!questions.length) {
+        runActive = false;
+        buzzEl.textContent = 'No questions matched — press Esc';
+        return;
+      }
+
+      runActive = true;
+      score = 0;
+      scoreEl.textContent = '0';
+
       loadQuestion();
     })();
   </script>
