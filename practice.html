@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Atom Bowl — Practice</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --panel: #121824;
+      --accent: #4f7cff;
+      --text: #e6eaf0;
+      --muted: #9aa4b2;
+      --good: #39d98a;
+      --bad: #ff6b6b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ===== Ambient animated backdrop ===== */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -20vh -20vw;
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(79,124,255,0.28), transparent 55%),
+        radial-gradient(700px 420px at 80% 20%, rgba(57,217,138,0.14), transparent 60%),
+        radial-gradient(900px 520px at 60% 90%, rgba(255,107,107,0.12), transparent 62%);
+      filter: blur(18px);
+      opacity: 0.9;
+      animation: drift 14s ease-in-out infinite alternate;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    @keyframes drift {
+      from { transform: translate3d(-1.2%, -0.8%, 0) scale(1); }
+      to   { transform: translate3d( 1.2%,  0.9%, 0) scale(1.02); }
+    }
+
+    /* bottom wave */
+    .waves {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      height: 170px;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    .waves svg {
+      width: 120%;
+      height: 100%;
+      transform: translateX(-8%);
+    }
+
+    .wave1 { animation: waveMove 10s ease-in-out infinite; }
+    .wave2 { animation: waveMove 14s ease-in-out infinite reverse; opacity: 0.7; }
+
+    @keyframes waveMove {
+      0%   { transform: translateX(-8%); }
+      50%  { transform: translateX(-2%); }
+      100% { transform: translateX(-8%); }
+    }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 280px;
+      background: var(--panel);
+      padding: 24px 24px 48px;
+      transform: translateX(-100%);
+      transition: transform 0.42s cubic-bezier(.2,.9,.2,1);
+      z-index: 1000;
+    }
+
+    .nav.open { transform: translateX(0); }
+
+    .nav-title {
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav a {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 12px 0;
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.25s, color 0.25s, transform 0.15s;
+    }
+
+    .nav a:hover {
+      background: rgba(79, 124, 255, 0.15);
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    .icon { width: 22px; text-align: center; }
+
+    .hamburger {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 28px;
+      cursor: pointer;
+      z-index: 1100;
+      user-select: none;
+      transition: left 0.35s ease;
+    }
+
+    .hamburger.open { left: 300px; }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.42s cubic-bezier(.2,.9,.2,1);
+      z-index: 900;
+    }
+
+    .overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ===== PRACTICE ENGINE ===== */
+    .main {
+      padding: 100px 24px 120px;
+      max-width: 960px;
+      margin: auto;
+      min-height: 100vh;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .pill {
+      background: rgba(79,124,255,0.12);
+      border: 1px solid rgba(79,124,255,0.28);
+      padding: 10px 12px;
+      border-radius: 14px;
+      color: var(--text);
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      min-width: 140px;
+      justify-content: center;
+    }
+
+    .pill small { color: var(--muted); font-weight: 600; }
+
+    .question-card {
+      background: linear-gradient(145deg, rgba(20,27,46,0.95), rgba(15,21,36,0.92));
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      backdrop-filter: blur(8px);
+      transform: translateY(0);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .question-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(79,124,255,0.22);
+      box-shadow: 0 26px 70px rgba(0,0,0,0.42);
+    }
+
+    /* Smooth reveal animation for UI pieces */
+    .pop {
+      animation: popIn 220ms cubic-bezier(.2,.9,.2,1) both;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: translateY(8px) scale(0.99); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .question-img {
+      width: 100%;
+      border-radius: 14px;
+      display: block;
+      margin: 12px 0 6px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .buzz {
+      margin: 14px 0;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(79,124,255,0.15);
+      border: 1px solid rgba(79,124,255,0.18);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .buzz .kbd {
+      font-weight: 800;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 6px 10px;
+      border-radius: 10px;
+    }
+
+    .answer-box {
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 14px;
+      border: 2px solid rgba(79,124,255,0.35);
+      background: rgba(18,24,36,0.9);
+      color: var(--text);
+      font-size: 1.05rem;
+      outline: none;
+      margin: 0 0 12px;
+    }
+
+    .answer-box::placeholder { color: rgba(154,164,178,0.8); }
+
+    .answer-box:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 6px rgba(79,124,255,0.12);
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 0 0 12px;
+    }
+
+    .choice-btn {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 1.15rem;
+      font-weight: 800;
+      background: linear-gradient(145deg,#1b2440,#0f1524);
+      color: var(--text);
+      cursor: pointer;
+      transition: transform .15s, filter .15s, border-color .15s;
+      user-select: none;
+    }
+
+    .choice-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+      border-color: rgba(79,124,255,0.35);
+    }
+
+    .row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .btn {
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: rgba(79,124,255,0.18);
+      color: var(--text);
+      transition: transform .15s, filter .15s, background .15s;
+      user-select: none;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      border-color: rgba(79,124,255,0.6);
+      color: white;
+    }
+
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+
+    .feedback {
+      margin: 14px 0 0;
+      min-height: 24px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .feedback.good { color: var(--good); }
+    .feedback.bad { color: var(--bad); }
+    .hidden { display: none !important; }
+
+    @media (max-width: 520px) {
+      .topbar { flex-direction: column; align-items: stretch; }
+      .pill { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="waves" aria-hidden="true">
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path class="wave1" fill="rgba(79,124,255,0.20)" d="M0,224L48,229.3C96,235,192,245,288,229.3C384,213,480,171,576,154.7C672,139,768,149,864,176C960,203,1056,245,1152,250.7C1248,256,1344,224,1392,208L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+      <path class="wave2" fill="rgba(57,217,138,0.10)" d="M0,256L60,229.3C120,203,240,149,360,138.7C480,128,600,160,720,170.7C840,181,960,171,1080,186.7C1200,203,1320,245,1380,266.7L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+    </svg>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav" id="nav">
+    <h2 class="nav-title">⚛ Atom Bowl</h2>
+    <a href="index.html"><span class="icon">🏠</span> Home</a>
+    <a href="#"><span class="icon">✨</span> Generate</a>
+    <a href="practice.html"><span class="icon">⚡</span> Practice</a>
+    <a href="#"><span class="icon">📚</span> Question Bank</a>
+    <a href="#"><span class="icon">⚙️</span> Settings</a>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <div class="hamburger" id="hamburger">☰</div>
+
+  <!-- PRACTICE -->
+  <div class="main">
+
+    <div class="topbar">
+      <div class="pill"><small>Timer</small> <span id="timer">10</span></div>
+      <div class="pill"><small>Score</small> <span id="score">0</span></div>
+      <div class="pill"><small>Q</small> <span id="qnum">1</span>/<span id="qtotal">—</span></div>
+    </div>
+
+    <div class="question-card">
+      <div class="buzz" id="buzz">Press <span class="kbd">SPACE</span> to buzz</div>
+
+      <img id="questionImg" class="question-img" src="" alt="Question" />
+
+      <input id="answer" class="answer-box hidden" placeholder="Type your answer…" autocomplete="off" />
+
+      <div class="choices hidden" id="choices">
+        <button class="choice-btn" type="button" data-letter="W">W</button>
+        <button class="choice-btn" type="button" data-letter="X">X</button>
+        <button class="choice-btn" type="button" data-letter="Y">Y</button>
+        <button class="choice-btn" type="button" data-letter="Z">Z</button>
+      </div>
+
+      <div class="row">
+        <button class="btn primary hidden" id="submitBtn" type="button">Submit</button>
+        <button class="btn hidden" id="nextBtn" type="button">Next</button>
+      </div>
+
+      <p class="feedback" id="feedback"></p>
+    </div>
+
+  </div>
+
+  <script>
+    // ===== NAV =====
+    const nav = document.getElementById('nav');
+    const overlay = document.getElementById('overlay');
+    const hamburger = document.getElementById('hamburger');
+
+    hamburger.addEventListener('click', toggleNav);
+    overlay.addEventListener('click', toggleNav);
+
+    function toggleNav() {
+      const isOpen = nav.classList.toggle('open');
+      overlay.classList.toggle('show');
+      hamburger.classList.toggle('open');
+      hamburger.textContent = isOpen ? '✕' : '☰';
+    }
+
+    // ===== PRACTICE ENGINE =====
+    // Replace this once you fork/detach.
+    const IMAGE_BASE = 'https://raw.githubusercontent.com/YOUR_USERNAME/atom-bowl/main/';
+
+    // Sample questions; swap to your real questions.json loader next.
+    const questions = [
+      { image: 'Sample-Set-1/round1/1_0.png', answer: 'MITOCHONDRIA', type: 'SA' },
+      { image: 'Sample-Set-1/round1/1_1.png', answer: 'W', type: 'MC' }
+    ];
+
+    // DOM
+    const img = document.getElementById('questionImg');
+    const input = document.getElementById('answer');
+    const feedback = document.getElementById('feedback');
+    const timerEl = document.getElementById('timer');
+    const scoreEl = document.getElementById('score');
+    const qnumEl = document.getElementById('qnum');
+    const qtotalEl = document.getElementById('qtotal');
+    const buzzEl = document.getElementById('buzz');
+    const choicesEl = document.getElementById('choices');
+    const submitBtn = document.getElementById('submitBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    // State
+    let index = 0;
+    let time = 10;
+    let timerId = null;
+    let buzzed = false;
+    let locked = false; // after submit/timeout, prevent double actions
+    let score = 0;
+
+    // Init
+    qtotalEl.textContent = String(questions.length);
+
+    function animateIn(el) {
+      if (!el) return;
+      el.classList.remove('pop');
+      // force reflow so animation restarts
+      void el.offsetWidth;
+      el.classList.add('pop');
+      setTimeout(() => el.classList.remove('pop'), 260);
+    }
+
+    function resetForQuestion() {
+      buzzed = false;
+      locked = false;
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+
+      // hide interaction until buzz
+      input.classList.add('hidden');
+      submitBtn.classList.add('hidden');
+      choicesEl.classList.add('hidden');
+      nextBtn.classList.add('hidden');
+
+      // buzz prompt
+      buzzEl.innerHTML = 'Press <span class="kbd">SPACE</span> to buzz';
+
+      // timer
+      time = 10;
+      timerEl.textContent = String(time);
+
+      clearInterval(timerId);
+      timerId = setInterval(() => {
+        time -= 1;
+        timerEl.textContent = String(time);
+        if (time <= 0) {
+          clearInterval(timerId);
+          handleTimeout();
+        }
+      }, 1000);
+    }
+
+    function loadQuestion() {
+      const q = questions[index];
+      qnumEl.textContent = String(index + 1);
+      img.src = IMAGE_BASE + q.image;
+      img.alt = `Question ${index + 1}`;
+      input.value = '';
+      resetForQuestion();
+    }
+
+    function allowAnswerUI() {
+      const q = questions[index];
+      buzzed = true;
+      buzzEl.textContent = 'Buzzed';
+      animateIn(buzzEl);
+
+      if (q.type === 'MC') {
+        choicesEl.classList.remove('hidden');
+        animateIn(choicesEl);
+      } else {
+        input.classList.remove('hidden');
+        submitBtn.classList.remove('hidden');
+        animateIn(input);
+        animateIn(submitBtn);
+        input.focus();
+      }
+    }
+
+    function normalizeAnswerText(s) {
+      return (s || '').toUpperCase().trim();
+    }
+
+    function isCorrectSA(user, correctText) {
+      // MVP: substring match. Later: parse ACCEPT / REJECT clauses.
+      const u = normalizeAnswerText(user);
+      const c = normalizeAnswerText(correctText);
+      if (!u) return false;
+      return c.includes(u);
+    }
+
+    function revealOutcome(isCorrect, correctDisplay) {
+      locked = true;
+      clearInterval(timerId);
+
+      if (isCorrect) {
+        feedback.textContent = 'Correct';
+        feedback.className = 'feedback good';
+      } else {
+        feedback.textContent = `Answer: ${correctDisplay}`;
+        feedback.className = 'feedback bad';
+      }
+      animateIn(feedback);
+
+      nextBtn.classList.remove('hidden');
+      animateIn(nextBtn);
+    }
+
+    function submitSA() {
+      if (!buzzed || locked) return;
+      const q = questions[index];
+      const ok = isCorrectSA(input.value, q.answer);
+      if (ok) {
+        score += 1;
+        scoreEl.textContent = String(score);
+      }
+      revealOutcome(ok, q.answer);
+    }
+
+    function pickMC(letter) {
+      if (!buzzed || locked) return;
+      const q = questions[index];
+      const ok = normalizeAnswerText(letter) === normalizeAnswerText(q.answer);
+      if (ok) {
+        score += 1;
+        scoreEl.textContent = String(score);
+      }
+      revealOutcome(ok, q.answer);
+    }
+
+    function handleTimeout() {
+      if (locked) return;
+      revealOutcome(false, questions[index].answer);
+    }
+
+    function nextQuestion() {
+      if (!locked) return;
+      index += 1;
+      if (index >= questions.length) {
+        clearInterval(timerId);
+        buzzEl.textContent = 'Run complete';
+        img.src = '';
+        img.alt = '';
+        input.classList.add('hidden');
+        submitBtn.classList.add('hidden');
+        choicesEl.classList.add('hidden');
+        nextBtn.classList.add('hidden');
+        feedback.textContent = `Final score: ${score}/${questions.length}`;
+        feedback.className = 'feedback';
+        return;
+      }
+      loadQuestion();
+    }
+
+    // Events
+    window.addEventListener('keydown', (e) => {
+      // prevent spacebar from scrolling
+      if (e.code === 'Space') e.preventDefault();
+
+      if (e.code === 'Space' && !buzzed && !locked) {
+        allowAnswerUI();
+        return;
+      }
+
+      // Enter to submit SA
+      if (e.code === 'Enter' && buzzed && !locked) {
+        const q = questions[index];
+        if (q.type === 'SA') submitSA();
+      }
+
+      // Quick MC picking with keys
+      if (buzzed && !locked) {
+        const k = e.key.toUpperCase();
+        if (['W','X','Y','Z'].includes(k) && questions[index].type === 'MC') {
+          pickMC(k);
+        }
+      }
+
+      // Next with N
+      if (e.key.toUpperCase() === 'N' && locked) {
+        nextQuestion();
+      }
+    }, { passive: false });
+
+    submitBtn.addEventListener('click', submitSA);
+    nextBtn.addEventListener('click', nextQuestion);
+
+    choicesEl.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-letter]');
+      if (!btn) return;
+      pickMC(btn.dataset.letter);
+    });
+
+    // Basic self-tests (so silent syntax errors don't waste your time)
+    function runSelfTests() {
+      console.assert(!!img && !!input && !!timerEl && !!choicesEl, 'DOM missing core elements');
+      console.assert(Array.isArray(questions) && questions.length >= 1, 'Questions array empty');
+      console.assert(typeof loadQuestion === 'function', 'loadQuestion missing');
+
+      // New tests
+      console.assert(['SA','MC'].includes(questions[0].type), 'Question 0 has invalid type');
+      console.assert(typeof allowAnswerUI === 'function', 'allowAnswerUI missing');
+      console.assert(typeof pickMC === 'function' && typeof submitSA === 'function', 'Core submit functions missing');
+    }
+
+    runSelfTests();
+    loadQuestion();
+  </script>
+</body>
+</html>
