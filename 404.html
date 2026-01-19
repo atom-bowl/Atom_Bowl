@@ -227,7 +227,7 @@
     <div class="card">
       <h1>404</h1>
       <p>This page doesn’t exist (or it moved).</p>
-      <div class="countdown">Redirecting home in <span id="sec">5</span>…</div>
+      <div class="countdown">Redirecting home in <span id="sec">10</span>…</div>
 
       <div class="actions">
         <a class="btn primary" href="index.html">Home</a>
@@ -259,6 +259,32 @@
     function go(page) {
       window.location.href = page;
     }
+    let seconds = 10;
+    const secEl = document.getElementById('sec');
+    
+    const countdownTimer = setInterval(() => {
+      seconds -= 1;
+      if (secEl) secEl.textContent = seconds;
+    
+      if (seconds <= 0) {
+        clearInterval(countdownTimer);
+        window.location.href = 'index.html';
+      }
+    }, 1000);
+    document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', () => clearInterval(countdownTimer));
+    });
+    if (window.innerWidth < 480) seconds = 5;
+    if (seconds <= 0) {
+      clearInterval(countdownTimer);
+      document.body.style.opacity = '0';
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 300);
+    }
+
+
+
   </script>
 </body>
 </html>
