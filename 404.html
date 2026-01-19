@@ -14,6 +14,7 @@
       --bg: #0b0f14;
       --panel: #121824;
       --accent: #4f7cff;
+      --danger: #ff6b6b;
       --text: #e6eaf0;
       --muted: #9aa4b2;
     }
@@ -23,23 +24,95 @@
     body {
       margin: 0;
       font-family: 'Inter', system-ui, sans-serif;
-      background: radial-gradient(
-        900px 500px at 20% 10%,
-        rgba(79,124,255,0.25),
-        transparent 60%
-      ), var(--bg);
+      background: var(--bg);
       color: var(--text);
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* animated glow background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -20%;
+      background:
+        radial-gradient(800px 500px at 20% 20%, rgba(79,124,255,0.25), transparent 60%),
+        radial-gradient(700px 500px at 80% 80%, rgba(255,107,107,0.18), transparent 60%);
+      filter: blur(22px);
+      animation: drift 12s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+
+    @keyframes drift {
+      from { transform: translate(-2%, -1%) scale(1); }
+      to   { transform: translate(2%, 1%) scale(1.04); }
+    }
+
+    /* NAV */
+    .hamburger {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      font-size: 28px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .nav {
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: 260px;
+      background: var(--panel);
+      padding: 24px;
+      transform: translateX(-100%);
+      transition: transform 0.35s ease;
+      z-index: 1000;
+    }
+
+    .nav.open { transform: translateX(0); }
+
+    .nav h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .nav a {
+      display: block;
+      padding: 12px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .nav a:hover {
+      background: rgba(79,124,255,0.15);
+      color: var(--accent);
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      z-index: 900;
+    }
+
+    .overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* MAIN */
+    .container {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .container {
-      width: 100%;
       padding: 24px;
-      display: flex;
-      justify-content: center;
     }
 
     .card {
@@ -51,70 +124,123 @@
       text-align: center;
       box-shadow: 0 30px 80px rgba(0,0,0,0.45);
       border: 1px solid rgba(255,255,255,0.06);
+      animation: pop 0.45s cubic-bezier(.2,.9,.2,1);
     }
 
-    .card h1 {
+    @keyframes pop {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    h1 {
       font-size: 4rem;
       margin: 0 0 10px;
-      letter-spacing: 1px;
     }
 
-    .card p {
+    p {
       color: var(--muted);
       font-size: 1.1rem;
-      margin-bottom: 36px;
+      margin-bottom: 24px;
+    }
+
+    .countdown {
+      color: var(--danger);
+      font-weight: 700;
+      margin-bottom: 30px;
     }
 
     .actions {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
     }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       padding: 14px 18px;
       border-radius: 14px;
-      font-weight: 700;
       text-decoration: none;
+      font-weight: 700;
       color: white;
-      background: rgba(79,124,255,0.18);
-      border: 1px solid rgba(79,124,255,0.35);
-      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      background: rgba(79,124,255,0.32);
-      box-shadow: 0 10px 30px rgba(79,124,255,0.25);
+      background: rgba(79,124,255,0.2);
+      border: 1px solid rgba(79,124,255,0.4);
+      transition: transform .15s, box-shadow .15s, background .15s;
     }
 
     .btn.primary {
       background: var(--accent);
-      border-color: rgba(79,124,255,0.7);
+    }
+
+    .btn.danger {
+      background: rgba(255,107,107,0.2);
+      border-color: rgba(255,107,107,0.5);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
     }
 
     @media (min-width: 520px) {
-      .actions {
-        flex-direction: row;
-      }
+      .actions { flex-direction: row; flex-wrap: wrap; }
+      .btn { flex: 1; }
     }
   </style>
 </head>
 <body>
+
+  <div class="hamburger" id="hamburger">☰</div>
+  <div class="nav" id="nav">
+    <h2>⚛ Atom Bowl</h2>
+    <a href="index.html">Home</a>
+    <a href="practice_home.html">Practice</a>
+    <a href="question_bank.html">Question Bank</a>
+  </div>
+  <div class="overlay" id="overlay"></div>
+
   <div class="container">
     <div class="card">
       <h1>404</h1>
       <p>This page doesn’t exist (or it moved).</p>
+      <div class="countdown">Redirecting home in <span id="sec">5</span>…</div>
 
       <div class="actions">
         <a class="btn primary" href="index.html">← Home</a>
-        <a class="btn" href="practice_home.html">← Practice Hub</a>
+        <a class="btn" href="practice_home.html">← Practice</a>
         <a class="btn" href="question_bank.html">← Question Bank</a>
+        <a class="btn danger" target="_blank"
+           href="https://github.com/atom-bowl/Atom_Bowl/issues/new?title=Broken%20Link&body=Broken%20URL:%20">
+          🐛 Report Broken Link
+        </a>
       </div>
     </div>
   </div>
+
+  <script>
+    // hamburger
+    const nav = document.getElementById('nav');
+    const overlay = document.getElementById('overlay');
+    const ham = document.getElementById('hamburger');
+
+    ham.onclick = () => {
+      nav.classList.toggle('open');
+      overlay.classList.toggle('show');
+    };
+    overlay.onclick = () => {
+      nav.classList.remove('open');
+      overlay.classList.remove('show');
+    };
+
+    // redirect countdown
+    let t = 5;
+    const el = document.getElementById('sec');
+    const timer = setInterval(() => {
+      t--;
+      el.textContent = t;
+      if (t <= 0) {
+        clearInterval(timer);
+        window.location.href = 'index.html';
+      }
+    }, 1000);
+  </script>
 </body>
 </html>
