@@ -585,7 +585,7 @@
         imgEl.src = cands[i];
       };
     }
-
+    
     function applyFilters(list) {
       const level = runCfg.level;
       const category = runCfg.category;
@@ -593,18 +593,32 @@
       const bonus = runCfg.bonus;
       const setName = norm(runCfg.setName);
       const roundName = norm(runCfg.roundName);
-
+    
+      const bonusMode = String(bonus || 'ANY').toUpperCase().trim(); // ANY / TU / BONUS / true / false
+    
       return list.filter(q => {
         if (level !== 'ANY' && q.level !== level) return false;
         if (category !== 'ANY' && norm(q.category) !== category) return false;
         if (qaType !== 'ANY' && q.type !== qaType) return false;
-        if (bonus !== 'ANY' && String(!!q.bonus) !== String(bonus)) return false;
+    
+        // Fix: support bonus filter values like "TU" / "BONUS" (and still accept true/false)
+        if (bonusMode !== 'ANY') {
+          const wantBonus =
+            bonusMode === 'BONUS' || bonusMode === 'B' || bonusMode === 'TRUE' || bonusMode === '1';
+          const wantTU =
+            bonusMode === 'TU' || bonusMode === 'TOSSUP' || bonusMode === 'TOSS-UP' || bonusMode === 'FALSE' || bonusMode === '0';
+    
+          if (wantBonus && !q.bonus) return false;
+          if (wantTU && q.bonus) return false;
+        }
+    
         if (setName && q.set_name !== setName) return false;
         if (roundName && q.round_name !== roundName) return false;
         if (!q.question_image) return false;
         return true;
       });
     }
+
 
     function shuffle(arr) {
       for (let i = arr.length - 1; i > 0; i--) {
@@ -616,6 +630,9 @@
 
     function buildRunQuestions() {
       const filtered = applyFilters(bank);
+    
+      let n = Math.max(1, Math.min(300, parseInt(runCfg.count, 10) || 25));
+    
       if (!filtered.length) {
         const parts = [];
         if (runCfg.level !== 'ANY') parts.push(`level=${runCfg.level}`);
@@ -627,6 +644,139 @@
         showError(`No matches for your run. Go back and loosen filters. (${parts.join(', ') || 'no filters'})`);
         return [];
       }
+    
+      hideError();
+    
+      const mode = String(runCfg.mode || 'rapid').toLowerCase().trim();
+      const bonusMode = String(runCfg.bonus || 'ANY').toUpperCase().trim();
+      const wantsPairing =
+        mode === 'rapid' || mode === 'rapid_fire' || mode === 'rapidfire' || mode === 'paired';
+    
+      // If the user asked for TU-only or Bonus-only, DO NOT force pairing.
+      // Same if they filtered to only one type anyway.
+      const forcingOnlyOneSide =
+        bonusMode !== 'ANY' ||
+        filtered.every(q => q.bonus) ||
+        filtered.every(q => !q.bonus);
+    
+      // Non-pairing modes: just shuffle & take N
+      if (!wantsPairing || forcingOnlyOneSide) {
+        const pool = filtered.slice();
+        shuffle(pool);
+        return pool.slice(0, Math.min(n, pool.length));
+      }
+    
+      // Pairing mode (TU then matching Bonus of SAME set_name + SAME category)
+      const groups = new Map();
+      for (const q of filtered) {
+        const key = `${q.set_name}||${norm(q.category)}`;
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(q);
+      }
+    
+      const groupKeys = Array.from(groups.keys());
+      shuffle(groupKeys);
+    
+      const paired = [];
+      const used = new Set();
+    
+      for (const gk of groupKeys) {
+        const items = groups.get(gk) || [];
+        const tossups = items.filter(q => !q.bonus);
+        const bonuses = items.filter(q => q.bonus);
+        if (!tossups.length || !bonuses.length) continue;
+    
+        shuffle(tossups);
+    
+        // Prefer same round+num, else same round, else same num, else any remaining in same set+category.
+        const bonusByRoundNum = new Map();
+        const bonusByRoundAny = new Map();
+        const bonusByNumAny = new Map();
+    
+        const toNumKey = (v) => {
+          const n2 = Number.isFinite(v) ? v : parseInt(v, 10);
+          return Number.isFinite(n2) ? n2 : String(v);
+        };
+    
+        for (const b of bonuses) {
+          const bn = toNumKey(b.num);
+          const rn = String(b.round_name || '');
+    
+          const k1 = `${rn}||${bn}`;
+          if (!bonusByRoundNum.has(k1)) bonusByRoundNum.set(k1, []);
+          bonusByRoundNum.get(k1).push(b);
+    
+          if (!bonusByRoundAny.has(rn)) bonusByRoundAny.set(rn, []);
+          bonusByRoundAny.get(rn).push(b);
+    
+          if (!bonusByNumAny.has(bn)) bonusByNumAny.set(bn, []);
+          bonusByNumAny.get(bn).push(b);
+        }
+    
+        for (const arr of bonusByRoundNum.values()) shuffle(arr);
+        for (const arr of bonusByRoundAny.values()) shuffle(arr);
+        for (const arr of bonusByNumAny.values()) shuffle(arr);
+    
+        const remaining = bonuses.slice();
+        shuffle(remaining);
+    
+        const takeFrom = (arr) => {
+          while (arr && arr.length) {
+            const cand = arr.pop();
+            const id = cand && `${cand.set_name}||${cand.round_name}||${cand.num}||B`;
+            if (cand && !used.has(id)) return cand;
+          }
+          return null;
+        };
+    
+        for (const t of tossups) {
+          if (paired.length >= n) break;
+    
+          const tid = `${t.set_name}||${t.round_name}||${t.num}||T`;
+          if (used.has(tid)) continue;
+    
+          const tr = String(t.round_name || '');
+          const tn = toNumKey(t.num);
+    
+          let match = null;
+          match = takeFrom(bonusByRoundNum.get(`${tr}||${tn}`));
+          if (!match) match = takeFrom(bonusByRoundAny.get(tr));
+          if (!match) match = takeFrom(bonusByNumAny.get(tn));
+          if (!match) match = takeFrom(remaining);
+    
+          // If we can't find a bonus, skip this TU in pairing mode (keeps TU->Bonus pattern)
+          if (!match) continue;
+    
+          const mid = `${match.set_name}||${match.round_name}||${match.num}||B`;
+    
+          used.add(tid);
+          used.add(mid);
+          paired.push(t, match);
+    
+          if (paired.length >= n) break;
+        }
+    
+        if (paired.length >= n) break;
+      }
+    
+      // IMPORTANT FIX:
+      // If pairing didn't produce enough questions, fill the rest with random filtered questions.
+      // This prevents "only 2 questions then done".
+      if (paired.length < n) {
+        const pool = filtered.slice();
+        shuffle(pool);
+        for (const q of pool) {
+          if (paired.length >= n) break;
+          const id = `${q.set_name}||${q.round_name}||${q.num}||${q.bonus ? 'B' : 'T'}`;
+          if (used.has(id)) continue;
+          used.add(id);
+          paired.push(q);
+        }
+      }
+    
+      return paired.slice(0, Math.min(n, paired.length));
+    }
+
 
       hideError();
 
