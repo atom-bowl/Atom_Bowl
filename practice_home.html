@@ -582,8 +582,8 @@
       async function loadBank() {
         try {
           els.bankStatus.textContent = 'Loading…';
-          const res = await fetch('./questions.json', { cache: 'no-store' });
-          if (!res.ok) throw new Error('questions.json not found');
+          const res = await fetch('./set_A.json', { cache: 'no-store' });
+          if (!res.ok) throw new Error('set_A.json not found');
           const data = await res.json();
           bank = Array.isArray(data) ? data : (data.questions || []);
 
