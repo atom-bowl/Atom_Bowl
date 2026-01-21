@@ -222,7 +222,7 @@
       border: 1px solid rgba(255,255,255,0.06);
       animation: fadeUp 260ms cubic-bezier(.2,.9,.2,1) both;
     }
-    
+
     .question-text {
       font-size: 1.15rem;
       line-height: 1.6;
@@ -234,7 +234,6 @@
       font-weight: 600;
       white-space: pre-wrap;
     }
-
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(6px); }
@@ -385,6 +384,7 @@
       border-radius: 14px;
       margin-bottom: 14px;
       font-weight: 700;
+      white-space: pre-wrap;
     }
 
     .hint {
@@ -493,7 +493,8 @@
       count: 25,     // rapid mode: number of PAIRS
       seconds: 20,   // TU pre-buzz timer
       setName: '',
-      roundName: ''
+      roundName: '',
+      bankFile: 'set_A.json'
     };
 
     function safeParseJSON(s, fallback) {
@@ -583,7 +584,47 @@
       return questions[index];
     }
 
-    // Image path resolver
+    // -------- Bank loading helpers --------
+
+    function normalizeBankFile(raw) {
+      // Accept: "set_A.json", "./set_A.json", "/set_A.json", "banks/set_A.json"
+      // Return: a cleaned relative path we can try as-is.
+      let s = String(raw || '').trim();
+      if (!s) return '';
+
+      // If it's an absolute URL, keep it.
+      if (/^https?:\/\//i.test(s)) return s;
+
+      // Strip leading file-ish markers.
+      s = s.replace(/^\.\/+/, '').replace(/^\/+/, '');
+      return s;
+    }
+
+    function bankCandidates(bankFile) {
+      const cleaned = normalizeBankFile(bankFile);
+      if (!cleaned) return [];
+      if (/^https?:\/\//i.test(cleaned)) return [cleaned];
+
+      // Try a small set of sane candidates.
+      const out = [
+        `./${cleaned}`,
+        cleaned,
+      ];
+
+      // If Home accidentally stored "./set_A.json" we'll avoid "././set_A.json" by normalization above.
+      // Add a banks/ folder option (common project layout) if user later moves banks.
+      if (!cleaned.startsWith('banks/')) out.push(`./banks/${cleaned}`);
+
+      // Deduplicate
+      return [...new Set(out)];
+    }
+
+    function isLikelyFileProtocol() {
+      try { return window.location.protocol === 'file:'; } catch { return false; }
+    }
+
+    // -------- Image path resolver --------
+
     function resolveImgCandidates(q, field) {
       const raw = String((q && q[field]) || '').trim();
       if (!raw) return [];
@@ -628,9 +669,11 @@
       };
     }
 
+    // -------- Text / image renderer --------
+
     let typewriterTimer = null;
     let textFullyRevealed = true;
-    
+
     function renderQuestion(q) {
       img.style.display = 'none';
       img.src = '';
@@ -638,28 +681,29 @@
       questionTextEl.textContent = '';
       clearInterval(typewriterTimer);
       textFullyRevealed = true;
-    
-      // TEXT MODE (Set B)
+
+      // TEXT MODE
       if (q.question_text && !q.question_image) {
         questionTextEl.classList.remove('hidden');
         animateIn(questionTextEl);
         startTypewriter(q.question_text);
         return;
       }
-    
-      // IMAGE MODE (Set A)
+
+      // IMAGE MODE
       setImgWithFallback(img, q, 'question_image');
       img.alt = `Question ${index + 1}`;
     }
-    
+
     function startTypewriter(text) {
       const words = String(text).split(/(\s+)/);
       let i = 0;
       textFullyRevealed = false;
       questionTextEl.textContent = '';
-    
+
       typewriterTimer = setInterval(() => {
-        questionTextEl.textContent += words[i];
+        // Guard against empty tokens array edge cases
+        if (i < words.length) questionTextEl.textContent += words[i];
         i++;
         if (i >= words.length) {
           clearInterval(typewriterTimer);
@@ -667,7 +711,6 @@
         }
       }, 90);
     }
-
 
     function applyFilters(list) {
       const level = runCfg.level;
@@ -851,10 +894,7 @@
       }
 
       updateProgressUI();
-
       renderQuestion(q);
-
-
       input.value = '';
 
       const mode = String(runCfg.mode || 'rapid').toLowerCase();
@@ -1006,6 +1046,9 @@
       img.style.display = 'none';
       img.src = '';
       img.alt = '';
+      questionTextEl.classList.add('hidden');
+      questionTextEl.textContent = '';
+      clearInterval(typewriterTimer);
 
       input.classList.add('hidden');
       submitBtn.classList.add('hidden');
@@ -1077,7 +1120,6 @@
         return;
       }
 
-
       if (e.code === 'Enter' && buzzed && !locked && q.type === 'SA') submitSA();
 
       if (buzzed && !locked && q.type === 'MC') {
@@ -1135,83 +1177,82 @@
     });
 
     async function loadBank() {
-      try {
-        const res = await fetch('./set_A.json', { cache: 'no-store' });
-        if (!res.ok) throw new Error('set_A.json not found');
-        const data = await res.json();
-        return Array.isArray(data) ? data : (data.questions || []);
-      } catch {
-        // Backup demo question (mitochondria)
-        return [{
-          set_name: 'DEMO',
-          round_name: 'demo',
-          num: 1,
-          bonus: false,
-          level: 'MS',
-          category: 'BIOLOGY',
-          type: 'SA',
-          question_text: 'What organelle is known as the powerhouse of the cell?',
-          parsed_answer: 'MITOCHONDRIA'
-        }];
+      const requested = runCfg.bankFile || DEFAULT_RUN.bankFile;
+      const tried = [];
+
+      async function tryLoad(bankFile) {
+        const cands = bankCandidates(bankFile);
+        for (const url of cands) {
+          tried.push(url);
+          try {
+            const res = await fetch(url, { cache: 'no-store' });
+            if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+            const data = await res.json();
+            hideError();
+            return Array.isArray(data) ? data : (data.questions || []);
+          } catch {}
+        }
+        return null;
       }
-    }
 
-    // Extra self-tests (console only)
-    function runSelfTests() {
-      console.assert(!!img && !!input && !!timerEl && !!choicesEl && !!progressEl, 'DOM missing core elements');
-      console.assert(typeof currentQ === 'function', 'currentQ missing');
+      if (isLikelyFileProtocol()) {
+        showError(
+          `Bank load blocked (file://).
 
-      // Bounds tests
-      const savedQuestions = questions;
-      const savedIndex = index;
+` +
+          `Use a local server (VS Code Live Server) or GitHub Pages.
+` +
+          `Requested bank: ${requested}`
+        );
+      }
 
-      questions = [];
-      index = 0;
-      console.assert(currentQ() === null, 'currentQ should be null on empty');
+      // 1) requested bank
+      let data = await tryLoad(requested);
+      if (data && data.length) return data;
 
-      questions = [{ type: 'SA', level: 'MS', bonus: false, category: 'PHYSICS', question_image: 'ms/Sample-Set-1/m_round02/10_0.png' }];
-      index = 1;
-      console.assert(currentQ() === null, 'currentQ should be null on OOB index');
+      // 2) fallback to set_A.json
+      if (requested !== 'set_A.json') {
+        data = await tryLoad('set_A.json');
+        if (data && data.length) {
+          showError(
+            `⚠ Failed to load ${requested}.
+` +
+            `Fell back to set_A.json.
 
-      index = 0;
-      console.assert(!!currentQ(), 'currentQ should exist in bounds');
+` +
+            `Tried: ${tried.join(', ')}`
+          );
+          return data;
+        }
+      }
 
-      questions = savedQuestions;
-      index = savedIndex;
+      // 3) final demo fallback
+      showError(
+        `Failed to load any bank.
 
-      // Pair-order test
-      const mini = [
-        { set_name: 'S1', round_name: 'r1', num: 10, bonus: false, level: 'MS', category: 'PHYSICS', type: 'SA', question_image: '' },
-        { set_name: 'S1', round_name: 'r1', num: 10, bonus: true,  level: 'MS', category: 'PHYSICS', type: 'SA', question_image: '' },
-        { set_name: 'S1', round_name: 'r2', num: 11, bonus: false, level: 'MS', category: 'PHYSICS', type: 'SA', question_image: '' },
-        { set_name: 'S1', round_name: 'r2', num: 11, bonus: true,  level: 'MS', category: 'PHYSICS', type: 'SA', question_image: '' },
-      ];
+` +
+        `Requested: ${requested}
+` +
+        `Tried: ${tried.join(', ')}
 
-      const savedBank = bank;
-      const savedCfg = { ...runCfg };
+` +
+        `Fix: ensure JSON exists and run via a web server.`
+      );
 
-      bank = mini;
-      runCfg.level = 'ANY';
-      runCfg.category = 'ANY';
-      runCfg.qaType = 'ANY';
-      runCfg.bonus = 'ANY';
-      runCfg.setName = '';
-      runCfg.roundName = '';
-      runCfg.mode = 'rapid';
-      runCfg.count = 2;
-
-      const ra = buildRunQuestions();
-      console.assert(ra.length === 4, 'rapid should return 2 pairs => 4 questions');
-      console.assert(ra[0].bonus === false && ra[1].bonus === true, 'pair 1 should be TU then BO');
-      console.assert(ra[2].bonus === false && ra[3].bonus === true, 'pair 2 should be TU then BO');
-
-      bank = savedBank;
-      Object.assign(runCfg, savedCfg);
+      return [{
+        set_name: 'DEMO',
+        round_name: 'demo',
+        num: 1,
+        bonus: false,
+        level: 'MS',
+        category: 'BIOLOGY',
+        type: 'SA',
+        question_text: 'What organelle is known as the powerhouse of the cell?',
+        parsed_answer: 'MITOCHONDRIA'
+      }];
     }
 
     (async () => {
-      runSelfTests();
-
       questions = [];
       index = 0;
 
