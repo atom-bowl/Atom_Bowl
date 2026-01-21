@@ -349,6 +349,14 @@
 
       <div class="controls">
         <div class="field">
+          <label for="bankSelect">Question Bank</label>
+          <select id="bankSelect">
+            <option value="set_A.json">Set A (Image Questions)</option>
+            <option value="set_B.json">Set B (Text Questions)</option>
+          </select>
+        </div>
+
+        <div class="field">
           <label for="level">Division</label>
           <select id="level">
             <option value="ANY">Any</option>
@@ -495,6 +503,7 @@
 
       // Filters
       const els = {
+        bankSelect: document.getElementById('bankSelect'),
         level: document.getElementById('level'),
         category: document.getElementById('category'),
         qaType: document.getElementById('qaType'),
@@ -580,9 +589,10 @@
       };
 
       async function loadBank() {
+        const selectedBank = els.bankSelect?.value || './set_A.json';
         try {
           els.bankStatus.textContent = 'Loading…';
-          const res = await fetch('./set_A.json', { cache: 'no-store' });
+          const res = await fetch(`./${selectedBank}`, { cache: 'no-store' });
           if (!res.ok) throw new Error('set_A.json not found');
           const data = await res.json();
           bank = Array.isArray(data) ? data : (data.questions || []);
@@ -590,14 +600,14 @@
           els.bankStatus.textContent = 'Ready';
           els.bankStatus.style.background = 'rgba(57,217,138,0.14)';
           els.bankStatus.style.borderColor = 'rgba(57,217,138,0.24)';
-          els.bankMeta.textContent = `${bank.length.toLocaleString()} questions detected`;
+          els.bankMeta.textContent = `${selectedBank} • ${bank.length.toLocaleString()} questions detected`;
 
           updateCounts();
         } catch (e) {
           els.bankStatus.textContent = 'Missing';
           els.bankStatus.style.background = 'rgba(255,107,107,0.14)';
           els.bankStatus.style.borderColor = 'rgba(255,107,107,0.22)';
-          els.bankMeta.textContent = 'Put set_A.json in the repo root (same folder as this file).';
+          els.bankMeta.textContent = 'Put the sets in the repo root (same folder as this file).';
           bank = [];
           updateCounts();
         }
@@ -611,6 +621,10 @@
         el.addEventListener('input', updateCounts);
       }
       els.category.addEventListener('change', updateCounts);
+
+      els.bankSelect.addEventListener('change', () => {
+        loadBank();
+      });
 
       loadBank();
     });
