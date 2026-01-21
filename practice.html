@@ -222,6 +222,19 @@
       border: 1px solid rgba(255,255,255,0.06);
       animation: fadeUp 260ms cubic-bezier(.2,.9,.2,1) both;
     }
+    
+    .question-text {
+      font-size: 1.15rem;
+      line-height: 1.6;
+      margin: 18px 0 10px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-weight: 600;
+      white-space: pre-wrap;
+    }
+
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(6px); }
@@ -419,6 +432,7 @@
       <div class="buzz" id="buzz">Loading…</div>
 
       <img id="questionImg" class="question-img" src="" alt="Question" />
+      <div id="questionText" class="question-text hidden"></div>
 
       <div class="meta">
         <div id="metaLeft">—</div>
@@ -508,6 +522,7 @@
 
     // DOM
     const img = document.getElementById('questionImg');
+    const questionTextEl = document.getElementById('questionText');
     const input = document.getElementById('answer');
     const feedback = document.getElementById('feedback');
     const timerEl = document.getElementById('timer');
@@ -612,6 +627,47 @@
         imgEl.src = cands[i];
       };
     }
+
+    let typewriterTimer = null;
+    let textFullyRevealed = true;
+    
+    function renderQuestion(q) {
+      img.style.display = 'none';
+      img.src = '';
+      questionTextEl.classList.add('hidden');
+      questionTextEl.textContent = '';
+      clearInterval(typewriterTimer);
+      textFullyRevealed = true;
+    
+      // TEXT MODE (Set B)
+      if (q.question_text && !q.question_image) {
+        questionTextEl.classList.remove('hidden');
+        animateIn(questionTextEl);
+        startTypewriter(q.question_text);
+        return;
+      }
+    
+      // IMAGE MODE (Set A)
+      setImgWithFallback(img, q, 'question_image');
+      img.alt = `Question ${index + 1}`;
+    }
+    
+    function startTypewriter(text) {
+      const words = String(text).split(/(\s+)/);
+      let i = 0;
+      textFullyRevealed = false;
+      questionTextEl.textContent = '';
+    
+      typewriterTimer = setInterval(() => {
+        questionTextEl.textContent += words[i];
+        i++;
+        if (i >= words.length) {
+          clearInterval(typewriterTimer);
+          textFullyRevealed = true;
+        }
+      }, 90);
+    }
+
 
     function applyFilters(list) {
       const level = runCfg.level;
@@ -796,8 +852,8 @@
 
       updateProgressUI();
 
-      setImgWithFallback(img, q, 'question_image');
-      img.alt = `Question ${index + 1}`;
+      renderQuestion(q);
+
 
       input.value = '';
 
@@ -1013,9 +1069,14 @@
       }
 
       if (e.code === 'Space' && !buzzed && !locked && !isTyping) {
+        if (!textFullyRevealed) {
+          score -= 4;
+          scoreEl.textContent = String(score);
+        }
         allowAnswerUI();
         return;
       }
+
 
       if (e.code === 'Enter' && buzzed && !locked && q.type === 'SA') submitSA();
 
