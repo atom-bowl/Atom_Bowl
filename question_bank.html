@@ -541,8 +541,8 @@
     }
 
     async function loadBank() {
-      const res = await fetch('./questions.json', { cache: 'no-store' });
-      if (!res.ok) throw new Error('questions.json not found in repo root');
+      const res = await fetch('./set_A.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error('set_A.json not found in repo root');
       const data = await res.json();
       return Array.isArray(data) ? data : (data.questions || []);
     }
@@ -685,7 +685,7 @@
     nextBtn.addEventListener('click', () => { page += 1; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
     (async () => {
-      statusEl.textContent = 'Loading questions.json…';
+      statusEl.textContent = 'Loading set_A.json…';
       try {
         bank = await loadBank();
       } catch (e) {
@@ -696,7 +696,7 @@
 
       // Basic sanity
       if (!Array.isArray(bank) || bank.length === 0) {
-        showErr('questions.json loaded but contains no questions.');
+        showErr('set_A.json loaded but contains no questions.');
         statusEl.textContent = '';
         return;
       }
