@@ -464,6 +464,13 @@
       </div>
 
       <div class="hint">Tip: Space to buzz (tap card on mobile). W/X/Y/Z keys work after buzzing. Esc goes back. (Grading: R=Right, W=Wrong)</div>
+      <div class="row" id="statsRow" style="margin-top:32px">
+      <div class="pill"><small>Accuracy</small> <span id="statAccuracy">—</span></div>
+      <div class="pill"><small>Avg Speed</small> <span id="statSpeed">—</span></div>
+      <div class="pill"><small>QS Correct</small> <span id="statCorrect">—</span></div>
+      <div class="pill"><small>QS ≥10s</small> <span id="statSlow">—</span></div>
+    </div>
+
     </div>
   </div>
 
@@ -554,6 +561,16 @@
     let awaitingGrade = false;
     let score = 0;
     let runActive = false;
+    // ---- Stats tracking ----
+    let stats = {
+      answered: 0,          // total buzzed questions
+      correct: 0,           // graded correct
+      totalTime: 0,         // seconds spent after buzz
+      slowCorrect: 0        // correct answers taking >=10s
+    };
+    
+    let buzzStartTime = null;
+
 
     function animateIn(el) {
       if (!el) return;
@@ -870,20 +887,32 @@
       // Pre-buzz timing rules
       // TU: custom (runCfg.seconds)
       // BO: always 20s
-      const preBuzzTime = isBonus ? 20 : Math.max(5, parseInt(runCfg.seconds, 10) || 20);
+      const IMAGE_BUFFER = 5;
+      const hasImage = !!q.question_image;
+      
+      const baseTime = isBonus ? 20 : Math.max(5, parseInt(runCfg.seconds, 10) || 20);
+      const preBuzzTime = hasImage ? baseTime + IMAGE_BUFFER : baseTime;
 
-      time = preBuzzTime;
-      timerEl.textContent = String(time);
 
       clearInterval(timerId);
-      timerId = setInterval(() => {
-        time -= 1;
+      
+      if (runCfg.noTimer) {
+        timerEl.textContent = '∞';
+        time = Infinity;
+      } else {
+        time = preBuzzTime;
         timerEl.textContent = String(time);
-        if (time <= 0) {
-          clearInterval(timerId);
-          handleTimeout();
-        }
-      }, 1000);
+      
+        timerId = setInterval(() => {
+          time -= 1;
+          timerEl.textContent = String(time);
+          if (time <= 0) {
+            clearInterval(timerId);
+            handleTimeout();
+          }
+        }, 1000);
+      }
+
     }
 
     function loadQuestion() {
@@ -966,6 +995,21 @@
         .replaceAll('"', '&quot;')
         .replaceAll("'", '&#039;');
     }
+    function updateStatsUI() {
+      const acc = stats.answered
+        ? Math.round((stats.correct / stats.answered) * 100)
+        : 0;
+    
+      const avg = stats.answered
+        ? (stats.totalTime / stats.answered).toFixed(1)
+        : '—';
+    
+      document.getElementById('statAccuracy').textContent = `${acc}%`;
+      document.getElementById('statSpeed').textContent = `${avg}s`;
+      document.getElementById('statCorrect').textContent = stats.correct;
+      document.getElementById('statSlow').textContent = stats.slowCorrect;
+    }
+
 
     function revealManualGrade(userAnswer, correctAnswer) {
       locked = true;
@@ -990,6 +1034,20 @@
     }
 
     function applyGrade(isRight) {
+      // ---- Stats update ----
+      stats.answered++;
+      
+      const elapsed = buzzStartTime
+        ? (Date.now() - buzzStartTime) / 1000
+        : 0;
+      
+      stats.totalTime += elapsed;
+      
+      if (isRight) {
+        stats.correct++;
+        if (elapsed >= 10) stats.slowCorrect++;
+      }
+
       if (!awaitingGrade) return;
       awaitingGrade = false;
 
@@ -1015,6 +1073,7 @@
 
       nextBtn.classList.remove('hidden');
       animateIn(nextBtn);
+      updateStatsUI();
     }
 
     function submitSA() {
