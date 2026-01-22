@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Atom Bowl — Question</title>
+  <title>Atom Bowl — Problem</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
@@ -208,6 +208,30 @@
     }
 
     .pop { animation: popIn 220ms cubic-bezier(.2,.9,.2,1) both; }
+    .interrupt-badge {
+      display: inline-block;
+      margin-left: 10px;
+      padding: 4px 10px;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      border-radius: 999px;
+      background: #ffcc00;
+      color: #000;
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.15);
+      animation: interruptPulse 1s infinite;
+    }
+
+    .interrupt-badge.hidden {
+      display: none;
+    }
+
+    @keyframes interruptPulse {
+      0%   { transform: scale(1);   }
+      50%  { transform: scale(1.08);}
+      100% { transform: scale(1);   }
+    }
+
 
     @keyframes popIn {
       from { opacity: 0; transform: translateY(8px) scale(0.99); }
@@ -499,7 +523,7 @@
       <div class="pill"><small>Stopwatch</small> <span id="stopwatch">0.00 s</span></div>
       <div class="pill"><small>Progress</small> <span id="progress">—</span></div>
       <div class="pill"><small>Mode</small> <span id="mode">—</span></div>
-    </div>
+      <div id="interruptBadge" class="interrupt-badge hidden">⚡INTERRUPT</div>
 
     <div class="question-card">
       <div class="buzz" id="buzz">Loading…</div>
@@ -651,7 +675,7 @@
     const finalSummaryEl = document.getElementById('finalSummary');
     const finalScoreEl = document.getElementById('finalScore');
     const atomScoreValueEl = document.getElementById('atomScoreValue');
-
+    const interruptBadgeEl = document.getElementById('interruptBadge');
     const learnRow = document.getElementById('learnRow');
     const searchBtn = document.getElementById('searchBtn');
     const learnBtn = document.getElementById('learnBtn');
@@ -680,6 +704,7 @@
     let stopwatchStart = null;
     let stopwatchInterval = null;
     let stopwatchRunning = false;
+    let interrupted = false;
 
 
 
@@ -1024,6 +1049,7 @@
       buzzed = false;
       locked = false;
       awaitingGrade = false;
+      interrupted = false;
       if (finalSummaryEl) finalSummaryEl.classList.add('hidden');
 
       feedback.textContent = '';
@@ -1050,7 +1076,10 @@
         : Math.max(5, parseInt(runCfg.seconds, 10) || 20);
       ;
 
-
+      if (interruptBadgeEl) {
+        interruptBadgeEl.classList.add('hidden');
+      }
+      
       clearInterval(timerId);
       
       if (runCfg.noTimer) {
@@ -1228,6 +1257,11 @@
         feedback.className = 'feedback good';
         feedback.textContent += ` (+${points})`;
       } else {
+        if (q && !q.bonus && interrupted) {
+          score -= 4;
+          scoreEl.textContent = String(score);
+          feedback.textContent += ` (-4 interrupt)`;
+        }
         feedback.className = 'feedback bad';
       }
 
@@ -1252,6 +1286,10 @@
       stopStopwatch();
       const q = currentQ();
       if (!q) return;
+      if (interruptBadgeEl) {
+        interruptBadgeEl.classList.add('hidden');
+      }
+      revealFullQuestionNow();
       revealManualGrade(input.value, q.parsed_answer);
     }
 
@@ -1260,6 +1298,10 @@
       stopStopwatch();
       const q = currentQ();
       if (!q) return;
+      if (interruptBadgeEl) {
+        interruptBadgeEl.classList.add('hidden');
+      }
+      revealFullQuestionNow();
       revealManualGrade(letter, q.parsed_answer);
     }
 
@@ -1268,6 +1310,10 @@
       stopStopwatch();
       const q = currentQ();
       if (!q) return;
+      if (interruptBadgeEl) {
+        interruptBadgeEl.classList.add('hidden');
+      }
+      revealFullQuestionNow();
       revealManualGrade('', q.parsed_answer);
     }
 
@@ -1327,6 +1373,13 @@
       awaitingGrade = false;
     }
 
+    function revealFullQuestionNow() {
+      const q = currentQ();
+      if (!q) return;
+      clearInterval(typewriterTimer);
+      questionTextEl.textContent = String(q.question_text || '');
+    }
+
     function nextQuestion() {
       resetStopwatch();  
       if (!runActive) return;
@@ -1366,10 +1419,19 @@
       }
 
       if (e.code === 'Space' && !buzzed && !locked && !isTyping) {
-        if (!textFullyRevealed) {
-          score -= 4;
-          scoreEl.textContent = String(score);
+        const q = currentQ();
+
+        // Freeze reading immediately on buzz
+        clearInterval(typewriterTimer);
+
+        // Mark interrupt ONLY for toss-ups and ONLY if not fully revealed
+        if (q && !q.bonus && !textFullyRevealed) {
+          interrupted = true;
+          if (interruptBadgeEl) {
+            interruptBadgeEl.classList.remove('hidden');
+          }
         }
+
         allowAnswerUI();
         return;
       }
