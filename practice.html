@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Atom Bowl — Problem</title>
+  <title>Atom Bowl — Question</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
@@ -425,17 +425,22 @@
       line-height: 1.55;
     }
 
-    .feedback .final-score {
-      font-size: 1.25rem;
+    .final-summary {
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    .final-score {
+      font-size: 1.4rem;
+      font-weight: 800;
       margin-bottom: 6px;
     }
 
-    .feedback .atom-score {
-      font-size: 1.05rem;
-      color: var(--muted);
+    .atom-score-row {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      font-weight: 700;
     }
 
     .feedback.good { color: var(--good); }
@@ -524,6 +529,36 @@
       </div>
 
       <p class="feedback" id="feedback"></p>
+      <div id="finalSummary" class="final-summary hidden">
+        <div id="finalScore" class="final-score"></div>
+
+        <div class="atom-score-row">
+          <span class="atom-score-label">
+            AtomScore®
+            <span class="summary-info">ⓘ
+              <span class="summary-info-box">
+                AtomScore® is a session-based performance metric that summarizes how well you played.
+
+                <b>What it measures</b>
+                • Accuracy (most important)<br>
+                • Average solve speed<br>
+                • Consistency (penalizes slow correct answers ≥10s)
+
+                <b>Interpretation</b>
+                85–100 — Elite (nationals-level)<br>
+                70–84 — Strong and consistent<br>
+                50–69 — Competitive<br>
+                30–49 — Developing<br>
+                &lt;30 — Needs practice
+
+                AtomScore® ranges from 0–100.
+              </span>
+            </span>
+          </span>
+          <span id="atomScoreValue"></span>
+        </div>
+      </div>
+
 
       <!-- Search / Learn buttons (hidden until graded) -->
       <div class="row hidden" id="learnRow">
@@ -613,6 +648,9 @@
     const errEl = document.getElementById('err');
     const metaLeft = document.getElementById('metaLeft');
     const metaRight = document.getElementById('metaRight');
+    const finalSummaryEl = document.getElementById('finalSummary');
+    const finalScoreEl = document.getElementById('finalScore');
+    const atomScoreValueEl = document.getElementById('atomScoreValue');
 
     const learnRow = document.getElementById('learnRow');
     const searchBtn = document.getElementById('searchBtn');
@@ -986,6 +1024,7 @@
       buzzed = false;
       locked = false;
       awaitingGrade = false;
+      if (finalSummaryEl) finalSummaryEl.classList.add('hidden');
 
       feedback.textContent = '';
       feedback.className = 'feedback';
@@ -1252,63 +1291,34 @@
       nextBtn.classList.add('hidden');
       learnRow.classList.add('hidden');
 
-      const mode = String(runCfg.mode || 'rapid').toLowerCase();
-        let summary = '';
+     const mode = String(runCfg.mode || 'rapid').toLowerCase();
 
-        if (mode === 'tossups' || mode === 'bonuses') {
-        if (questions.length) {
-            summary = `Final score: ${score}/${questions.length * 4}`;
-        }
-        } else {
-        const totalPairs = questions.length
-            ? Math.ceil(questions.length / 2)
-            : 0;
-        if (totalPairs) {
-            summary = `Final score: ${score}/${totalPairs * 14}`;
-        }
-        }
+      let maxScore = 0;
+      if (mode === 'tossups' || mode === 'bonuses') {
+        maxScore = questions.length * 4;
+      } else {
+        const totalPairs = questions.length ? Math.ceil(questions.length / 2) : 0;
+        maxScore = totalPairs * 14;
+      }
 
-        const atomScore = computeAtomScore();
-        let html = summary.replace(/\n/g, '<br>');
+      // Show final summary (DOM-based)
+      const atomScore = computeAtomScore();
 
-        if (atomScore) {
-            html += `
-                <br>
-                <span>
-                AtomScore®: ${atomScore}
-                <span class="summary-info">ⓘ
-                    <span class="summary-info-box">
-                      AtomScore® is a session-based performance metric that summarizes
-                      how well you played.
+      if (finalScoreEl) {
+        finalScoreEl.textContent = maxScore ? `Final score: ${score}/${maxScore}` : `Final score: ${score}`;
+      }
+      if (atomScoreValueEl) {
+        atomScoreValueEl.textContent = Number.isFinite(atomScore) ? atomScore.toFixed(3) : '—';
+      }
+      if (finalSummaryEl) {
+        finalSummaryEl.classList.remove('hidden');
+        animateIn(finalSummaryEl);
+      }
 
-                      It prioritizes accuracy, rewards faster average solve times, and
-                      penalizes correct answers that took 10 seconds or longer. The score
-                      is independent of how many questions you selected.
-
-                      <b>Interpretation guide:</b>
-                      <br>
-                      85+ &nbsp;— Elite (nationals-level pace)
-                      <br>
-                      70–84 — Strong and consistent
-                      <br>
-                      50–69 — Competitive, room to improve
-                      <br>
-                      30–49 — Developing fundamentals
-                      <br>
-                      &lt;30 — Needs more practice
-
-                      AtomScore® typically ranges from 0 to 100.
-
-                    </span>
-                </span>
-                </span>
-            `;
-        }
-
-        feedback.innerHTML = html;
-
-
+      // Clear/hide feedback so it doesn't become the end-screen container
+      feedback.textContent = '';
       feedback.className = 'feedback';
+
 
       progressEl.textContent = '—';
 
@@ -1483,17 +1493,30 @@
         `Fix: ensure JSON exists and run via a web server.`
       );
 
-      return [{
-        set_name: 'DEMO',
-        round_name: 'demo',
-        num: 1,
-        bonus: false,
-        level: 'MS',
-        category: 'BIOLOGY',
-        type: 'SA',
-        question_text: 'What organelle is known as the powerhouse of the cell?',
-        parsed_answer: 'MITOCHONDRIA'
-      }];
+      return [
+        {
+          set_name: 'DEMO',
+          round_name: 'demo',
+          num: 1,
+          bonus: false,
+          level: 'MS',
+          category: 'BIOLOGY',
+          type: 'SA',
+          question_text: 'What organelle is known as the powerhouse of the cell?',
+          parsed_answer: 'MITOCHONDRIA'
+        },
+        {
+          set_name: 'DEMO',
+          round_name: 'demo',
+          num: 2,
+          bonus: true,
+          level: 'MS',
+          category: 'BIOLOGY',
+          type: 'SA',
+          question_text: 'This organelle contains its own DNA and is responsible for respiration',
+          parsed_answer: 'MITOCHONDRIA'
+        }
+      ];
     }
 
     (async () => {
