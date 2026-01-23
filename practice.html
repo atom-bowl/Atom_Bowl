@@ -862,6 +862,18 @@
         currentUtterance = null;
       }
     }
+    function warmUpSpeechSynthesis() {
+      if (!window.speechSynthesis) return;
+    
+      const u = new SpeechSynthesisUtterance(" ");
+      u.volume = 0;      // silent
+      u.rate = 1.0;
+      u.pitch = 1.0;
+    
+      window.speechSynthesis.speak(u);
+      window.speechSynthesis.cancel();
+    }
+
 
 
     function stopStopwatch() {
@@ -1019,6 +1031,7 @@
       // TEXT MODE
       if (q.question_text && !q.question_image) {
         questionTextEl.classList.remove('hidden');
+        warmUpSpeechSynthesis();
         animateIn(questionTextEl);
         startTypewriter(q.question_text);
         speakText(q.question_text);
