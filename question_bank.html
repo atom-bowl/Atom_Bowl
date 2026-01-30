@@ -85,8 +85,10 @@
       left: 0;
       height: 100vh;
       width: 280px;
-      background: var(--panel);
-      padding: 24px 24px 48px;
+      background: linear-gradient(180deg, rgba(18,24,36,0.98), rgba(11,15,22,0.96));
+      padding: 26px 24px 48px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 18px 0 60px rgba(0,0,0,0.45);
       transform: translateX(-100%);
       transition: transform 0.42s cubic-bezier(.2,.9,.2,1);
       z-index: 1000;
@@ -122,6 +124,12 @@
       transform: translateX(4px);
     }
 
+    .nav a.active {
+      background: rgba(79, 124, 255, 0.2);
+      color: #d7e2ff;
+      box-shadow: inset 0 0 0 1px rgba(79, 124, 255, 0.35);
+    }
+
     .icon { width: 22px; text-align: center; }
 
     .hamburger {
@@ -150,6 +158,70 @@
     .overlay.show {
       opacity: 1;
       pointer-events: auto;
+    }
+
+    /* Bottom nav */
+    .bottom-nav {
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 14px;
+      padding: 10px 12px;
+      border-radius: 22px;
+      background: rgba(12,16,26,0.92);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.45);
+      display: none;
+      justify-content: space-around;
+      gap: 8px;
+      z-index: 1200;
+      backdrop-filter: blur(8px);
+    }
+
+    .bottom-nav a {
+      flex: 1;
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 6px;
+      border-radius: 14px;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .bottom-nav a .icon {
+      font-size: 1.15rem;
+    }
+
+    .bottom-nav a.active {
+      color: var(--text);
+      background: rgba(79,124,255,0.22);
+      box-shadow: inset 0 0 0 1px rgba(79,124,255,0.4);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 820px) {
+      .nav,
+      .overlay,
+      .hamburger {
+        display: none;
+      }
+
+      body {
+        padding-bottom: 120px;
+      }
+
+      .main {
+        padding: 90px 20px 170px;
+      }
+
+      .bottom-nav {
+        display: flex;
+      }
     }
 
     /* Page */
@@ -433,7 +505,7 @@
     <a href="index.html"><span class="icon">🏠</span> Home</a>
     <a href="generate.html"><span class="icon">✨</span> Generate</a>
     <a href="practice_home.html"><span class="icon">⚡</span> Practice</a>
-    <a href="question_bank.html"><span class="icon">📚</span> Question Bank</a>
+    <a href="question_bank.html" class="active"><span class="icon">📚</span> Question Bank</a>
     <a href="settings.html"><span class="icon">⚙️</span> Settings</a>
   </div>
 
@@ -449,6 +521,12 @@
 
       <div class="controls">
         <input id="search" class="input" placeholder="Search (set, round, category, answer...)" />
+
+        <select id="bankSelect" class="select">
+          <option value="ALL">Bank: All</option>
+          <option value="set_A.json">Bank A (Image Questions)</option>
+          <option value="set_B.json">Bank B (Text Questions)</option>
+        </select>
 
         <select id="level" class="select">
           <option value="ANY">Level: Any</option>
@@ -495,6 +573,14 @@
     <div id="err" class="error" style="display:none"></div>
   </div>
 
+  <nav class="bottom-nav" aria-label="Primary">
+    <a href="index.html"><span class="icon">🏠</span><span>Home</span></a>
+    <a href="generate.html"><span class="icon">✨</span><span>Generate</span></a>
+    <a href="practice_home.html"><span class="icon">⚡</span><span>Practice</span></a>
+    <a href="question_bank.html" class="active"><span class="icon">📚</span><span>Bank</span></a>
+    <a href="settings.html"><span class="icon">⚙️</span><span>Settings</span></a>
+  </nav>
+
   <script>
     // NAV
     const nav = document.getElementById('nav');
@@ -514,6 +600,7 @@
     const errEl = document.getElementById('err');
     const countEl = document.getElementById('count');
     const searchEl = document.getElementById('search');
+    const bankSelectEl = document.getElementById('bankSelect');
     const levelEl = document.getElementById('level');
     const categoryEl = document.getElementById('category');
     const bonusEl = document.getElementById('bonus');
@@ -541,13 +628,24 @@
     }
 
     async function loadBank() {
-      const res = await fetch('./set_A.json', { cache: 'no-store' });
-      if (!res.ok) throw new Error('set_A.json not found in repo root');
-      const data = await res.json();
-      return Array.isArray(data) ? data : (data.questions || []);
+      const sources = [
+        { id: 'set_A.json', label: 'Bank A' },
+        { id: 'set_B.json', label: 'Bank B' }
+      ];
+
+      const results = await Promise.all(sources.map(async (source) => {
+        const res = await fetch(`./${source.id}`, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`${source.id} not found in repo root`);
+        const data = await res.json();
+        const items = Array.isArray(data) ? data : (data.questions || []);
+        return items.map((q) => ({ ...q, bank_id: source.id, bank_label: source.label }));
+      }));
+
+      return results.flat();
     }
 
-    function matches(q, search, level, category, bonus) {
+    function matches(q, search, bankChoice, level, category, bonus) {
+      if (bankChoice !== 'ALL' && q.bank_id !== bankChoice) return false;
       if (level !== 'ANY' && q.level !== level) return false;
       if (category !== 'ANY' && norm(q.category) !== category) return false;
       if (bonus !== 'ANY' && String(!!q.bonus) !== String(bonus)) return false;
@@ -570,11 +668,12 @@
 
     function apply() {
       const search = norm(searchEl.value);
+      const bankChoice = bankSelectEl.value;
       const level = levelEl.value;
       const category = categoryEl.value;
       const bonus = bonusEl.value;
 
-      filtered = bank.filter(q => matches(q, search, level, category, bonus));
+      filtered = bank.filter(q => matches(q, search, bankChoice, level, category, bonus));
       page = 1;
       render();
     }
@@ -677,6 +776,7 @@
     })();
 
     searchEl.addEventListener('input', () => debounced(apply));
+    bankSelectEl.addEventListener('change', apply);
     levelEl.addEventListener('change', apply);
     categoryEl.addEventListener('change', apply);
     bonusEl.addEventListener('change', apply);
@@ -685,7 +785,7 @@
     nextBtn.addEventListener('click', () => { page += 1; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
     (async () => {
-      statusEl.textContent = 'Loading set_A.json…';
+      statusEl.textContent = 'Loading question banks…';
       try {
         bank = await loadBank();
       } catch (e) {
@@ -701,7 +801,7 @@
         return;
       }
 
-      statusEl.textContent = `Loaded ${bank.length} questions.`;
+      statusEl.textContent = `Loaded ${bank.length} questions from both banks.`;
       filtered = bank.slice();
       render();
     })();
