@@ -677,7 +677,7 @@
       };
 
       async function loadBank() {
-        const selectedBank = els.bankSelect?.value || './set_A.json';
+        const selectedBank = els.bankSelect?.value || './data/set_A.json';
         try {
           els.bankStatus.textContent = 'Loading…';
           const res = await fetch(`./${selectedBank}`, { cache: 'no-store' });

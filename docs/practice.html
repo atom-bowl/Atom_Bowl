@@ -789,7 +789,7 @@
       seconds: 20,   // TU pre-buzz timer
       setName: '',
       roundName: '',
-      bankFile: 'set_A.json'
+      bankFile: '/data//data/set_A.json'
     };
 
     function safeParseJSON(s, fallback) {
@@ -1761,13 +1761,13 @@
       if (data && data.length) return data;
 
       // 2) fallback to set_A.json
-      if (requested !== 'set_A.json') {
-        data = await tryLoad('set_A.json');
+      if (requested !== '/data/set_A.json') {
+        data = await tryLoad('/data/set_A.json');
         if (data && data.length) {
           showError(
             `⚠ Failed to load ${requested}.
 ` +
-            `Fell back to set_A.json.
+            `Fell back to /data/set_A.json.
 
 ` +
             `Tried: ${tried.join(', ')}`
