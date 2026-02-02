@@ -77,7 +77,7 @@
       padding: 26px 24px 48px;
       border-right: 1px solid rgba(255,255,255,0.06);
       box-shadow: 18px 0 60px rgba(0,0,0,0.45);
-      transform: translateX(-100%);
+      transform: translateX(0);
       transition: transform 0.42s cubic-bezier(.2,.9,.2,1);
       z-index: 1000;
     }
@@ -119,6 +119,11 @@
     }
 
     .icon { width: 22px; text-align: center; }
+
+    .hamburger,
+    .overlay {
+      display: none;
+    }
 
     .hamburger {
       position: fixed;
@@ -205,6 +210,8 @@
 
       .main {
         padding: 96px 20px 170px;
+        margin: 0 auto;
+        width: auto;
       }
 
       .bottom-nav {
@@ -216,7 +223,8 @@
     .main {
       padding: 100px 24px 120px;
       max-width: 1100px;
-      margin: auto;
+      margin: 0 auto 0 280px;
+      width: calc(100% - 280px);
       min-height: 100vh;
     }
 

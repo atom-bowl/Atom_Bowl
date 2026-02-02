@@ -47,7 +47,7 @@
       padding: 26px 24px 48px;
       border-right: 1px solid rgba(255,255,255,0.06);
       box-shadow: 18px 0 60px rgba(0,0,0,0.45);
-      transform: translateX(-100%);
+      transform: translateX(0);
       transition: transform 0.35s ease;
       z-index: 1000;
     }
@@ -96,6 +96,11 @@
       text-align: center;
     }
 
+    .hamburger,
+    .overlay {
+      display: none;
+    }
+
     .hamburger {
       position: fixed;
       top: 20px;
@@ -132,6 +137,8 @@
       align-items: center;
       padding: 120px 24px 140px;
       text-align: center;
+      margin-left: 280px;
+      width: calc(100% - 280px);
     }
 
     .card {
@@ -224,6 +231,8 @@
 
       .main {
         padding: 120px 20px 180px;
+        margin-left: 0;
+        width: 100%;
       }
 
       .bottom-nav {
