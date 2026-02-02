@@ -19,7 +19,6 @@
       const els = {
         bankSelect: document.getElementById('bankSelect'),
         level: document.getElementById('level'),
-        category: document.getElementById('category'),
         qaType: document.getElementById('qaType'),
         bonus: document.getElementById('bonus'),
         count: document.getElementById('count'),
@@ -28,6 +27,8 @@
         roundName: document.getElementById('roundName'),
         bankStatus: document.getElementById('bankStatus'),
         bankMeta: document.getElementById('bankMeta'),
+        topicGrid: document.getElementById('topicGrid'),
+        clearTopics: document.getElementById('clearTopics'),
         countRapid: document.getElementById('countRapid'),
         countToss: document.getElementById('countToss'),
         countBonus: document.getElementById('countBonus'),
@@ -37,17 +38,198 @@
       };
 
       // Minimal self-tests (console only)
-      console.assert(!!els.level && !!els.category && !!els.qaType && !!els.bonus, 'Missing core filter elements');
+      console.assert(!!els.level && !!els.qaType && !!els.bonus, 'Missing core filter elements');
       console.assert(!!els.countRapid && !!els.bankStatus, 'Missing status/count elements');
 
       let bank = [];
 
       function normCat(c) { return String(c || '').trim(); }
 
+      const TOPIC_GROUPS = [
+        {
+          id: 'PHYSICS',
+          label: 'PHYSICS',
+          categories: ['PHYSICS', 'PHYSICAL SCIENCE'],
+          detailed: [
+            'Kinematics',
+            'Newtonian Mechanics',
+            'Work, Energy, & Power',
+            'Momentum & Collisions',
+            'Rotational Motion',
+            'Waves & Sound',
+            'Optics',
+            'Electricity & Circuits',
+            'Magnetism',
+            'Electromagnetism',
+            'Modern Physics',
+            'Thermodynamics',
+            'Units, Constants, & Measurement',
+          ],
+        },
+        {
+          id: 'CHEMISTRY',
+          label: 'CHEM',
+          categories: ['CHEMISTRY'],
+          detailed: [
+            'Stoichiometry & Moles',
+            'Atomic Structure',
+            'Periodic Trends',
+            'Chemical Bonding',
+            'Thermochemistry',
+            'Gas Laws',
+            'Acids, Bases, & pH',
+            'Reaction Kinetics',
+            'Equilibrium',
+            'Electrochemistry',
+            'Organic Chemistry',
+            'Nuclear Chemistry',
+            'Solutions & Colligative Properties',
+            'Lab Techniques & Measurement',
+          ],
+        },
+        {
+          id: 'MATH',
+          label: 'MATH',
+          categories: ['MATH', 'MATHEMATICS'],
+          detailed: [
+            'Algebra',
+            'Geometry',
+            'Trigonometry',
+            'Analytic Geometry',
+            'Functions',
+            'Polynomials',
+            'Exponents & Radicals',
+            'Probability & Statistics',
+            'Number Theory',
+            'Word Problems',
+          ],
+        },
+        {
+          id: 'EARTH_SCIENCE',
+          label: 'ESS',
+          categories: ['EARTH SCIENCE', 'EARTH AND SPACE', 'EARTH AND SPACE SCIENCE'],
+          detailed: [
+            'Meteorology',
+            'Climatology',
+            'Atmospheric Physics',
+            'Geology',
+            'Mineralogy',
+            'Petrology',
+            'Plate Tectonics',
+            'Geomorphology',
+            'Hydrology',
+            'Oceanography',
+            'Earth Systems',
+            'Environmental Earth Science',
+          ],
+        },
+        {
+          id: 'ASTRONOMY',
+          label: 'ASTRO',
+          categories: ['ASTRONOMY'],
+          detailed: [
+            'Celestial Coordinates',
+            'Stars & Stellar Evolution',
+            'Galaxies & Cosmology',
+            'Solar System',
+            'Observational Astronomy',
+            'Astrophysics',
+            'Spectroscopy',
+            'Cosmology',
+            'Space Weather',
+          ],
+        },
+        {
+          id: 'BIOLOGY',
+          label: 'BIO',
+          categories: ['BIOLOGY', 'LIFE SCIENCE'],
+          detailed: [
+            'Cell Structure & Function',
+            'Biochemistry',
+            'Enzymes & Metabolism',
+            'Photosynthesis & Respiration',
+            'Genetics',
+            'Molecular Biology',
+            'Evolution',
+            'Ecology',
+            'Plant Biology',
+            'Human Physiology',
+            'Immunology',
+            'Microbiology',
+            'Taxonomy & Classification',
+          ],
+        },
+        {
+          id: 'GENERAL_SCIENCE',
+          label: 'GEN SCI',
+          categories: ['GENERAL SCIENCE'],
+          detailed: [
+            'Scientific Measurement',
+            'Dimensional Analysis',
+            'Scientific Notation',
+            'Laboratory Safety',
+            'Applied Science',
+            'Interdisciplinary Science',
+          ],
+        },
+        {
+          id: 'ENERGY',
+          label: 'ENERGY',
+          categories: ['ENERGY'],
+          detailed: [
+            'Renewable Energy',
+            'Nonrenewable Energy',
+            'Energy Resources',
+            'Energy & Environment',
+            'Power Generation',
+            'Energy Policy',
+          ],
+        },
+      ];
+
+      function renderTopics() {
+        if (!els.topicGrid) return;
+        els.topicGrid.innerHTML = TOPIC_GROUPS.map(group => `
+          <div class="topic-column">
+            <label class="topic-super">
+              <input type="checkbox" class="topic-super-checkbox" data-topic="${group.id}">
+              ${group.label}
+            </label>
+            <div class="topic-sublist">
+              ${group.detailed.map(topic => `
+                <label class="topic-option">
+                  <input type="checkbox" class="topic-detail-checkbox" data-topic="${group.id}" value="${topic}">
+                  ${topic}
+                </label>
+              `).join('')}
+            </div>
+          </div>
+        `).join('');
+      }
+
+      function selectedSuperTopics() {
+        return Array.from(document.querySelectorAll('.topic-super-checkbox:checked'))
+          .map(el => el.dataset.topic)
+          .filter(Boolean);
+      }
+
+      function selectedDetailedTopics() {
+        return Array.from(document.querySelectorAll('.topic-detail-checkbox:checked'))
+          .map(el => el.value)
+          .filter(Boolean);
+      }
+
+      function expandedCategories(selectedTopics) {
+        if (!selectedTopics.length) return [];
+        const lookup = new Map(TOPIC_GROUPS.map(group => [group.id, group.categories]));
+        return selectedTopics.flatMap(topic => lookup.get(topic) || []);
+      }
+
       
       function applyFilters(list, overrides = {}) {
         const level = overrides.level ?? els.level.value;
-        const category = overrides.category ?? els.category.value;
+        const categories = overrides.categories ?? expandedCategories(selectedSuperTopics());
+        const detailedCategories = overrides.detailedCategories ?? selectedDetailedTopics();
         const qaType = overrides.qaType ?? els.qaType.value;
         const bonus = overrides.bonus ?? els.bonus.value;
         const setName = (overrides.setName ?? els.setName.value).trim();
@@ -55,7 +237,11 @@
 
         return list.filter(q => {
           if (level !== 'ANY' && q.level !== level) return false;
-          if (category !== 'ANY' && normCat(q.category) !== category) return false;
+          if (categories.length && !categories.includes(normCat(q.category))) return false;
+          if (detailedCategories.length) {
+            const detailed = normCat(q.detailed_category || q.detailedCategory);
+            if (!detailedCategories.includes(detailed)) return false;
+          }
           if (qaType !== 'ANY' && q.type !== qaType) return false;
           if (bonus !== 'ANY' && String(!!q.bonus) !== bonus) return false;
           if (setName && q.set_name !== setName) return false;
@@ -78,7 +264,8 @@
         const cfg = {
           mode,
           level: els.level.value,
-          category: els.category.value,
+          categories: selectedSuperTopics(),
+          detailedCategories: selectedDetailedTopics(),
           qaType: els.qaType.value,
           bonus: els.bonus.value,
           count: Math.max(1, parseInt(els.count.value || '25', 10)),
@@ -137,7 +324,15 @@
         el.addEventListener('change', updateCounts);
         el.addEventListener('input', updateCounts);
       }
-      els.category.addEventListener('change', updateCounts);
+
+      renderTopics();
+      els.topicGrid?.addEventListener('change', updateCounts);
+      els.clearTopics?.addEventListener('click', () => {
+        document.querySelectorAll('.topic-super-checkbox, .topic-detail-checkbox').forEach(input => {
+          input.checked = false;
+        });
+        updateCounts();
+      });
 
       els.bankSelect.addEventListener('change', () => {
         loadBank();

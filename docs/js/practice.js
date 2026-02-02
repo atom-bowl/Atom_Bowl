@@ -18,6 +18,8 @@
       mode: 'rapid',
       level: 'ANY',
       category: 'ANY',
+      categories: [],
+      detailedCategories: [],
       qaType: 'ANY',
       bonus: 'ANY',
       count: 25,     // rapid mode: number of PAIRS
@@ -39,7 +41,30 @@
       ...cfg
     };
 
+    const TOPIC_GROUPS = [
+      { id: 'PHYSICS', categories: ['PHYSICS', 'PHYSICAL SCIENCE'] },
+      { id: 'CHEMISTRY', categories: ['CHEMISTRY'] },
+      { id: 'MATH', categories: ['MATH', 'MATHEMATICS'] },
+      { id: 'EARTH_SCIENCE', categories: ['EARTH SCIENCE', 'EARTH AND SPACE', 'EARTH AND SPACE SCIENCE'] },
+      { id: 'ASTRONOMY', categories: ['ASTRONOMY'] },
+      { id: 'BIOLOGY', categories: ['BIOLOGY', 'LIFE SCIENCE'] },
+      { id: 'GENERAL_SCIENCE', categories: ['GENERAL SCIENCE'] },
+      { id: 'ENERGY', categories: ['ENERGY'] },
+    ];
+
+    function expandCategories(selectedTopics) {
+      if (!Array.isArray(selectedTopics) || !selectedTopics.length) return [];
+      const lookup = new Map(TOPIC_GROUPS.map(group => [group.id, group.categories]));
+      return selectedTopics.flatMap(topic => lookup.get(topic) || []);
+    }
+
     runCfg.qaType = runCfg.qaType || runCfg.qtype || 'ANY';
+    if (!Array.isArray(runCfg.categories)) {
+      runCfg.categories = [];
+    }
+    if (!Array.isArray(runCfg.detailedCategories)) {
+      runCfg.detailedCategories = [];
+    }
 
     runCfg.seconds = parseInt(runCfg.seconds ?? runCfg.time, 10);
     if (!Number.isFinite(runCfg.seconds)) runCfg.seconds = DEFAULT_RUN.seconds;
@@ -384,6 +409,8 @@
     function applyFilters(list) {
       const level = runCfg.level;
       const category = runCfg.category;
+      const categories = expandCategories(runCfg.categories);
+      const detailedCategories = runCfg.detailedCategories || [];
       const qaType = runCfg.qaType;
       const bonus = runCfg.bonus;
       const setName = norm(runCfg.setName);
@@ -391,7 +418,12 @@
 
       return list.filter(q => {
         if (level !== 'ANY' && q.level !== level) return false;
-        if (category !== 'ANY' && norm(q.category) !== category) return false;
+        if (categories.length && !categories.includes(norm(q.category))) return false;
+        if (!categories.length && category !== 'ANY' && norm(q.category) !== category) return false;
+        if (detailedCategories.length) {
+          const detailed = norm(q.detailed_category || q.detailedCategory);
+          if (!detailedCategories.includes(detailed)) return false;
+        }
         if (qaType !== 'ANY' && q.type !== qaType) return false;
 
         // bonus can be ANY / true / false / TU / BONUS
