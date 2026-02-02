@@ -195,6 +195,22 @@
       transform: translateY(-1px);
     }
 
+    @media (min-width: 821px) {
+      .nav {
+        transform: translateX(0);
+      }
+
+      .hamburger,
+      .overlay {
+        display: none;
+      }
+
+      .main {
+        margin: 0 auto 0 280px;
+        width: calc(100% - 280px);
+      }
+    }
+
     @media (max-width: 820px) {
       .nav,
       .overlay,
