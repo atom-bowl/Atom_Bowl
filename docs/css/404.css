@@ -47,7 +47,7 @@
       padding: 26px 24px 48px;
       border-right: 1px solid rgba(255,255,255,0.06);
       box-shadow: 18px 0 60px rgba(0,0,0,0.45);
-      transform: translateX(-100%);
+      transform: translateX(0);
       transition: transform 0.35s ease;
       z-index: 1000;
     }
@@ -96,6 +96,11 @@
       font-size: 1.2rem;
       width: 22px;
       text-align: center;
+    }
+
+    .hamburger,
+    .overlay {
+      display: none;
     }
 
     .hamburger {
@@ -179,6 +184,8 @@
       align-items: center;
       justify-content: center;
       padding: 24px;
+      margin-left: 280px;
+      width: calc(100% - 280px);
     }
 
     .card {
@@ -263,6 +270,11 @@
 
       body {
         padding-bottom: 120px;
+      }
+
+      .container {
+        margin-left: 0;
+        width: 100%;
       }
 
       .bottom-nav {
