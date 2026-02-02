@@ -524,8 +524,8 @@
 
         <select id="bankSelect" class="select">
           <option value="ALL">Bank: All</option>
-          <option value="set_A.json">Bank A (Image Questions)</option>
-          <option value="set_B.json">Bank B (Text Questions)</option>
+          <option value="data/set_A.json">Bank A (Image Questions)</option>
+          <option value="data/set_B.json">Bank B (Text Questions)</option>
         </select>
 
         <select id="level" class="select">
@@ -629,13 +629,13 @@
 
     async function loadBank() {
       const sources = [
-        { id: 'set_A.json', label: 'Bank A' },
-        { id: 'set_B.json', label: 'Bank B' }
+        { id: 'data/set_A.json', label: 'Bank A' },
+        { id: 'data/set_B.json', label: 'Bank B' }
       ];
 
       const results = await Promise.all(sources.map(async (source) => {
         const res = await fetch(`./${source.id}`, { cache: 'no-store' });
-        if (!res.ok) throw new Error(`${source.id} not found in repo root`);
+        if (!res.ok) throw new Error(`${source.id} not found in /data`);
         const data = await res.json();
         const items = Array.isArray(data) ? data : (data.questions || []);
         return items.map((q) => ({ ...q, bank_id: source.id, bank_label: source.label }));
@@ -796,7 +796,7 @@
 
       // Basic sanity
       if (!Array.isArray(bank) || bank.length === 0) {
-        showErr('set_A.json loaded but contains no questions.');
+        showErr('data/set_A.json loaded but contains no questions.');
         statusEl.textContent = '';
         return;
       }

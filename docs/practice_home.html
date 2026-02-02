@@ -409,7 +409,7 @@
           <div style="font-weight:800;">Loaded Bank</div>
           <div class="badge" id="bankStatus">Checking…</div>
         </div>
-        <div class="mini" id="bankMeta">set_A.json</div>
+        <div class="mini" id="bankMeta">data/set_A.json</div>
       </div>
     </div>
 
@@ -423,8 +423,8 @@
         <div class="field">
           <label for="bankSelect">Question Bank</label>
           <select id="bankSelect">
-            <option value="set_A.json">Bank A (Image Questions)</option>
-            <option value="set_B.json">Bank B (Text Questions, Under Development)</option>
+            <option value="data/set_A.json">Bank A (Image Questions)</option>
+            <option value="data/set_B.json">Bank B (Text Questions, Under Development)</option>
           </select>
         </div>
 
@@ -677,25 +677,26 @@
       };
 
       async function loadBank() {
-        const selectedBank = els.bankSelect?.value || './data/set_A.json';
+        const selectedBank = els.bankSelect?.value || 'data/set_A.json';
+        const normalizedBank = selectedBank.replace(/^\.\/+/, '');
         try {
           els.bankStatus.textContent = 'Loading…';
-          const res = await fetch(`./${selectedBank}`, { cache: 'no-store' });
-          if (!res.ok) throw new Error('set_A.json not found');
+          const res = await fetch(`./${normalizedBank}`, { cache: 'no-store' });
+          if (!res.ok) throw new Error('data/set_A.json not found');
           const data = await res.json();
           bank = Array.isArray(data) ? data : (data.questions || []);
 
           els.bankStatus.textContent = 'Ready';
           els.bankStatus.style.background = 'rgba(57,217,138,0.14)';
           els.bankStatus.style.borderColor = 'rgba(57,217,138,0.24)';
-          els.bankMeta.textContent = `${selectedBank} • ${bank.length.toLocaleString()} questions detected`;
+          els.bankMeta.textContent = `${normalizedBank} • ${bank.length.toLocaleString()} questions detected`;
 
           updateCounts();
         } catch (e) {
           els.bankStatus.textContent = 'Missing';
           els.bankStatus.style.background = 'rgba(255,107,107,0.14)';
           els.bankStatus.style.borderColor = 'rgba(255,107,107,0.22)';
-          els.bankMeta.textContent = 'Put the sets in the repo root (same folder as this file).';
+          els.bankMeta.textContent = 'Put the sets in docs/data (data/ on the site).';
           bank = [];
           updateCounts();
         }
