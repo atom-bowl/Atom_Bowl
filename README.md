@@ -1,8 +1,41 @@
-# Atom Bowl
-Atom Bowl is the #1 best way to prepare for National Science Bowl for both middle school and high school. It contains more than 25,000 questions along with options to AI generate your own sets using the extremely powerful Gemini 2.5 Flash (coming soon). Achieve mastery in NSB with Atom Bowl.
+# 🧠 Atom Bowl
 
-The questions are taken from http://science.energy.gov/wdts/nsb/high-school/high-school-regionals/hs-rules-forms-resources/sample-science-bowl-questions/ and http://science.energy.gov/wdts/nsb/middle-school/middle-school-regionals/middle-school-resources/sample-questions/.
+# NOTE: The site is under active maintenance until February 3rd. It will not run as expected and may crash. Please expect delays as the GitHub Pages queue has become quite tedious. Thanks for your patience.
 
+**Atom Bowl** is a fast, clean, browser-based question platform designed for **National Science Bowl (NSB)** preparation.  
+It focuses on realism, speed, and accuracy—no fluff, no gimmicks.
 
-The different question categories include: EARTH SCIENCE, MATH, ASTRONOMY, EARTH AND SPACE SCIENCE, LIFE SCIENCE, GENERAL SCIENCE, CHEMISTRY, PHYSICS, and ENERGY
-Learn your accuracy, average time, practice for competition, and more.
+Built for students who want to grind questions the way real rounds feel.
+
+🔗 **Live site:** https://atom-bowl.github.io/Atom_Bowl/
+
+---
+
+## 🚀 Features
+
+- 📚 **Real NSB-style questions**
+  - Physics
+  - Chemistry
+  - Biology
+  - Earth & Space Science
+  - Math
+
+- ⚡ **Instant loading**
+  - Pure HTML / CSS / JavaScript
+  - No frameworks, no bloat
+
+- 🧩 **Multiple question sets**
+  - Clean JSON-based data
+  - Easy to expand and maintain
+
+- 🎯 **Practice-focused design**
+  - Straight to the question
+  - No distractions
+  - Built for repetition and speed
+
+---
+
+## Credits
+- Question Bank A goes to official DOE questions parsed by @arxenix. @arxenix did not contribute to code, only to sets
+- Question Bank B goes to SciBowlDB's official question bank.
+- Question Bank C is coming soon from smaller invitationals and niche competitions.
