@@ -41,7 +41,7 @@
       console.assert(!!els.level && !!els.qaType && !!els.bonus, 'Missing core filter elements');
       console.assert(!!els.countRapid && !!els.bankStatus, 'Missing status/count elements');
 
-      let bank = [];
+      window.bank = [];
 
       function normCat(c) { return String(c || '').trim(); }
 
