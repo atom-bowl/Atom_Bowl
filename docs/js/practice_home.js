@@ -41,7 +41,32 @@
       console.assert(!!els.level && !!els.qaType && !!els.bonus, 'Missing core filter elements');
       console.assert(!!els.countRapid && !!els.bankStatus, 'Missing status/count elements');
 
-      let bank = [];
+      const SETTINGS_KEY = 'atom_settings_v1';
+      const SETTINGS_DEFAULTS = {
+        sfx: true,
+        tts: true,
+        div: 'MS',
+        mode: 'rapid',
+        highContrast: false,
+        animations: true,
+        fontSize: 'm',
+        accent: '#4f7cff'
+      };
+
+      function loadSettings() {
+        if (window.atomSettings) return window.atomSettings;
+        try {
+          const raw = localStorage.getItem(SETTINGS_KEY);
+          if (!raw) return { ...SETTINGS_DEFAULTS };
+          const parsed = JSON.parse(raw);
+          return { ...SETTINGS_DEFAULTS, ...parsed };
+        } catch {
+          return { ...SETTINGS_DEFAULTS };
+        }
+      }
+
+      const settings = loadSettings();
+      window.bank = [];
 
       function normCat(c) { return String(c || '').trim(); }
 
@@ -261,8 +286,12 @@
       }
 
       function getRunConfig(mode) {
+        let resolvedMode = mode;
+        if (mode === 'rapid' && settings.mode === 'regular') {
+          resolvedMode = 'regular';
+        }
         const cfg = {
-          mode,
+          mode: resolvedMode,
           level: els.level.value,
           categories: selectedSuperTopics(),
           detailedCategories: selectedDetailedTopics(),
@@ -292,12 +321,12 @@
       };
 
       async function loadBank() {
-        const selectedBank = els.bankSelect?.value || 'data/set_A.json';
+        const selectedBank = els.bankSelect?.value || 'data/set_B.json';
         const normalizedBank = selectedBank.replace(/^\.\/+/, '');
         try {
           els.bankStatus.textContent = 'Loading…';
           const res = await fetch(`./${normalizedBank}`, { cache: 'no-store' });
-          if (!res.ok) throw new Error('data/set_A.json not found');
+          if (!res.ok) throw new Error(`${normalizedBank} not found`);
           const data = await res.json();
           bank = Array.isArray(data) ? data : (data.questions || []);
 
@@ -326,6 +355,9 @@
       }
 
       renderTopics();
+      if (settings.div && ['MS', 'HS'].includes(settings.div)) {
+        els.level.value = settings.div;
+      }
       els.topicGrid?.addEventListener('change', updateCounts);
       els.clearTopics?.addEventListener('click', () => {
         document.querySelectorAll('.topic-super-checkbox, .topic-detail-checkbox').forEach(input => {

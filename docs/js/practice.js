@@ -26,7 +26,7 @@
       seconds: 20,   // TU pre-buzz timer
       setName: '',
       roundName: '',
-      bankFile: '/data/set_A.json'
+      bankFile: 'data/set_B.json'
     };
 
     function safeParseJSON(s, fallback) {
@@ -74,10 +74,43 @@
     if (runCfg.count < 1) runCfg.count = 1;
 
     runCfg.mode = runCfg.mode || DEFAULT_RUN.mode;
+
+    const SETTINGS_KEY = 'atom_settings_v1';
+    const SETTINGS_DEFAULTS = {
+      sfx: true,
+      tts: true,
+      div: 'MS',
+      mode: 'rapid',
+      highContrast: false,
+      animations: true,
+      fontSize: 'm',
+      accent: '#4f7cff'
+    };
+
+    function loadSettings() {
+      if (window.atomSettings) return window.atomSettings;
+      try {
+        const raw = localStorage.getItem(SETTINGS_KEY);
+        if (!raw) return { ...SETTINGS_DEFAULTS };
+        const parsed = JSON.parse(raw);
+        return { ...SETTINGS_DEFAULTS, ...parsed };
+      } catch {
+        return { ...SETTINGS_DEFAULTS };
+      }
+    }
+
+    const settings = loadSettings();
+
+    if (runCfg.level === DEFAULT_RUN.level && ['MS', 'HS'].includes(settings.div)) {
+      runCfg.level = settings.div;
+    }
+    if (runCfg.mode === DEFAULT_RUN.mode && settings.mode) {
+      runCfg.mode = settings.mode;
+    }
     document.getElementById('mode').textContent = runCfg.mode;
 
     // Early appearances for State constants
-    let ttsEnabled = true;
+    let ttsEnabled = settings.tts;
     let currentUtterance = null;
     let readingSpeed = 1.0;
 
@@ -111,11 +144,22 @@
       B: "Scalazar"
     }
     const speedSlider = document.getElementById('speedSlider')
+    function persistSettingsPatch(patch) {
+      const next = { ...settings, ...patch };
+      try {
+        localStorage.setItem(SETTINGS_KEY, JSON.stringify(next));
+      } catch {}
+      window.atomSettings = next;
+      Object.assign(settings, next);
+    }
+
     if (ttsToggle) {
+      ttsToggle.textContent = ttsEnabled ? "🔊" : "🔇";
       ttsToggle.onclick = () => {
         ttsEnabled = !ttsEnabled;
         if (!ttsEnabled) stopSpeech();
         ttsToggle.textContent = ttsEnabled ? "🔊" : "🔇";
+        persistSettingsPatch({ tts: ttsEnabled });
       };
     }
 
@@ -663,15 +707,19 @@
         }
       }, 1000);
 
-      if (q.type === 'MC') {
-        choicesEl.classList.remove('hidden');
-        animateIn(choicesEl);
-      } else {
+      const shouldShowInput = interrupted || q.type === 'SA';
+      if (shouldShowInput) {
         input.classList.remove('hidden');
         submitBtn.classList.remove('hidden');
         animateIn(input);
         animateIn(submitBtn);
         input.focus();
+        return;
+      }
+
+      if (q.type === 'MC') {
+        choicesEl.classList.remove('hidden');
+        animateIn(choicesEl);
       }
     }
 
@@ -921,8 +969,7 @@
         // Freeze reading immediately on buzz
         clearInterval(typewriterTimer);
 
-        // Mark interrupt ONLY for toss-ups and ONLY if not fully revealed
-        if (q && !q.bonus && !textFullyRevealed) {
+        if (q && !textFullyRevealed) {
           interrupted = true;
           if (interruptBadgeEl) {
             interruptBadgeEl.classList.remove('hidden');
@@ -933,9 +980,9 @@
         return;
       }
 
-      if (e.code === 'Enter' && buzzed && !locked && q.type === 'SA') submitSA();
+      if (e.code === 'Enter' && buzzed && !locked && (q.type === 'SA' || interrupted)) submitSA();
 
-      if (buzzed && !locked && q.type === 'MC') {
+      if (buzzed && !locked && q.type === 'MC' && !interrupted) {
         const k = e.key.toUpperCase();
         if (['W','X','Y','Z'].includes(k)) pickMC(k);
       }
@@ -953,6 +1000,15 @@
     function tapToBuzz(e) {
       if (shouldIgnoreTap(e.target)) return;
       if (!runActive || buzzed || locked || awaitingGrade) return;
+      stopSpeech();
+      clearInterval(typewriterTimer);
+      const q = currentQ();
+      if (q && !textFullyRevealed) {
+        interrupted = true;
+        if (interruptBadgeEl) {
+          interruptBadgeEl.classList.remove('hidden');
+        }
+      }
       allowAnswerUI();
     }
 
@@ -1028,13 +1084,13 @@
       if (data && data.length) return data;
 
       // 2) fallback to set_A.json
-      if (requested !== '/data/set_A.json') {
-        data = await tryLoad('/data/set_A.json');
+      if (requested !== 'data/set_A.json') {
+        data = await tryLoad('data/set_A.json');
         if (data && data.length) {
           showError(
             `⚠ Failed to load ${requested}.
 ` +
-            `Fell back to /data/set_A.json.
+            `Fell back to data/set_A.json.
 
 ` +
             `Tried: ${tried.join(', ')}`

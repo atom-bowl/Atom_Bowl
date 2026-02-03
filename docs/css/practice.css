@@ -291,16 +291,19 @@
 
     .pop { animation: popIn 220ms cubic-bezier(.2,.9,.2,1) both; }
     .interrupt-badge {
-      display: inline-block;
-      margin-left: 10px;
-      padding: 4px 10px;
-      font-weight: 700;
-      font-size: 12px;
-      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      margin-left: 6px;
+      padding: 3px 8px;
+      font-weight: 800;
+      font-size: 10px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
       border-radius: 999px;
-      background: #ffcc00;
-      color: #000;
-      box-shadow: 0 0 0 2px rgba(0,0,0,0.15);
+      background: #f5c451;
+      color: #1b1400;
+      border: 1px solid rgba(0,0,0,0.18);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       animation: interruptPulse 1s infinite;
     }
 
