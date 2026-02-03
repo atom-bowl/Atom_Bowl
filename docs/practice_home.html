@@ -73,6 +73,26 @@
         </div>
 
         <div class="field">
+          <label for="category">Category</label>
+          <select id="category">
+            <option value="ANY">Any</option>
+            <option value="EARTH SCIENCE">Earth Science</option>
+            <option value="MATH">Math</option>
+            <option value="MATHEMATICS">Mathematics</option>
+            <option value="ASTRONOMY">Astronomy</option>
+            <option value="EARTH AND SPACE">Earth & Space</option>
+            <option value="EARTH AND SPACE SCIENCE">Earth & Space Science</option>
+            <option value="BIOLOGY">Biology</option>
+            <option value="LIFE SCIENCE">Life Science</option>
+            <option value="GENERAL SCIENCE">General Science</option>
+            <option value="CHEMISTRY">Chemistry</option>
+            <option value="PHYSICS">Physics</option>
+            <option value="PHYSICAL SCIENCE">Physical Science</option>
+            <option value="ENERGY">Energy</option>
+          </select>
+        </div>
+
+        <div class="field">
           <label for="qaType">Question Type</label>
           <select id="qaType">
             <option value="ANY">Both (SA + WXYZ)</option>
@@ -115,17 +135,6 @@
           <label for="roundName">Round name (optional)</label>
           <input id="roundName" placeholder="e.g., round10 (leave blank for any)" />
         </div>
-      </div>
-
-      <div class="topic-panel">
-        <div class="topic-panel-header">
-          <div>
-            <div class="topic-title">Topics (multi-select)</div>
-            <div class="mini">Pick one or more super topics and/or detailed subtopics.</div>
-          </div>
-          <button class="topic-clear" type="button" id="clearTopics">Clear all</button>
-        </div>
-        <div class="topic-grid" id="topicGrid" aria-live="polite"></div>
       </div>
     </div>
 
