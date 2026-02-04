@@ -221,6 +221,89 @@
     document.head.appendChild(style);
   }
 
+  function ensureBottomMoreStyle() {
+    if (document.getElementById('bottomMoreStyle')) return;
+    const style = document.createElement('style');
+    style.id = 'bottomMoreStyle';
+    style.textContent = `
+      .bottom-more {
+        position: relative;
+      }
+
+      .bottom-more-btn {
+        background: none;
+        border: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .bottom-more-btn .icon {
+        line-height: 1;
+        position: relative;
+        top: 10px;
+      }
+
+      .bottom-more-menu {
+        position: absolute;
+        bottom: 56px;
+        right: 0;
+        min-width: 180px;
+        padding: 8px;
+        border-radius: 12px;
+        background: rgba(12,16,26,0.96);
+        border: 1px solid rgba(255,255,255,0.12);
+        box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        z-index: 1200;
+      }
+
+      .bottom-more-menu a {
+        text-decoration: none;
+        color: var(--text);
+        padding: 8px 10px;
+        border-radius: 10px;
+        background: rgba(79,124,255,0.16);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+      }
+
+      .bottom-more.open .bottom-more-menu {
+        display: flex;
+      }
+
+      .theme-light .bottom-more-menu {
+        background: rgba(255,255,255,0.98);
+        border: 1px solid rgba(0,0,0,0.12);
+        box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+      }
+
+      .theme-light .bottom-more-menu a {
+        color: #0f172a;
+        background: rgba(79,124,255,0.12);
+      }
+
+      @media (max-width: 820px) {
+        .bottom-more-btn span:last-child {
+          display: none;
+        }
+
+        .bottom-more-menu a span:not(.icon) {
+          display: inline;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   function applySettings(s) {
     if (!s) return;
     ensureNoAnimStyle();
@@ -247,6 +330,7 @@
   ensureHoverPillStyle();
   ensureNavMoreStyle();
   ensureNavWeightStyle();
+  ensureBottomMoreStyle();
 
   const navMore = document.querySelector('[data-nav-more]');
   const navMoreBtn = navMore?.querySelector('.nav-more-btn');
@@ -274,6 +358,43 @@
         navMoreBtn.setAttribute('aria-expanded', 'false');
       }
     });
+  }
+
+  const bottomNav = document.querySelector('.bottom-nav');
+  if (bottomNav) {
+    const gameClockLink = bottomNav.querySelector('a[href*="game_clock.html"]');
+    if (gameClockLink) {
+      const moreWrap = document.createElement('div');
+      moreWrap.className = 'bottom-more';
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'bottom-more-btn';
+      btn.setAttribute('aria-haspopup', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.innerHTML = '<span class="icon">⋯</span><span>More</span>';
+      const menu = document.createElement('div');
+      menu.className = 'bottom-more-menu';
+      menu.innerHTML = `
+        <a href="game_clock.html"><span class="icon">⏱️</span><span>Game Clock</span></a>
+        <a href="buzzer_rooms.html"><span class="icon">🚨</span><span>Buzzer Rooms</span></a>
+      `;
+      moreWrap.appendChild(btn);
+      moreWrap.appendChild(menu);
+      gameClockLink.replaceWith(moreWrap);
+
+      btn.addEventListener('click', (event) => {
+        event.preventDefault();
+        const isOpen = moreWrap.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!moreWrap.contains(event.target)) {
+          moreWrap.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
   }
 
   const mq = window.matchMedia?.('(prefers-color-scheme: light)');
