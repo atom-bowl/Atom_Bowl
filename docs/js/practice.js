@@ -258,6 +258,17 @@
       }
     }
 
+    function toggleTts() {
+      ttsEnabled = !ttsEnabled;
+      if (!ttsEnabled) stopSpeech();
+      if (ttsToggle) ttsToggle.textContent = ttsEnabled ? "ðŸ”Š" : "ðŸ”‡";
+      persistSettingsPatch({ tts: ttsEnabled });
+    }
+
+    if (ttsToggle) {
+      ttsToggle.onclick = () => toggleTts();
+    }
+
     function stopReadingNow() {
       stopSpeech();
       clearInterval(typewriterTimer);
@@ -266,6 +277,24 @@
         questionTextEl.textContent = String(q.question_text);
         textFullyRevealed = true;
       }
+    }
+
+    function handleBuzzTrigger() {
+      if (!runActive || buzzed || locked || awaitingGrade) return;
+      stopReadingNow();
+      const q = currentQ();
+
+      // Freeze reading immediately on buzz
+      clearInterval(typewriterTimer);
+
+      if (q && !textFullyRevealed) {
+        interrupted = true;
+        if (interruptBadgeEl) {
+          interruptBadgeEl.classList.remove('hidden');
+        }
+      }
+
+      allowAnswerUI();
     }
     function warmUpSpeechSynthesis() {
       if (!window.speechSynthesis) return;
@@ -1005,6 +1034,42 @@
         stopReadingNow();
         return;
       }
+      if (e.altKey && e.key.toLowerCase() === 't') {
+        e.preventDefault();
+        toggleTts();
+        return;
+      }
+      if (e.altKey && e.key.toLowerCase() === 'b') {
+        e.preventDefault();
+        handleBuzzTrigger();
+        return;
+      }
+      if (e.altKey && e.key.toLowerCase() === 'n') {
+        e.preventDefault();
+        nextQuestion();
+        return;
+      }
+      if (e.altKey && e.key.toLowerCase() === 'f') {
+        e.preventDefault();
+        if (input && !input.classList.contains('hidden')) input.focus();
+        return;
+      }
+      if (e.altKey && e.key.toLowerCase() === 'h') {
+        e.preventDefault();
+        const help = document.getElementById('hotkeyHelp');
+        if (help) help.classList.toggle('open');
+        return;
+      }
+      if (e.altKey && e.key.toLowerCase() === 'r') {
+        e.preventDefault();
+        applyGrade(true);
+        return;
+      }
+      if (e.altKey && e.key.toLowerCase() === 'w') {
+        e.preventDefault();
+        applyGrade(false);
+        return;
+      }
       const tag = e.target?.tagName?.toLowerCase();
       const isTyping = tag === 'input' || tag === 'textarea' || e.target?.isContentEditable;
 
@@ -1027,20 +1092,7 @@
       }
 
       if (e.code === 'Space' && !buzzed && !locked && !isTyping) {
-        stopReadingNow();
-        const q = currentQ();
-
-        // Freeze reading immediately on buzz
-        clearInterval(typewriterTimer);
-
-        if (q && !textFullyRevealed) {
-          interrupted = true;
-          if (interruptBadgeEl) {
-            interruptBadgeEl.classList.remove('hidden');
-          }
-        }
-
-        allowAnswerUI();
+        handleBuzzTrigger();
         return;
       }
 
@@ -1063,16 +1115,7 @@
 
     function tapToBuzz(e) {
       if (shouldIgnoreTap(e.target)) return;
-      if (!runActive || buzzed || locked || awaitingGrade) return;
-      stopReadingNow();
-      const q = currentQ();
-      if (q && !textFullyRevealed) {
-        interrupted = true;
-        if (interruptBadgeEl) {
-          interruptBadgeEl.classList.remove('hidden');
-        }
-      }
-      allowAnswerUI();
+      handleBuzzTrigger();
     }
 
     if (questionCard) {

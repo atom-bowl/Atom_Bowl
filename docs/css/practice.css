@@ -319,6 +319,93 @@
 
     .pill small { color: var(--muted); font-weight: 700; }
 
+    .hotkey-help {
+      position: relative;
+      cursor: pointer;
+      min-width: auto;
+      gap: 8px;
+      padding: 10px 12px;
+    }
+
+    .hotkey-help .help-icon {
+      font-weight: 900;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .hotkey-tooltip {
+      position: absolute;
+      top: 115%;
+      right: 0;
+      width: 280px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(18,24,36,0.96);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(6px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 2000;
+      text-align: left;
+    }
+
+    .theme-light .hotkey-tooltip {
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.12);
+      color: #0f172a;
+      box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+    }
+
+    .hotkey-help:hover .hotkey-tooltip,
+    .hotkey-help.open .hotkey-tooltip {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .hotkey-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .theme-light .hotkey-row {
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .hotkey-row:last-child {
+      border-bottom: none;
+    }
+
+    .kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 8px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: var(--text);
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+
+    .theme-light .kbd {
+      background: rgba(15,23,42,0.06);
+      border: 1px solid rgba(0,0,0,0.12);
+      color: #0f172a;
+    }
+
     .question-card {
       background: linear-gradient(145deg, rgba(20,27,46,0.95), rgba(15,21,36,0.92));
       border-radius: 22px;
