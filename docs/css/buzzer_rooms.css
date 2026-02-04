@@ -97,8 +97,8 @@ body {
 
 .main {
   margin-left: 220px;
-  padding: 112px 32px 120px;
-  max-width: 1400px;
+  padding: 112px 24px 120px;
+  max-width: 1280px;
   margin-right: auto;
 }
 
@@ -178,6 +178,13 @@ input {
   transition: transform 0.15s ease, background 0.2s ease;
 }
 
+.btn.mini {
+  width: auto;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  margin-top: 0;
+}
+
 .btn.primary {
   background: var(--accent);
 }
@@ -247,6 +254,11 @@ input {
   display: none;
 }
 
+.room {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .room-header {
   display: flex;
   justify-content: space-between;
@@ -289,6 +301,7 @@ input {
   padding: 20px;
   display: grid;
   gap: 16px;
+  min-width: 0;
 }
 
 .desk-section {
@@ -411,6 +424,7 @@ input {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.85rem;
+  max-width: 100%;
 }
 
 .stats-table th,
@@ -531,7 +545,7 @@ input {
 
   .main {
     margin-left: 0;
-    padding: 88px 20px 120px;
+    padding: 88px 16px 120px;
   }
 
   .room-body {

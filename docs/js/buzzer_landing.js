@@ -96,7 +96,7 @@ async function joinRoom() {
     name,
     team: state.team
   }));
-  window.location.href = `buzzer_room.html?roomId=${room.id}`;
+  window.location.href = `buzzer_room_player.html?roomId=${room.id}`;
 }
 
 async function lookupRoomTeams(code) {

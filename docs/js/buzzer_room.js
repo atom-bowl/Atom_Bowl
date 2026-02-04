@@ -21,6 +21,7 @@ const buzzStatus = document.getElementById("buzzStatus");
 const statusPill = document.getElementById("statusPill");
 const logPanel = document.getElementById("logPanel");
 const roomCodeValue = document.getElementById("roomCodeValue");
+const copyRoomBtn = document.getElementById("copyRoomBtn");
 const playerPhaseTimer = document.getElementById("playerPhaseTimer");
 const playerGameClock = document.getElementById("playerGameClock");
 const toggleLogBtn = document.getElementById("toggleLogBtn");
@@ -51,6 +52,7 @@ let playerUnsub = null;
 let timerInterval = null;
 let gameClockInterval = null;
 let cachedRoom = null;
+let activeRoomCode = "";
 
 const state = {
   uid: null,
@@ -271,6 +273,7 @@ async function enterRoom(roomId) {
     cachedRoom = data;
     roomTitle.textContent = data.roomName || `Room ${data.roomCode}`;
     roomCodeTitle.textContent = `Room ${data.roomCode}`;
+    activeRoomCode = data.roomCode || "";
     if (roomCodeValue) roomCodeValue.textContent = data.roomCode || "-----";
     updateStatusUI(data);
     updateScores(data.scores || {}, data.settings?.teamCount || 2, data.settings?.teamNames || {});
@@ -526,6 +529,28 @@ gamePauseBtn.addEventListener("click", () => updateGameClockAction("pause"));
 gameResetBtn.addEventListener("click", () => updateGameClockAction("reset"));
 exportBtn.addEventListener("click", exportCsv);
 document.addEventListener("keydown", handleSpacebar);
+if (copyRoomBtn) {
+  copyRoomBtn.addEventListener("click", async () => {
+    if (!activeRoomId) return;
+    const roomCode = activeRoomCode || "Code";
+    const joinLink = `https://atom-bowl.github.io/Atom_Bowl/buzzer_room_player.html?roomId=${activeRoomId}`;
+    const text = [
+      "You have been invited to an Atom Bowl Buzzing Room.",
+      "Here is the link to join: https://atom-bowl.github.io/Atom_Bowl/buzzer-rooms.html",
+      `and the code: "${roomCode}"`,
+      `and a direct link: ${joinLink}`
+    ].join(" ");
+    try {
+      await navigator.clipboard.writeText(text);
+      copyRoomBtn.textContent = "Copied!";
+      setTimeout(() => {
+        copyRoomBtn.textContent = "Copy Invite";
+      }, 1500);
+    } catch {
+      window.prompt("Copy this invite message:", text);
+    }
+  });
+}
 if (toggleLogBtn && playerLogPanel) {
   toggleLogBtn.addEventListener("click", () => {
     const isHidden = playerLogPanel.classList.contains("hidden");
