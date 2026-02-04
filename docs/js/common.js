@@ -113,7 +113,7 @@
         border: 1px solid rgba(255,255,255,0.08);
         background: rgba(18,24,36,0.6);
         color: var(--text);
-        font-weight: 800;
+        font-weight: 600;
         cursor: pointer;
         transition: background 0.2s ease, transform 0.15s ease;
       }
@@ -145,10 +145,13 @@
       .nav-more-menu a {
         text-decoration: none;
         color: var(--text);
-        font-weight: 800;
+        font-weight: 600;
         padding: 8px 10px;
         border-radius: 10px;
         background: rgba(79,124,255,0.16);
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
 
       .nav-more-soon {
@@ -200,6 +203,24 @@
     document.head.appendChild(style);
   }
 
+  function ensureNavWeightStyle() {
+    if (document.getElementById('navWeightStyle')) return;
+    const style = document.createElement('style');
+    style.id = 'navWeightStyle';
+    style.textContent = `
+      .nav a.active,
+      .bottom-nav a.active {
+        font-weight: 500;
+      }
+
+      .high-contrast .nav a.active,
+      .high-contrast .bottom-nav a.active {
+        font-weight: 700;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   function applySettings(s) {
     if (!s) return;
     ensureNoAnimStyle();
@@ -208,6 +229,7 @@
     const sizes = { s: '14px', m: '16px', l: '18px' };
     document.body.style.fontSize = sizes[s.fontSize] || '16px';
     document.body.style.filter = s.highContrast ? 'contrast(1.06) saturate(1.02)' : 'none';
+    document.documentElement.classList.toggle('high-contrast', !!s.highContrast);
     document.documentElement.classList.toggle('no-anim', !s.animations);
     if (s.theme === 'light') {
       document.documentElement.classList.add('theme-light');
@@ -224,10 +246,22 @@
   applySettings(settings);
   ensureHoverPillStyle();
   ensureNavMoreStyle();
+  ensureNavWeightStyle();
 
   const navMore = document.querySelector('[data-nav-more]');
   const navMoreBtn = navMore?.querySelector('.nav-more-btn');
   if (navMore && navMoreBtn) {
+    navMoreBtn.innerHTML = '<span class="icon">⋯</span><span>More Tools</span>';
+    const menuLinks = navMore.querySelectorAll('.nav-more-menu a');
+    menuLinks.forEach((link) => {
+      const href = link.getAttribute('href') || '';
+      if (href.includes('game_clock.html')) {
+        link.innerHTML = '<span class="icon">⏱️</span><span>Game Clock</span>';
+      }
+      if (href.includes('buzzer_rooms.html')) {
+        link.innerHTML = '<span class="icon">🚨</span><span>Buzzer Rooms</span>';
+      }
+    });
     navMoreBtn.addEventListener('click', (event) => {
       event.preventDefault();
       const isOpen = navMore.classList.toggle('open');

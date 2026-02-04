@@ -36,6 +36,7 @@ const gamePauseBtn = document.getElementById("gamePauseBtn");
 const gameResetBtn = document.getElementById("gameResetBtn");
 
 const startTossupBtn = document.getElementById("startTossupBtn");
+const tossupCategory = document.getElementById("tossupCategory");
 const tossupInterruptBtn = document.getElementById("tossupInterruptBtn");
 const tossupCorrectBtn = document.getElementById("tossupCorrectBtn");
 const tossupWrongBtn = document.getElementById("tossupWrongBtn");
@@ -54,6 +55,7 @@ let timerInterval = null;
 let gameClockInterval = null;
 let cachedRoom = null;
 let activeRoomCode = "";
+let latestPlayers = [];
 
 const state = {
   uid: null,
@@ -85,6 +87,9 @@ function setHostVisible(isHost) {
   const role = localStorage.getItem("atom_buzzer_role");
   const allowHost = role === "host";
   const effectiveHost = isHost && allowHost;
+  if (isHost) {
+    localStorage.setItem("atom_buzzer_role", "host");
+  }
   document.body.classList.toggle("is-host", effectiveHost);
   document.body.classList.toggle("is-player", !effectiveHost);
   state.isHost = effectiveHost;
@@ -110,8 +115,26 @@ function humanStatus(status) {
 
 function updateStatusUI(data) {
   roomStatus.textContent = humanStatus(data.status);
-  statusPill.textContent = data.status?.includes("open") ? "OPEN" : "LOCKED";
+  const isOpen = data.status?.includes("open");
+  statusPill.textContent = isOpen ? "OPEN" : "LOCKED";
+  statusPill.classList.toggle("open", isOpen);
+  statusPill.classList.toggle("locked", !isOpen);
   questionText.textContent = humanStatus(data.status);
+  updateBuzzButtonState(data);
+}
+
+function updateBuzzButtonState(data) {
+  if (!buzzBtn) return;
+  const isOpen = data.status === "tossup_open" || data.status === "bonus_open";
+  let canBuzz = isOpen;
+  if (data.status === "bonus_open" && data.bonusTeam && data.bonusTeam !== state.team) {
+    canBuzz = false;
+  }
+  if (data.status === "tossup_open" && data.lockoutTeam && data.lockoutTeam === state.team) {
+    canBuzz = false;
+  }
+  buzzBtn.disabled = !canBuzz;
+  buzzBtn.classList.toggle("buzz-locked", !canBuzz);
 }
 
 function updateBuzzStatus(data) {
@@ -124,7 +147,7 @@ function updateBuzzStatus(data) {
 }
 
 function updateScores(scores, teamCount, teamNames) {
-  const targets = [scoreboardHeader, scoreboardPanel].filter(Boolean);
+  const targets = [scoreboardHeader].filter(Boolean);
   targets.forEach((el) => {
     el.innerHTML = "";
   });
@@ -140,6 +163,32 @@ function updateScores(scores, teamCount, teamNames) {
     scoreCard.appendChild(label);
     scoreCard.appendChild(value);
     targets.forEach((el) => el.appendChild(scoreCard.cloneNode(true)));
+  });
+}
+
+function updatePlayerScoreboard(stats, players = latestPlayers) {
+  if (!scoreboardPanel) return;
+  scoreboardPanel.innerHTML = "";
+  const statsPlayers = stats?.player || {};
+  const merged = (players || []).map((p) => {
+    const stat = statsPlayers[p.id] || {};
+    return {
+      name: p.name || stat.name || "Player",
+      team: p.team || stat.team || "?",
+      points: stat.points ?? 0
+    };
+  });
+  merged.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+  merged.forEach((player) => {
+    const card = document.createElement("div");
+    card.className = "score";
+    const label = document.createElement("span");
+    label.textContent = `${player.name || "Player"} (${player.team || "?"})`;
+    const value = document.createElement("strong");
+    value.textContent = player.points ?? 0;
+    card.appendChild(label);
+    card.appendChild(value);
+    scoreboardPanel.appendChild(card);
   });
 }
 
@@ -288,6 +337,7 @@ async function enterRoom(roomId) {
     updateHostNote(data);
     updateLog(data.log || []);
     updatePlayerStats(data.stats || {});
+    updatePlayerScoreboard(data.stats || {});
     buildBonusTeamOptions(data.settings?.teamCount || 2, data.settings?.teamNames || {});
     if (data.bonusTeam) bonusTeamSelect.value = data.bonusTeam;
     setHostVisible(data.hostUid === state.uid);
@@ -301,7 +351,9 @@ async function enterRoom(roomId) {
     snap.forEach((docSnap) => {
       list.push({ id: docSnap.id, ...docSnap.data() });
     });
+    latestPlayers = list;
     renderPlayers(list);
+    updatePlayerScoreboard(cachedRoom?.stats || {}, list);
   });
 }
 
@@ -335,19 +387,22 @@ function updateStatsForBuzz(stats, buzz) {
   teamStats.buzzes += 1;
   next.team[buzz.team] = teamStats;
 
-  const player = next.player[buzz.uid] || { name: buzz.name || "Player", team: buzz.team, correct: 0, incorrect: 0, interrupt: 0, buzzes: 0 };
+  const player = next.player[buzz.uid] || { name: buzz.name || "Player", team: buzz.team, correct: 0, incorrect: 0, interrupt: 0, buzzes: 0, points: 0 };
   player.buzzes += 1;
   next.player[buzz.uid] = player;
   return next;
 }
 
-function updateStatsForGrade(stats, buzz, kind) {
+function updateStatsForGrade(stats, buzz, kind, pointsDelta) {
   const next = { ...(stats || {}), team: { ...(stats?.team || {}) }, player: { ...(stats?.player || {}) } };
   if (!buzz) return next;
   const teamStats = next.team[buzz.team] || { correct: 0, incorrect: 0, interrupt: 0, buzzes: 0 };
-  const player = next.player[buzz.uid] || { name: buzz.name || "Player", team: buzz.team, correct: 0, incorrect: 0, interrupt: 0, buzzes: 0 };
+  const player = next.player[buzz.uid] || { name: buzz.name || "Player", team: buzz.team, correct: 0, incorrect: 0, interrupt: 0, buzzes: 0, points: 0 };
   teamStats[kind] = (teamStats[kind] || 0) + 1;
   player[kind] = (player[kind] || 0) + 1;
+  if (typeof pointsDelta === "number") {
+    player.points = (player.points || 0) + pointsDelta;
+  }
   next.team[buzz.team] = teamStats;
   next.player[buzz.uid] = player;
   return next;
@@ -356,24 +411,30 @@ function updateStatsForGrade(stats, buzz, kind) {
 async function startTossup() {
   const { ref, data } = await withRoomDoc();
   const tuTime = data.settings?.tuTime || 5;
+  const category = tossupCategory?.value || "General";
   await updateDoc(ref, {
     status: "tossup_open",
     currentBuzz: null,
+    lockoutTeam: null,
+    currentCategory: category,
     timers: { phaseEndAt: Date.now() + tuTime * 1000, phaseDuration: tuTime, phaseType: "tossup" },
     lastAction: { type: "tossup_start", at: Date.now(), by: state.uid },
-    log: appendLog(data, { type: "tossup_start", at: Date.now(), by: state.uid, details: "Tossup opened" })
+    log: appendLog(data, { type: "tossup_start", at: Date.now(), by: state.uid, details: `Tossup (TU) in ${category} opened` })
   });
 }
 
 async function startBonusTimer() {
   const { ref, data } = await withRoomDoc();
   const bonusTime = data.settings?.bonusTime || 20;
+  const category = data.currentCategory || tossupCategory?.value || "General";
   await updateDoc(ref, {
     status: "bonus_open",
     timers: { phaseEndAt: Date.now() + bonusTime * 1000, phaseDuration: bonusTime, phaseType: "bonus" },
     bonusTeam: bonusTeamSelect.value || data.bonusTeam || "A",
+    lockoutTeam: null,
+    currentCategory: category,
     lastAction: { type: "bonus_start", at: Date.now(), by: state.uid },
-    log: appendLog(data, { type: "bonus_start", at: Date.now(), by: state.uid, team: bonusTeamSelect.value, details: "Bonus opened" })
+    log: appendLog(data, { type: "bonus_start", at: Date.now(), by: state.uid, team: bonusTeamSelect.value, details: `Bonus opened (${category})` })
   });
 }
 
@@ -381,17 +442,28 @@ async function gradeTossup(kind) {
   const { ref, data } = await withRoomDoc();
   const buzz = data.currentBuzz;
   const scores = { ...(data.scores || {}) };
+  let pointsDelta = 0;
   if (buzz) {
-    if (kind === "correct") scores[buzz.team] = (scores[buzz.team] || 0) + 4;
-    if (kind === "incorrect") scores[buzz.team] = (scores[buzz.team] || 0) - 4;
-    if (kind === "interrupt") scores[buzz.team] = (scores[buzz.team] || 0) - 4;
+    if (kind === "correct") {
+      scores[buzz.team] = (scores[buzz.team] || 0) + 4;
+      pointsDelta = 4;
+    }
+    if (kind === "incorrect") {
+      scores[buzz.team] = (scores[buzz.team] || 0) - 4;
+      pointsDelta = -4;
+    }
+    if (kind === "interrupt") {
+      scores[buzz.team] = (scores[buzz.team] || 0) - 4;
+      pointsDelta = -4;
+    }
   }
-  const stats = updateStatsForGrade(data.stats, buzz, kind === "interrupt" ? "interrupt" : kind);
+  const stats = updateStatsForGrade(data.stats, buzz, kind === "interrupt" ? "interrupt" : kind, pointsDelta);
   await updateDoc(ref, {
     scores,
     stats,
     status: kind === "correct" ? "bonus_ready" : "tossup_open",
     currentBuzz: null,
+    lockoutTeam: kind === "correct" ? null : buzz?.team || null,
     timers: null,
     lastAction: { type: `tossup_${kind}`, at: Date.now(), by: state.uid },
     log: appendLog(data, { type: `tossup_${kind}`, at: Date.now(), by: state.uid, team: buzz?.team, details: `Tossup ${kind}` })
@@ -402,13 +474,15 @@ async function gradeBonus(correct) {
   const { ref, data } = await withRoomDoc();
   const buzz = data.currentBuzz;
   const scores = { ...(data.scores || {}) };
+  const pointsDelta = correct && buzz ? 10 : 0;
   if (correct && buzz) scores[buzz.team] = (scores[buzz.team] || 0) + 10;
-  const stats = updateStatsForGrade(data.stats, buzz, correct ? "correct" : "incorrect");
+  const stats = updateStatsForGrade(data.stats, buzz, correct ? "correct" : "incorrect", pointsDelta);
   await updateDoc(ref, {
     scores,
     stats,
     status: "tossup_open",
     currentBuzz: null,
+    lockoutTeam: null,
     timers: null,
     lastAction: { type: `bonus_${correct ? "correct" : "wrong"}`, at: Date.now(), by: state.uid },
     log: appendLog(data, { type: `bonus_${correct ? "correct" : "wrong"}`, at: Date.now(), by: state.uid, team: buzz?.team, details: `Bonus ${correct ? "correct" : "wrong"}` })
@@ -420,6 +494,7 @@ async function nextTossup() {
   await updateDoc(ref, {
     status: "tossup_open",
     currentBuzz: null,
+    lockoutTeam: null,
     timers: null,
     lastAction: { type: "next_tossup", at: Date.now(), by: state.uid },
     log: appendLog(data, { type: "next_tossup", at: Date.now(), by: state.uid, details: "Opened next tossup" })
@@ -438,6 +513,7 @@ async function buzz() {
       if (data.status !== "tossup_open" && data.status !== "bonus_open") return;
       if (data.currentBuzz) return;
       if (data.status === "bonus_open" && data.bonusTeam && data.bonusTeam !== state.team) return;
+      if (data.status === "tossup_open" && data.lockoutTeam && data.lockoutTeam === state.team) return;
       const buzzData = { uid: state.uid, team: state.team, at: Date.now(), name: state.name };
       const stats = updateStatsForBuzz(data.stats, buzzData);
       const newStatus = data.status === "bonus_open" ? "bonus_locked" : "tossup_locked";
@@ -516,22 +592,22 @@ function handleSpacebar(e) {
   }
 }
 
-startTossupBtn.addEventListener("click", startTossup);
-tossupInterruptBtn.addEventListener("click", () => gradeTossup("interrupt"));
-tossupCorrectBtn.addEventListener("click", () => gradeTossup("correct"));
-tossupWrongBtn.addEventListener("click", () => gradeTossup("incorrect"));
-startBonusBtn.addEventListener("click", startBonusTimer);
-bonusCorrectBtn.addEventListener("click", () => gradeBonus(true));
-bonusWrongBtn.addEventListener("click", () => gradeBonus(false));
-nextTossupBtn.addEventListener("click", nextTossup);
+startTossupBtn.addEventListener("click", () => startTossup().catch(console.error));
+tossupInterruptBtn.addEventListener("click", () => gradeTossup("interrupt").catch(console.error));
+tossupCorrectBtn.addEventListener("click", () => gradeTossup("correct").catch(console.error));
+tossupWrongBtn.addEventListener("click", () => gradeTossup("incorrect").catch(console.error));
+startBonusBtn.addEventListener("click", () => startBonusTimer().catch(console.error));
+bonusCorrectBtn.addEventListener("click", () => gradeBonus(true).catch(console.error));
+bonusWrongBtn.addEventListener("click", () => gradeBonus(false).catch(console.error));
+nextTossupBtn.addEventListener("click", () => nextTossup().catch(console.error));
 buzzBtn.addEventListener("click", buzz);
 bonusTeamSelect.addEventListener("change", async () => {
   const { ref } = await withRoomDoc();
   await updateDoc(ref, { bonusTeam: bonusTeamSelect.value });
 });
-gameStartBtn.addEventListener("click", () => updateGameClockAction("start"));
-gamePauseBtn.addEventListener("click", () => updateGameClockAction("pause"));
-gameResetBtn.addEventListener("click", () => updateGameClockAction("reset"));
+gameStartBtn.addEventListener("click", () => updateGameClockAction("start").catch(console.error));
+gamePauseBtn.addEventListener("click", () => updateGameClockAction("pause").catch(console.error));
+gameResetBtn.addEventListener("click", () => updateGameClockAction("reset").catch(console.error));
 exportBtn.addEventListener("click", exportCsv);
 document.addEventListener("keydown", handleSpacebar);
 if (copyRoomBtn) {

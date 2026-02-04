@@ -196,8 +196,10 @@ input {
 .room-code-row {
   margin-top: 14px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .room-code {
@@ -278,6 +280,7 @@ input {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
+  max-width: 100%;
 }
 
 .score {
@@ -287,6 +290,7 @@ input {
   border-radius: 12px;
   text-align: center;
   min-width: 90px;
+  max-width: 100%;
 }
 
 .score strong {
@@ -294,11 +298,19 @@ input {
   font-size: 1.4rem;
 }
 
+.score span {
+  display: block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
 .room-body {
   margin-top: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
+  align-items: start;
+  align-content: start;
 }
 
 .desk-panel {
@@ -310,6 +322,7 @@ input {
   gap: 16px;
   min-width: 0;
   overflow: hidden;
+  width: 100%;
 }
 
 .desk-section {
@@ -318,6 +331,7 @@ input {
   background: rgba(10, 14, 22, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.08);
   min-width: 0;
+  width: 100%;
 }
 
 .desk-section h3 {
@@ -414,12 +428,23 @@ input {
   font-weight: 700;
 }
 
+.status-pill.locked {
+  background: rgba(148, 163, 184, 0.2);
+  color: #cbd5f5;
+}
+
+.status-pill.open {
+  background: rgba(79, 124, 255, 0.25);
+  color: #dbe6ff;
+}
+
 .log-panel {
   max-height: 280px;
   overflow: auto;
   display: grid;
   gap: 6px;
   font-size: 0.85rem;
+  max-width: 100%;
 }
 
 .log-item {
@@ -457,6 +482,7 @@ input {
 .player-list {
   display: grid;
   gap: 8px;
+  max-width: 100%;
 }
 
 .player-card {
@@ -467,6 +493,17 @@ input {
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn.buzz-locked,
+.btn:disabled {
+  background: rgba(148, 163, 184, 0.2);
+  color: #cbd5f5;
+  border-color: rgba(255, 255, 255, 0.08);
+  cursor: not-allowed;
+  transform: none;
 }
 
 .host-controls {

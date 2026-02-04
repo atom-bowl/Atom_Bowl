@@ -29,6 +29,7 @@ let playerUnsub = null;
 let timerInterval = null;
 let gameClockInterval = null;
 let cachedRoom = null;
+let latestPlayers = [];
 
 const state = {
   uid: null,
@@ -44,6 +45,7 @@ function getRoomId() {
 async function ensureIdentity() {
   const user = await ensureAnonAuth();
   state.uid = user.uid;
+  localStorage.setItem("atom_buzzer_role", "player");
   const cached = localStorage.getItem("atom_buzzer_profile");
   if (cached) {
     try {
@@ -74,8 +76,26 @@ function humanStatus(status) {
 
 function updateStatusUI(data) {
   roomStatus.textContent = humanStatus(data.status);
-  statusPill.textContent = data.status?.includes("open") ? "OPEN" : "LOCKED";
+  const isOpen = data.status?.includes("open");
+  statusPill.textContent = isOpen ? "OPEN" : "LOCKED";
+  statusPill.classList.toggle("open", isOpen);
+  statusPill.classList.toggle("locked", !isOpen);
   questionText.textContent = humanStatus(data.status);
+  updateBuzzButtonState(data);
+}
+
+function updateBuzzButtonState(data) {
+  if (!buzzBtn) return;
+  const isOpen = data.status === "tossup_open" || data.status === "bonus_open";
+  let canBuzz = isOpen;
+  if (data.status === "bonus_open" && data.bonusTeam && data.bonusTeam !== state.team) {
+    canBuzz = false;
+  }
+  if (data.status === "tossup_open" && data.lockoutTeam && data.lockoutTeam === state.team) {
+    canBuzz = false;
+  }
+  buzzBtn.disabled = !canBuzz;
+  buzzBtn.classList.toggle("buzz-locked", !canBuzz);
 }
 
 function updateBuzzStatus(data) {
@@ -88,7 +108,7 @@ function updateBuzzStatus(data) {
 }
 
 function updateScores(scores, teamCount, teamNames) {
-  const targets = [scoreboardHeader, scoreboardPanel].filter(Boolean);
+  const targets = [scoreboardHeader].filter(Boolean);
   targets.forEach((el) => {
     el.innerHTML = "";
   });
@@ -104,6 +124,32 @@ function updateScores(scores, teamCount, teamNames) {
     scoreCard.appendChild(label);
     scoreCard.appendChild(value);
     targets.forEach((el) => el.appendChild(scoreCard.cloneNode(true)));
+  });
+}
+
+function updatePlayerScoreboard(stats, players = latestPlayers) {
+  if (!scoreboardPanel) return;
+  scoreboardPanel.innerHTML = "";
+  const statsPlayers = stats?.player || {};
+  const merged = (players || []).map((p) => {
+    const stat = statsPlayers[p.id] || {};
+    return {
+      name: p.name || stat.name || "Player",
+      team: p.team || stat.team || "?",
+      points: stat.points ?? 0
+    };
+  });
+  merged.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+  merged.forEach((player) => {
+    const card = document.createElement("div");
+    card.className = "score";
+    const label = document.createElement("span");
+    label.textContent = `${player.name || "Player"} (${player.team || "?"})`;
+    const value = document.createElement("strong");
+    value.textContent = player.points ?? 0;
+    card.appendChild(label);
+    card.appendChild(value);
+    scoreboardPanel.appendChild(card);
   });
 }
 
@@ -198,6 +244,7 @@ async function enterRoom(roomId) {
     updateTimers(data);
     renderGameClock(data);
     updateLog(data.log || []);
+    updatePlayerScoreboard(data.stats || {});
   }, (err) => {
     console.error("Room snapshot error", err);
     roomStatus.textContent = "Room unavailable (check permissions).";
@@ -208,7 +255,9 @@ async function enterRoom(roomId) {
     snap.forEach((docSnap) => {
       list.push({ id: docSnap.id, ...docSnap.data() });
     });
+    latestPlayers = list;
     renderPlayers(list);
+    updatePlayerScoreboard(cachedRoom?.stats || {}, list);
   });
 }
 
@@ -231,7 +280,7 @@ function updateStatsForBuzz(stats, buzz) {
   teamStats.buzzes += 1;
   next.team[buzz.team] = teamStats;
 
-  const player = next.player[buzz.uid] || { name: buzz.name || "Player", team: buzz.team, correct: 0, incorrect: 0, interrupt: 0, buzzes: 0 };
+  const player = next.player[buzz.uid] || { name: buzz.name || "Player", team: buzz.team, correct: 0, incorrect: 0, interrupt: 0, buzzes: 0, points: 0 };
   player.buzzes += 1;
   next.player[buzz.uid] = player;
   return next;
@@ -248,6 +297,7 @@ async function buzz() {
       if (data.status !== "tossup_open" && data.status !== "bonus_open") return;
       if (data.currentBuzz) return;
       if (data.status === "bonus_open" && data.bonusTeam && data.bonusTeam !== state.team) return;
+      if (data.status === "tossup_open" && data.lockoutTeam && data.lockoutTeam === state.team) return;
       const buzzData = { uid: state.uid, team: state.team, at: Date.now(), name: state.name };
       const stats = updateStatsForBuzz(data.stats, buzzData);
       const newStatus = data.status === "bonus_open" ? "bonus_locked" : "tossup_locked";

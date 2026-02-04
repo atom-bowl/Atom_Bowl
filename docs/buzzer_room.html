@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/buzzer_rooms.css">
+  <link rel="stylesheet" href="css/buzzer_rooms.css?v=20260204c">
 </head>
 <body class="nav-collapsed">
   <header class="topbar">
@@ -50,6 +50,14 @@
 
           <div class="desk-section">
             <h3>Tossup</h3>
+            <label class="label">Category</label>
+            <select id="tossupCategory">
+              <option value="Earth & Space Science">Earth & Space Science</option>
+              <option value="Life Science">Life Science</option>
+              <option value="Physics">Physics</option>
+              <option value="Chemistry">Chemistry</option>
+              <option value="Math">Math</option>
+            </select>
             <div class="timer-small" id="tossupTimerDisplay">00:05</div>
             <div class="btn-row">
               <button id="startTossupBtn" class="btn">Start Tossup</button>
@@ -136,6 +144,7 @@
     </section>
   </main>
 
-  <script type="module" src="js/buzzer_room.js?v=20260204b"></script>
+  <script type="module" src="js/buzzer_room.js?v=20260204c"></script>
 </body>
 </html>
+

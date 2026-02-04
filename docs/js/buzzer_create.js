@@ -84,6 +84,8 @@ async function createRoom() {
     currentBuzz: null,
     scores: buildInitialScores(teamCount),
     timers: null,
+    lockoutTeam: null,
+    currentCategory: null,
     lastAction: null,
     bonusTeam: "A",
     settings: {
