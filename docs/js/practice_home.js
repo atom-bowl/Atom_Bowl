@@ -215,16 +215,19 @@
       function renderTopics() {
         if (!els.topicGrid) return;
         els.topicGrid.innerHTML = TOPIC_GROUPS.map(group => `
-          <div class="topic-column">
-            <label class="topic-super">
-              <input type="checkbox" class="topic-super-checkbox" data-topic="${group.id}">
-              ${group.label}
-            </label>
+          <div class="topic-card" data-topic="${group.id}">
+            <div class="topic-card-header">
+              <label class="topic-super">
+                <input type="checkbox" class="topic-super-checkbox" data-topic="${group.id}">
+                <span class="topic-super-text">${group.label}</span>
+              </label>
+              <div class="topic-hint">Select all in ${group.label}</div>
+            </div>
             <div class="topic-sublist">
               ${group.detailed.map(topic => `
                 <label class="topic-option">
                   <input type="checkbox" class="topic-detail-checkbox" data-topic="${group.id}" value="${topic}">
-                  ${topic}
+                  <span class="topic-option-text">${topic}</span>
                 </label>
               `).join('')}
             </div>
@@ -359,6 +362,15 @@
         els.level.value = settings.div;
       }
       els.topicGrid?.addEventListener('change', updateCounts);
+      els.topicGrid?.addEventListener('click', (e) => {
+        const card = e.target.closest('.topic-card');
+        if (!card) return;
+        if (e.target.closest('label') || e.target.closest('input')) return;
+        const toggle = card.querySelector('.topic-super-checkbox');
+        if (!toggle) return;
+        toggle.checked = !toggle.checked;
+        toggle.dispatchEvent(new Event('change', { bubbles: true }));
+      });
       els.clearTopics?.addEventListener('click', () => {
         document.querySelectorAll('.topic-super-checkbox, .topic-detail-checkbox').forEach(input => {
           input.checked = false;
