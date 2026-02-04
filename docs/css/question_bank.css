@@ -601,3 +601,11 @@
         font-size: 1.25rem;
       }
     }
+
+    @media (max-width: 820px) {
+      .main {
+        margin-left: 0;
+        width: 100%;
+        max-width: 100%;
+      }
+    }

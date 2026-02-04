@@ -1,0 +1,16 @@
+{
+  "name": "Atom Bowl",
+  "short_name": "Atom Bowl",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0b0f14",
+  "theme_color": "#0b0f14",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
