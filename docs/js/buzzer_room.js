@@ -206,7 +206,7 @@ function updateTimers(data) {
   timerInterval = setInterval(tick, 250);
 }
 
-function updateGameClock(data) {
+function renderGameClock(data) {
   if (gameClockInterval) {
     clearInterval(gameClockInterval);
     gameClockInterval = null;
@@ -259,10 +259,15 @@ async function enterRoom(roomId) {
   activeRoomId = roomId;
   if (roomUnsub) roomUnsub();
   if (playerUnsub) playerUnsub();
+  roomStatus.textContent = "Loading room...";
 
   roomUnsub = onSnapshot(doc(db, "rooms", roomId), (snap) => {
+    if (!snap.exists()) {
+      roomStatus.textContent = "Room not found.";
+      if (roomCodeValue) roomCodeValue.textContent = "-----";
+      return;
+    }
     const data = snap.data();
-    if (!data) return;
     cachedRoom = data;
     roomTitle.textContent = data.roomName || `Room ${data.roomCode}`;
     roomCodeTitle.textContent = `Room ${data.roomCode}`;
@@ -271,13 +276,16 @@ async function enterRoom(roomId) {
     updateScores(data.scores || {}, data.settings?.teamCount || 2, data.settings?.teamNames || {});
     updateBuzzStatus(data);
     updateTimers(data);
-    updateGameClock(data);
+    renderGameClock(data);
     updateHostNote(data);
     updateLog(data.log || []);
     updatePlayerStats(data.stats || {});
     buildBonusTeamOptions(data.settings?.teamCount || 2, data.settings?.teamNames || {});
     if (data.bonusTeam) bonusTeamSelect.value = data.bonusTeam;
     setHostVisible(data.hostUid === state.uid);
+  }, (err) => {
+    console.error("Room snapshot error", err);
+    roomStatus.textContent = "Room unavailable (check permissions).";
   });
 
   playerUnsub = onSnapshot(collection(db, "rooms", roomId, "players"), (snap) => {
@@ -438,7 +446,7 @@ async function buzz() {
   }
 }
 
-async function updateGameClock(action) {
+async function updateGameClockAction(action) {
   const { ref, data } = await withRoomDoc();
   const clock = data.gameClock || { status: "stopped", remainingMs: 180000, updatedAt: Date.now() };
   let next = { ...clock };
@@ -513,9 +521,9 @@ bonusTeamSelect.addEventListener("change", async () => {
   const { ref } = await withRoomDoc();
   await updateDoc(ref, { bonusTeam: bonusTeamSelect.value });
 });
-gameStartBtn.addEventListener("click", () => updateGameClock("start"));
-gamePauseBtn.addEventListener("click", () => updateGameClock("pause"));
-gameResetBtn.addEventListener("click", () => updateGameClock("reset"));
+gameStartBtn.addEventListener("click", () => updateGameClockAction("start"));
+gamePauseBtn.addEventListener("click", () => updateGameClockAction("pause"));
+gameResetBtn.addEventListener("click", () => updateGameClockAction("reset"));
 exportBtn.addEventListener("click", exportCsv);
 document.addEventListener("keydown", handleSpacebar);
 if (toggleLogBtn && playerLogPanel) {
