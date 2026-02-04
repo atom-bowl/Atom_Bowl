@@ -19,6 +19,7 @@
       mode: 'rapid',
       rememberTopics: false,
       autoCheck: false,
+      autoThreshold: 0.72,
       highContrast: false,
       animations: true,
       fontSize: 'm',
@@ -70,6 +71,8 @@
     const animToggle = document.getElementById('animToggle');
     const rememberTopicsToggle = document.getElementById('rememberTopicsToggle');
     const autoCheckToggle = document.getElementById('autoCheckToggle');
+    const autoThreshold = document.getElementById('autoThreshold');
+    const autoThresholdValue = document.getElementById('autoThresholdValue');
 
     const divSelect = document.getElementById('divSelect');
     const modeSelect = document.getElementById('modeSelect');
@@ -118,6 +121,8 @@
       setToggle(animToggle, s.animations);
       setToggle(rememberTopicsToggle, s.rememberTopics);
       setToggle(autoCheckToggle, s.autoCheck);
+      autoThreshold.value = String(s.autoThreshold ?? 0.72);
+      autoThresholdValue.textContent = Number(autoThreshold.value).toFixed(2);
       divSelect.value = s.div;
       modeSelect.value = s.mode;
       fontSelect.value = s.fontSize;
@@ -134,6 +139,7 @@
         mode: modeSelect.value,
         rememberTopics: readToggle(rememberTopicsToggle),
         autoCheck: readToggle(autoCheckToggle),
+        autoThreshold: Number(autoThreshold.value),
         highContrast: readToggle(hcToggle),
         animations: readToggle(animToggle),
         fontSize: fontSelect.value,
@@ -150,6 +156,9 @@
       });
     });
     hcToggle.addEventListener('click', () => applyThemePreview(collectUI()));
+    autoThreshold.addEventListener('input', () => {
+      autoThresholdValue.textContent = Number(autoThreshold.value).toFixed(2);
+    });
 
     applyBtn.addEventListener('click', () => {
       const s = collectUI();

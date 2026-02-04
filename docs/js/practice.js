@@ -83,6 +83,7 @@
       mode: 'rapid',
       rememberTopics: false,
       autoCheck: false,
+      autoThreshold: 0.72,
       highContrast: false,
       animations: true,
       fontSize: 'm',
@@ -115,6 +116,7 @@
     // Early appearances for State constants
     let ttsEnabled = settings.tts;
     let autoCheckEnabled = !!settings.autoCheck;
+    let autoCheckThreshold = Number(settings.autoThreshold ?? 0.72);
     let currentUtterance = null;
     let readingSpeed = 1.0;
 
@@ -846,11 +848,22 @@
       clearInterval(timerId);
 
       const showButtons = opts.showButtons !== false;
+      const autoInfo = opts.autoInfo;
       const ua = norm(userAnswer) || '(no answer)';
       const ca = norm(correctAnswer) || '(no official answer)';
 
+      let extra = '';
+      if (autoInfo && typeof autoInfo.confidence === 'number') {
+        const conf = Math.round(autoInfo.confidence * 100);
+        const matchLine = autoInfo.matched
+          ? `Matched: <span style="color:var(--muted)">${escapeHtml(autoInfo.matched)}</span>`
+          : '';
+        extra = `<br>Confidence: <span style="color:var(--text)">${conf}%</span>` +
+                (matchLine ? `<br>${matchLine}` : '');
+      }
       feedback.innerHTML = `Your answer: <span style="color:var(--text)">${escapeHtml(ua)}</span>\n` +
-                          `Official: <span style="color:var(--muted)">${escapeHtml(ca)}</span>`;
+                          `Official: <span style="color:var(--muted)">${escapeHtml(ca)}</span>` +
+                          extra;
       feedback.className = 'feedback';
       animateIn(feedback);
 
@@ -934,9 +947,13 @@
         const result = window.autoChecker.grade({
           userAnswer: input.value,
           correctAnswer: q.parsed_answer,
-          questionType: q.type
+          questionType: q.type,
+          threshold: autoCheckThreshold
         });
-        revealManualGrade(input.value, q.parsed_answer, { showButtons: false });
+        revealManualGrade(input.value, q.parsed_answer, {
+          showButtons: false,
+          autoInfo: { confidence: result.confidence, matched: result.matched }
+        });
         applyGrade(!!result.isCorrect);
       } else {
         revealManualGrade(input.value, q.parsed_answer);
@@ -956,9 +973,13 @@
         const result = window.autoChecker.grade({
           userAnswer: letter,
           correctAnswer: q.parsed_answer,
-          questionType: q.type
+          questionType: q.type,
+          threshold: autoCheckThreshold
         });
-        revealManualGrade(letter, q.parsed_answer, { showButtons: false });
+        revealManualGrade(letter, q.parsed_answer, {
+          showButtons: false,
+          autoInfo: { confidence: result.confidence, matched: result.matched }
+        });
         applyGrade(!!result.isCorrect);
       } else {
         revealManualGrade(letter, q.parsed_answer);
@@ -978,9 +999,13 @@
         const result = window.autoChecker.grade({
           userAnswer: '',
           correctAnswer: q.parsed_answer,
-          questionType: q.type
+          questionType: q.type,
+          threshold: autoCheckThreshold
         });
-        revealManualGrade('', q.parsed_answer, { showButtons: false });
+        revealManualGrade('', q.parsed_answer, {
+          showButtons: false,
+          autoInfo: { confidence: result.confidence, matched: result.matched }
+        });
         applyGrade(!!result.isCorrect);
       } else {
         revealManualGrade('', q.parsed_answer);

@@ -1,20 +1,56 @@
 (function () {
   'use strict';
 
+  const NUMBER_WORDS = new Map([
+    ['zero', '0'], ['one', '1'], ['two', '2'], ['three', '3'], ['four', '4'],
+    ['five', '5'], ['six', '6'], ['seven', '7'], ['eight', '8'], ['nine', '9'],
+    ['ten', '10'], ['eleven', '11'], ['twelve', '12'], ['thirteen', '13'],
+    ['fourteen', '14'], ['fifteen', '15'], ['sixteen', '16'], ['seventeen', '17'],
+    ['eighteen', '18'], ['nineteen', '19'], ['twenty', '20']
+  ]);
+
+  const GREEK_MAP = new Map([
+    ['α', 'alpha'], ['β', 'beta'], ['γ', 'gamma'], ['δ', 'delta'], ['ε', 'epsilon'],
+    ['θ', 'theta'], ['λ', 'lambda'], ['μ', 'mu'], ['π', 'pi'], ['ρ', 'rho'],
+    ['σ', 'sigma'], ['τ', 'tau'], ['φ', 'phi'], ['ω', 'omega']
+  ]);
+
+  function replaceGreek(s) {
+    let out = s;
+    for (const [sym, name] of GREEK_MAP.entries()) {
+      out = out.replaceAll(sym, name);
+    }
+    return out;
+  }
+
   function normalize(raw) {
-    return String(raw || '')
+    let s = String(raw || '');
+    s = replaceGreek(s);
+    s = s
       .toLowerCase()
       .replace(/[\u2018\u2019]/g, "'")
       .replace(/[\u201C\u201D]/g, '"')
       .replace(/[^a-z0-9\s]/g, ' ')
       .replace(/\s+/g, ' ')
       .trim();
+    const parts = s.split(' ').map(p => NUMBER_WORDS.get(p) || p);
+    return parts.join(' ').trim();
+  }
+
+  function stem(token) {
+    if (token.length <= 3) return token;
+    if (token.endsWith('ies')) return token.slice(0, -3) + 'y';
+    if (token.endsWith('es')) return token.slice(0, -2);
+    if (token.endsWith('s')) return token.slice(0, -1);
+    if (token.endsWith('ing') && token.length > 5) return token.slice(0, -3);
+    if (token.endsWith('ed') && token.length > 4) return token.slice(0, -2);
+    return token;
   }
 
   function tokenize(raw) {
     const normalized = normalize(raw);
     if (!normalized) return [];
-    return normalized.split(' ').filter(Boolean);
+    return normalized.split(' ').filter(Boolean).map(stem);
   }
 
   function jaccard(aTokens, bTokens) {
@@ -77,7 +113,32 @@
       .filter(Boolean);
   }
 
-  function gradeShortAnswer(userAnswer, correctAnswer) {
+  function bestTokenMatchScore(userTokens, candTokens) {
+    if (!userTokens.length || !candTokens.length) return 0;
+    let total = 0;
+    for (const ut of userTokens) {
+      let best = 0;
+      for (const ct of candTokens) {
+        best = Math.max(best, similarity(ut, ct));
+      }
+      total += best;
+    }
+    return total / userTokens.length;
+  }
+
+  function autocorrectTokens(userTokens, candTokens) {
+    return userTokens.map(ut => {
+      let best = { tok: ut, score: 0 };
+      for (const ct of candTokens) {
+        const score = similarity(ut, ct);
+        if (score > best.score) best = { tok: ct, score };
+      }
+      if (best.score >= 0.82 && ut.length >= 4) return best.tok;
+      return ut;
+    });
+  }
+
+  function gradeShortAnswer(userAnswer, correctAnswer, threshold) {
     const user = normalize(userAnswer);
     const candidates = splitCandidates(correctAnswer).map(normalize).filter(Boolean);
     if (!user || !candidates.length) return { isCorrect: false, score: 0, matched: '' };
@@ -87,16 +148,19 @@
 
     for (const candidate of candidates) {
       const candTokens = tokenize(candidate);
-      const tokenScore = jaccard(userTokens, candTokens);
+      const correctedUserTokens = autocorrectTokens(userTokens, candTokens);
+      const tokenScore = jaccard(correctedUserTokens, candTokens);
+      const fuzzyTokenScore = bestTokenMatchScore(correctedUserTokens, candTokens);
       const editScore = similarity(user, candidate);
-      const combined = Math.max(tokenScore, editScore) * 0.55 + Math.min(tokenScore, editScore) * 0.45;
-      if (combined > best.score) {
-        best = { score: combined, matched: candidate };
-      }
+      const combined = (Math.max(tokenScore, fuzzyTokenScore) * 0.5) +
+                       (Math.min(tokenScore, fuzzyTokenScore) * 0.2) +
+                       (editScore * 0.3);
+      if (combined > best.score) best = { score: combined, matched: candidate };
     }
 
-    const threshold = Math.max(0.72, candidates.length > 1 ? 0.68 : 0.72);
-    return { isCorrect: best.score >= threshold, score: best.score, matched: best.matched };
+    const min = candidates.length > 1 ? 0.66 : 0.7;
+    const applied = Math.max(min, Number(threshold ?? 0.72));
+    return { isCorrect: best.score >= applied, score: best.score, matched: best.matched, threshold: applied };
   }
 
   function gradeMC(userAnswer, correctAnswer) {
@@ -106,11 +170,13 @@
     return { isCorrect: user === correct, score: user === correct ? 1 : 0 };
   }
 
-  function grade({ userAnswer, correctAnswer, questionType }) {
+  function grade({ userAnswer, correctAnswer, questionType, threshold }) {
     if (String(questionType || '').toUpperCase() === 'MC') {
-      return gradeMC(userAnswer, correctAnswer);
+      const res = gradeMC(userAnswer, correctAnswer);
+      return { ...res, confidence: res.score, matched: extractChoiceLetter(correctAnswer) };
     }
-    return gradeShortAnswer(userAnswer, correctAnswer);
+    const res = gradeShortAnswer(userAnswer, correctAnswer, threshold);
+    return { ...res, confidence: res.score };
   }
 
   window.autoChecker = { grade };

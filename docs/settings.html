@@ -101,6 +101,17 @@
           </div>
           <div class="toggle" id="autoCheckToggle" role="switch" aria-checked="false" tabindex="0"><div class="knob"></div></div>
         </div>
+
+        <div class="row">
+          <div class="label">
+            <b>Match Threshold</b>
+            <span>Higher = stricter matching. Recommended 0.72.</span>
+          </div>
+          <div class="range-wrap">
+            <input id="autoThreshold" class="range" type="range" min="0.50" max="0.95" step="0.01" value="0.72" />
+            <span id="autoThresholdValue" class="range-value">0.72</span>
+          </div>
+        </div>
       </div>
 
       <div class="card pop">

@@ -392,6 +392,24 @@
 
     .theme-light .label span { color: #4b5563; }
 
+    .range-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 180px;
+    }
+
+    .range {
+      width: 160px;
+      accent-color: var(--accent);
+    }
+
+    .range-value {
+      font-weight: 800;
+      min-width: 48px;
+      text-align: right;
+    }
+
     .hotkeys {
       display: grid;
       gap: 10px;
