@@ -29,6 +29,7 @@
         bankMeta: document.getElementById('bankMeta'),
         topicGrid: document.getElementById('topicGrid'),
         clearTopics: document.getElementById('clearTopics'),
+        toggleAdvanced: document.getElementById('toggleAdvanced'),
         countRapid: document.getElementById('countRapid'),
         countToss: document.getElementById('countToss'),
         countBonus: document.getElementById('countBonus'),
@@ -47,10 +48,12 @@
         tts: true,
         div: 'MS',
         mode: 'rapid',
+        rememberTopics: false,
         highContrast: false,
         animations: true,
         fontSize: 'm',
-        accent: '#4f7cff'
+        accent: '#4f7cff',
+        theme: 'system'
       };
 
       function loadSettings() {
@@ -67,6 +70,7 @@
 
       const settings = loadSettings();
       window.bank = [];
+      const TOPIC_SAVE_KEY = 'atom_topic_super_v1';
 
       function normCat(c) { return String(c || '').trim(); }
 
@@ -241,6 +245,20 @@
           .filter(Boolean);
       }
 
+      function loadSavedSuperTopics() {
+        try {
+          const raw = localStorage.getItem(TOPIC_SAVE_KEY);
+          const parsed = JSON.parse(raw || '[]');
+          return Array.isArray(parsed) ? parsed : [];
+        } catch {
+          return [];
+        }
+      }
+
+      function saveSuperTopics(topics) {
+        localStorage.setItem(TOPIC_SAVE_KEY, JSON.stringify(topics || []));
+      }
+
       function selectedDetailedTopics() {
         return Array.from(document.querySelectorAll('.topic-detail-checkbox:checked'))
           .map(el => el.value)
@@ -358,10 +376,21 @@
       }
 
       renderTopics();
+      if (settings.rememberTopics) {
+        const saved = new Set(loadSavedSuperTopics());
+        document.querySelectorAll('.topic-super-checkbox').forEach(input => {
+          input.checked = saved.has(input.dataset.topic);
+        });
+      }
       if (settings.div && ['MS', 'HS'].includes(settings.div)) {
         els.level.value = settings.div;
       }
-      els.topicGrid?.addEventListener('change', updateCounts);
+      els.topicGrid?.addEventListener('change', () => {
+        updateCounts();
+        if (settings.rememberTopics) {
+          saveSuperTopics(selectedSuperTopics());
+        }
+      });
       els.topicGrid?.addEventListener('click', (e) => {
         const card = e.target.closest('.topic-card');
         if (!card) return;
@@ -375,8 +404,23 @@
         document.querySelectorAll('.topic-super-checkbox, .topic-detail-checkbox').forEach(input => {
           input.checked = false;
         });
+        if (settings.rememberTopics) {
+          saveSuperTopics([]);
+        }
         updateCounts();
       });
+
+      if (els.toggleAdvanced && els.topicGrid) {
+        const setAdvanced = (isOn) => {
+          els.topicGrid.classList.toggle('show-advanced', isOn);
+          els.toggleAdvanced.textContent = isOn ? 'Hide advanced' : 'Advanced filters';
+        };
+        setAdvanced(false);
+        els.toggleAdvanced.addEventListener('click', () => {
+          const next = !els.topicGrid.classList.contains('show-advanced');
+          setAdvanced(next);
+        });
+      }
 
       els.bankSelect.addEventListener('change', () => {
         loadBank();

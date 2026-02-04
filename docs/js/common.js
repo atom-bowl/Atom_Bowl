@@ -5,10 +5,12 @@
     tts: true,
     div: 'MS',
     mode: 'rapid',
+    rememberTopics: false,
     highContrast: false,
     animations: true,
     fontSize: 'm',
-    accent: '#4f7cff'
+    accent: '#4f7cff',
+    theme: 'system'
   };
 
   function loadSettings() {
@@ -45,11 +47,29 @@
     document.body.style.fontSize = sizes[s.fontSize] || '16px';
     document.body.style.filter = s.highContrast ? 'contrast(1.06) saturate(1.02)' : 'none';
     document.documentElement.classList.toggle('no-anim', !s.animations);
+    if (s.theme === 'light') {
+      document.documentElement.classList.add('theme-light');
+    } else if (s.theme === 'dark') {
+      document.documentElement.classList.remove('theme-light');
+    } else {
+      const prefersLight = window.matchMedia?.('(prefers-color-scheme: light)').matches;
+      document.documentElement.classList.toggle('theme-light', !!prefersLight);
+    }
   }
 
   const settings = loadSettings();
   window.atomSettings = settings;
   applySettings(settings);
+
+  const mq = window.matchMedia?.('(prefers-color-scheme: light)');
+  if (mq?.addEventListener) {
+    mq.addEventListener('change', () => {
+      const next = loadSettings();
+      if ((next.theme || 'system') === 'system') {
+        applySettings(next);
+      }
+    });
+  }
 
   function handleSameWindowNavigation(event) {
     const link = event.target.closest('a[href]');

@@ -17,10 +17,12 @@
       tts: true,
       div: 'MS',
       mode: 'rapid',
+      rememberTopics: false,
       highContrast: false,
       animations: true,
       fontSize: 'm',
-      accent: '#4f7cff'
+      accent: '#4f7cff',
+      theme: 'system'
     };
 
     const KEY = 'atom_settings_v1';
@@ -65,17 +67,19 @@
     const ttsToggle = document.getElementById('ttsToggle');
     const hcToggle = document.getElementById('hcToggle');
     const animToggle = document.getElementById('animToggle');
+    const rememberTopicsToggle = document.getElementById('rememberTopicsToggle');
 
     const divSelect = document.getElementById('divSelect');
     const modeSelect = document.getElementById('modeSelect');
     const fontSelect = document.getElementById('fontSelect');
     const accentSelect = document.getElementById('accentSelect');
+    const themeSelect = document.getElementById('themeSelect');
 
     const toast = document.getElementById('toast');
     const applyBtn = document.getElementById('apply');
     const resetBtn = document.getElementById('reset');
 
-    [sfxToggle, ttsToggle, hcToggle, animToggle].forEach(wireToggle);
+    [sfxToggle, ttsToggle, hcToggle, animToggle, rememberTopicsToggle].forEach(wireToggle);
 
     function showToast(msg) {
       toast.textContent = msg;
@@ -93,6 +97,16 @@
 
       // High contrast preview
       document.body.style.filter = s.highContrast ? 'contrast(1.06) saturate(1.02)' : 'none';
+
+      // Theme preview
+      if (s.theme === 'light') {
+        document.documentElement.classList.add('theme-light');
+      } else if (s.theme === 'dark') {
+        document.documentElement.classList.remove('theme-light');
+      } else {
+        const prefersLight = window.matchMedia?.('(prefers-color-scheme: light)').matches;
+        document.documentElement.classList.toggle('theme-light', !!prefersLight);
+      }
     }
 
     function hydrateUI(s) {
@@ -100,10 +114,12 @@
       setToggle(ttsToggle, s.tts);
       setToggle(hcToggle, s.highContrast);
       setToggle(animToggle, s.animations);
+      setToggle(rememberTopicsToggle, s.rememberTopics);
       divSelect.value = s.div;
       modeSelect.value = s.mode;
       fontSelect.value = s.fontSize;
       accentSelect.value = s.accent;
+      themeSelect.value = s.theme;
       applyThemePreview(s);
     }
 
@@ -113,15 +129,17 @@
         tts: readToggle(ttsToggle),
         div: divSelect.value,
         mode: modeSelect.value,
+        rememberTopics: readToggle(rememberTopicsToggle),
         highContrast: readToggle(hcToggle),
         animations: readToggle(animToggle),
         fontSize: fontSelect.value,
-        accent: accentSelect.value
+        accent: accentSelect.value,
+        theme: themeSelect.value
       };
     }
 
     // Live preview on dropdowns
-    [fontSelect, accentSelect].forEach(el => {
+    [fontSelect, accentSelect, themeSelect].forEach(el => {
       el.addEventListener('change', () => {
         const s = collectUI();
         applyThemePreview(s);

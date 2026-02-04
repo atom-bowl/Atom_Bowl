@@ -81,10 +81,12 @@
       tts: true,
       div: 'MS',
       mode: 'rapid',
+      rememberTopics: false,
       highContrast: false,
       animations: true,
       fontSize: 'm',
-      accent: '#4f7cff'
+      accent: '#4f7cff',
+      theme: 'system'
     };
 
     function loadSettings() {
