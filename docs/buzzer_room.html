@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Room | Atom Bowl</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0f14" />
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/buzzer_rooms.css">
+</head>
+<body class="nav-collapsed">
+  <header class="topbar">
+    <a href="buzzer_rooms.html" class="back-link" aria-label="Back to Buzzer Rooms">←</a>
+    <div class="topbar-title" id="roomTitle">Room</div>
+  </header>
+
+  <main class="main">
+    <section id="roomSection" class="room">
+      <div class="room-header">
+        <div>
+          <h2 id="roomCodeTitle">Room</h2>
+          <p class="muted" id="roomStatus">Waiting for host.</p>
+        </div>
+        <div class="scoreboard" id="scoreboard"></div>
+      </div>
+
+      <div class="room-body">
+        <div class="question-panel">
+          <div class="timer" id="timerDisplay">--:--</div>
+          <div class="question-text" id="questionText">Waiting for host.</div>
+          <div class="buzz-row">
+            <button id="buzzBtn" class="btn primary">Buzz</button>
+            <span id="buzzStatus" class="muted">Waiting...</span>
+          </div>
+        </div>
+
+        <div class="side-panel">
+          <div class="panel mini">
+            <h3>Players</h3>
+            <div id="playerList" class="player-list"></div>
+          </div>
+
+          <div class="panel mini host-only">
+            <h3>Host Tools</h3>
+            <div class="host-controls">
+              <button id="startTossupBtn" class="btn">Start Tossup Timer</button>
+              <button id="tossupCorrectBtn" class="btn">Correct</button>
+              <button id="tossupWrongBtn" class="btn">Incorrect</button>
+              <button id="startBonusBtn" class="btn">Start Bonus Timer</button>
+              <button id="bonusCorrectBtn" class="btn">Bonus Correct</button>
+              <button id="bonusWrongBtn" class="btn">Bonus Incorrect</button>
+              <button id="nextTossupBtn" class="btn">Next Tossup</button>
+            </div>
+            <p id="hostNote" class="muted"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="js/buzzer_room.js"></script>
+</body>
+</html>

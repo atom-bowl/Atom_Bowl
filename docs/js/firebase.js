@@ -1,11 +1,10 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
+  import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
   console.log("Firebase module loaded");
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
   const firebaseConfig = {
     apiKey: "AIzaSyBNvcpI84hInA_iRWnF9R7k6FCnRkZ_Xtk",
     authDomain: "nsbatombowl.firebaseapp.com",
@@ -16,6 +15,33 @@
     measurementId: "G-07E60ZCBSP"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+  let analytics = null;
+  try {
+    analytics = getAnalytics(app);
+  } catch {}
+
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  function ensureAnonAuth() {
+    return new Promise((resolve, reject) => {
+      const unsub = onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          unsub();
+          resolve(user);
+          return;
+        }
+        try {
+          const cred = await signInAnonymously(auth);
+          unsub();
+          resolve(cred.user);
+        } catch (err) {
+          unsub();
+          reject(err);
+        }
+      });
+    });
+  }
+
+  export { app, analytics, db, auth, ensureAnonAuth };
