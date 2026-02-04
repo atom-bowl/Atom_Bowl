@@ -304,6 +304,29 @@
     document.head.appendChild(style);
   }
 
+  function ensurePageTransitionStyle() {
+    if (document.getElementById('pageTransitionStyle')) return;
+    const style = document.createElement('style');
+    style.id = 'pageTransitionStyle';
+    style.textContent = `
+      .page-transition {
+        transition: opacity 0.26s ease, transform 0.26s ease;
+        will-change: opacity, transform;
+      }
+
+      .page-leave {
+        opacity: 0;
+        transform: translateX(-18px);
+      }
+
+      .page-enter {
+        opacity: 0;
+        transform: translateX(18px);
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   function applySettings(s) {
     if (!s) return;
     ensureNoAnimStyle();
@@ -331,6 +354,38 @@
   ensureNavMoreStyle();
   ensureNavWeightStyle();
   ensureBottomMoreStyle();
+  ensurePageTransitionStyle();
+
+  if (document.body) {
+    document.body.classList.add('page-transition');
+  }
+
+  function finishPageEnter() {
+    if (!document.body) return;
+    if (!document.body.classList.contains('page-enter')) return;
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        document.body.classList.remove('page-enter');
+      });
+    });
+  }
+
+  finishPageEnter();
+
+  function navigateWithFade(url) {
+    if (!url) return;
+    if (document.documentElement.classList.contains('no-anim')) {
+      window.location.assign(url);
+      return;
+    }
+    if (document.body) {
+      document.body.classList.add('page-transition');
+      document.body.classList.add('page-leave');
+    }
+    window.setTimeout(() => window.location.assign(url), 260);
+  }
+
+  window.atomNavigate = navigateWithFade;
 
   const navMore = document.querySelector('[data-nav-more]');
   const navMoreBtn = navMore?.querySelector('.nav-more-btn');
@@ -408,16 +463,22 @@
   }
 
   function handleSameWindowNavigation(event) {
+    if (event.defaultPrevented) return;
+    if (event.button !== 0) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     const link = event.target.closest('a[href]');
     if (!link) return;
     if (link.target === '_blank') {
       link.target = '_self';
     }
     const url = new URL(link.href, window.location.href);
-    if (url.origin !== window.location.origin) {
-      event.preventDefault();
-      window.location.assign(url.href);
-    }
+    if (url.origin !== window.location.origin) return;
+    const samePage = url.pathname === window.location.pathname
+      && url.search === window.location.search
+      && url.hash;
+    if (samePage) return;
+    event.preventDefault();
+    navigateWithFade(url.href);
   }
 
   document.addEventListener('click', handleSameWindowNavigation);

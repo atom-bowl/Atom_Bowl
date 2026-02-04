@@ -13,6 +13,10 @@
     overlay.onclick = toggleNav;
 
     function go(page) {
+      if (window.atomNavigate) {
+        window.atomNavigate(page);
+        return;
+      }
       window.location.href = page;
     }
     let seconds = 10;
