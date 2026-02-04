@@ -18,6 +18,7 @@
       div: 'MS',
       mode: 'rapid',
       rememberTopics: false,
+      autoCheck: false,
       highContrast: false,
       animations: true,
       fontSize: 'm',
@@ -68,6 +69,7 @@
     const hcToggle = document.getElementById('hcToggle');
     const animToggle = document.getElementById('animToggle');
     const rememberTopicsToggle = document.getElementById('rememberTopicsToggle');
+    const autoCheckToggle = document.getElementById('autoCheckToggle');
 
     const divSelect = document.getElementById('divSelect');
     const modeSelect = document.getElementById('modeSelect');
@@ -79,7 +81,7 @@
     const applyBtn = document.getElementById('apply');
     const resetBtn = document.getElementById('reset');
 
-    [sfxToggle, ttsToggle, hcToggle, animToggle, rememberTopicsToggle].forEach(wireToggle);
+    [sfxToggle, ttsToggle, hcToggle, animToggle, rememberTopicsToggle, autoCheckToggle].forEach(wireToggle);
 
     function showToast(msg) {
       toast.textContent = msg;
@@ -115,6 +117,7 @@
       setToggle(hcToggle, s.highContrast);
       setToggle(animToggle, s.animations);
       setToggle(rememberTopicsToggle, s.rememberTopics);
+      setToggle(autoCheckToggle, s.autoCheck);
       divSelect.value = s.div;
       modeSelect.value = s.mode;
       fontSelect.value = s.fontSize;
@@ -130,6 +133,7 @@
         div: divSelect.value,
         mode: modeSelect.value,
         rememberTopics: readToggle(rememberTopicsToggle),
+        autoCheck: readToggle(autoCheckToggle),
         highContrast: readToggle(hcToggle),
         animations: readToggle(animToggle),
         fontSize: fontSelect.value,
