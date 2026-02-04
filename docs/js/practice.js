@@ -223,10 +223,21 @@
         }, 30);
 
     }
+    function restartReadingAtCurrentSpeed() {
+      const q = currentQ();
+      if (!q?.question_text) return;
+      if (textFullyRevealed) return;
+      const startIndex = (questionTextEl?.textContent || '').length;
+      startSyncedRead(q.question_text, startIndex);
+    }
+
     speedSlider.oninput = (e) => {
       readingSpeed = Number(e.target.value);
       document.getElementById('speedLabel').textContent =
         `${readingSpeed.toFixed(2)}x`;
+
+      // Apply changes immediately to any ongoing typing/speaking.
+      if (runActive) restartReadingAtCurrentSpeed();
     };
 
     function createUtterance(text) {
@@ -479,55 +490,75 @@
       img.alt = `Question ${index + 1}`;
     }
 
+    const LETTER_DELAY_FACTOR = 3.5;
+    const LETTER_SYNC_LEAD = 4;
+
     function startTypewriter(text, startIndex = 0) {
       const full = String(text || '');
       const safeStart = Math.max(0, Math.min(full.length, startIndex));
-      const words = full.slice(safeStart).split(/(\s+)/);
-      let i = 0;
+      let i = safeStart;
       textFullyRevealed = false;
       questionTextEl.textContent = full.slice(0, safeStart);
-      const BASE_TYPE_DELAY = 90;
-      const delay = BASE_TYPE_DELAY / readingSpeed;
+      // Letter-by-letter typing; scale down the per-letter delay so total pace feels similar to word mode.
+      const delay = Math.max(12, getTypewriterDelay() / LETTER_DELAY_FACTOR);
 
       typewriterTimer = setInterval(() => {
-        // Guard against empty tokens array edge cases
-        if (i < words.length) questionTextEl.textContent += words[i];
-        i++;
-        if (i >= words.length) {
+        if (i < full.length) {
+          questionTextEl.textContent += full[i];
+          i += 1;
+        }
+        if (i >= full.length) {
           clearInterval(typewriterTimer);
           textFullyRevealed = true;
         }
-      }, getTypewriterDelay());
+      }, delay);
     }
 
-    function startSyncedRead(text) {
+    function startSyncedRead(text, startIndex = 0) {
       const full = String(text || '');
       if (!full) return;
+      const safeStart = Math.max(0, Math.min(full.length, startIndex));
+      const remaining = full.slice(safeStart);
       clearInterval(typewriterTimer);
       textFullyRevealed = false;
-      questionTextEl.textContent = '';
+      questionTextEl.textContent = full.slice(0, safeStart);
 
       if (ttsEnabled && window.speechSynthesis) {
         stopSpeech();
-        const utterance = createUtterance(full);
+        const utterance = createUtterance(remaining);
         const supportsBoundary = !!utterance && 'onboundary' in utterance;
 
         if (utterance && supportsBoundary) {
-          let lastIdx = 0;
+          let targetIdx = safeStart;
+          let revealIdx = safeStart;
+          const delay = Math.max(12, getTypewriterDelay() / LETTER_DELAY_FACTOR);
+
+          typewriterTimer = setInterval(() => {
+            if (revealIdx < Math.min(full.length, targetIdx)) {
+              questionTextEl.textContent += full[revealIdx];
+              revealIdx += 1;
+            }
+            if (revealIdx >= full.length) {
+              clearInterval(typewriterTimer);
+              textFullyRevealed = true;
+            }
+          }, delay);
+
           utterance.onboundary = (e) => {
             if (e.name && e.name !== 'word') return;
-            const idx = Math.max(0, Math.min(full.length, e.charIndex || 0));
-            if (idx >= lastIdx) {
-              lastIdx = idx;
-              questionTextEl.textContent = full.slice(0, idx);
-            }
+            const localIdx = Math.max(0, Math.min(remaining.length, e.charIndex || 0));
+            const idx = safeStart + localIdx;
+            const nextTarget = Math.min(full.length, idx + LETTER_SYNC_LEAD);
+            if (nextTarget > targetIdx) targetIdx = nextTarget;
           };
           utterance.onend = () => {
+            clearInterval(typewriterTimer);
             questionTextEl.textContent = full;
             textFullyRevealed = true;
             currentUtterance = null;
           };
           utterance.onerror = () => {
+            clearInterval(typewriterTimer);
             questionTextEl.textContent = full;
             textFullyRevealed = true;
             currentUtterance = null;
@@ -537,8 +568,8 @@
         }
       }
 
-      startTypewriter(full);
-      speakText(full);
+      startTypewriter(full, safeStart);
+      speakText(remaining || full);
     }
 
 
