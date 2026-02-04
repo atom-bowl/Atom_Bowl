@@ -101,6 +101,7 @@ async function joinRoom() {
 }
 
 async function lookupRoomTeams(code) {
+  await ensureAnonAuth();
   const q = query(collection(db, "rooms"), where("roomCode", "==", code));
   const snap = await getDocs(q);
   if (snap.empty) throw new Error("not found");

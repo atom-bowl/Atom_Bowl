@@ -86,7 +86,7 @@ function setHostVisible(isHost) {
   state.isHost = isHost;
   const role = localStorage.getItem("atom_buzzer_role");
   const allowHost = role === "host";
-  const effectiveHost = isHost && allowHost;
+  const effectiveHost = isHost || allowHost;
   if (isHost) {
     localStorage.setItem("atom_buzzer_role", "host");
   }

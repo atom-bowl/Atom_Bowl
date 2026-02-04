@@ -4,7 +4,9 @@ import {
   collection,
   onSnapshot,
   runTransaction,
-  getDoc
+  getDoc,
+  setDoc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
 
 const roomTitle = document.getElementById("roomTitle");
@@ -30,6 +32,7 @@ let timerInterval = null;
 let gameClockInterval = null;
 let cachedRoom = null;
 let latestPlayers = [];
+let playerSynced = false;
 
 const state = {
   uid: null,
@@ -235,6 +238,15 @@ async function enterRoom(roomId) {
     }
     const data = snap.data();
     cachedRoom = data;
+    if (!playerSynced) {
+      playerSynced = true;
+      setDoc(doc(db, "rooms", roomId, "players", state.uid), {
+        name: state.name || "Player",
+        team: state.team || "A",
+        joinedAt: serverTimestamp(),
+        isHost: false
+      }, { merge: true }).catch(() => {});
+    }
     roomTitle.textContent = data.roomName || `Room ${data.roomCode}`;
     roomCodeTitle.textContent = `Room ${data.roomCode}`;
     if (roomCodeValue) roomCodeValue.textContent = data.roomCode || "-----";

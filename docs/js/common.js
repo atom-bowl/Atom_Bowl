@@ -310,7 +310,7 @@
     style.id = 'pageTransitionStyle';
     style.textContent = `
       .page-transition {
-        transition: opacity 0.26s ease, transform 0.26s ease;
+        transition: opacity 0.18s ease, transform 0.18s ease;
         will-change: opacity, transform;
       }
 
@@ -322,6 +322,7 @@
       .page-enter {
         opacity: 0;
         transform: translateX(18px);
+        transition-duration: 0.32s;
       }
     `;
     document.head.appendChild(style);
@@ -382,7 +383,7 @@
       document.body.classList.add('page-transition');
       document.body.classList.add('page-leave');
     }
-    window.setTimeout(() => window.location.assign(url), 260);
+    window.setTimeout(() => window.location.assign(url), 180);
   }
 
   window.atomNavigate = navigateWithFade;
