@@ -1,4 +1,4 @@
-# 🧠 Atom Bowl
+# ⚛️ Atom Bowl
 
 # NOTE: The site is back online! Check credits on README.md
 
