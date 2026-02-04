@@ -107,6 +107,7 @@ async function createRoom() {
     name: "Host",
     team: "A"
   }));
+  localStorage.setItem("atom_buzzer_role", "host");
 
   window.location.href = `buzzer_room.html?roomId=${roomId}`;
 }

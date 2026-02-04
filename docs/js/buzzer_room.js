@@ -22,6 +22,7 @@ const statusPill = document.getElementById("statusPill");
 const logPanel = document.getElementById("logPanel");
 const roomCodeValue = document.getElementById("roomCodeValue");
 const copyRoomBtn = document.getElementById("copyRoomBtn");
+const joinAsPlayerBtn = document.getElementById("joinAsPlayerBtn");
 const playerPhaseTimer = document.getElementById("playerPhaseTimer");
 const playerGameClock = document.getElementById("playerGameClock");
 const toggleLogBtn = document.getElementById("toggleLogBtn");
@@ -81,8 +82,12 @@ async function ensureIdentity() {
 
 function setHostVisible(isHost) {
   state.isHost = isHost;
-  document.body.classList.toggle("is-host", isHost);
-  document.body.classList.toggle("is-player", !isHost);
+  const role = localStorage.getItem("atom_buzzer_role");
+  const allowHost = role === "host";
+  const effectiveHost = isHost && allowHost;
+  document.body.classList.toggle("is-host", effectiveHost);
+  document.body.classList.toggle("is-player", !effectiveHost);
+  state.isHost = effectiveHost;
 }
 
 function formatTime(ms) {
@@ -540,15 +545,42 @@ if (copyRoomBtn) {
       `and the code: "${roomCode}"`,
       `and a direct link: ${joinLink}`
     ].join(" ");
+    let copied = false;
     try {
-      await navigator.clipboard.writeText(text);
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        copied = true;
+      }
+    } catch {}
+    if (!copied) {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      try {
+        copied = document.execCommand("copy");
+      } catch {}
+      textarea.remove();
+    }
+    if (copied) {
       copyRoomBtn.textContent = "Copied!";
       setTimeout(() => {
         copyRoomBtn.textContent = "Copy Invite";
       }, 1500);
-    } catch {
+    } else {
       window.prompt("Copy this invite message:", text);
     }
+  });
+}
+if (joinAsPlayerBtn) {
+  joinAsPlayerBtn.addEventListener("click", () => {
+    if (!activeRoomId) return;
+    localStorage.setItem("atom_buzzer_role", "player");
+    const joinLink = `buzzer_room_player.html?roomId=${activeRoomId}`;
+    window.open(joinLink, "_blank");
   });
 }
 if (toggleLogBtn && playerLogPanel) {

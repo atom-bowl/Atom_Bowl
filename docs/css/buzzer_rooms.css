@@ -96,10 +96,9 @@ body {
 }
 
 .main {
-  margin-left: 220px;
+  margin: 0 auto;
   padding: 112px 24px 120px;
   max-width: 1280px;
-  margin-right: auto;
 }
 
 .hero h1 {
@@ -257,6 +256,14 @@ input {
 .room {
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+  min-width: 0;
+}
+
+.room-header,
+.room-body {
+  width: 100%;
+  min-width: 0;
 }
 
 .room-header {
@@ -302,6 +309,7 @@ input {
   display: grid;
   gap: 16px;
   min-width: 0;
+  overflow: hidden;
 }
 
 .desk-section {
@@ -309,6 +317,7 @@ input {
   border-radius: 14px;
   background: rgba(10, 14, 22, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  min-width: 0;
 }
 
 .desk-section h3 {
@@ -425,6 +434,8 @@ input {
   border-collapse: collapse;
   font-size: 0.85rem;
   max-width: 100%;
+  display: block;
+  overflow-x: auto;
 }
 
 .stats-table th,
@@ -432,6 +443,7 @@ input {
   padding: 6px 8px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   text-align: left;
+  word-break: break-word;
 }
 
 .stats-table th {

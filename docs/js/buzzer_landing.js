@@ -96,6 +96,7 @@ async function joinRoom() {
     name,
     team: state.team
   }));
+  localStorage.setItem("atom_buzzer_role", "player");
   window.location.href = `buzzer_room_player.html?roomId=${room.id}`;
 }
 
