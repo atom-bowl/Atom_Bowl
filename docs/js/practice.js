@@ -728,6 +728,11 @@
         timerEl.textContent = String(time);
       
         timerId = setInterval(() => {
+          // Pause pre-buzz countdown while the question is still typing,
+          // so it doesn't auto-timeout mid-question.
+          if (!buzzed && !textFullyRevealed) {
+            return;
+          }
           time -= 1;
           timerEl.textContent = String(time);
           if (time <= 0) {
