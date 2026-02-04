@@ -1,6 +1,6 @@
-# 🧠 Atom Bowl
+# ⚛️ Atom Bowl
 
-# NOTE: The site is under active maintenance until February 3rd. It will not run as expected and may crash. Please expect delays as the GitHub Pages queue has become quite tedious. Thanks for your patience.
+# NOTE: The site is back online! Check credits on README.md
 
 **Atom Bowl** is a fast, clean, browser-based question platform designed for **National Science Bowl (NSB)** preparation.  
 It focuses on realism, speed, and accuracy—no fluff, no gimmicks.
@@ -12,6 +12,14 @@ Built for students who want to grind questions the way real rounds feel.
 ---
 
 ## 🚀 Features
+- 🆕 **New Features from v0.3 update**
+  - Autocorrect
+  - Light mode
+  - Interrupt
+  - AtomScore(R)
+  - Practice Engine v0.3
+  - Subtopics
+  - Question Bank Upgrade 
 
 - 📚 **Real NSB-style questions**
   - Physics
