@@ -485,6 +485,12 @@
       box-shadow: 0 0 0 6px rgba(79,124,255,0.10);
     }
 
+    .select:disabled,
+    .input:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
     .toggle {
       width: 54px;
       height: 32px;
@@ -538,6 +544,10 @@
       font-weight: 900;
       cursor: pointer;
       transition: transform .15s, filter .15s;
+    }
+
+    .voice-test-row .btn {
+      min-width: 140px;
     }
 
     .btn:hover { transform: translateY(-1px); filter: brightness(1.07); }

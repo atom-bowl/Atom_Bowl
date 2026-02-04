@@ -46,6 +46,10 @@
       const SETTINGS_DEFAULTS = {
         sfx: true,
         tts: true,
+        ttsVoice: '',
+        ttsRate: 1.0,
+        ttsPitch: 1.0,
+        ttsVolume: 1.0,
         div: 'MS',
         mode: 'rapid',
         rememberTopics: false,

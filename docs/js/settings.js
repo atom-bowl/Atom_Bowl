@@ -15,6 +15,10 @@
     const DEFAULTS = {
       sfx: true,
       tts: true,
+      ttsVoice: '',
+      ttsRate: 1.0,
+      ttsPitch: 1.0,
+      ttsVolume: 1.0,
       div: 'MS',
       mode: 'rapid',
       rememberTopics: false,
@@ -73,6 +77,14 @@
     const autoCheckToggle = document.getElementById('autoCheckToggle');
     const autoThreshold = document.getElementById('autoThreshold');
     const autoThresholdValue = document.getElementById('autoThresholdValue');
+    const voiceSelect = document.getElementById('voiceSelect');
+    const voiceRate = document.getElementById('voiceRate');
+    const voiceRateValue = document.getElementById('voiceRateValue');
+    const voicePitch = document.getElementById('voicePitch');
+    const voicePitchValue = document.getElementById('voicePitchValue');
+    const voiceVolume = document.getElementById('voiceVolume');
+    const voiceVolumeValue = document.getElementById('voiceVolumeValue');
+    const voiceTest = document.getElementById('voiceTest');
 
     const divSelect = document.getElementById('divSelect');
     const modeSelect = document.getElementById('modeSelect');
@@ -117,6 +129,19 @@
     function hydrateUI(s) {
       setToggle(sfxToggle, s.sfx);
       setToggle(ttsToggle, s.tts);
+      if (voiceSelect) voiceSelect.value = s.ttsVoice || '';
+      if (voiceRate) {
+        voiceRate.value = String(s.ttsRate ?? 1.0);
+        voiceRateValue.textContent = `${Number(voiceRate.value).toFixed(2)}x`;
+      }
+      if (voicePitch) {
+        voicePitch.value = String(s.ttsPitch ?? 1.0);
+        voicePitchValue.textContent = Number(voicePitch.value).toFixed(2);
+      }
+      if (voiceVolume) {
+        voiceVolume.value = String(s.ttsVolume ?? 1.0);
+        voiceVolumeValue.textContent = `${Math.round(Number(voiceVolume.value) * 100)}%`;
+      }
       setToggle(hcToggle, s.highContrast);
       setToggle(animToggle, s.animations);
       setToggle(rememberTopicsToggle, s.rememberTopics);
@@ -135,6 +160,10 @@
       return {
         sfx: readToggle(sfxToggle),
         tts: readToggle(ttsToggle),
+        ttsVoice: voiceSelect?.value || '',
+        ttsRate: Number(voiceRate?.value ?? 1.0),
+        ttsPitch: Number(voicePitch?.value ?? 1.0),
+        ttsVolume: Number(voiceVolume?.value ?? 1.0),
         div: divSelect.value,
         mode: modeSelect.value,
         rememberTopics: readToggle(rememberTopicsToggle),
@@ -159,6 +188,77 @@
     autoThreshold.addEventListener('input', () => {
       autoThresholdValue.textContent = Number(autoThreshold.value).toFixed(2);
     });
+    if (voiceRate) {
+      voiceRate.addEventListener('input', () => {
+        voiceRateValue.textContent = `${Number(voiceRate.value).toFixed(2)}x`;
+      });
+    }
+    if (voicePitch) {
+      voicePitch.addEventListener('input', () => {
+        voicePitchValue.textContent = Number(voicePitch.value).toFixed(2);
+      });
+    }
+    if (voiceVolume) {
+      voiceVolume.addEventListener('input', () => {
+        voiceVolumeValue.textContent = `${Math.round(Number(voiceVolume.value) * 100)}%`;
+      });
+    }
+
+    function populateVoices(s) {
+      if (!voiceSelect) return;
+      if (!window.speechSynthesis) {
+        voiceSelect.innerHTML = '<option value="">Voice not supported</option>';
+        voiceSelect.disabled = true;
+        return;
+      }
+
+      const voices = window.speechSynthesis.getVoices();
+      voiceSelect.disabled = false;
+      voiceSelect.innerHTML = '';
+      const defaultOption = document.createElement('option');
+      defaultOption.value = '';
+      defaultOption.textContent = 'System default';
+      voiceSelect.appendChild(defaultOption);
+
+      voices.forEach((voice) => {
+        const option = document.createElement('option');
+        option.value = voice.voiceURI || voice.name;
+        option.textContent = `${voice.name} (${voice.lang})`;
+        voiceSelect.appendChild(option);
+      });
+
+      if (s.ttsVoice && [...voiceSelect.options].some(opt => opt.value === s.ttsVoice)) {
+        voiceSelect.value = s.ttsVoice;
+      } else {
+        voiceSelect.value = '';
+      }
+    }
+
+    function buildTestUtterance() {
+      if (!window.speechSynthesis) return null;
+      const u = new SpeechSynthesisUtterance('This is a test of your Atom Bowl voice settings.');
+      u.rate = Number(voiceRate?.value ?? 1.0);
+      u.pitch = Number(voicePitch?.value ?? 1.0);
+      u.volume = Number(voiceVolume?.value ?? 1.0);
+
+      const voices = window.speechSynthesis.getVoices();
+      const match = voices.find(v => (v.voiceURI || v.name) === (voiceSelect?.value || ''));
+      if (match) u.voice = match;
+      return u;
+    }
+
+    if (voiceTest) {
+      voiceTest.addEventListener('click', () => {
+        if (!window.speechSynthesis) {
+          showToast('Voice not supported');
+          return;
+        }
+        window.speechSynthesis.cancel();
+        const u = buildTestUtterance();
+        if (!u) return;
+        window.speechSynthesis.speak(u);
+      });
+    }
 
     applyBtn.addEventListener('click', () => {
       const s = collectUI();
@@ -174,5 +274,12 @@
     });
 
     // Init
-    hydrateUI(loadSettings());
+    const initial = loadSettings();
+    hydrateUI(initial);
+    populateVoices(initial);
+    if (window.speechSynthesis?.addEventListener) {
+      window.speechSynthesis.addEventListener('voiceschanged', () => {
+        populateVoices(loadSettings());
+      });
+    }
   

@@ -79,6 +79,10 @@
     const SETTINGS_DEFAULTS = {
       sfx: true,
       tts: true,
+      ttsVoice: '',
+      ttsRate: 1.0,
+      ttsPitch: 1.0,
+      ttsVolume: 1.0,
       div: 'MS',
       mode: 'rapid',
       rememberTopics: false,
@@ -118,7 +122,10 @@
     let autoCheckEnabled = !!settings.autoCheck;
     let autoCheckThreshold = Number(settings.autoThreshold ?? 0.72);
     let currentUtterance = null;
-    let readingSpeed = 1.0;
+    let readingSpeed = Number(settings.ttsRate ?? 1.0);
+    if (!Number.isFinite(readingSpeed) || readingSpeed <= 0) {
+      readingSpeed = 1.0;
+    }
 
     // DOM
     const img = document.getElementById('questionImg');
@@ -194,7 +201,7 @@
     let stopwatchInterval = null;
     let stopwatchRunning = false;
     let interrupted = false;
-    let baseTypeDelay = 90;
+    let baseTypeDelay = 40;
 
     
 
@@ -231,28 +238,42 @@
       startSyncedRead(q.question_text, startIndex);
     }
 
-    speedSlider.oninput = (e) => {
-      readingSpeed = Number(e.target.value);
-      document.getElementById('speedLabel').textContent =
-        `${readingSpeed.toFixed(2)}x`;
+    if (speedSlider) {
+      speedSlider.value = String(readingSpeed);
+      const speedLabel = document.getElementById('speedLabel');
+      if (speedLabel) speedLabel.textContent = `${readingSpeed.toFixed(2)}x`;
 
-      // Apply changes immediately to any ongoing typing/speaking.
-      if (runActive) restartReadingAtCurrentSpeed();
-    };
+      speedSlider.oninput = (e) => {
+        readingSpeed = Number(e.target.value);
+        if (speedLabel) speedLabel.textContent = `${readingSpeed.toFixed(2)}x`;
+        persistSettingsPatch({ ttsRate: readingSpeed });
+
+        // Apply changes immediately to any ongoing typing/speaking.
+        if (runActive) restartReadingAtCurrentSpeed();
+      };
+    }
 
     function createUtterance(text) {
       if (!window.speechSynthesis) return null;
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = Math.max(0.7, Math.min(1.25, readingSpeed)); // Natural moderator pace
-      utterance.pitch = 1.0;
-      utterance.volume = 1.0;
+      const rate = Math.max(0.6, Math.min(2.0, readingSpeed));
+      utterance.rate = rate;
+      utterance.pitch = Number(settings.ttsPitch ?? 1.0);
+      utterance.volume = Number(settings.ttsVolume ?? 1.0);
 
       // Pick a clean English voice if available
       const voices = speechSynthesis.getVoices();
-      const preferred = voices.find(v =>
-        /en-US/i.test(v.lang) && /Google|Microsoft|Samantha/i.test(v.name)
-      );
-      if (preferred) utterance.voice = preferred;
+      const configured = settings.ttsVoice
+        ? voices.find(v => (v.voiceURI || v.name) === settings.ttsVoice)
+        : null;
+      if (configured) {
+        utterance.voice = configured;
+      } else {
+        const preferred = voices.find(v =>
+          /en-US/i.test(v.lang) && /Google|Microsoft|Samantha/i.test(v.name)
+        );
+        if (preferred) utterance.voice = preferred;
+      }
 
       currentUtterance = utterance;
       return utterance;

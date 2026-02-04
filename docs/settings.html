@@ -122,6 +122,59 @@
       </div>
 
       <div class="card pop">
+        <h3>Voice</h3>
+
+        <div class="row">
+          <div class="label">
+            <b>Voice</b>
+            <span>Select the browser voice to use.</span>
+          </div>
+          <select class="select" id="voiceSelect"></select>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            <b>Speed</b>
+            <span>Speech rate for Read Aloud.</span>
+          </div>
+          <div class="range-wrap">
+            <input id="voiceRate" class="range" type="range" min="0.70" max="1.60" step="0.05" value="1.00" />
+            <span id="voiceRateValue" class="range-value">1.00x</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            <b>Pitch</b>
+            <span>Lower = deeper, higher = brighter.</span>
+          </div>
+          <div class="range-wrap">
+            <input id="voicePitch" class="range" type="range" min="0.50" max="2.00" step="0.05" value="1.00" />
+            <span id="voicePitchValue" class="range-value">1.00</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            <b>Volume</b>
+            <span>Master voice volume.</span>
+          </div>
+          <div class="range-wrap">
+            <input id="voiceVolume" class="range" type="range" min="0.00" max="1.00" step="0.05" value="1.00" />
+            <span id="voiceVolumeValue" class="range-value">100%</span>
+          </div>
+        </div>
+
+        <div class="row voice-test-row">
+          <div class="label">
+            <b>Test Voice</b>
+            <span>Preview your current voice settings.</span>
+          </div>
+          <button class="btn" id="voiceTest" type="button">Play Test</button>
+        </div>
+      </div>
+
+      <div class="card pop">
         <h3>UI</h3>
 
         <div class="row">
