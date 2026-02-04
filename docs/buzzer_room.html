@@ -31,33 +31,91 @@
       </div>
 
       <div class="room-body">
-        <div class="question-panel">
-          <div class="timer" id="timerDisplay">--:--</div>
-          <div class="question-text" id="questionText">Waiting for host.</div>
-          <div class="buzz-row">
-            <button id="buzzBtn" class="btn primary">Buzz</button>
-            <span id="buzzStatus" class="muted">Waiting...</span>
+        <div class="desk-panel">
+          <div class="desk-section host-only">
+            <h3>Game Clock</h3>
+            <div class="timer-big" id="gameClockDisplay">03:00</div>
+            <div class="btn-row">
+              <button id="gameStartBtn" class="btn">Start</button>
+              <button id="gamePauseBtn" class="btn">Pause</button>
+              <button id="gameResetBtn" class="btn">Reset</button>
+            </div>
+          </div>
+
+          <div class="desk-section host-only">
+            <h3>Tossup</h3>
+            <div class="timer-small" id="tossupTimerDisplay">00:05</div>
+            <div class="btn-row">
+              <button id="startTossupBtn" class="btn">Start Tossup</button>
+              <button id="tossupInterruptBtn" class="btn">Interrupt</button>
+              <button id="tossupCorrectBtn" class="btn">Correct</button>
+              <button id="tossupWrongBtn" class="btn">Incorrect</button>
+            </div>
+          </div>
+
+          <div class="desk-section host-only">
+            <h3>Bonus</h3>
+            <label class="label">Bonus Team</label>
+            <select id="bonusTeamSelect"></select>
+            <div class="timer-small" id="bonusTimerDisplay">00:20</div>
+            <div class="btn-row">
+              <button id="startBonusBtn" class="btn">Start Bonus</button>
+              <button id="bonusCorrectBtn" class="btn">Bonus Correct</button>
+              <button id="bonusWrongBtn" class="btn">Bonus Incorrect</button>
+            </div>
+          </div>
+
+          <div class="desk-section host-only">
+            <h3>Room</h3>
+            <div class="btn-row single">
+              <button id="nextTossupBtn" class="btn">Open Next Tossup</button>
+            </div>
+            <p id="hostNote" class="muted"></p>
           </div>
         </div>
 
-        <div class="side-panel">
-          <div class="panel mini">
+        <div class="desk-panel">
+          <div class="desk-section">
+            <div class="status-pill" id="statusPill">LOCKED</div>
+            <div class="question-text" id="questionText">Waiting for host.</div>
+          </div>
+          <div class="desk-section">
+            <button id="buzzBtn" class="btn primary buzz-giant">BUZZ</button>
+            <div class="buzz-row">
+              <span id="buzzStatus" class="muted">Waiting...</span>
+            </div>
+          </div>
+          <div class="desk-section">
+            <h3>Buzz Log</h3>
+            <div id="logPanel" class="log-panel"></div>
+          </div>
+        </div>
+
+        <div class="desk-panel">
+          <div class="desk-section">
+            <h3>Scoreboard</h3>
+            <div class="scoreboard" id="scoreboard"></div>
+            <button id="exportBtn" class="btn host-only">Export CSV</button>
+          </div>
+          <div class="desk-section">
+            <h3>Player Stats</h3>
+            <table class="stats-table">
+              <thead>
+                <tr>
+                  <th>Player</th>
+                  <th>Team</th>
+                  <th>Correct</th>
+                  <th>Incorrect</th>
+                  <th>Interrupt</th>
+                  <th>Buzzes</th>
+                </tr>
+              </thead>
+              <tbody id="statsTableBody"></tbody>
+            </table>
+          </div>
+          <div class="desk-section">
             <h3>Players</h3>
             <div id="playerList" class="player-list"></div>
-          </div>
-
-          <div class="panel mini host-only">
-            <h3>Host Tools</h3>
-            <div class="host-controls">
-              <button id="startTossupBtn" class="btn">Start Tossup Timer</button>
-              <button id="tossupCorrectBtn" class="btn">Correct</button>
-              <button id="tossupWrongBtn" class="btn">Incorrect</button>
-              <button id="startBonusBtn" class="btn">Start Bonus Timer</button>
-              <button id="bonusCorrectBtn" class="btn">Bonus Correct</button>
-              <button id="bonusWrongBtn" class="btn">Bonus Incorrect</button>
-              <button id="nextTossupBtn" class="btn">Next Tossup</button>
-            </div>
-            <p id="hostNote" class="muted"></p>
           </div>
         </div>
       </div>

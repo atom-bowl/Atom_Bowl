@@ -4,6 +4,7 @@ import {
   collection,
   setDoc,
   serverTimestamp,
+  getDoc,
   query,
   where,
   getDocs
@@ -14,16 +15,49 @@ const displayNameInput = document.getElementById("displayName");
 const joinRoomBtn = document.getElementById("joinRoomBtn");
 const joinError = document.getElementById("joinError");
 const teamSelect = document.getElementById("teamSelect");
+const teamHint = document.getElementById("teamHint");
 const goCreateBtn = document.getElementById("goCreateBtn");
 
-const state = { team: "A" };
+const state = { team: "A", roomId: null };
+
+function setTeamOptions(teamCount, teamNames) {
+  teamSelect.innerHTML = "";
+  const count = Math.max(2, Math.min(4, teamCount || 2));
+  for (let i = 0; i < count; i += 1) {
+    const team = String.fromCharCode(65 + i);
+    const opt = document.createElement("option");
+    opt.value = team;
+    opt.textContent = teamNames?.[team] || `Team ${team}`;
+    teamSelect.appendChild(opt);
+  }
+  state.team = teamSelect.value;
+}
+
+setTeamOptions(2);
 
 teamSelect.addEventListener("change", () => {
   state.team = teamSelect.value;
 });
 
+let lookupTimer = null;
+
 joinCodeInput.addEventListener("input", () => {
   joinCodeInput.value = joinCodeInput.value.toUpperCase().replace(/[^A-Z0-9]/g, "");
+  const code = joinCodeInput.value.trim();
+  if (lookupTimer) clearTimeout(lookupTimer);
+  if (code.length < 5) {
+    teamHint.textContent = "Teams will load when a valid code is entered.";
+    setTeamOptions(2);
+    state.roomId = null;
+    return;
+  }
+  lookupTimer = setTimeout(() => {
+    lookupRoomTeams(code).catch(() => {
+      teamHint.textContent = "Room not found yet.";
+      setTeamOptions(2);
+      state.roomId = null;
+    });
+  }, 250);
 });
 
 goCreateBtn.addEventListener("click", () => {
@@ -39,14 +73,20 @@ async function joinRoom() {
   }
   const user = await ensureAnonAuth();
   const name = displayNameInput.value.trim() || "Player";
-  const q = query(collection(db, "rooms"), where("roomCode", "==", code));
-  const snap = await getDocs(q);
-  if (snap.empty) {
+  const roomDoc = state.roomId
+    ? await getDoc(doc(db, "rooms", state.roomId))
+    : null;
+  let room = roomDoc?.exists() ? roomDoc : null;
+  if (!room) {
+    const q = query(collection(db, "rooms"), where("roomCode", "==", code));
+    const snap = await getDocs(q);
+    if (!snap.empty) room = snap.docs[0];
+  }
+  if (!room) {
     joinError.textContent = "Room not found.";
     return;
   }
-  const roomDoc = snap.docs[0];
-  await setDoc(doc(collection(roomDoc.ref, "players"), user.uid), {
+  await setDoc(doc(collection(room.ref, "players"), user.uid), {
     name,
     team: state.team,
     joinedAt: serverTimestamp(),
@@ -56,7 +96,20 @@ async function joinRoom() {
     name,
     team: state.team
   }));
-  window.location.href = `buzzer_room.html?roomId=${roomDoc.id}`;
+  window.location.href = `buzzer_room.html?roomId=${room.id}`;
+}
+
+async function lookupRoomTeams(code) {
+  const q = query(collection(db, "rooms"), where("roomCode", "==", code));
+  const snap = await getDocs(q);
+  if (snap.empty) throw new Error("not found");
+  const roomDoc = snap.docs[0];
+  const data = roomDoc.data();
+  const teamCount = data?.settings?.teamCount || 2;
+  const teamNames = data?.settings?.teamNames || {};
+  setTeamOptions(teamCount, teamNames);
+  state.roomId = roomDoc.id;
+  teamHint.textContent = `Room found: ${teamCount} teams.`;
 }
 
 joinRoomBtn.addEventListener("click", () => {

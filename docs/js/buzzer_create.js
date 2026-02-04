@@ -8,6 +8,7 @@ import {
 
 const roomNameInput = document.getElementById("roomName");
 const teamCountSelect = document.getElementById("teamCount");
+const teamNameFields = document.getElementById("teamNameFields");
 const nsbRulesCheckbox = document.getElementById("nsbRules");
 const advancedSettings = document.getElementById("advancedSettings");
 const tuTimeInput = document.getElementById("tuTime");
@@ -23,6 +24,30 @@ function generateRoomCode() {
   }
   return out;
 }
+
+function buildTeamNameFields(count) {
+  teamNameFields.innerHTML = "";
+  for (let i = 0; i < count; i += 1) {
+    const team = String.fromCharCode(65 + i);
+    const label = document.createElement("label");
+    label.className = "label";
+    label.textContent = `Team ${team} Name`;
+    const input = document.createElement("input");
+    input.type = "text";
+    input.maxLength = 20;
+    input.value = `Team ${team}`;
+    input.dataset.team = team;
+    teamNameFields.appendChild(label);
+    teamNameFields.appendChild(input);
+  }
+}
+
+teamCountSelect.addEventListener("change", () => {
+  const count = parseInt(teamCountSelect.value, 10) || 2;
+  buildTeamNameFields(count);
+});
+
+buildTeamNameFields(parseInt(teamCountSelect.value, 10) || 2);
 
 function toggleAdvanced() {
   advancedSettings.classList.toggle("hidden", nsbRulesCheckbox.checked);
@@ -40,6 +65,11 @@ async function createRoom() {
   const tuTime = parseInt(tuTimeInput.value, 10) || 5;
   const bonusTime = parseInt(bonusTimeInput.value, 10) || 20;
   const roomName = roomNameInput.value.trim() || "Buzzer Room";
+  const teamNames = {};
+  const inputs = teamNameFields.querySelectorAll("input[data-team]");
+  inputs.forEach((input) => {
+    teamNames[input.dataset.team] = input.value.trim() || `Team ${input.dataset.team}`;
+  });
 
   const roomRef = doc(collection(db, "rooms"));
   const roomId = roomRef.id;
@@ -55,11 +85,13 @@ async function createRoom() {
     scores: buildInitialScores(teamCount),
     timers: null,
     lastAction: null,
+    bonusTeam: "A",
     settings: {
       teamCount,
       nsbRules: useNsb,
       tuTime,
-      bonusTime
+      bonusTime,
+      teamNames
     }
   };
 

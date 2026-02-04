@@ -13,24 +13,38 @@ const roomCodeTitle = document.getElementById("roomCodeTitle");
 const roomStatus = document.getElementById("roomStatus");
 const scoreboard = document.getElementById("scoreboard");
 const playerList = document.getElementById("playerList");
-const timerDisplay = document.getElementById("timerDisplay");
+const statsTableBody = document.getElementById("statsTableBody");
 const questionText = document.getElementById("questionText");
 const buzzBtn = document.getElementById("buzzBtn");
 const buzzStatus = document.getElementById("buzzStatus");
+const statusPill = document.getElementById("statusPill");
+const logPanel = document.getElementById("logPanel");
+
+const gameClockDisplay = document.getElementById("gameClockDisplay");
+const tossupTimerDisplay = document.getElementById("tossupTimerDisplay");
+const bonusTimerDisplay = document.getElementById("bonusTimerDisplay");
+const gameStartBtn = document.getElementById("gameStartBtn");
+const gamePauseBtn = document.getElementById("gamePauseBtn");
+const gameResetBtn = document.getElementById("gameResetBtn");
 
 const startTossupBtn = document.getElementById("startTossupBtn");
+const tossupInterruptBtn = document.getElementById("tossupInterruptBtn");
 const tossupCorrectBtn = document.getElementById("tossupCorrectBtn");
 const tossupWrongBtn = document.getElementById("tossupWrongBtn");
 const startBonusBtn = document.getElementById("startBonusBtn");
 const bonusCorrectBtn = document.getElementById("bonusCorrectBtn");
 const bonusWrongBtn = document.getElementById("bonusWrongBtn");
 const nextTossupBtn = document.getElementById("nextTossupBtn");
+const bonusTeamSelect = document.getElementById("bonusTeamSelect");
+const exportBtn = document.getElementById("exportBtn");
 const hostNote = document.getElementById("hostNote");
 
 let activeRoomId = null;
 let roomUnsub = null;
 let playerUnsub = null;
 let timerInterval = null;
+let gameClockInterval = null;
+let cachedRoom = null;
 
 const state = {
   uid: null,
@@ -63,15 +77,28 @@ function setHostVisible(isHost) {
   });
 }
 
-function humanStatus(data) {
-  const status = data.status || "lobby";
+function formatTime(ms) {
+  const totalSeconds = Math.max(0, Math.ceil(ms / 1000));
+  const mins = String(Math.floor(totalSeconds / 60)).padStart(2, "0");
+  const secs = String(totalSeconds % 60).padStart(2, "0");
+  return `${mins}:${secs}`;
+}
+
+function humanStatus(status) {
   if (status === "lobby") return "Waiting for host.";
-  if (status === "tossup_reading") return "Tossup live. Buzz now.";
-  if (status === "tossup_answering") return "Tossup answering.";
-  if (status === "bonus_reading") return "Bonus ready.";
-  if (status === "bonus_answering") return "Bonus answering.";
+  if (status === "tossup_open") return "Tossup open. Anyone can buzz.";
+  if (status === "tossup_locked") return "Locked — host grading.";
+  if (status === "bonus_ready") return "Bonus ready — select team and start.";
+  if (status === "bonus_open") return "Bonus open — selected team can buzz.";
+  if (status === "bonus_locked") return "Bonus locked — host grading.";
   if (status === "ended") return "Game ended.";
-  return status;
+  return status || "Waiting.";
+}
+
+function updateStatusUI(data) {
+  roomStatus.textContent = humanStatus(data.status);
+  statusPill.textContent = data.status?.includes("open") ? "OPEN" : "LOCKED";
+  questionText.textContent = humanStatus(data.status);
 }
 
 function updateBuzzStatus(data) {
@@ -83,7 +110,7 @@ function updateBuzzStatus(data) {
   buzzStatus.textContent = `Buzzed: ${buzz.team || "?"}`;
 }
 
-function updateScores(scores, teamCount) {
+function updateScores(scores, teamCount, teamNames) {
   scoreboard.innerHTML = "";
   const keys = Object.keys(scores || {});
   const teams = keys.length ? keys : Array.from({ length: teamCount }, (_, i) => String.fromCharCode(65 + i));
@@ -91,7 +118,7 @@ function updateScores(scores, teamCount) {
     const scoreCard = document.createElement("div");
     scoreCard.className = "score";
     const label = document.createElement("span");
-    label.textContent = `Team ${team}`;
+    label.textContent = teamNames?.[team] || `Team ${team}`;
     const value = document.createElement("strong");
     value.textContent = scores?.[team] ?? 0;
     scoreCard.appendChild(label);
@@ -100,44 +127,89 @@ function updateScores(scores, teamCount) {
   });
 }
 
-function updateTimer(data) {
+function updatePlayerStats(stats) {
+  statsTableBody.innerHTML = "";
+  const entries = Object.entries(stats?.player || {});
+  entries.sort((a, b) => (a[1].name || "").localeCompare(b[1].name || ""));
+  entries.forEach(([uid, data]) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${data.name || uid.slice(0, 6)}</td>
+      <td>${data.team || "?"}</td>
+      <td>${data.correct || 0}</td>
+      <td>${data.incorrect || 0}</td>
+      <td>${data.interrupt || 0}</td>
+      <td>${data.buzzes || 0}</td>
+    `;
+    statsTableBody.appendChild(row);
+  });
+}
+
+function updateLog(log) {
+  logPanel.innerHTML = "";
+  const entries = (log || []).slice().reverse();
+  entries.forEach((item) => {
+    const div = document.createElement("div");
+    div.className = "log-item";
+    const time = new Date(item.at || Date.now()).toLocaleTimeString();
+    div.textContent = `[${time}] ${item.details || item.type}`;
+    logPanel.appendChild(div);
+  });
+}
+
+function updateTimers(data) {
   if (timerInterval) {
     clearInterval(timerInterval);
     timerInterval = null;
   }
   const timers = data.timers;
   if (!timers || !timers.phaseEndAt) {
-    timerDisplay.textContent = "--:--";
+    tossupTimerDisplay.textContent = formatTime((data.settings?.tuTime || 5) * 1000);
+    bonusTimerDisplay.textContent = formatTime((data.settings?.bonusTime || 20) * 1000);
     return;
   }
   const end = timers.phaseEndAt;
+  const target = timers.phaseType === "bonus" ? bonusTimerDisplay : tossupTimerDisplay;
   const tick = () => {
-    const remainingMs = Math.max(0, end - Date.now());
-    const totalSeconds = Math.ceil(remainingMs / 1000);
-    const mins = String(Math.floor(totalSeconds / 60)).padStart(2, "0");
-    const secs = String(totalSeconds % 60).padStart(2, "0");
-    timerDisplay.textContent = `${mins}:${secs}`;
+    const remaining = end - Date.now();
+    target.textContent = formatTime(remaining);
+    if (remaining <= 0 && state.isHost && data.status === "bonus_open") {
+      expireBonusTimer().catch(() => {});
+    }
   };
   tick();
   timerInterval = setInterval(tick, 250);
 }
 
+function updateGameClock(data) {
+  if (gameClockInterval) {
+    clearInterval(gameClockInterval);
+    gameClockInterval = null;
+  }
+  const clock = data.gameClock || { status: "stopped", remainingMs: 180000, updatedAt: Date.now() };
+  const tick = () => {
+    const delta = clock.status === "running" ? Date.now() - clock.updatedAt : 0;
+    const remaining = Math.max(0, clock.remainingMs - delta);
+    gameClockDisplay.textContent = formatTime(remaining);
+  };
+  tick();
+  gameClockInterval = setInterval(tick, 250);
+}
+
+function buildBonusTeamOptions(teamCount, teamNames) {
+  bonusTeamSelect.innerHTML = "";
+  for (let i = 0; i < teamCount; i += 1) {
+    const team = String.fromCharCode(65 + i);
+    const opt = document.createElement("option");
+    opt.value = team;
+    opt.textContent = teamNames?.[team] || `Team ${team}`;
+    bonusTeamSelect.appendChild(opt);
+  }
+}
+
 function updateHostNote(data) {
   if (!state.isHost) return;
-  const status = data.status || "lobby";
-  if (status === "lobby") {
-    hostNote.textContent = "Start the first tossup timer when ready.";
-  } else if (status === "tossup_reading") {
-    hostNote.textContent = "Waiting for buzz.";
-  } else if (status === "tossup_answering") {
-    hostNote.textContent = "Grade the tossup.";
-  } else if (status === "bonus_reading") {
-    hostNote.textContent = "Start the bonus timer.";
-  } else if (status === "bonus_answering") {
-    hostNote.textContent = "Grade the bonus.";
-  } else {
-    hostNote.textContent = "";
-  }
+  hostNote.textContent = humanStatus(data.status);
 }
 
 function renderPlayers(players) {
@@ -164,17 +236,20 @@ async function enterRoom(roomId) {
   roomUnsub = onSnapshot(doc(db, "rooms", roomId), (snap) => {
     const data = snap.data();
     if (!data) return;
+    cachedRoom = data;
     roomTitle.textContent = data.roomName || `Room ${data.roomCode}`;
     roomCodeTitle.textContent = `Room ${data.roomCode}`;
-    roomStatus.textContent = humanStatus(data);
-    updateScores(data.scores || {}, data.settings?.teamCount || 2);
+    updateStatusUI(data);
+    updateScores(data.scores || {}, data.settings?.teamCount || 2, data.settings?.teamNames || {});
     updateBuzzStatus(data);
-    updateTimer(data);
+    updateTimers(data);
+    updateGameClock(data);
     updateHostNote(data);
+    updateLog(data.log || []);
+    updatePlayerStats(data.stats || {});
+    buildBonusTeamOptions(data.settings?.teamCount || 2, data.settings?.teamNames || {});
+    if (data.bonusTeam) bonusTeamSelect.value = data.bonusTeam;
     setHostVisible(data.hostUid === state.uid);
-    if (data.status === "lobby") {
-      questionText.textContent = "Waiting for host.";
-    }
   });
 
   playerUnsub = onSnapshot(collection(db, "rooms", roomId, "players"), (snap) => {
@@ -193,73 +268,117 @@ async function withRoomDoc() {
   return { ref, data: snap.data() };
 }
 
+async function expireBonusTimer() {
+  const { ref, data } = await withRoomDoc();
+  if (!data || data.status !== "bonus_open") return;
+  await updateDoc(ref, {
+    status: "bonus_locked",
+    timers: null,
+    lastAction: { type: "bonus_expired", at: Date.now(), by: state.uid },
+    log: appendLog(data, { type: "bonus_expired", at: Date.now(), by: state.uid, details: "Bonus timer expired" })
+  });
+}
+
+function appendLog(data, entry) {
+  const next = [...(data.log || []), entry];
+  return next.slice(-200);
+}
+
+function updateStatsForBuzz(stats, buzz) {
+  const next = { ...(stats || {}), team: { ...(stats?.team || {}) }, player: { ...(stats?.player || {}) } };
+  if (!buzz) return next;
+  const teamStats = next.team[buzz.team] || { correct: 0, incorrect: 0, interrupt: 0, buzzes: 0 };
+  teamStats.buzzes += 1;
+  next.team[buzz.team] = teamStats;
+
+  const player = next.player[buzz.uid] || { name: buzz.name || "Player", team: buzz.team, correct: 0, incorrect: 0, interrupt: 0, buzzes: 0 };
+  player.buzzes += 1;
+  next.player[buzz.uid] = player;
+  return next;
+}
+
+function updateStatsForGrade(stats, buzz, kind) {
+  const next = { ...(stats || {}), team: { ...(stats?.team || {}) }, player: { ...(stats?.player || {}) } };
+  if (!buzz) return next;
+  const teamStats = next.team[buzz.team] || { correct: 0, incorrect: 0, interrupt: 0, buzzes: 0 };
+  const player = next.player[buzz.uid] || { name: buzz.name || "Player", team: buzz.team, correct: 0, incorrect: 0, interrupt: 0, buzzes: 0 };
+  teamStats[kind] = (teamStats[kind] || 0) + 1;
+  player[kind] = (player[kind] || 0) + 1;
+  next.team[buzz.team] = teamStats;
+  next.player[buzz.uid] = player;
+  return next;
+}
+
 async function startTossup() {
   const { ref, data } = await withRoomDoc();
-  if (!data) return;
   const tuTime = data.settings?.tuTime || 5;
   await updateDoc(ref, {
-    status: "tossup_reading",
+    status: "tossup_open",
     currentBuzz: null,
-    timers: { phaseEndAt: Date.now() + tuTime * 1000, phaseDuration: tuTime },
-    lastAction: { type: "start_tossup", at: Date.now(), by: state.uid }
+    timers: { phaseEndAt: Date.now() + tuTime * 1000, phaseDuration: tuTime, phaseType: "tossup" },
+    lastAction: { type: "tossup_start", at: Date.now(), by: state.uid },
+    log: appendLog(data, { type: "tossup_start", at: Date.now(), by: state.uid, details: "Tossup opened" })
   });
 }
 
 async function startBonusTimer() {
   const { ref, data } = await withRoomDoc();
-  if (!data) return;
   const bonusTime = data.settings?.bonusTime || 20;
   await updateDoc(ref, {
-    status: "bonus_answering",
-    timers: { phaseEndAt: Date.now() + bonusTime * 1000, phaseDuration: bonusTime },
-    lastAction: { type: "start_bonus", at: Date.now(), by: state.uid }
+    status: "bonus_open",
+    timers: { phaseEndAt: Date.now() + bonusTime * 1000, phaseDuration: bonusTime, phaseType: "bonus" },
+    bonusTeam: bonusTeamSelect.value || data.bonusTeam || "A",
+    lastAction: { type: "bonus_start", at: Date.now(), by: state.uid },
+    log: appendLog(data, { type: "bonus_start", at: Date.now(), by: state.uid, team: bonusTeamSelect.value, details: "Bonus opened" })
   });
 }
 
-async function gradeTossup(correct) {
+async function gradeTossup(kind) {
   const { ref, data } = await withRoomDoc();
-  if (!data) return;
   const buzz = data.currentBuzz;
   const scores = { ...(data.scores || {}) };
-  if (buzz && correct) {
-    scores[buzz.team] = (scores[buzz.team] || 0) + 4;
+  if (buzz) {
+    if (kind === "correct") scores[buzz.team] = (scores[buzz.team] || 0) + 4;
+    if (kind === "incorrect") scores[buzz.team] = (scores[buzz.team] || 0) - 4;
+    if (kind === "interrupt") scores[buzz.team] = (scores[buzz.team] || 0) - 4;
   }
-  if (buzz && !correct) {
-    scores[buzz.team] = (scores[buzz.team] || 0) - 4;
-  }
+  const stats = updateStatsForGrade(data.stats, buzz, kind === "interrupt" ? "interrupt" : kind);
   await updateDoc(ref, {
     scores,
-    status: "tossup_reading",
+    stats,
+    status: kind === "correct" ? "bonus_ready" : "tossup_open",
     currentBuzz: null,
     timers: null,
-    lastAction: { type: `tossup_${correct ? "correct" : "wrong"}`, at: Date.now(), by: state.uid }
+    lastAction: { type: `tossup_${kind}`, at: Date.now(), by: state.uid },
+    log: appendLog(data, { type: `tossup_${kind}`, at: Date.now(), by: state.uid, team: buzz?.team, details: `Tossup ${kind}` })
   });
 }
 
 async function gradeBonus(correct) {
   const { ref, data } = await withRoomDoc();
-  if (!data) return;
-  const scores = { ...(data.scores || {}) };
   const buzz = data.currentBuzz;
-  if (correct && buzz) {
-    scores[buzz.team] = (scores[buzz.team] || 0) + 10;
-  }
+  const scores = { ...(data.scores || {}) };
+  if (correct && buzz) scores[buzz.team] = (scores[buzz.team] || 0) + 10;
+  const stats = updateStatsForGrade(data.stats, buzz, correct ? "correct" : "incorrect");
   await updateDoc(ref, {
     scores,
-    status: "tossup_reading",
+    stats,
+    status: "tossup_open",
     currentBuzz: null,
     timers: null,
-    lastAction: { type: `bonus_${correct ? "correct" : "wrong"}`, at: Date.now(), by: state.uid }
+    lastAction: { type: `bonus_${correct ? "correct" : "wrong"}`, at: Date.now(), by: state.uid },
+    log: appendLog(data, { type: `bonus_${correct ? "correct" : "wrong"}`, at: Date.now(), by: state.uid, team: buzz?.team, details: `Bonus ${correct ? "correct" : "wrong"}` })
   });
 }
 
 async function nextTossup() {
-  const { ref } = await withRoomDoc();
+  const { ref, data } = await withRoomDoc();
   await updateDoc(ref, {
-    status: "tossup_reading",
+    status: "tossup_open",
     currentBuzz: null,
     timers: null,
-    lastAction: { type: "next_tossup", at: Date.now(), by: state.uid }
+    lastAction: { type: "next_tossup", at: Date.now(), by: state.uid },
+    log: appendLog(data, { type: "next_tossup", at: Date.now(), by: state.uid, details: "Opened next tossup" })
   });
 }
 
@@ -271,14 +390,18 @@ async function buzz() {
       const snap = await txn.get(roomRef);
       if (!snap.exists()) return;
       const data = snap.data();
-      if (data.status !== "tossup_reading") return;
+      if (data.status !== "tossup_open" && data.status !== "bonus_open") return;
       if (data.currentBuzz) return;
-      const tuTime = data.settings?.tuTime || 5;
+      if (data.status === "bonus_open" && data.bonusTeam && data.bonusTeam !== state.team) return;
+      const buzzData = { uid: state.uid, team: state.team, at: Date.now(), name: state.name };
+      const stats = updateStatsForBuzz(data.stats, buzzData);
+      const newStatus = data.status === "bonus_open" ? "bonus_locked" : "tossup_locked";
       txn.update(roomRef, {
-        currentBuzz: { uid: state.uid, team: state.team, at: Date.now() },
-        status: "tossup_answering",
-        timers: { phaseEndAt: Date.now() + tuTime * 1000, phaseDuration: tuTime },
-        lastAction: { type: "buzz", at: Date.now(), by: state.uid }
+        currentBuzz: buzzData,
+        status: newStatus,
+        lastAction: { type: "buzz", at: Date.now(), by: state.uid },
+        log: appendLog(data, { type: "buzz", at: Date.now(), by: state.uid, team: state.team, details: `Buzzed ${state.team}` }),
+        stats
       });
     });
   } catch (err) {
@@ -286,14 +409,86 @@ async function buzz() {
   }
 }
 
+async function updateGameClock(action) {
+  const { ref, data } = await withRoomDoc();
+  const clock = data.gameClock || { status: "stopped", remainingMs: 180000, updatedAt: Date.now() };
+  let next = { ...clock };
+  if (action === "start") {
+    next = { status: "running", remainingMs: clock.remainingMs, updatedAt: Date.now() };
+  } else if (action === "pause") {
+    const elapsed = clock.status === "running" ? Date.now() - clock.updatedAt : 0;
+    next = { status: "paused", remainingMs: Math.max(0, clock.remainingMs - elapsed), updatedAt: Date.now() };
+  } else if (action === "reset") {
+    next = { status: "stopped", remainingMs: 180000, updatedAt: Date.now() };
+  }
+  await updateDoc(ref, {
+    gameClock: next,
+    log: appendLog(data, { type: `game_${action}`, at: Date.now(), by: state.uid, details: `Game clock ${action}` })
+  });
+}
+
+function exportCsv() {
+  if (!cachedRoom) return;
+  const lines = [];
+  const teamNames = cachedRoom.settings?.teamNames || {};
+  lines.push("Team,Score,Correct,Incorrect,Interrupt,Buzzes");
+  Object.entries(cachedRoom.scores || {}).forEach(([team, score]) => {
+    const stats = cachedRoom.stats?.team?.[team] || {};
+    lines.push([
+      teamNames[team] || `Team ${team}`,
+      score,
+      stats.correct || 0,
+      stats.incorrect || 0,
+      stats.interrupt || 0,
+      stats.buzzes || 0
+    ].join(","));
+  });
+  lines.push("");
+  lines.push("Player,Team,Correct,Incorrect,Interrupt,Buzzes");
+  Object.values(cachedRoom.stats?.player || {}).forEach((p) => {
+    lines.push([p.name, p.team, p.correct || 0, p.incorrect || 0, p.interrupt || 0, p.buzzes || 0].join(","));
+  });
+  lines.push("");
+  lines.push("Log");
+  (cachedRoom.log || []).forEach((item) => {
+    lines.push(`${new Date(item.at || Date.now()).toISOString()} - ${item.details || item.type}`);
+  });
+  const blob = new Blob([lines.join("\n")], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "atom-bowl-room.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function handleSpacebar(e) {
+  const tag = document.activeElement?.tagName;
+  if (tag === "INPUT" || tag === "TEXTAREA") return;
+  if (e.code === "Space") {
+    e.preventDefault();
+    buzz();
+  }
+}
+
 startTossupBtn.addEventListener("click", startTossup);
-tossupCorrectBtn.addEventListener("click", () => gradeTossup(true));
-tossupWrongBtn.addEventListener("click", () => gradeTossup(false));
+tossupInterruptBtn.addEventListener("click", () => gradeTossup("interrupt"));
+tossupCorrectBtn.addEventListener("click", () => gradeTossup("correct"));
+tossupWrongBtn.addEventListener("click", () => gradeTossup("incorrect"));
 startBonusBtn.addEventListener("click", startBonusTimer);
 bonusCorrectBtn.addEventListener("click", () => gradeBonus(true));
 bonusWrongBtn.addEventListener("click", () => gradeBonus(false));
 nextTossupBtn.addEventListener("click", nextTossup);
 buzzBtn.addEventListener("click", buzz);
+bonusTeamSelect.addEventListener("change", async () => {
+  const { ref } = await withRoomDoc();
+  await updateDoc(ref, { bonusTeam: bonusTeamSelect.value });
+});
+gameStartBtn.addEventListener("click", () => updateGameClock("start"));
+gamePauseBtn.addEventListener("click", () => updateGameClock("pause"));
+gameResetBtn.addEventListener("click", () => updateGameClock("reset"));
+exportBtn.addEventListener("click", exportCsv);
+document.addEventListener("keydown", handleSpacebar);
 
 (async () => {
   await ensureIdentity();
