@@ -225,13 +225,10 @@
         `${readingSpeed.toFixed(2)}x`;
     };
 
-    function speakText(text) {
-      if (!ttsEnabled || !window.speechSynthesis) return;
-
-      stopSpeech();
-
+    function createUtterance(text) {
+      if (!window.speechSynthesis) return null;
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = Math.max(0.7, Math.min(1.25, readingSpeed));       // Natural moderator pace
+      utterance.rate = Math.max(0.7, Math.min(1.25, readingSpeed)); // Natural moderator pace
       utterance.pitch = 1.0;
       utterance.volume = 1.0;
 
@@ -243,6 +240,14 @@
       if (preferred) utterance.voice = preferred;
 
       currentUtterance = utterance;
+      return utterance;
+    }
+
+    function speakText(text) {
+      if (!ttsEnabled || !window.speechSynthesis) return;
+      stopSpeech();
+      const utterance = createUtterance(text);
+      if (!utterance) return;
       speechSynthesis.speak(utterance);
     }
 
@@ -250,6 +255,16 @@
       if (window.speechSynthesis) {
         speechSynthesis.cancel();
         currentUtterance = null;
+      }
+    }
+
+    function stopReadingNow() {
+      stopSpeech();
+      clearInterval(typewriterTimer);
+      const q = currentQ();
+      if (q?.question_text && questionTextEl) {
+        questionTextEl.textContent = String(q.question_text);
+        textFullyRevealed = true;
       }
     }
     function warmUpSpeechSynthesis() {
@@ -422,8 +437,7 @@
       if (q.question_text && !q.question_image) {
         questionTextEl.classList.remove('hidden');
         animateIn(questionTextEl);
-        startTypewriter(q.question_text);
-        speakText(q.question_text);
+        startSyncedRead(q.question_text);
         return;
       }
 
@@ -432,11 +446,13 @@
       img.alt = `Question ${index + 1}`;
     }
 
-    function startTypewriter(text) {
-      const words = String(text).split(/(\s+)/);
+    function startTypewriter(text, startIndex = 0) {
+      const full = String(text || '');
+      const safeStart = Math.max(0, Math.min(full.length, startIndex));
+      const words = full.slice(safeStart).split(/(\s+)/);
       let i = 0;
       textFullyRevealed = false;
-      questionTextEl.textContent = '';
+      questionTextEl.textContent = full.slice(0, safeStart);
       const BASE_TYPE_DELAY = 90;
       const delay = BASE_TYPE_DELAY / readingSpeed;
 
@@ -449,6 +465,47 @@
           textFullyRevealed = true;
         }
       }, getTypewriterDelay());
+    }
+
+    function startSyncedRead(text) {
+      const full = String(text || '');
+      if (!full) return;
+      clearInterval(typewriterTimer);
+      textFullyRevealed = false;
+      questionTextEl.textContent = '';
+
+      if (ttsEnabled && window.speechSynthesis) {
+        stopSpeech();
+        const utterance = createUtterance(full);
+        const supportsBoundary = !!utterance && 'onboundary' in utterance;
+
+        if (utterance && supportsBoundary) {
+          let lastIdx = 0;
+          utterance.onboundary = (e) => {
+            if (e.name && e.name !== 'word') return;
+            const idx = Math.max(0, Math.min(full.length, e.charIndex || 0));
+            if (idx >= lastIdx) {
+              lastIdx = idx;
+              questionTextEl.textContent = full.slice(0, idx);
+            }
+          };
+          utterance.onend = () => {
+            questionTextEl.textContent = full;
+            textFullyRevealed = true;
+            currentUtterance = null;
+          };
+          utterance.onerror = () => {
+            questionTextEl.textContent = full;
+            textFullyRevealed = true;
+            currentUtterance = null;
+          };
+          speechSynthesis.speak(utterance);
+          return;
+        }
+      }
+
+      startTypewriter(full);
+      speakText(full);
     }
 
 
@@ -943,6 +1000,11 @@
 
     // Events
     window.addEventListener('keydown', (e) => {
+      if (e.altKey && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        stopReadingNow();
+        return;
+      }
       const tag = e.target?.tagName?.toLowerCase();
       const isTyping = tag === 'input' || tag === 'textarea' || e.target?.isContentEditable;
 
@@ -965,7 +1027,7 @@
       }
 
       if (e.code === 'Space' && !buzzed && !locked && !isTyping) {
-        stopSpeech();
+        stopReadingNow();
         const q = currentQ();
 
         // Freeze reading immediately on buzz
@@ -1002,8 +1064,7 @@
     function tapToBuzz(e) {
       if (shouldIgnoreTap(e.target)) return;
       if (!runActive || buzzed || locked || awaitingGrade) return;
-      stopSpeech();
-      clearInterval(typewriterTimer);
+      stopReadingNow();
       const q = currentQ();
       if (q && !textFullyRevealed) {
         interrupted = true;
@@ -1020,6 +1081,11 @@
     window.addEventListener("load", () => {
       warmUpSpeechSynthesis();
     });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopSpeech();
+    });
+    window.addEventListener('pagehide', stopSpeech);
+    window.addEventListener('beforeunload', stopSpeech);
 
 
     submitBtn.addEventListener('click', submitSA);
