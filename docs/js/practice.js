@@ -294,13 +294,17 @@
       }
     }
 
+    function stopReadingFreeze() {
+      stopSpeech();
+      clearInterval(typewriterTimer);
+    }
+
     function handleBuzzTrigger() {
       if (!runActive || buzzed || locked || awaitingGrade) return;
-      stopReadingNow();
       const q = currentQ();
 
       // Freeze reading immediately on buzz
-      clearInterval(typewriterTimer);
+      stopReadingFreeze();
 
       if (q && !textFullyRevealed) {
         interrupted = true;
@@ -490,8 +494,8 @@
       img.alt = `Question ${index + 1}`;
     }
 
-    const LETTER_DELAY_FACTOR = 3.5;
-    const LETTER_SYNC_LEAD = 4;
+    const LETTER_DELAY_FACTOR = 1;
+    const LETTER_SYNC_LEAD = 0;
 
     function startTypewriter(text, startIndex = 0) {
       const full = String(text || '');
@@ -499,7 +503,7 @@
       let i = safeStart;
       textFullyRevealed = false;
       questionTextEl.textContent = full.slice(0, safeStart);
-      // Letter-by-letter typing; scale down the per-letter delay so total pace feels similar to word mode.
+      // Letter-by-letter typing at a constant per-letter delay.
       const delay = Math.max(12, getTypewriterDelay() / LETTER_DELAY_FACTOR);
 
       typewriterTimer = setInterval(() => {
@@ -523,44 +527,16 @@
       textFullyRevealed = false;
       questionTextEl.textContent = full.slice(0, safeStart);
 
+      startTypewriter(full, safeStart);
+
       if (ttsEnabled && window.speechSynthesis) {
         stopSpeech();
         const utterance = createUtterance(remaining);
-        const supportsBoundary = !!utterance && 'onboundary' in utterance;
-
-        if (utterance && supportsBoundary) {
-          let targetIdx = safeStart;
-          let revealIdx = safeStart;
-          const delay = Math.max(12, getTypewriterDelay() / LETTER_DELAY_FACTOR);
-
-          typewriterTimer = setInterval(() => {
-            if (revealIdx < Math.min(full.length, targetIdx)) {
-              questionTextEl.textContent += full[revealIdx];
-              revealIdx += 1;
-            }
-            if (revealIdx >= full.length) {
-              clearInterval(typewriterTimer);
-              textFullyRevealed = true;
-            }
-          }, delay);
-
-          utterance.onboundary = (e) => {
-            if (e.name && e.name !== 'word') return;
-            const localIdx = Math.max(0, Math.min(remaining.length, e.charIndex || 0));
-            const idx = safeStart + localIdx;
-            const nextTarget = Math.min(full.length, idx + LETTER_SYNC_LEAD);
-            if (nextTarget > targetIdx) targetIdx = nextTarget;
-          };
+        if (utterance) {
           utterance.onend = () => {
-            clearInterval(typewriterTimer);
-            questionTextEl.textContent = full;
-            textFullyRevealed = true;
             currentUtterance = null;
           };
           utterance.onerror = () => {
-            clearInterval(typewriterTimer);
-            questionTextEl.textContent = full;
-            textFullyRevealed = true;
             currentUtterance = null;
           };
           speechSynthesis.speak(utterance);
@@ -568,7 +544,6 @@
         }
       }
 
-      startTypewriter(full, safeStart);
       speakText(remaining || full);
     }
 
