@@ -11,7 +11,8 @@ import {
 const roomTitle = document.getElementById("roomTitle");
 const roomCodeTitle = document.getElementById("roomCodeTitle");
 const roomStatus = document.getElementById("roomStatus");
-const scoreboard = document.getElementById("scoreboard");
+const scoreboardHeader = document.getElementById("scoreboardHeader");
+const scoreboardPanel = document.getElementById("scoreboardPanel");
 const playerList = document.getElementById("playerList");
 const statsTableBody = document.getElementById("statsTableBody");
 const questionText = document.getElementById("questionText");
@@ -19,6 +20,11 @@ const buzzBtn = document.getElementById("buzzBtn");
 const buzzStatus = document.getElementById("buzzStatus");
 const statusPill = document.getElementById("statusPill");
 const logPanel = document.getElementById("logPanel");
+const roomCodeValue = document.getElementById("roomCodeValue");
+const playerPhaseTimer = document.getElementById("playerPhaseTimer");
+const playerGameClock = document.getElementById("playerGameClock");
+const toggleLogBtn = document.getElementById("toggleLogBtn");
+const playerLogPanel = document.getElementById("playerLogPanel");
 
 const gameClockDisplay = document.getElementById("gameClockDisplay");
 const tossupTimerDisplay = document.getElementById("tossupTimerDisplay");
@@ -72,9 +78,9 @@ async function ensureIdentity() {
 }
 
 function setHostVisible(isHost) {
-  document.querySelectorAll(".host-only").forEach((el) => {
-    el.style.display = isHost ? "block" : "none";
-  });
+  state.isHost = isHost;
+  document.body.classList.toggle("is-host", isHost);
+  document.body.classList.toggle("is-player", !isHost);
 }
 
 function formatTime(ms) {
@@ -111,7 +117,10 @@ function updateBuzzStatus(data) {
 }
 
 function updateScores(scores, teamCount, teamNames) {
-  scoreboard.innerHTML = "";
+  const targets = [scoreboardHeader, scoreboardPanel].filter(Boolean);
+  targets.forEach((el) => {
+    el.innerHTML = "";
+  });
   const keys = Object.keys(scores || {});
   const teams = keys.length ? keys : Array.from({ length: teamCount }, (_, i) => String.fromCharCode(65 + i));
   teams.forEach((team) => {
@@ -123,7 +132,7 @@ function updateScores(scores, teamCount, teamNames) {
     value.textContent = scores?.[team] ?? 0;
     scoreCard.appendChild(label);
     scoreCard.appendChild(value);
-    scoreboard.appendChild(scoreCard);
+    targets.forEach((el) => el.appendChild(scoreCard.cloneNode(true)));
   });
 }
 
@@ -155,6 +164,17 @@ function updateLog(log) {
     div.textContent = `[${time}] ${item.details || item.type}`;
     logPanel.appendChild(div);
   });
+
+  if (playerLogPanel) {
+    playerLogPanel.innerHTML = "";
+    entries.forEach((item) => {
+      const div = document.createElement("div");
+      div.className = "log-item";
+      const time = new Date(item.at || Date.now()).toLocaleTimeString();
+      div.textContent = `[${time}] ${item.details || item.type}`;
+      playerLogPanel.appendChild(div);
+    });
+  }
 }
 
 function updateTimers(data) {
@@ -164,15 +184,20 @@ function updateTimers(data) {
   }
   const timers = data.timers;
   if (!timers || !timers.phaseEndAt) {
-    tossupTimerDisplay.textContent = formatTime((data.settings?.tuTime || 5) * 1000);
-    bonusTimerDisplay.textContent = formatTime((data.settings?.bonusTime || 20) * 1000);
+    const tuDefault = formatTime((data.settings?.tuTime || 5) * 1000);
+    const bonusDefault = formatTime((data.settings?.bonusTime || 20) * 1000);
+    tossupTimerDisplay.textContent = tuDefault;
+    bonusTimerDisplay.textContent = bonusDefault;
+    if (playerPhaseTimer) playerPhaseTimer.textContent = tuDefault;
     return;
   }
   const end = timers.phaseEndAt;
   const target = timers.phaseType === "bonus" ? bonusTimerDisplay : tossupTimerDisplay;
   const tick = () => {
     const remaining = end - Date.now();
-    target.textContent = formatTime(remaining);
+    const formatted = formatTime(remaining);
+    target.textContent = formatted;
+    if (playerPhaseTimer) playerPhaseTimer.textContent = formatted;
     if (remaining <= 0 && state.isHost && data.status === "bonus_open") {
       expireBonusTimer().catch(() => {});
     }
@@ -190,7 +215,9 @@ function updateGameClock(data) {
   const tick = () => {
     const delta = clock.status === "running" ? Date.now() - clock.updatedAt : 0;
     const remaining = Math.max(0, clock.remainingMs - delta);
-    gameClockDisplay.textContent = formatTime(remaining);
+    const formatted = formatTime(remaining);
+    gameClockDisplay.textContent = formatted;
+    if (playerGameClock) playerGameClock.textContent = formatted;
   };
   tick();
   gameClockInterval = setInterval(tick, 250);
@@ -239,6 +266,7 @@ async function enterRoom(roomId) {
     cachedRoom = data;
     roomTitle.textContent = data.roomName || `Room ${data.roomCode}`;
     roomCodeTitle.textContent = `Room ${data.roomCode}`;
+    if (roomCodeValue) roomCodeValue.textContent = data.roomCode || "-----";
     updateStatusUI(data);
     updateScores(data.scores || {}, data.settings?.teamCount || 2, data.settings?.teamNames || {});
     updateBuzzStatus(data);
@@ -383,6 +411,7 @@ async function nextTossup() {
 }
 
 async function buzz() {
+  if (state.isHost) return;
   if (!activeRoomId) return;
   const roomRef = doc(db, "rooms", activeRoomId);
   try {
@@ -489,6 +518,13 @@ gamePauseBtn.addEventListener("click", () => updateGameClock("pause"));
 gameResetBtn.addEventListener("click", () => updateGameClock("reset"));
 exportBtn.addEventListener("click", exportCsv);
 document.addEventListener("keydown", handleSpacebar);
+if (toggleLogBtn && playerLogPanel) {
+  toggleLogBtn.addEventListener("click", () => {
+    const isHidden = playerLogPanel.classList.contains("hidden");
+    playerLogPanel.classList.toggle("hidden", !isHidden);
+    toggleLogBtn.textContent = isHidden ? "Hide Buzz Log" : "Show Buzz Log";
+  });
+}
 
 (async () => {
   await ensureIdentity();

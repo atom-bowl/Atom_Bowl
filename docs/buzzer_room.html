@@ -26,13 +26,17 @@
         <div>
           <h2 id="roomCodeTitle">Room</h2>
           <p class="muted" id="roomStatus">Waiting for host.</p>
+          <div class="room-code-row">
+            <span class="muted">Room Code</span>
+            <span class="room-code" id="roomCodeValue">-----</span>
+          </div>
         </div>
-        <div class="scoreboard" id="scoreboard"></div>
+        <div class="scoreboard" id="scoreboardHeader"></div>
       </div>
 
       <div class="room-body">
-        <div class="desk-panel">
-          <div class="desk-section host-only">
+        <div class="desk-panel host-only">
+          <div class="desk-section">
             <h3>Game Clock</h3>
             <div class="timer-big" id="gameClockDisplay">03:00</div>
             <div class="btn-row">
@@ -42,7 +46,7 @@
             </div>
           </div>
 
-          <div class="desk-section host-only">
+          <div class="desk-section">
             <h3>Tossup</h3>
             <div class="timer-small" id="tossupTimerDisplay">00:05</div>
             <div class="btn-row">
@@ -53,7 +57,7 @@
             </div>
           </div>
 
-          <div class="desk-section host-only">
+          <div class="desk-section">
             <h3>Bonus</h3>
             <label class="label">Bonus Team</label>
             <select id="bonusTeamSelect"></select>
@@ -65,7 +69,7 @@
             </div>
           </div>
 
-          <div class="desk-section host-only">
+          <div class="desk-section">
             <h3>Room</h3>
             <div class="btn-row single">
               <button id="nextTossupBtn" class="btn">Open Next Tossup</button>
@@ -79,13 +83,21 @@
             <div class="status-pill" id="statusPill">LOCKED</div>
             <div class="question-text" id="questionText">Waiting for host.</div>
           </div>
-          <div class="desk-section">
+          <div class="desk-section player-only">
+            <div class="player-timers">
+              <div class="player-timer-main" id="playerPhaseTimer">00:05</div>
+              <div class="player-timer-sub" id="playerGameClock">03:00</div>
+            </div>
             <button id="buzzBtn" class="btn primary buzz-giant">BUZZ</button>
             <div class="buzz-row">
               <span id="buzzStatus" class="muted">Waiting...</span>
             </div>
           </div>
-          <div class="desk-section">
+          <div class="desk-section player-only">
+            <button id="toggleLogBtn" class="btn">Show Buzz Log</button>
+            <div id="playerLogPanel" class="log-panel hidden"></div>
+          </div>
+          <div class="desk-section host-only">
             <h3>Buzz Log</h3>
             <div id="logPanel" class="log-panel"></div>
           </div>
@@ -94,10 +106,10 @@
         <div class="desk-panel">
           <div class="desk-section">
             <h3>Scoreboard</h3>
-            <div class="scoreboard" id="scoreboard"></div>
+            <div class="scoreboard" id="scoreboardPanel"></div>
             <button id="exportBtn" class="btn host-only">Export CSV</button>
           </div>
-          <div class="desk-section">
+          <div class="desk-section host-only">
             <h3>Player Stats</h3>
             <table class="stats-table">
               <thead>
