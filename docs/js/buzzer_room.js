@@ -61,7 +61,8 @@ const state = {
   uid: null,
   team: "A",
   name: "Player",
-  isHost: false
+  isHost: false,
+  isRoomHost: false
 };
 
 function getRoomId() {
@@ -291,8 +292,14 @@ function buildBonusTeamOptions(teamCount, teamNames) {
 }
 
 function updateHostNote(data) {
+  if (!hostNote) return;
   if (!state.isHost) return;
-  hostNote.textContent = humanStatus(data.status);
+  const statusText = humanStatus(data.status);
+  if (!state.isRoomHost) {
+    hostNote.textContent = `${statusText} (Not room host on this device.)`;
+    return;
+  }
+  hostNote.textContent = statusText;
 }
 
 function renderPlayers(players) {
@@ -334,6 +341,7 @@ async function enterRoom(roomId) {
     updateBuzzStatus(data);
     updateTimers(data);
     renderGameClock(data);
+    state.isRoomHost = data.hostUid === state.uid;
     updateHostNote(data);
     updateLog(data.log || []);
     updatePlayerStats(data.stats || {});
@@ -592,14 +600,23 @@ function handleSpacebar(e) {
   }
 }
 
-startTossupBtn.addEventListener("click", () => startTossup().catch(console.error));
-tossupInterruptBtn.addEventListener("click", () => gradeTossup("interrupt").catch(console.error));
-tossupCorrectBtn.addEventListener("click", () => gradeTossup("correct").catch(console.error));
-tossupWrongBtn.addEventListener("click", () => gradeTossup("incorrect").catch(console.error));
-startBonusBtn.addEventListener("click", () => startBonusTimer().catch(console.error));
-bonusCorrectBtn.addEventListener("click", () => gradeBonus(true).catch(console.error));
-bonusWrongBtn.addEventListener("click", () => gradeBonus(false).catch(console.error));
-nextTossupBtn.addEventListener("click", () => nextTossup().catch(console.error));
+function hostAction(fn) {
+  return fn().catch((err) => {
+    console.error(err);
+    if (hostNote) {
+      hostNote.textContent = "Host action failed. Make sure you're the room host on this device.";
+    }
+  });
+}
+
+startTossupBtn.addEventListener("click", () => hostAction(startTossup));
+tossupInterruptBtn.addEventListener("click", () => hostAction(() => gradeTossup("interrupt")));
+tossupCorrectBtn.addEventListener("click", () => hostAction(() => gradeTossup("correct")));
+tossupWrongBtn.addEventListener("click", () => hostAction(() => gradeTossup("incorrect")));
+startBonusBtn.addEventListener("click", () => hostAction(startBonusTimer));
+bonusCorrectBtn.addEventListener("click", () => hostAction(() => gradeBonus(true)));
+bonusWrongBtn.addEventListener("click", () => hostAction(() => gradeBonus(false)));
+nextTossupBtn.addEventListener("click", () => hostAction(nextTossup));
 buzzBtn.addEventListener("click", buzz);
 bonusTeamSelect.addEventListener("change", async () => {
   const { ref } = await withRoomDoc();
