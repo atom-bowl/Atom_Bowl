@@ -2,8 +2,8 @@
 
 # NOTE: The site is back online! Check credits on README.md
 
-**Atom Bowl** is a fast, clean, browser-based question platform designed for **National Science Bowl (NSB)** preparation.  
-It focuses on realism, speed, and accuracy—no fluff, no gimmicks.
+**Atom Bowl** is a fast, clean, browser-based question platform designed for **National Science Bowl (NSB)** preparation and it also contains live NSB-like buzzer rooms and game clock settings using Firebase.
+It focuses on realism, speed, and accuracy: no fluff, no gimmicks.
 
 Built for students who want to grind questions the way real rounds feel.
 
@@ -13,6 +13,8 @@ Built for students who want to grind questions the way real rounds feel.
 
 ## 🚀 Features
 - 🆕 **New Features from v0.3 update**
+  - Buzzer Rooms v1!!!
+  - Game Clock
   - Autocorrect
   - Light mode
   - Interrupt
