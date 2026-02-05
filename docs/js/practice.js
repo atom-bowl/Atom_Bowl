@@ -1,17 +1,4 @@
-    // NAV
-    const nav = document.getElementById('nav');
-    const overlay = document.getElementById('overlay');
-    const hamburger = document.getElementById('hamburger');
-
-    function toggleNav() {
-      const isOpen = nav.classList.toggle('open');
-      overlay.classList.toggle('show');
-      hamburger.classList.toggle('open');
-      hamburger.textContent = isOpen ? '✕' : '☰';
-    }
-
-    hamburger.addEventListener('click', toggleNav);
-    overlay.addEventListener('click', toggleNav);
+    // NAV (Practice Engine hides nav entirely)\n    const nav = document.getElementById(\x27nav\x27);\n    const overlay = document.getElementById(\x27overlay\x27);\n    const hamburger = document.getElementById(\x27hamburger\x27);\n    if (nav && overlay && hamburger) {\n      function toggleNav() {\n        const isOpen = nav.classList.toggle(\x27open\x27);\n        overlay.classList.toggle(\x27show\x27);\n        hamburger.classList.toggle(\x27open\x27);\n        hamburger.textContent = isOpen ? \x27✕\x27 : \x27☰\x27;\n      }\n\n      hamburger.addEventListener(\x27click\x27, toggleNav);\n      overlay.addEventListener(\x27click\x27, toggleNav);\n    }
 
     // Run config (single source of truth)
     const DEFAULT_RUN = {
@@ -1365,3 +1352,4 @@
       loadQuestion();
     })();
   
+

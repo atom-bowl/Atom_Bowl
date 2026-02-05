@@ -818,10 +818,30 @@
       }
     }
 
-    @media (max-width: 820px) {
-      .main {
-        margin-left: 0;
-        width: 100%;
-        max-width: 100%;
-      }
+  @media (max-width: 820px) {
+    .main {
+      margin-left: 0;
+      width: 100%;
+      max-width: 100%;
     }
+  }
+
+  /* Practice Engine: no nav, centered module */
+  .nav,
+  .hamburger,
+  .overlay,
+  .bottom-nav {
+    display: none !important;
+  }
+
+  .main {
+    margin: 0 auto;
+    width: min(960px, 100%);
+  }
+
+  @media (max-width: 820px) {
+    .main {
+      padding: 96px 16px 120px;
+      width: 100%;
+    }
+  }
