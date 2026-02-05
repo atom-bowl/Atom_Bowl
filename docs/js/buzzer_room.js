@@ -290,19 +290,6 @@ function buildBonusTeamOptions(teamCount, teamNames) {
   }
 }
 
-function updateHostNote(data) {
-  if (!hostNote) return;
-  if (!state.isHost) {
-    hostNote.textContent = "You are not the room host on this device.";
-    return;
-  }
-  const statusText = humanStatus(data.status);
-  if (!state.isRoomHost) {
-    hostNote.textContent = `${statusText} (Not room host on this device.)`;
-    return;
-  }
-  hostNote.textContent = statusText;
-}
 
 function renderPlayers(players) {
   playerList.innerHTML = "";
@@ -344,7 +331,6 @@ async function enterRoom(roomId) {
     updateTimers(data);
     renderGameClock(data);
     state.isRoomHost = data.hostUid === state.uid;
-    updateHostNote(data);
     updateLog(data.log || []);
     updatePlayerStats(data.stats || {});
     updatePlayerScoreboard(data.stats || {});
@@ -617,13 +603,17 @@ function handleSpacebar(e) {
 }
 
 function hostAction(fn) {
-  return fn().catch((err) => {
-    console.error(err);
-    if (hostNote) {
-      const msg = err?.message ? ` (${err.message})` : "";
-      hostNote.textContent = `Host action failed. Make sure you're the room host on this device.${msg}`;
-    }
-  });
+  return fn()
+    .then(() => {
+      if (hostNote) hostNote.textContent = "";
+    })
+    .catch((err) => {
+      console.error(err);
+      if (hostNote) {
+        const msg = err?.message ? ` (${err.message})` : "";
+        hostNote.textContent = `Host action failed. Make sure you're the room host on this device.${msg}`;
+      }
+    });
 }
 
 startTossupBtn.addEventListener("click", () => hostAction(startTossup));
