@@ -286,7 +286,6 @@
       max-width: 1280px;
       margin: 0 auto 0 280px;
       width: calc(100% - 280px);
-      min-height: 100vh;
     }
 
     .header {
