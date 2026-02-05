@@ -106,7 +106,7 @@
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 8px;
         padding: 10px 12px;
         border-radius: 12px;
@@ -304,22 +304,60 @@
     document.head.appendChild(style);
   }
 
+  function ensureBottomNavPinnedStyle() {
+    if (document.getElementById('bottomNavPinnedStyle')) return;
+    const style = document.createElement('style');
+    style.id = 'bottomNavPinnedStyle';
+    style.textContent = `
+      .bottom-nav {
+        position: fixed !important;
+        left: 12px !important;
+        right: 12px !important;
+        bottom: 12px !important;
+        z-index: 1200;
+      }
+
+      @media (max-width: 820px) {
+        .bottom-nav {
+          padding: 10px 12px !important;
+          border-radius: 22px !important;
+          gap: 8px !important;
+        }
+
+        .bottom-nav a {
+          font-size: 0.75rem !important;
+          padding: 8px 6px !important;
+          gap: 4px !important;
+        }
+
+        .bottom-nav a .icon {
+          font-size: 1.15rem !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   function ensurePageTransitionStyle() {
     if (document.getElementById('pageTransitionStyle')) return;
     const style = document.createElement('style');
     style.id = 'pageTransitionStyle';
     style.textContent = `
-      .page-transition {
+      .page-shell {
         transition: opacity 0.18s ease, transform 0.18s ease;
         will-change: opacity, transform;
+        width: 100%;
+        min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
       }
 
-      .page-leave {
+      .page-leave .page-shell {
         opacity: 0;
         transform: translateX(-18px);
       }
 
-      .page-enter {
+      .page-enter .page-shell {
         opacity: 0;
         transform: translateX(18px);
         transition-duration: 0.32s;
@@ -355,10 +393,31 @@
   ensureNavMoreStyle();
   ensureNavWeightStyle();
   ensureBottomMoreStyle();
+  ensureBottomNavPinnedStyle();
   ensurePageTransitionStyle();
+
+  function ensurePageShell() {
+    if (!document.body) return;
+    if (document.querySelector('.page-shell')) return;
+    const shell = document.createElement('div');
+    shell.className = 'page-shell';
+    const children = Array.from(document.body.childNodes);
+    children.forEach((node) => {
+      if (node.nodeType !== Node.ELEMENT_NODE) return;
+      if (node.tagName === 'SCRIPT') return;
+      if (node.classList?.contains('bottom-nav')) return;
+      if (node.classList?.contains('nav')) return;
+      if (node.classList?.contains('overlay')) return;
+      if (node.classList?.contains('hamburger')) return;
+      if (node.classList?.contains('topbar')) return;
+      shell.appendChild(node);
+    });
+    document.body.insertBefore(shell, document.body.firstChild);
+  }
 
   if (document.body) {
     document.body.classList.add('page-transition');
+    ensurePageShell();
   }
 
   function finishPageEnter() {
