@@ -40,6 +40,7 @@ const tossupCategory = document.getElementById("tossupCategory");
 const tossupInterruptBtn = document.getElementById("tossupInterruptBtn");
 const tossupCorrectBtn = document.getElementById("tossupCorrectBtn");
 const tossupWrongBtn = document.getElementById("tossupWrongBtn");
+const tossupDeadBtn = document.getElementById("tossupDeadBtn");
 const startBonusBtn = document.getElementById("startBonusBtn");
 const bonusCorrectBtn = document.getElementById("bonusCorrectBtn");
 const bonusWrongBtn = document.getElementById("bonusWrongBtn");
@@ -85,9 +86,7 @@ async function ensureIdentity() {
 
 function setHostVisible(isHost) {
   state.isHost = isHost;
-  const role = localStorage.getItem("atom_buzzer_role");
-  const allowHost = role === "host";
-  const effectiveHost = isHost || allowHost;
+  const effectiveHost = isHost;
   if (isHost) {
     localStorage.setItem("atom_buzzer_role", "host");
   }
@@ -293,7 +292,10 @@ function buildBonusTeamOptions(teamCount, teamNames) {
 
 function updateHostNote(data) {
   if (!hostNote) return;
-  if (!state.isHost) return;
+  if (!state.isHost) {
+    hostNote.textContent = "You are not the room host on this device.";
+    return;
+  }
   const statusText = humanStatus(data.status);
   if (!state.isRoomHost) {
     hostNote.textContent = `${statusText} (Not room host on this device.)`;
@@ -478,6 +480,18 @@ async function gradeTossup(kind) {
   });
 }
 
+async function markTossupDead() {
+  const { ref, data } = await withRoomDoc();
+  await updateDoc(ref, {
+    status: "tossup_open",
+    currentBuzz: null,
+    lockoutTeam: null,
+    timers: null,
+    lastAction: { type: "tossup_dead", at: Date.now(), by: state.uid },
+    log: appendLog(data, { type: "tossup_dead", at: Date.now(), by: state.uid, details: "Tossup dead" })
+  });
+}
+
 async function gradeBonus(correct) {
   const { ref, data } = await withRoomDoc();
   const buzz = data.currentBuzz;
@@ -514,6 +528,7 @@ async function buzz() {
   if (!activeRoomId) return;
   const roomRef = doc(db, "rooms", activeRoomId);
   try {
+    if (buzzStatus) buzzStatus.textContent = "Buzzing...";
     await runTransaction(db, async (txn) => {
       const snap = await txn.get(roomRef);
       if (!snap.exists()) return;
@@ -535,6 +550,7 @@ async function buzz() {
     });
   } catch (err) {
     console.error("Buzz failed", err);
+    if (buzzStatus) buzzStatus.textContent = "Buzz failed. Check connection/permissions.";
   }
 }
 
@@ -604,7 +620,8 @@ function hostAction(fn) {
   return fn().catch((err) => {
     console.error(err);
     if (hostNote) {
-      hostNote.textContent = "Host action failed. Make sure you're the room host on this device.";
+      const msg = err?.message ? ` (${err.message})` : "";
+      hostNote.textContent = `Host action failed. Make sure you're the room host on this device.${msg}`;
     }
   });
 }
@@ -613,6 +630,7 @@ startTossupBtn.addEventListener("click", () => hostAction(startTossup));
 tossupInterruptBtn.addEventListener("click", () => hostAction(() => gradeTossup("interrupt")));
 tossupCorrectBtn.addEventListener("click", () => hostAction(() => gradeTossup("correct")));
 tossupWrongBtn.addEventListener("click", () => hostAction(() => gradeTossup("incorrect")));
+tossupDeadBtn.addEventListener("click", () => hostAction(markTossupDead));
 startBonusBtn.addEventListener("click", () => hostAction(startBonusTimer));
 bonusCorrectBtn.addEventListener("click", () => hostAction(() => gradeBonus(true)));
 bonusWrongBtn.addEventListener("click", () => hostAction(() => gradeBonus(false)));

@@ -302,6 +302,7 @@ async function buzz() {
   if (!activeRoomId) return;
   const roomRef = doc(db, "rooms", activeRoomId);
   try {
+    if (buzzStatus) buzzStatus.textContent = "Buzzing...";
     await runTransaction(db, async (txn) => {
       const snap = await txn.get(roomRef);
       if (!snap.exists()) return;
@@ -323,6 +324,7 @@ async function buzz() {
     });
   } catch (err) {
     console.error("Buzz failed", err);
+    if (buzzStatus) buzzStatus.textContent = "Buzz failed. Check connection/permissions.";
   }
 }
 
