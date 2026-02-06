@@ -450,15 +450,15 @@
   const navMore = document.querySelector('[data-nav-more]') as HTMLElement | null;
   const navMoreBtn = navMore?.querySelector('.nav-more-btn') as HTMLElement | null;
   if (navMore && navMoreBtn) {
-    navMoreBtn.innerHTML = '<span class="icon">â‹¯</span><span>More Tools</span>';
+    navMoreBtn.innerHTML = '<span class="icon">&#8942;</span><span>More Tools</span>';
     const menuLinks = navMore.querySelectorAll('.nav-more-menu a');
     menuLinks.forEach((link) => {
       const href = link.getAttribute('href') || '';
       if (href.includes('game_clock.html')) {
-        link.innerHTML = '<span class="icon">â±ï¸</span><span>Game Clock</span>';
+        link.innerHTML = '<span class="icon">&#9201;</span><span>Game Clock</span>';
       }
       if (href.includes('buzzer_rooms.html')) {
-        link.innerHTML = '<span class="icon">ðŸš¨</span><span>Buzzer Rooms</span>';
+        link.innerHTML = '<span class="icon">&#128680;</span><span>Buzzer Rooms</span>';
       }
     });
     navMoreBtn.addEventListener('click', (event) => {
@@ -487,13 +487,13 @@
       btn.className = 'bottom-more-btn';
       btn.setAttribute('aria-haspopup', 'true');
       btn.setAttribute('aria-expanded', 'false');
-      btn.innerHTML = '<span class="icon">â‹¯</span><span>More</span>';
+        btn.innerHTML = '<span class="icon">&#8942;</span><span>More</span>';
       const menu = document.createElement('div');
       menu.className = 'bottom-more-menu';
-      menu.innerHTML = `
-        <a href="game_clock.html"><span class="icon">â±ï¸</span><span>Game Clock</span></a>
-        <a href="buzzer_rooms.html"><span class="icon">ðŸš¨</span><span>Buzzer Rooms</span></a>
-      `;
+        menu.innerHTML = `
+        <a href="game_clock.html"><span class="icon">&#9201;</span><span>Game Clock</span></a>
+        <a href="buzzer_rooms.html"><span class="icon">&#128680;</span><span>Buzzer Rooms</span></a>
+        `;
       moreWrap.appendChild(btn);
       moreWrap.appendChild(menu);
       gameClockLink.replaceWith(moreWrap);
