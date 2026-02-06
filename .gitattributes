@@ -1,8 +1,16 @@
-# GitHub Pages output = generated
-docs/** linguist-generated=true
-
-# Source maps are generated
+# Ignore sourcemaps (they ruin stats)
 *.map linguist-generated=true
 
-# node stuff is not source
+# Ignore node_modules completely
 node_modules/** linguist-vendored=true
+
+# --- SOURCE CODE ---
+src/**/*.ts linguist-language=TypeScript
+
+# --- SITE FILES (count these!) ---
+docs/**/*.html linguist-language=HTML
+docs/**/*.css linguist-language=CSS
+docs/**/*.js linguist-language=JavaScript
+
+# JSON should count but not dominate
+docs/**/*.json linguist-language=JSON
