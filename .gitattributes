@@ -4,13 +4,6 @@
 # Ignore node_modules completely
 node_modules/** linguist-vendored=true
 
-# --- SOURCE CODE ---
-src/**/*.ts linguist-language=TypeScript
-
-# --- SITE FILES (count these!) ---
-docs/**/*.html linguist-language=HTML
-docs/**/*.css linguist-language=CSS
-docs/**/*.js linguist-language=JavaScript
-
-# JSON should count but not dominate
-docs/**/*.json linguist-language=JSON
+# Exclude large non-code assets from language stats
+docs/data/** linguist-generated=true
+docs/images/** linguist-generated=true
