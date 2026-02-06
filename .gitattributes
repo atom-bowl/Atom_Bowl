@@ -1,1 +1,8 @@
-* text=auto
+# GitHub Pages output = generated
+docs/** linguist-generated=true
+
+# Source maps are generated
+*.map linguist-generated=true
+
+# node stuff is not source
+node_modules/** linguist-vendored=true
