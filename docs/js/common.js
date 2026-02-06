@@ -553,5 +553,4 @@
     }
     document.addEventListener('click', handleSameWindowNavigation);
 })();
-export {};
 //# sourceMappingURL=common.js.map

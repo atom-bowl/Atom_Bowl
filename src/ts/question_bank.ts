@@ -1,4 +1,5 @@
-﻿    // NAV
+(() => {
+    // NAV
     const nav = document.getElementById('nav');
     const overlay = document.getElementById('overlay');
     const hamburger = document.getElementById('hamburger');
@@ -6,7 +7,7 @@
       const isOpen = nav.classList.toggle('open');
       overlay.classList.toggle('show');
       hamburger.classList.toggle('open');
-      hamburger.textContent = isOpen ? 'âœ•' : 'â˜°';
+      hamburger.textContent = isOpen ? '✕' : '☰';
     }
     hamburger.addEventListener('click', toggleNav);
     overlay.addEventListener('click', toggleNav);
@@ -117,9 +118,9 @@
 
       grid.innerHTML = slice.map((q, i) => {
         const isBonus = !!q.bonus;
-        const lvl = q.level || 'â€”';
-        const cat = norm(q.category) || 'â€”';
-        const type = q.type || 'â€”';
+        const lvl = q.level || '—';
+        const cat = norm(q.category) || '—';
+        const type = q.type || '—';
 
         const id = `${start + i}`; // stable for this filtered run
 
@@ -132,19 +133,19 @@
               ${tag(type)}
             </div>
 
-            <div class="qtitle">${escapeHtml(q.set_name || 'Set')} â€¢ ${escapeHtml(q.round_name || 'Round')} â€¢ #${escapeHtml(q.num)}</div>
-            <div class="qmeta">Answer: <b>${escapeHtml(q.parsed_answer || 'â€”')}</b></div>
+            <div class="qtitle">${escapeHtml(q.set_name || 'Set')} • ${escapeHtml(q.round_name || 'Round')} • #${escapeHtml(q.num)}</div>
+            <div class="qmeta">Answer: <b>${escapeHtml(q.parsed_answer || '—')}</b></div>
 
             <div class="btnrow">
-              <button class="btn practice" data-action="practice" data-idx="${start + i}">âš¡ Practice</button>
-              <button class="btn tutor" data-action="tutor" data-idx="${start + i}">ðŸ¤– Tutor</button>
+              <button class="btn practice" data-action="practice" data-idx="${start + i}">⚡ Practice</button>
+              <button class="btn tutor" data-action="tutor" data-idx="${start + i}">🤖 Tutor</button>
             </div>
           </div>
         `;
       }).join('');
 
       statusEl.textContent = total
-        ? `Showing ${start + 1}â€“${Math.min(start + PAGE_SIZE, total)} of ${total}.`
+        ? `Showing ${start + 1}–${Math.min(start + PAGE_SIZE, total)} of ${total}.`
         : 'No results. Try changing filters.';
     }
 
@@ -202,7 +203,7 @@
     nextBtn.addEventListener('click', () => { page += 1; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
     (async () => {
-      statusEl.textContent = 'Loading question banksâ€¦';
+      statusEl.textContent = 'Loading question banks…';
       try {
         bank = await loadBank();
       } catch (e) {
@@ -226,3 +227,5 @@
 
 
 
+
+})();

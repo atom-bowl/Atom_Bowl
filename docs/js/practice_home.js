@@ -430,5 +430,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     loadBank();
 });
-export {};
 //# sourceMappingURL=practice_home.js.map

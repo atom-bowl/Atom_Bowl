@@ -1,3 +1,4 @@
+(() => {
     // NAV
     const nav = document.getElementById('nav');
     const overlay = document.getElementById('overlay');
@@ -283,3 +284,5 @@
       });
     }
   
+
+})();

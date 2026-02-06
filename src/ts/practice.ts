@@ -1,4 +1,5 @@
-﻿    // NAV (Practice Engine hides nav entirely)\n    const nav = document.getElementById(\x27nav\x27);\n    const overlay = document.getElementById(\x27overlay\x27);\n    const hamburger = document.getElementById(\x27hamburger\x27);\n    if (nav && overlay && hamburger) {\n      function toggleNav() {\n        const isOpen = nav.classList.toggle(\x27open\x27);\n        overlay.classList.toggle(\x27show\x27);\n        hamburger.classList.toggle(\x27open\x27);\n        hamburger.textContent = isOpen ? \x27âœ•\x27 : \x27â˜°\x27;\n      }\n\n      hamburger.addEventListener(\x27click\x27, toggleNav);\n      overlay.addEventListener(\x27click\x27, toggleNav);\n    }
+(() => {
+    // NAV (Practice Engine hides nav entirely)\n    const nav = document.getElementById(\x27nav\x27);\n    const overlay = document.getElementById(\x27overlay\x27);\n    const hamburger = document.getElementById(\x27hamburger\x27);\n    if (nav && overlay && hamburger) {\n      function toggleNav() {\n        const isOpen = nav.classList.toggle(\x27open\x27);\n        overlay.classList.toggle(\x27show\x27);\n        hamburger.classList.toggle(\x27open\x27);\n        hamburger.textContent = isOpen ? \x27✕\x27 : \x27☰\x27;\n      }\n\n      hamburger.addEventListener(\x27click\x27, toggleNav);\n      overlay.addEventListener(\x27click\x27, toggleNav);\n    }
 
     // Run config (single source of truth)
     const DEFAULT_RUN = {
@@ -154,11 +155,11 @@
     }
 
     if (ttsToggle) {
-      ttsToggle.textContent = ttsEnabled ? "ðŸ”Š" : "ðŸ”‡";
+      ttsToggle.textContent = ttsEnabled ? "🔊" : "🔇";
       ttsToggle.onclick = () => {
         ttsEnabled = !ttsEnabled;
         if (!ttsEnabled) stopSpeech();
-        ttsToggle.textContent = ttsEnabled ? "ðŸ”Š" : "ðŸ”‡";
+        ttsToggle.textContent = ttsEnabled ? "🔊" : "🔇";
         persistSettingsPatch({ tts: ttsEnabled });
       };
     }
@@ -286,7 +287,7 @@
     function toggleTts() {
       ttsEnabled = !ttsEnabled;
       if (!ttsEnabled) stopSpeech();
-      if (ttsToggle) ttsToggle.textContent = ttsEnabled ? "Ã°Å¸â€Å " : "Ã°Å¸â€â€¡";
+      if (ttsToggle) ttsToggle.textContent = ttsEnabled ? "ðŸ”Š" : "ðŸ”‡";
       persistSettingsPatch({ tts: ttsEnabled });
     }
 
@@ -680,7 +681,7 @@
     function updateProgressUI() {
       const q = currentQ();
       if (!q || !Array.isArray(questions) || !questions.length) {
-        progressEl.textContent = 'â€”';
+        progressEl.textContent = '—';
         return;
       }
 
@@ -737,7 +738,7 @@
       clearInterval(timerId);
       
       if (runCfg.noTimer) {
-        timerEl.textContent = 'âˆž';
+        timerEl.textContent = '∞';
         time = Infinity;
       } else {
         time = preBuzzTime;
@@ -775,7 +776,7 @@
       renderQuestion(q);
       input.value = '';
       function findBankName(q) {
-        if (!q || !q.set_name) return 'â€”';
+        if (!q || !q.set_name) return '—';
         if (q.set_name === 'SciBowlDB') return 'Scalazar';
         return 'Dynazar';
       }
@@ -786,11 +787,11 @@
       const isRapid = !['tossups','bonuses'].includes(mode);
 
       if (isRapid) {
-        metaLeft.textContent = `${q.level} â€¢ ${q.category} â€¢ ${q.bonus ? 'Bonus' : 'Toss-up'} â€¢ ${q.type}`;
-        metaRight.textContent = `${bankNameRegistry} / ${q.round_name} â€¢ #${q.num}`;
+        metaLeft.textContent = `${q.level} • ${q.category} • ${q.bonus ? 'Bonus' : 'Toss-up'} • ${q.type}`;
+        metaRight.textContent = `${bankNameRegistry} / ${q.round_name} • #${q.num}`;
       } else {
-        metaLeft.textContent = `${q.level} â€¢ ${q.category} â€¢ ${q.type}`;
-        metaRight.textContent = `${bankNameRegistry} / ${q.round_name} â€¢ #${q.num}`;
+        metaLeft.textContent = `${q.level} • ${q.category} • ${q.type}`;
+        metaRight.textContent = `${bankNameRegistry} / ${q.round_name} • #${q.num}`;
       }
 
       resetForQuestion();
@@ -852,7 +853,7 @@
     
       const avg = stats.answered
         ? (stats.totalTime / stats.answered).toFixed(1)
-        : 'â€”';
+        : '—';
     
       document.getElementById('statAccuracy').textContent = `${acc}%`;
       document.getElementById('statSpeed').textContent = `${avg}s`;
@@ -1078,7 +1079,7 @@
         finalScoreEl.textContent = maxScore ? `Final score: ${score}/${maxScore}` : `Final score: ${score}`;
       }
       if (atomScoreValueEl) {
-        atomScoreValueEl.textContent = Number.isFinite(atomScore) ? atomScore.toFixed(3) : 'â€”';
+        atomScoreValueEl.textContent = Number.isFinite(atomScore) ? atomScore.toFixed(3) : '—';
       }
       if (finalSummaryEl) {
         finalSummaryEl.classList.remove('hidden');
@@ -1090,7 +1091,7 @@
       feedback.className = 'feedback';
 
 
-      progressEl.textContent = 'â€”';
+      progressEl.textContent = '—';
 
       buzzed = false;
       locked = true;
@@ -1296,7 +1297,7 @@
         data = await tryLoad('data/set_A.json');
         if (data && data.length) {
           showError(
-            `âš  Failed to load ${requested}.
+            `⚠ Failed to load ${requested}.
 ` +
             `Fell back to data/set_A.json.
 
@@ -1355,8 +1356,8 @@
 
       if (!questions.length) {
         runActive = false;
-        buzzEl.textContent = 'No questions matched â€” press Esc';
-        progressEl.textContent = 'â€”';
+        buzzEl.textContent = 'No questions matched — press Esc';
+        progressEl.textContent = '—';
         return;
       }
 
@@ -1371,3 +1372,5 @@
 
 
 
+
+})();
