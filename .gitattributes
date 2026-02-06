@@ -1,0 +1,9 @@
+* text=auto
+
+*.ts linguist-language=TypeScript
+*.js linguist-language=JavaScript
+*.css linguist-language=CSS
+*.html linguist-language=HTML
+
+# Treat compiled output as generated so it doesn't dominate language stats.
+docs/js/* linguist-generated=true
