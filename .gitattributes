@@ -1,4 +1,5 @@
 * text=auto
 
 # Treat compiled output as generated so it doesn't dominate language stats.
-root/* linguist-generated=true
+docs/* linguist-generated=true
+src/* linguist-generated=true
