@@ -1,52 +1,54 @@
 (() => {
-  const SETTINGS_KEY = 'atom_settings_v1';
-  const SETTINGS_DEFAULTS = {
-    sfx: true,
-    tts: true,
-    ttsVoice: '',
-    ttsRate: 1.0,
-    ttsPitch: 1.0,
-    ttsVolume: 1.0,
-    div: 'MS',
-    mode: 'rapid',
-    rememberTopics: false,
-    highContrast: false,
-    animations: true,
-    fontSize: 'm',
-    accent: '#4f7cff',
-    theme: 'system'
-  };
-
-  function loadSettings() {
-    try {
-      const raw = localStorage.getItem(SETTINGS_KEY);
-      if (!raw) return { ...SETTINGS_DEFAULTS };
-      const parsed = JSON.parse(raw);
-      return { ...SETTINGS_DEFAULTS, ...parsed };
-    } catch {
-      return { ...SETTINGS_DEFAULTS };
+    var _a;
+    const SETTINGS_KEY = 'atom_settings_v1';
+    const SETTINGS_DEFAULTS = {
+        sfx: true,
+        tts: true,
+        ttsVoice: '',
+        ttsRate: 1.0,
+        ttsPitch: 1.0,
+        ttsVolume: 1.0,
+        div: 'MS',
+        mode: 'rapid',
+        rememberTopics: false,
+        highContrast: false,
+        animations: true,
+        fontSize: 'm',
+        accent: '#4f7cff',
+        theme: 'system'
+    };
+    function loadSettings() {
+        try {
+            const raw = localStorage.getItem(SETTINGS_KEY);
+            if (!raw)
+                return { ...SETTINGS_DEFAULTS };
+            const parsed = JSON.parse(raw);
+            return { ...SETTINGS_DEFAULTS, ...parsed };
+        }
+        catch {
+            return { ...SETTINGS_DEFAULTS };
+        }
     }
-  }
-
-  function ensureNoAnimStyle() {
-    if (document.getElementById('noAnimStyle')) return;
-    const style = document.createElement('style');
-    style.id = 'noAnimStyle';
-    style.textContent = `
+    function ensureNoAnimStyle() {
+        if (document.getElementById('noAnimStyle'))
+            return;
+        const style = document.createElement('style');
+        style.id = 'noAnimStyle';
+        style.textContent = `
       .no-anim *, .no-anim *::before, .no-anim *::after {
         animation: none !important;
         transition: none !important;
         scroll-behavior: auto !important;
       }
     `;
-    document.head.appendChild(style);
-  }
-
-  function ensureHoverPillStyle() {
-    if (document.getElementById('hoverPillStyle')) return;
-    const style = document.createElement('style');
-    style.id = 'hoverPillStyle';
-    style.textContent = `
+        document.head.appendChild(style);
+    }
+    function ensureHoverPillStyle() {
+        if (document.getElementById('hoverPillStyle'))
+            return;
+        const style = document.createElement('style');
+        style.id = 'hoverPillStyle';
+        style.textContent = `
       .nav a[data-hover] {
         position: relative;
       }
@@ -89,14 +91,14 @@
         }
       }
     `;
-    document.head.appendChild(style);
-  }
-
-  function ensureNavMoreStyle() {
-    if (document.getElementById('navMoreStyle')) return;
-    const style = document.createElement('style');
-    style.id = 'navMoreStyle';
-    style.textContent = `
+        document.head.appendChild(style);
+    }
+    function ensureNavMoreStyle() {
+        if (document.getElementById('navMoreStyle'))
+            return;
+        const style = document.createElement('style');
+        style.id = 'navMoreStyle';
+        style.textContent = `
       .nav-more {
         position: relative;
         margin-top: 12px;
@@ -200,14 +202,14 @@
         }
       }
     `;
-    document.head.appendChild(style);
-  }
-
-  function ensureNavWeightStyle() {
-    if (document.getElementById('navWeightStyle')) return;
-    const style = document.createElement('style');
-    style.id = 'navWeightStyle';
-    style.textContent = `
+        document.head.appendChild(style);
+    }
+    function ensureNavWeightStyle() {
+        if (document.getElementById('navWeightStyle'))
+            return;
+        const style = document.createElement('style');
+        style.id = 'navWeightStyle';
+        style.textContent = `
       .nav a.active,
       .bottom-nav a.active {
         font-weight: 500;
@@ -218,14 +220,14 @@
         font-weight: 700;
       }
     `;
-    document.head.appendChild(style);
-  }
-
-  function ensureBottomMoreStyle() {
-    if (document.getElementById('bottomMoreStyle')) return;
-    const style = document.createElement('style');
-    style.id = 'bottomMoreStyle';
-    style.textContent = `
+        document.head.appendChild(style);
+    }
+    function ensureBottomMoreStyle() {
+        if (document.getElementById('bottomMoreStyle'))
+            return;
+        const style = document.createElement('style');
+        style.id = 'bottomMoreStyle';
+        style.textContent = `
       .bottom-more {
         position: relative;
       }
@@ -301,14 +303,14 @@
         }
       }
     `;
-    document.head.appendChild(style);
-  }
-
-  function ensureBottomNavPinnedStyle() {
-    if (document.getElementById('bottomNavPinnedStyle')) return;
-    const style = document.createElement('style');
-    style.id = 'bottomNavPinnedStyle';
-    style.textContent = `
+        document.head.appendChild(style);
+    }
+    function ensureBottomNavPinnedStyle() {
+        if (document.getElementById('bottomNavPinnedStyle'))
+            return;
+        const style = document.createElement('style');
+        style.id = 'bottomNavPinnedStyle';
+        style.textContent = `
       .bottom-nav {
         position: fixed !important;
         left: 12px !important;
@@ -335,14 +337,14 @@
         }
       }
     `;
-    document.head.appendChild(style);
-  }
-
-  function ensurePageTransitionStyle() {
-    if (document.getElementById('pageTransitionStyle')) return;
-    const style = document.createElement('style');
-    style.id = 'pageTransitionStyle';
-    style.textContent = `
+        document.head.appendChild(style);
+    }
+    function ensurePageTransitionStyle() {
+        if (document.getElementById('pageTransitionStyle'))
+            return;
+        const style = document.createElement('style');
+        style.id = 'pageTransitionStyle';
+        style.textContent = `
       .page-shell {
         transition: opacity 0.18s ease, transform 0.18s ease;
         will-change: opacity, transform;
@@ -363,183 +365,193 @@
         transition-duration: 0.32s;
       }
     `;
-    document.head.appendChild(style);
-  }
-
-  function applySettings(s) {
-    if (!s) return;
-    ensureNoAnimStyle();
-    document.documentElement.style.setProperty('--accent', s.accent);
-
-    const sizes = { s: '14px', m: '16px', l: '18px' };
-    document.body.style.fontSize = sizes[s.fontSize] || '16px';
-    document.body.style.filter = s.highContrast ? 'contrast(1.06) saturate(1.02)' : 'none';
-    document.documentElement.classList.toggle('high-contrast', !!s.highContrast);
-    document.documentElement.classList.toggle('no-anim', !s.animations);
-    if (s.theme === 'light') {
-      document.documentElement.classList.add('theme-light');
-    } else if (s.theme === 'dark') {
-      document.documentElement.classList.remove('theme-light');
-    } else {
-      const prefersLight = window.matchMedia?.('(prefers-color-scheme: light)').matches;
-      document.documentElement.classList.toggle('theme-light', !!prefersLight);
+        document.head.appendChild(style);
     }
-  }
-
-  const settings = loadSettings();
-  window.atomSettings = settings;
-  applySettings(settings);
-  ensureHoverPillStyle();
-  ensureNavMoreStyle();
-  ensureNavWeightStyle();
-  ensureBottomMoreStyle();
-  ensureBottomNavPinnedStyle();
-  ensurePageTransitionStyle();
-
-  function ensurePageShell() {
-    if (!document.body) return;
-    if (document.querySelector('.page-shell')) return;
-    const shell = document.createElement('div');
-    shell.className = 'page-shell';
-    const children = Array.from(document.body.childNodes);
-    children.forEach((node) => {
-      if (node.nodeType !== Node.ELEMENT_NODE) return;
-      if (node.tagName === 'SCRIPT') return;
-      if (node.classList?.contains('bottom-nav')) return;
-      if (node.classList?.contains('nav')) return;
-      if (node.classList?.contains('overlay')) return;
-      if (node.classList?.contains('hamburger')) return;
-      if (node.classList?.contains('topbar')) return;
-      shell.appendChild(node);
-    });
-    document.body.insertBefore(shell, document.body.firstChild);
-  }
-
-  if (document.body) {
-    document.body.classList.add('page-transition');
-    ensurePageShell();
-  }
-
-  function finishPageEnter() {
-    if (!document.body) return;
-    if (!document.body.classList.contains('page-enter')) return;
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        document.body.classList.remove('page-enter');
-      });
-    });
-  }
-
-  finishPageEnter();
-
-  function navigateWithFade(url) {
-    if (!url) return;
-    if (document.documentElement.classList.contains('no-anim')) {
-      window.location.assign(url);
-      return;
+    function applySettings(s) {
+        var _a;
+        if (!s)
+            return;
+        ensureNoAnimStyle();
+        document.documentElement.style.setProperty('--accent', s.accent);
+        const sizes = { s: '14px', m: '16px', l: '18px' };
+        document.body.style.fontSize = sizes[s.fontSize] || '16px';
+        document.body.style.filter = s.highContrast ? 'contrast(1.06) saturate(1.02)' : 'none';
+        document.documentElement.classList.toggle('high-contrast', !!s.highContrast);
+        document.documentElement.classList.toggle('no-anim', !s.animations);
+        if (s.theme === 'light') {
+            document.documentElement.classList.add('theme-light');
+        }
+        else if (s.theme === 'dark') {
+            document.documentElement.classList.remove('theme-light');
+        }
+        else {
+            const prefersLight = (_a = window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, '(prefers-color-scheme: light)').matches;
+            document.documentElement.classList.toggle('theme-light', !!prefersLight);
+        }
+    }
+    const settings = loadSettings();
+    window.atomSettings = settings;
+    applySettings(settings);
+    ensureHoverPillStyle();
+    ensureNavMoreStyle();
+    ensureNavWeightStyle();
+    ensureBottomMoreStyle();
+    ensureBottomNavPinnedStyle();
+    ensurePageTransitionStyle();
+    function ensurePageShell() {
+        if (!document.body)
+            return;
+        if (document.querySelector('.page-shell'))
+            return;
+        const shell = document.createElement('div');
+        shell.className = 'page-shell';
+        const children = Array.from(document.body.childNodes);
+        children.forEach((node) => {
+            if (!(node instanceof Element))
+                return;
+            if (node.tagName === 'SCRIPT')
+                return;
+            if (node.classList.contains('bottom-nav'))
+                return;
+            if (node.classList.contains('nav'))
+                return;
+            if (node.classList.contains('overlay'))
+                return;
+            if (node.classList.contains('hamburger'))
+                return;
+            if (node.classList.contains('topbar'))
+                return;
+            shell.appendChild(node);
+        });
+        document.body.insertBefore(shell, document.body.firstChild);
     }
     if (document.body) {
-      document.body.classList.add('page-transition');
-      document.body.classList.add('page-leave');
+        document.body.classList.add('page-transition');
+        ensurePageShell();
     }
-    window.setTimeout(() => window.location.assign(url), 180);
-  }
-
-  window.atomNavigate = navigateWithFade;
-
-  const navMore = document.querySelector('[data-nav-more]');
-  const navMoreBtn = navMore?.querySelector('.nav-more-btn');
-  if (navMore && navMoreBtn) {
-    navMoreBtn.innerHTML = '<span class="icon">⋯</span><span>More Tools</span>';
-    const menuLinks = navMore.querySelectorAll('.nav-more-menu a');
-    menuLinks.forEach((link) => {
-      const href = link.getAttribute('href') || '';
-      if (href.includes('game_clock.html')) {
-        link.innerHTML = '<span class="icon">⏱️</span><span>Game Clock</span>';
-      }
-      if (href.includes('buzzer_rooms.html')) {
-        link.innerHTML = '<span class="icon">🚨</span><span>Buzzer Rooms</span>';
-      }
-    });
-    navMoreBtn.addEventListener('click', (event) => {
-      event.preventDefault();
-      const isOpen = navMore.classList.toggle('open');
-      navMoreBtn.setAttribute('aria-expanded', String(isOpen));
-    });
-
-    document.addEventListener('click', (event) => {
-      if (!navMore.contains(event.target)) {
-        navMore.classList.remove('open');
-        navMoreBtn.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
-
-  const bottomNav = document.querySelector('.bottom-nav');
-  if (bottomNav) {
-    const gameClockLink = bottomNav.querySelector('a[href*="game_clock.html"]');
-    if (gameClockLink) {
-      const moreWrap = document.createElement('div');
-      moreWrap.className = 'bottom-more';
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'bottom-more-btn';
-      btn.setAttribute('aria-haspopup', 'true');
-      btn.setAttribute('aria-expanded', 'false');
-      btn.innerHTML = '<span class="icon">⋯</span><span>More</span>';
-      const menu = document.createElement('div');
-      menu.className = 'bottom-more-menu';
-      menu.innerHTML = `
-        <a href="game_clock.html"><span class="icon">⏱️</span><span>Game Clock</span></a>
-        <a href="buzzer_rooms.html"><span class="icon">🚨</span><span>Buzzer Rooms</span></a>
-      `;
-      moreWrap.appendChild(btn);
-      moreWrap.appendChild(menu);
-      gameClockLink.replaceWith(moreWrap);
-
-      btn.addEventListener('click', (event) => {
-        event.preventDefault();
-        const isOpen = moreWrap.classList.toggle('open');
-        btn.setAttribute('aria-expanded', String(isOpen));
-      });
-
-      document.addEventListener('click', (event) => {
-        if (!moreWrap.contains(event.target)) {
-          moreWrap.classList.remove('open');
-          btn.setAttribute('aria-expanded', 'false');
+    function finishPageEnter() {
+        if (!document.body)
+            return;
+        if (!document.body.classList.contains('page-enter'))
+            return;
+        window.requestAnimationFrame(() => {
+            window.requestAnimationFrame(() => {
+                document.body.classList.remove('page-enter');
+            });
+        });
+    }
+    finishPageEnter();
+    function navigateWithFade(url) {
+        if (!url)
+            return;
+        if (document.documentElement.classList.contains('no-anim')) {
+            window.location.assign(url);
+            return;
         }
-      });
+        if (document.body) {
+            document.body.classList.add('page-transition');
+            document.body.classList.add('page-leave');
+        }
+        window.setTimeout(() => window.location.assign(url), 180);
     }
-  }
-
-  const mq = window.matchMedia?.('(prefers-color-scheme: light)');
-  if (mq?.addEventListener) {
-    mq.addEventListener('change', () => {
-      const next = loadSettings();
-      if ((next.theme || 'system') === 'system') {
-        applySettings(next);
-      }
-    });
-  }
-
-  function handleSameWindowNavigation(event) {
-    if (event.defaultPrevented) return;
-    if (event.button !== 0) return;
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const link = event.target.closest('a[href]');
-    if (!link) return;
-    if (link.target === '_blank') {
-      link.target = '_self';
+    window.atomNavigate = navigateWithFade;
+    const navMore = document.querySelector('[data-nav-more]');
+    const navMoreBtn = navMore === null || navMore === void 0 ? void 0 : navMore.querySelector('.nav-more-btn');
+    if (navMore && navMoreBtn) {
+        navMoreBtn.innerHTML = '<span class="icon">â‹¯</span><span>More Tools</span>';
+        const menuLinks = navMore.querySelectorAll('.nav-more-menu a');
+        menuLinks.forEach((link) => {
+            const href = link.getAttribute('href') || '';
+            if (href.includes('game_clock.html')) {
+                link.innerHTML = '<span class="icon">â±ï¸</span><span>Game Clock</span>';
+            }
+            if (href.includes('buzzer_rooms.html')) {
+                link.innerHTML = '<span class="icon">ðŸš¨</span><span>Buzzer Rooms</span>';
+            }
+        });
+        navMoreBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            const isOpen = navMore.classList.toggle('open');
+            navMoreBtn.setAttribute('aria-expanded', String(isOpen));
+        });
+        document.addEventListener('click', (event) => {
+            const target = event.target;
+            if (!target || !navMore.contains(target)) {
+                navMore.classList.remove('open');
+                navMoreBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
     }
-    const url = new URL(link.href, window.location.href);
-    if (url.origin !== window.location.origin) return;
-    const samePage = url.pathname === window.location.pathname
-      && url.search === window.location.search
-      && url.hash;
-    if (samePage) return;
-    event.preventDefault();
-    navigateWithFade(url.href);
-  }
-
-  document.addEventListener('click', handleSameWindowNavigation);
+    const bottomNav = document.querySelector('.bottom-nav');
+    if (bottomNav) {
+        const gameClockLink = bottomNav.querySelector('a[href*="game_clock.html"]');
+        if (gameClockLink) {
+            const moreWrap = document.createElement('div');
+            moreWrap.className = 'bottom-more';
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'bottom-more-btn';
+            btn.setAttribute('aria-haspopup', 'true');
+            btn.setAttribute('aria-expanded', 'false');
+            btn.innerHTML = '<span class="icon">â‹¯</span><span>More</span>';
+            const menu = document.createElement('div');
+            menu.className = 'bottom-more-menu';
+            menu.innerHTML = `
+        <a href="game_clock.html"><span class="icon">â±ï¸</span><span>Game Clock</span></a>
+        <a href="buzzer_rooms.html"><span class="icon">ðŸš¨</span><span>Buzzer Rooms</span></a>
+      `;
+            moreWrap.appendChild(btn);
+            moreWrap.appendChild(menu);
+            gameClockLink.replaceWith(moreWrap);
+            btn.addEventListener('click', (event) => {
+                event.preventDefault();
+                const isOpen = moreWrap.classList.toggle('open');
+                btn.setAttribute('aria-expanded', String(isOpen));
+            });
+            document.addEventListener('click', (event) => {
+                const target = event.target;
+                if (!target || !moreWrap.contains(target)) {
+                    moreWrap.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+    }
+    const mq = (_a = window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, '(prefers-color-scheme: light)');
+    if (mq === null || mq === void 0 ? void 0 : mq.addEventListener) {
+        mq.addEventListener('change', () => {
+            const next = loadSettings();
+            if ((next.theme || 'system') === 'system') {
+                applySettings(next);
+            }
+        });
+    }
+    function handleSameWindowNavigation(event) {
+        if (event.defaultPrevented)
+            return;
+        if (event.button !== 0)
+            return;
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+            return;
+        const target = event.target;
+        const link = target === null || target === void 0 ? void 0 : target.closest('a[href]');
+        if (!link)
+            return;
+        if (link.target === '_blank') {
+            link.target = '_self';
+        }
+        const url = new URL(link.href, window.location.href);
+        if (url.origin !== window.location.origin)
+            return;
+        const samePage = url.pathname === window.location.pathname
+            && url.search === window.location.search
+            && url.hash;
+        if (samePage)
+            return;
+        event.preventDefault();
+        navigateWithFade(url.href);
+    }
+    document.addEventListener('click', handleSameWindowNavigation);
 })();
+export {};
+//# sourceMappingURL=common.js.map

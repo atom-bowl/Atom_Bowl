@@ -1,0 +1,15 @@
+﻿{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "ES2020",
+    "lib": ["ES2021", "DOM", "DOM.Iterable"],
+    "moduleDetection": "force",
+    "rootDir": "src/ts",
+    "outDir": "docs/js",
+    "sourceMap": true,
+    "noEmitOnError": true,
+    "strict": false,
+    "skipLibCheck": true
+  },
+  "include": ["src/ts/**/*.ts", "src/ts/**/*.d.ts"]
+}
