@@ -13,5 +13,7 @@ COPY . .
 
 EXPOSE 3000
 ENV PORT=3000
+ENV PYTHON=python3
+ENV RUBY=ruby
 
 CMD ["npm", "run", "server"]

@@ -1,6 +1,7 @@
 const path = require("path");
-const { spawn } = require("child_process");
+const { spawn, spawnSync } = require("child_process");
 const express = require("express");
+const { searchLocal } = require("./search_fallback");
 
 const app = express();
 const PORT = Number(process.env.PORT || 3000);
@@ -19,8 +20,19 @@ app.get("/api/health", (_req, res) => {
 });
 
 const ROOT = path.join(__dirname, "..");
-const PYTHON = process.env.PYTHON || "python";
+const PYTHON = process.env.PYTHON || "python3";
 const RUBY = process.env.RUBY || "ruby";
+
+function warnIfCommandMissing(cmd, label) {
+  const probe = spawnSync(cmd, ["--version"], { stdio: "ignore" });
+  if (probe.error && probe.error.code === "ENOENT") {
+    // eslint-disable-next-line no-console
+    console.warn(`[runtime] ${label} not found in PATH (${cmd}); related features may use fallback.`);
+  }
+}
+
+warnIfCommandMissing(PYTHON, "Python");
+warnIfCommandMissing(RUBY, "Ruby");
 
 function runScript(cmd, args, input, timeoutMs = 3000) {
   return new Promise((resolve, reject) => {
@@ -109,8 +121,19 @@ app.get("/api/search", async (req, res) => {
 
   try {
     const result = await runScript(RUBY, [script], payload, 6000);
-    res.json(result || {});
+    res.json({ ...(result || {}), engine: "ruby" });
   } catch (err) {
+    if (err && err.code === "ENOENT") {
+      try {
+        const fallback = searchLocal(ROOT, payload);
+        return res.json({ ...(fallback || {}), engine: "js-fallback" });
+      } catch (fallbackErr) {
+        return res.status(500).json({
+          error: "search-failed",
+          detail: String(fallbackErr.message || fallbackErr)
+        });
+      }
+    }
     res.status(500).json({ error: "search-failed", detail: String(err.message || err) });
   }
 });

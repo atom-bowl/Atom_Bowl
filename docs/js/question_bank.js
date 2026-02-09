@@ -161,7 +161,7 @@
             const lvl = q.level || '—';
             const cat = norm(q.category) || '—';
             const type = q.type || '—';
-            const id = useServer ? `${i}` : `${start + i}`; // stable for this filtered run
+            const id = useServer ? `${i}` : `${start + i}`; // server uses page-local index
             return `
           <div class="tile pop">
             <div class="tagrow">
@@ -175,8 +175,8 @@
             <div class="qmeta">Answer: <b>${escapeHtml(q.parsed_answer || '—')}</b></div>
 
             <div class="btnrow">
-              <button class="btn practice" data-action="practice" data-idx="${start + i}">⚡ Practice</button>
-              <button class="btn tutor" data-action="tutor" data-idx="${start + i}">🤖 Tutor</button>
+              <button class="btn practice" data-action="practice" data-idx="${id}">Practice</button>
+              <button class="btn tutor" data-action="tutor" data-idx="${id}">Tutor</button>
             </div>
           </div>
         `;

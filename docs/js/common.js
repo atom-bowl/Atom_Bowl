@@ -30,25 +30,6 @@
             return { ...SETTINGS_DEFAULTS };
         }
     }
-    function resolveApiBase() {
-        let base = 'https://atom-bowl.onrender.com';
-        try {
-            const params = new URLSearchParams(window.location.search);
-            const fromQuery = params.get('api') || params.get('apiBase') || '';
-            if (fromQuery) {
-                base = fromQuery.trim();
-                localStorage.setItem(API_BASE_KEY, base);
-            }
-            const stored = localStorage.getItem(API_BASE_KEY);
-            if (!base && stored)
-                base = stored.trim();
-        }
-        catch { }
-        if (base) {
-            window.ATOM_API_BASE = base;
-        }
-    }
-    resolveApiBase();
     function ensureNoAnimStyle() {
         if (document.getElementById('noAnimStyle'))
             return;
@@ -540,6 +521,32 @@
             label.textContent = 'Sign in';
         }
     }
+    function resolveApiBase() {
+        let base = '';
+        try {
+            const params = new URLSearchParams(window.location.search);
+            const fromQuery = (params.get('api') || params.get('apiBase') || '').trim();
+            if (fromQuery) {
+                base = fromQuery;
+                localStorage.setItem(API_BASE_KEY, base);
+            }
+            if (!base) {
+                const stored = (localStorage.getItem(API_BASE_KEY) || '').trim();
+                if (stored)
+                    base = stored;
+            }
+            if (!base) {
+                const host = window.location.hostname || '';
+                const isLocalHost = host === 'localhost' || host === '127.0.0.1';
+                if (!isLocalHost) {
+                    base = 'https://atom-bowl.onrender.com';
+                }
+            }
+        }
+        catch { }
+        window.ATOM_API_BASE = base;
+    }
+    resolveApiBase();
     async function bindAccountNav() {
         const link = ensureAccountLink();
         try {
