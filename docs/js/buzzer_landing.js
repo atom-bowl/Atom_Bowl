@@ -1,4 +1,5 @@
 import { db, ensureAnonAuth } from "./firebase.js";
+import "./account_store.js";
 import {
   doc,
   collection,
@@ -19,6 +20,16 @@ const teamHint = document.getElementById("teamHint");
 const goCreateBtn = document.getElementById("goCreateBtn");
 
 const state = { team: "A", roomId: null };
+const BUZZER_PROFILE_KEY = "atom_buzzer_profile";
+let preferredTeam = null;
+
+function safeParse(raw) {
+  try {
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
 
 function setTeamOptions(teamCount, teamNames) {
   teamSelect.innerHTML = "";
@@ -30,6 +41,9 @@ function setTeamOptions(teamCount, teamNames) {
     opt.textContent = teamNames?.[team] || `Team ${team}`;
     teamSelect.appendChild(opt);
   }
+  if (preferredTeam && [...teamSelect.options].some((opt) => opt.value === preferredTeam)) {
+    teamSelect.value = preferredTeam;
+  }
   state.team = teamSelect.value;
 }
 
@@ -38,6 +52,33 @@ setTeamOptions(2);
 teamSelect.addEventListener("change", () => {
   state.team = teamSelect.value;
 });
+
+const localProfile = safeParse(localStorage.getItem(BUZZER_PROFILE_KEY)) || {};
+if (displayNameInput && localProfile?.name) displayNameInput.value = localProfile.name;
+if (localProfile?.team) {
+  preferredTeam = localProfile.team;
+  setTeamOptions(2);
+}
+
+if (window.atomAccount?.onAuthChange) {
+  window.atomAccount.onAuthChange(async (user) => {
+    if (!user) return;
+    try {
+      const remote = await window.atomAccount.loadBuzzerProfile();
+      if (remote?.name && displayNameInput) displayNameInput.value = remote.name;
+      if (remote?.team) {
+        preferredTeam = remote.team;
+        if (teamSelect?.options?.length) {
+          const match = [...teamSelect.options].some((opt) => opt.value === preferredTeam);
+          if (match) {
+            teamSelect.value = preferredTeam;
+            state.team = teamSelect.value;
+          }
+        }
+      }
+    } catch {}
+  });
+}
 
 let lookupTimer = null;
 
@@ -97,6 +138,12 @@ async function joinRoom() {
     team: state.team
   }));
   localStorage.setItem("atom_buzzer_role", "player");
+  if (window.atomAccount?.getUser?.()) {
+    window.atomAccount.saveBuzzerProfile({
+      name,
+      team: state.team
+    }).catch(() => {});
+  }
   window.location.href = `buzzer_room_player.html?roomId=${room.id}`;
 }
 

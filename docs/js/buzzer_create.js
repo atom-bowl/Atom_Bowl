@@ -1,4 +1,5 @@
 import { db, ensureAnonAuth } from "./firebase.js";
+import "./account_store.js";
 import {
   doc,
   collection,
@@ -17,6 +18,23 @@ const tuTimeInput = document.getElementById("tuTime");
 const bonusTimeInput = document.getElementById("bonusTime");
 const createRoomBtn = document.getElementById("createRoomBtn");
 const createError = document.getElementById("createError");
+const BUZZER_PROFILE_KEY = "atom_buzzer_profile";
+
+let preferredTeam = null;
+
+function safeParse(raw) {
+  try {
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function applyPreferredTeam() {
+  if (!preferredTeam || !hostTeamSelect) return;
+  const match = [...hostTeamSelect.options].some((opt) => opt.value === preferredTeam);
+  if (match) hostTeamSelect.value = preferredTeam;
+}
 
 function generateRoomCode() {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -72,6 +90,7 @@ teamCountSelect.addEventListener("change", () => {
 
 buildTeamNameFields(parseInt(teamCountSelect.value, 10) || 2);
 buildHostTeamOptions(parseInt(teamCountSelect.value, 10) || 2, getTeamNamesFromInputs());
+applyPreferredTeam();
 
 teamNameFields.addEventListener("input", () => {
   const count = parseInt(teamCountSelect.value, 10) || 2;
@@ -86,6 +105,27 @@ function toggleAdvanced() {
 
 nsbRulesCheckbox.addEventListener("change", toggleAdvanced);
 toggleAdvanced();
+
+const localProfile = safeParse(localStorage.getItem(BUZZER_PROFILE_KEY)) || {};
+if (hostNameInput && localProfile?.name) hostNameInput.value = localProfile.name;
+if (localProfile?.team) {
+  preferredTeam = localProfile.team;
+  applyPreferredTeam();
+}
+
+if (window.atomAccount?.onAuthChange) {
+  window.atomAccount.onAuthChange(async (user) => {
+    if (!user) return;
+    try {
+      const remote = await window.atomAccount.loadBuzzerProfile();
+      if (remote?.name && hostNameInput) hostNameInput.value = remote.name;
+      if (remote?.team) {
+        preferredTeam = remote.team;
+        applyPreferredTeam();
+      }
+    } catch {}
+  });
+}
 
 async function createRoom() {
   createError.textContent = "";
@@ -139,6 +179,12 @@ async function createRoom() {
     team: hostTeam
   }));
   localStorage.setItem("atom_buzzer_role", "host");
+  if (window.atomAccount?.getUser?.()) {
+    window.atomAccount.saveBuzzerProfile({
+      name: hostName,
+      team: hostTeam
+    }).catch(() => {});
+  }
 
   window.location.href = `buzzer_room.html?roomId=${roomId}`;
 }

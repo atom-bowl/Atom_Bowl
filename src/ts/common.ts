@@ -476,6 +476,56 @@
     });
   }
 
+  function ensureAccountLink() {
+    const nav = document.querySelector('.nav');
+    if (!nav) return null;
+    let link = nav.querySelector('a[href*="account.html"]') as HTMLAnchorElement | null;
+    if (link) return link;
+
+    const settingsLink = nav.querySelector('a[href*="settings.html"]') as HTMLAnchorElement | null;
+    link = document.createElement('a');
+    link.href = 'account.html';
+    link.className = 'nav-account';
+    link.innerHTML = '<span class="icon">&#128100;</span><span class="label">Sign in</span>';
+    if (settingsLink && settingsLink.parentElement === nav) {
+      settingsLink.insertAdjacentElement('afterend', link);
+    } else {
+      nav.appendChild(link);
+    }
+
+    const path = window.location.pathname || '';
+    if (path.endsWith('account.html')) {
+      link.classList.add('active');
+    }
+    return link;
+  }
+
+  function updateAccountLinkLabel(link: HTMLAnchorElement | null, user: any) {
+    if (!link) return;
+    const label = link.querySelector('.label') as HTMLElement | null;
+    if (!label) return;
+    if (user) {
+      const name = user.displayName || user.email || 'Account';
+      label.textContent = String(name || 'Account');
+    } else {
+      label.textContent = 'Sign in';
+    }
+  }
+
+  async function bindAccountNav() {
+    const link = ensureAccountLink();
+    try {
+      await import('./account_store.js');
+    } catch {
+      return;
+    }
+    const account = window.atomAccount;
+    if (!account?.onAuthChange) return;
+    account.onAuthChange((user) => updateAccountLinkLabel(link, user));
+  }
+
+  bindAccountNav();
+
   const bottomNav = document.querySelector('.bottom-nav');
   if (bottomNav) {
     const gameClockLink = bottomNav.querySelector('a[href*="game_clock.html"]');
@@ -493,6 +543,7 @@
         menu.innerHTML = `
         <a href="game_clock.html"><span class="icon">&#9201;</span><span>Game Clock</span></a>
         <a href="buzzer_rooms.html"><span class="icon">&#128680;</span><span>Buzzer Rooms</span></a>
+        <a href="account.html"><span class="icon">&#128100;</span><span>Account</span></a>
         `;
       moreWrap.appendChild(btn);
       moreWrap.appendChild(menu);

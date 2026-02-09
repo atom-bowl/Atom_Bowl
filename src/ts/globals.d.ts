@@ -39,6 +39,25 @@ declare global {
     autoChecker?: AutoChecker;
     startRun?: (mode: string) => void;
     bank?: unknown[];
+    atomAccount?: {
+      getUser: () => unknown | null;
+      onAuthChange: (cb: (user: unknown | null) => void) => () => void;
+      signInWithProvider: (providerId: string) => Promise<unknown>;
+      signInWithEmail: (email: string, password: string) => Promise<unknown>;
+      signUpWithEmail: (email: string, password: string, displayName?: string) => Promise<unknown>;
+      signOut: () => Promise<void>;
+      loadRemoteSettings: () => Promise<unknown | null>;
+      saveSettings: (settings: AtomSettings) => Promise<void>;
+      updatePracticeStats: (patch: {
+        totalRuns?: number;
+        totalAnswered?: number;
+        totalCorrect?: number;
+        totalTime?: number;
+        totalSlowCorrect?: number;
+      }) => Promise<void>;
+      loadBuzzerProfile: () => Promise<{ name?: string; team?: string } | null>;
+      saveBuzzerProfile: (profile: { name?: string; team?: string }) => Promise<void>;
+    };
   }
 
   interface Element {
@@ -56,6 +75,34 @@ declare global {
     src?: string;
     alt?: string;
   }
+}
+
+declare module "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js" {
+  export const GoogleAuthProvider: any;
+  export const OAuthProvider: any;
+  export const EmailAuthProvider: any;
+  export const signInWithPopup: any;
+  export const linkWithPopup: any;
+  export const createUserWithEmailAndPassword: any;
+  export const signInWithEmailAndPassword: any;
+  export const linkWithCredential: any;
+  export const signOut: any;
+  export const onAuthStateChanged: any;
+  export const updateProfile: any;
+}
+
+declare module "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js" {
+  export const doc: any;
+  export const getDoc: any;
+  export const setDoc: any;
+  export const updateDoc: any;
+  export const serverTimestamp: any;
+  export const increment: any;
+}
+
+declare module "./firebase.js" {
+  export const db: any;
+  export const auth: any;
 }
 
 export {};

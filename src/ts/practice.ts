@@ -1042,6 +1042,29 @@
       }
     }
 
+    async function syncRunStats() {
+      if (!stats) return;
+      if (!window.atomAccount) {
+        try {
+          await import('./account_store.js');
+        } catch {
+          return;
+        }
+      }
+      const account = window.atomAccount;
+      if (!account?.getUser?.()) return;
+      const patch = {
+        totalRuns: 1,
+        totalAnswered: stats.answered,
+        totalCorrect: stats.correct,
+        totalTime: stats.totalTime,
+        totalSlowCorrect: stats.slowCorrect
+      };
+      try {
+        await account.updatePracticeStats(patch);
+      } catch {}
+    }
+
     function endRun(reason) {
       runActive = false;
       clearInterval(timerId);
@@ -1085,6 +1108,8 @@
         finalSummaryEl.classList.remove('hidden');
         animateIn(finalSummaryEl);
       }
+
+      syncRunStats();
 
       // Clear/hide feedback so it doesn't become the end-screen container
       feedback.textContent = '';

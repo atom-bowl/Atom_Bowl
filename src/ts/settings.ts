@@ -49,6 +49,19 @@
       localStorage.setItem(KEY, JSON.stringify(s));
     }
 
+    async function syncAccountSettings(s) {
+      if (!window.atomAccount) {
+        try {
+          await import('./account_store.js');
+        } catch {
+          return;
+        }
+      }
+      try {
+        await window.atomAccount?.saveSettings?.(s);
+      } catch {}
+    }
+
     function setToggle(el, on) {
       el.classList.toggle('on', !!on);
       el.setAttribute('aria-checked', String(!!on));
@@ -264,13 +277,16 @@
     applyBtn.addEventListener('click', () => {
       const s = collectUI();
       saveSettings(s);
+      syncAccountSettings(s);
       applyThemePreview(s);
       showToast('Saved ✅');
     });
 
     resetBtn.addEventListener('click', () => {
-      saveSettings({ ...DEFAULTS });
-      hydrateUI({ ...DEFAULTS });
+      const next = { ...DEFAULTS };
+      saveSettings(next);
+      syncAccountSettings(next);
+      hydrateUI(next);
       showToast('Reset ✅');
     });
 
@@ -283,6 +299,13 @@
         populateVoices(loadSettings());
       });
     }
+
+    document.addEventListener('atomSettingsSynced', (event) => {
+      const detail = (event as CustomEvent)?.detail;
+      if (!detail) return;
+      hydrateUI(detail);
+      applyThemePreview(detail);
+    });
   
 
 })();

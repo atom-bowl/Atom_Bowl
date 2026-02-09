@@ -47,6 +47,21 @@
     function saveSettings(s) {
         localStorage.setItem(KEY, JSON.stringify(s));
     }
+    async function syncAccountSettings(s) {
+        var _a, _b;
+        if (!window.atomAccount) {
+            try {
+                await import('./account_store.js');
+            }
+            catch {
+                return;
+            }
+        }
+        try {
+            await ((_b = (_a = window.atomAccount) === null || _a === void 0 ? void 0 : _a.saveSettings) === null || _b === void 0 ? void 0 : _b.call(_a, s));
+        }
+        catch { }
+    }
     function setToggle(el, on) {
         el.classList.toggle('on', !!on);
         el.setAttribute('aria-checked', String(!!on));
@@ -252,12 +267,15 @@
     applyBtn.addEventListener('click', () => {
         const s = collectUI();
         saveSettings(s);
+        syncAccountSettings(s);
         applyThemePreview(s);
         showToast('Saved ✅');
     });
     resetBtn.addEventListener('click', () => {
-        saveSettings({ ...DEFAULTS });
-        hydrateUI({ ...DEFAULTS });
+        const next = { ...DEFAULTS };
+        saveSettings(next);
+        syncAccountSettings(next);
+        hydrateUI(next);
         showToast('Reset ✅');
     });
     // Init
@@ -269,5 +287,12 @@
             populateVoices(loadSettings());
         });
     }
+    document.addEventListener('atomSettingsSynced', (event) => {
+        const detail = event === null || event === void 0 ? void 0 : event.detail;
+        if (!detail)
+            return;
+        hydrateUI(detail);
+        applyThemePreview(detail);
+    });
 })();
 //# sourceMappingURL=settings.js.map

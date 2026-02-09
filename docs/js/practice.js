@@ -975,6 +975,33 @@
             revealManualGrade('', q.parsed_answer);
         }
     }
+    async function syncRunStats() {
+        var _a;
+        if (!stats)
+            return;
+        if (!window.atomAccount) {
+            try {
+                await import('./account_store.js');
+            }
+            catch {
+                return;
+            }
+        }
+        const account = window.atomAccount;
+        if (!((_a = account === null || account === void 0 ? void 0 : account.getUser) === null || _a === void 0 ? void 0 : _a.call(account)))
+            return;
+        const patch = {
+            totalRuns: 1,
+            totalAnswered: stats.answered,
+            totalCorrect: stats.correct,
+            totalTime: stats.totalTime,
+            totalSlowCorrect: stats.slowCorrect
+        };
+        try {
+            await account.updatePracticeStats(patch);
+        }
+        catch { }
+    }
     function endRun(reason) {
         runActive = false;
         clearInterval(timerId);
@@ -1013,6 +1040,7 @@
             finalSummaryEl.classList.remove('hidden');
             animateIn(finalSummaryEl);
         }
+        syncRunStats();
         // Clear/hide feedback so it doesn't become the end-screen container
         feedback.textContent = '';
         feedback.className = 'feedback';
