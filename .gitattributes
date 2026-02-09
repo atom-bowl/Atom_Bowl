@@ -1,4 +1,9 @@
-* text=auto
+# Ignore sourcemaps (they ruin stats)
+*.map linguist-generated=true
 
-# Treat compiled output as generated so it doesn't dominate language stats.
-docs/js/* linguist-generated=true
+# Ignore node_modules completely
+node_modules/** linguist-vendored=true
+
+# Exclude large non-code assets from language stats
+docs/data/** linguist-generated=true
+docs/images/** linguist-generated=true
