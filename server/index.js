@@ -1,0 +1,123 @@
+const path = require("path");
+const { spawn } = require("child_process");
+const express = require("express");
+
+const app = express();
+const PORT = Number(process.env.PORT || 3000);
+
+app.use(express.json({ limit: "1mb" }));
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  if (req.method === "OPTIONS") return res.sendStatus(204);
+  next();
+});
+
+app.get("/api/health", (_req, res) => {
+  res.json({ ok: true });
+});
+
+const ROOT = path.join(__dirname, "..");
+const PYTHON = process.env.PYTHON || "python";
+const RUBY = process.env.RUBY || "ruby";
+
+function runScript(cmd, args, input, timeoutMs = 3000) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(cmd, args, { stdio: ["pipe", "pipe", "pipe"] });
+    let stdout = "";
+    let stderr = "";
+    let done = false;
+
+    const timer = setTimeout(() => {
+      if (done) return;
+      done = true;
+      child.kill("SIGKILL");
+      reject(new Error("script-timeout"));
+    }, timeoutMs);
+
+    child.stdout.on("data", (d) => (stdout += d.toString()));
+    child.stderr.on("data", (d) => (stderr += d.toString()));
+
+    child.on("error", (err) => {
+      if (done) return;
+      done = true;
+      clearTimeout(timer);
+      reject(err);
+    });
+
+    child.on("close", (code) => {
+      if (done) return;
+      done = true;
+      clearTimeout(timer);
+      if (code !== 0) {
+        reject(new Error(stderr || `script-exit-${code}`));
+        return;
+      }
+      try {
+        const out = stdout.trim();
+        resolve(out ? JSON.parse(out) : {});
+      } catch (err) {
+        reject(err);
+      }
+    });
+
+    try {
+      child.stdin.write(JSON.stringify(input || {}));
+      child.stdin.end();
+    } catch (err) {
+      if (!done) {
+        done = true;
+        clearTimeout(timer);
+        reject(err);
+      }
+    }
+  });
+}
+
+app.post("/api/grade", async (req, res) => {
+  const { userAnswer, correctAnswer, questionType, threshold } = req.body || {};
+  if (typeof correctAnswer !== "string") {
+    return res.status(400).json({ error: "correctAnswer-required" });
+  }
+
+  const script = path.join(ROOT, "server", "python", "autochecker.py");
+  try {
+    const result = await runScript(PYTHON, [script], {
+      userAnswer,
+      correctAnswer,
+      questionType,
+      threshold
+    }, 3500);
+    res.json(result || {});
+  } catch (err) {
+    res.status(500).json({ error: "grade-failed", detail: String(err.message || err) });
+  }
+});
+
+app.get("/api/search", async (req, res) => {
+  const script = path.join(ROOT, "server", "ruby", "search.rb");
+  const payload = {
+    search: req.query.search || "",
+    bank: req.query.bank || "ALL",
+    level: req.query.level || "ANY",
+    category: req.query.category || "ANY",
+    bonus: req.query.bonus || "ANY",
+    page: Number(req.query.page || 1),
+    pageSize: Number(req.query.pageSize || 100)
+  };
+
+  try {
+    const result = await runScript(RUBY, [script], payload, 6000);
+    res.json(result || {});
+  } catch (err) {
+    res.status(500).json({ error: "search-failed", detail: String(err.message || err) });
+  }
+});
+
+app.use(express.static(path.join(ROOT, "docs")));
+
+app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
+  console.log(`Atom Bowl server running at http://localhost:${PORT}`);
+});

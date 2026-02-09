@@ -29,8 +29,17 @@
 
     let bank = [];
     let filtered = [];
+    let useServer = false;
+    let serverItems = [];
+    let serverTotal = 0;
     let page = 1;
     const PAGE_SIZE = 100; // keeps it fast; still feels like infinite scroll because pages are huge
+    const API_BASE = (window as any).ATOM_API_BASE || '';
+
+    function apiUrl(path: string) {
+      if (!API_BASE) return path;
+      return `${API_BASE.replace(/\/+$/, '')}${path}`;
+    }
 
     function norm(s) { return String(s || '').trim(); }
 
@@ -42,6 +51,16 @@
     function hideErr() {
       errEl.style.display = 'none';
       errEl.textContent = '';
+    }
+
+    async function checkServer() {
+      if (window.location.protocol === 'file:') return false;
+      try {
+        const res = await fetch(apiUrl('/api/health'), { cache: 'no-store' });
+        return !!res.ok;
+      } catch {
+        return false;
+      }
     }
 
     async function loadBank() {
@@ -83,15 +102,51 @@
       return hay.includes(s);
     }
 
-    function apply() {
+    async function serverSearch() {
       const search = norm(searchEl.value);
       const bankChoice = bankSelectEl.value;
       const level = levelEl.value;
       const category = categoryEl.value;
       const bonus = bonusEl.value;
 
-      filtered = bank.filter(q => matches(q, search, bankChoice, level, category, bonus));
+      const params = new URLSearchParams({
+        search,
+        bank: bankChoice,
+        level,
+        category,
+        bonus,
+        page: String(page),
+        pageSize: String(PAGE_SIZE)
+      });
+
+      const res = await fetch(apiUrl(`/api/search?${params.toString()}`), { cache: 'no-store' });
+      if (!res.ok) throw new Error('Server search failed.');
+      const data = await res.json();
+      serverItems = Array.isArray(data.items) ? data.items : [];
+      serverTotal = Number(data.total || 0);
+    }
+
+    async function apply() {
+      const search = norm(searchEl.value);
+      const bankChoice = bankSelectEl.value;
+      const level = levelEl.value;
+      const category = categoryEl.value;
+      const bonus = bonusEl.value;
+
       page = 1;
+      if (useServer) {
+        try {
+          await serverSearch();
+          render();
+        } catch (e) {
+          useServer = false;
+          filtered = bank.filter(q => matches(q, search, bankChoice, level, category, bonus));
+          render();
+        }
+        return;
+      }
+
+      filtered = bank.filter(q => matches(q, search, bankChoice, level, category, bonus));
       render();
     }
 
@@ -102,7 +157,7 @@
     function render() {
       hideErr();
 
-      const total = filtered.length;
+      const total = useServer ? serverTotal : filtered.length;
       countEl.textContent = String(total);
 
       const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
@@ -114,7 +169,7 @@
       nextBtn.disabled = page >= totalPages;
 
       const start = (page - 1) * PAGE_SIZE;
-      const slice = filtered.slice(start, start + PAGE_SIZE);
+      const slice = useServer ? serverItems : filtered.slice(start, start + PAGE_SIZE);
 
       grid.innerHTML = slice.map((q, i) => {
         const isBonus = !!q.bonus;
@@ -122,7 +177,7 @@
         const cat = norm(q.category) || '—';
         const type = q.type || '—';
 
-        const id = `${start + i}`; // stable for this filtered run
+        const id = useServer ? `${i}` : `${start + i}`; // stable for this filtered run
 
         return `
           <div class="tile pop">
@@ -165,7 +220,7 @@
       if (!btn) return;
 
       const idx = parseInt(btn.dataset.idx, 10);
-      const q = filtered[idx];
+      const q = useServer ? serverItems[idx] : filtered[idx];
       if (!q) return;
 
       if (btn.dataset.action === 'practice') {
@@ -199,11 +254,38 @@
     categoryEl.addEventListener('change', apply);
     bonusEl.addEventListener('change', apply);
 
-    prevBtn.addEventListener('click', () => { page -= 1; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
-    nextBtn.addEventListener('click', () => { page += 1; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    prevBtn.addEventListener('click', async () => {
+      page -= 1;
+      if (useServer) {
+        await serverSearch();
+      }
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', async () => {
+      page += 1;
+      if (useServer) {
+        await serverSearch();
+      }
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
     (async () => {
       statusEl.textContent = 'Loading question banks…';
+      useServer = await checkServer();
+
+      if (useServer) {
+        try {
+          await serverSearch();
+          statusEl.textContent = 'Loaded via server search.';
+          render();
+          return;
+        } catch (e) {
+          useServer = false;
+        }
+      }
+
       try {
         bank = await loadBank();
       } catch (e) {

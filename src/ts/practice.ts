@@ -109,6 +109,67 @@
     let ttsEnabled = settings.tts;
     let autoCheckEnabled = !!settings.autoCheck;
     let autoCheckThreshold = Number(settings.autoThreshold ?? 0.72);
+    let serverOk = false;
+    const API_BASE = (window as any).ATOM_API_BASE || '';
+
+    function apiUrl(path: string) {
+      if (!API_BASE) return path;
+      return `${API_BASE.replace(/\/+$/, '')}${path}`;
+    }
+
+    async function checkServer() {
+      if (window.location.protocol === 'file:') return false;
+      try {
+        const res = await fetch(apiUrl('/api/health'), { cache: 'no-store' });
+        return !!res.ok;
+      } catch {
+        return false;
+      }
+    }
+
+    const serverCheckPromise = checkServer().then((ok) => {
+      serverOk = ok;
+      return ok;
+    });
+
+    async function fetchJsonWithTimeout(url, options, timeoutMs = 1500) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        const res = await fetch(url, { ...options, signal: controller.signal });
+        if (!res.ok) return null;
+        return await res.json();
+      } catch {
+        return null;
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+
+    async function gradeAnswer(userAnswer, correctAnswer, questionType) {
+      if (!autoCheckEnabled) return null;
+      const payload = {
+        userAnswer,
+        correctAnswer,
+        questionType,
+        threshold: autoCheckThreshold
+      };
+
+      if (serverOk) {
+        const data = await fetchJsonWithTimeout(apiUrl('/api/grade'), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }, 2000);
+        if (data && typeof data.isCorrect !== 'undefined') return data;
+        serverOk = false;
+      }
+
+      if (window.autoChecker) {
+        return window.autoChecker.grade(payload);
+      }
+      return null;
+    }
     let currentUtterance = null;
     let readingSpeed = Number(settings.ttsRate ?? 1.0);
     if (!Number.isFinite(readingSpeed) || readingSpeed <= 0) {
@@ -964,7 +1025,7 @@
       const atomScore = computeAtomScore();
     }
 
-    function submitSA() {
+    async function submitSA() {
       if (!runActive || !buzzed || locked) return;
       stopStopwatch();
       const q = currentQ();
@@ -973,13 +1034,8 @@
         interruptBadgeEl.classList.add('hidden');
       }
       revealFullQuestionNow();
-      if (autoCheckEnabled && window.autoChecker) {
-        const result = window.autoChecker.grade({
-          userAnswer: input.value,
-          correctAnswer: q.parsed_answer,
-          questionType: q.type,
-          threshold: autoCheckThreshold
-        });
+      const result = await gradeAnswer(input.value, q.parsed_answer, q.type);
+      if (result) {
         revealManualGrade(input.value, q.parsed_answer, {
           showButtons: false,
           autoInfo: { confidence: result.confidence, matched: result.matched }
@@ -990,7 +1046,7 @@
       }
     }
 
-    function pickMC(letter) {
+    async function pickMC(letter) {
       if (!runActive || !buzzed || locked) return;
       stopStopwatch();
       const q = currentQ();
@@ -999,13 +1055,8 @@
         interruptBadgeEl.classList.add('hidden');
       }
       revealFullQuestionNow();
-      if (autoCheckEnabled && window.autoChecker) {
-        const result = window.autoChecker.grade({
-          userAnswer: letter,
-          correctAnswer: q.parsed_answer,
-          questionType: q.type,
-          threshold: autoCheckThreshold
-        });
+      const result = await gradeAnswer(letter, q.parsed_answer, q.type);
+      if (result) {
         revealManualGrade(letter, q.parsed_answer, {
           showButtons: false,
           autoInfo: { confidence: result.confidence, matched: result.matched }
@@ -1016,7 +1067,7 @@
       }
     }
 
-    function handleTimeout() {
+    async function handleTimeout() {
       if (!runActive || locked) return;
       stopStopwatch();
       const q = currentQ();
@@ -1025,13 +1076,8 @@
         interruptBadgeEl.classList.add('hidden');
       }
       revealFullQuestionNow();
-      if (autoCheckEnabled && window.autoChecker) {
-        const result = window.autoChecker.grade({
-          userAnswer: '',
-          correctAnswer: q.parsed_answer,
-          questionType: q.type,
-          threshold: autoCheckThreshold
-        });
+      const result = await gradeAnswer('', q.parsed_answer, q.type);
+      if (result) {
         revealManualGrade('', q.parsed_answer, {
           showButtons: false,
           autoInfo: { confidence: result.confidence, matched: result.matched }

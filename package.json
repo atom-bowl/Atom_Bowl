@@ -4,7 +4,11 @@
   "private": true,
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "build:watch": "tsc -p tsconfig.json --watch"
+    "build:watch": "tsc -p tsconfig.json --watch",
+    "server": "node server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
   },
   "devDependencies": {
     "typescript": "^5.4.5"

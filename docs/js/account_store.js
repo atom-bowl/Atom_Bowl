@@ -52,10 +52,19 @@ async function ensureUserDoc(user) {
         lastLoginAt: serverTimestamp()
     }, { merge: true });
 }
+function settingsRef(uid) {
+    return doc(db, "users", uid, "settings", "current");
+}
+function buzzerProfileRef(uid) {
+    return doc(db, "users", uid, "buzzerProfile", "current");
+}
+function statsRef(uid) {
+    return doc(db, "users", uid, "stats", "lifetime");
+}
 async function loadRemoteSettings() {
     if (!(currentUser === null || currentUser === void 0 ? void 0 : currentUser.uid))
         return null;
-    const ref = doc(db, "users", currentUser.uid, "settings");
+    const ref = settingsRef(currentUser.uid);
     const snap = await getDoc(ref);
     if (!snap.exists())
         return null;
@@ -66,7 +75,7 @@ async function syncSettings(user) {
     var _a;
     if (!(user === null || user === void 0 ? void 0 : user.uid))
         return;
-    const ref = doc(db, "users", user.uid, "settings");
+    const ref = settingsRef(user.uid);
     const snap = await getDoc(ref);
     const local = safeJsonParse(localStorage.getItem(SETTINGS_KEY));
     if (snap.exists() && ((_a = snap.data()) === null || _a === void 0 ? void 0 : _a.value)) {
@@ -86,13 +95,13 @@ async function syncSettings(user) {
 async function saveSettings(settings) {
     if (!(currentUser === null || currentUser === void 0 ? void 0 : currentUser.uid))
         return;
-    const ref = doc(db, "users", currentUser.uid, "settings");
+    const ref = settingsRef(currentUser.uid);
     await setDoc(ref, { value: settings, updatedAt: serverTimestamp() }, { merge: true });
 }
 async function loadBuzzerProfile() {
     if (!(currentUser === null || currentUser === void 0 ? void 0 : currentUser.uid))
         return null;
-    const ref = doc(db, "users", currentUser.uid, "buzzerProfile");
+    const ref = buzzerProfileRef(currentUser.uid);
     const snap = await getDoc(ref);
     if (!snap.exists())
         return null;
@@ -101,7 +110,7 @@ async function loadBuzzerProfile() {
 async function syncBuzzerProfile(user) {
     if (!(user === null || user === void 0 ? void 0 : user.uid))
         return;
-    const ref = doc(db, "users", user.uid, "buzzerProfile");
+    const ref = buzzerProfileRef(user.uid);
     const snap = await getDoc(ref);
     const local = safeJsonParse(localStorage.getItem(BUZZER_PROFILE_KEY));
     if (snap.exists()) {
@@ -126,7 +135,7 @@ async function syncBuzzerProfile(user) {
 async function saveBuzzerProfile(profile) {
     if (!(currentUser === null || currentUser === void 0 ? void 0 : currentUser.uid))
         return;
-    const ref = doc(db, "users", currentUser.uid, "buzzerProfile");
+    const ref = buzzerProfileRef(currentUser.uid);
     await setDoc(ref, {
         name: (profile === null || profile === void 0 ? void 0 : profile.name) || "",
         team: (profile === null || profile === void 0 ? void 0 : profile.team) || "A",
@@ -136,7 +145,7 @@ async function saveBuzzerProfile(profile) {
 async function updatePracticeStats(patch) {
     if (!(currentUser === null || currentUser === void 0 ? void 0 : currentUser.uid))
         return;
-    const ref = doc(db, "users", currentUser.uid, "stats");
+    const ref = statsRef(currentUser.uid);
     const next = {
         totalRuns: increment(Number(patch.totalRuns || 0)),
         totalAnswered: increment(Number(patch.totalAnswered || 0)),

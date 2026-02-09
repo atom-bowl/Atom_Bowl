@@ -1,5 +1,6 @@
 ﻿(() => {
   const SETTINGS_KEY = 'atom_settings_v1';
+  const API_BASE_KEY = 'atom_api_base';
   const SETTINGS_DEFAULTS = {
     sfx: true,
     tts: true,
@@ -511,6 +512,25 @@
       label.textContent = 'Sign in';
     }
   }
+
+  function resolveApiBase() {
+    let base = 'https://atom-bowl.onrender.com';
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const fromQuery = params.get('api') || params.get('apiBase') || '';
+      if (fromQuery) {
+        base = fromQuery.trim();
+        localStorage.setItem(API_BASE_KEY, base);
+      }
+      const stored = localStorage.getItem(API_BASE_KEY);
+      if (!base && stored) base = stored.trim();
+    } catch {}
+    if (base) {
+      (window as any).ATOM_API_BASE = base;
+    }
+  }
+
+  resolveApiBase();
 
   async function bindAccountNav() {
     const link = ensureAccountLink();

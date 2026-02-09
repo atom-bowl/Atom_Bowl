@@ -37,6 +37,7 @@ declare global {
     atomSettings?: AtomSettings;
     atomNavigate?: (url: string) => void;
     autoChecker?: AutoChecker;
+    ATOM_API_BASE?: string;
     startRun?: (mode: string) => void;
     bank?: unknown[];
     atomAccount?: {
@@ -101,8 +102,11 @@ declare module "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js"
 }
 
 declare module "./firebase.js" {
+  export const app: any;
+  export const analytics: any;
   export const db: any;
   export const auth: any;
+  export const ensureAnonAuth: () => Promise<any>;
 }
 
 export {};
