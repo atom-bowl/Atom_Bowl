@@ -9,10 +9,10 @@
     ['eighteen', '18'], ['nineteen', '19'], ['twenty', '20']
   ]);
 
-  const GREEK_MAP = new Map([
-    ['α', 'alpha'], ['β', 'beta'], ['γ', 'gamma'], ['δ', 'delta'], ['ε', 'epsilon'],
-    ['θ', 'theta'], ['λ', 'lambda'], ['μ', 'mu'], ['π', 'pi'], ['ρ', 'rho'],
-    ['σ', 'sigma'], ['τ', 'tau'], ['φ', 'phi'], ['ω', 'omega']
+    const GREEK_MAP = new Map([
+    ['\u03b1', 'alpha'], ['\u03b2', 'beta'], ['\u03b3', 'gamma'], ['\u03b4', 'delta'], ['\u03b5', 'epsilon'],
+    ['\u03b8', 'theta'], ['\u03bb', 'lambda'], ['\u03bc', 'mu'], ['\u03c0', 'pi'], ['\u03c1', 'rho'],
+    ['\u03c3', 'sigma'], ['\u03c4', 'tau'], ['\u03c6', 'phi'], ['\u03c9', 'omega']
   ]);
 
   function replaceGreek(s) {
@@ -181,3 +181,4 @@
 
   window.autoChecker = { grade };
 })();
+

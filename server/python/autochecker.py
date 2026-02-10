@@ -27,22 +27,21 @@ NUMBER_WORDS = {
 }
 
 GREEK_MAP = {
-    "α": "alpha",
-    "β": "beta",
-    "γ": "gamma",
-    "δ": "delta",
-    "ε": "epsilon",
-    "θ": "theta",
-    "λ": "lambda",
-    "μ": "mu",
-    "π": "pi",
-    "ρ": "rho",
-    "σ": "sigma",
-    "τ": "tau",
-    "φ": "phi",
-    "ω": "omega",
+    "\u03b1": "alpha",
+    "\u03b2": "beta",
+    "\u03b3": "gamma",
+    "\u03b4": "delta",
+    "\u03b5": "epsilon",
+    "\u03b8": "theta",
+    "\u03bb": "lambda",
+    "\u03bc": "mu",
+    "\u03c0": "pi",
+    "\u03c1": "rho",
+    "\u03c3": "sigma",
+    "\u03c4": "tau",
+    "\u03c6": "phi",
+    "\u03c9": "omega",
 }
-
 
 def replace_greek(s: str) -> str:
     out = s
@@ -55,7 +54,7 @@ def normalize(raw: str) -> str:
     s = str(raw or "")
     s = replace_greek(s)
     s = s.lower()
-    s = s.replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"')
+    s = s.replace("\u2019", "'").replace("\u2018", "'").replace("\u201c", '"').replace("\u201d", '"')
     s = re.sub(r"[^a-z0-9\s]", " ", s)
     s = re.sub(r"\s+", " ", s).strip()
     parts = [NUMBER_WORDS.get(p, p) for p in s.split(" ") if p]

@@ -1,4 +1,4 @@
-﻿    // Everything waits for DOM so we never attach listeners to null nodes.
+    // Everything waits for DOM so we never attach listeners to null nodes.
     document.addEventListener('DOMContentLoaded', () => {
       // NAV
       const nav = document.getElementById('nav');
@@ -9,7 +9,7 @@
         const isOpen = nav.classList.toggle('open');
         overlay.classList.toggle('show');
         hamburger.classList.toggle('open');
-        hamburger.textContent = isOpen ? 'âœ•' : 'â˜°';
+        hamburger.textContent = isOpen ? 'X' : '|||';
       }
 
       hamburger.addEventListener('click', toggleNav);
@@ -360,7 +360,7 @@
         const selectedBank = els.bankSelect?.value || 'data/set_B.json';
         const normalizedBank = selectedBank.replace(/^\.\/+/, '');
         try {
-          els.bankStatus.textContent = 'Loadingâ€¦';
+          els.bankStatus.textContent = 'Loading...';
           const res = await fetch(`./${normalizedBank}`, { cache: 'no-store' });
           if (!res.ok) throw new Error(`${normalizedBank} not found`);
           const data = await res.json();
@@ -370,7 +370,7 @@
           els.bankStatus.textContent = 'Ready';
           els.bankStatus.style.background = 'rgba(57,217,138,0.14)';
           els.bankStatus.style.borderColor = 'rgba(57,217,138,0.24)';
-          els.bankMeta.textContent = `${normalizedBank} â€¢ ${bank.length.toLocaleString()} questions detected`;
+          els.bankMeta.textContent = `${normalizedBank} | ${bank.length.toLocaleString()} questions detected`;
 
           updateCounts();
         } catch (e) {
@@ -447,6 +447,7 @@
       loadBank();
     });
   
+
 
 
 

@@ -229,11 +229,11 @@
     }
 
     if (ttsToggle) {
-      ttsToggle.textContent = ttsEnabled ? "🔊" : "🔇";
+      ttsToggle.textContent = ttsEnabled ? "TTS ON" : "TTS OFF";
       ttsToggle.onclick = () => {
         ttsEnabled = !ttsEnabled;
         if (!ttsEnabled) stopSpeech();
-        ttsToggle.textContent = ttsEnabled ? "🔊" : "🔇";
+        ttsToggle.textContent = ttsEnabled ? "TTS ON" : "TTS OFF";
         persistSettingsPatch({ tts: ttsEnabled });
       };
     }
@@ -361,7 +361,7 @@
     function toggleTts() {
       ttsEnabled = !ttsEnabled;
       if (!ttsEnabled) stopSpeech();
-      if (ttsToggle) ttsToggle.textContent = ttsEnabled ? "ðŸ”Š" : "ðŸ”‡";
+      if (ttsToggle) ttsToggle.textContent = ttsEnabled ? "TTS ON" : "TTS OFF";
       persistSettingsPatch({ tts: ttsEnabled });
     }
 
@@ -1458,4 +1458,5 @@
 
 
 })();
+
 

@@ -123,18 +123,20 @@ app.get("/api/search", async (req, res) => {
     const result = await runScript(RUBY, [script], payload, 6000);
     res.json({ ...(result || {}), engine: "ruby" });
   } catch (err) {
-    if (err && err.code === "ENOENT") {
-      try {
-        const fallback = searchLocal(ROOT, payload);
-        return res.json({ ...(fallback || {}), engine: "js-fallback" });
-      } catch (fallbackErr) {
-        return res.status(500).json({
-          error: "search-failed",
-          detail: String(fallbackErr.message || fallbackErr)
-        });
-      }
+    try {
+      const fallback = searchLocal(ROOT, payload);
+      return res.json({
+        ...(fallback || {}),
+        engine: "js-fallback",
+        rubyError: String((err && err.message) || err || "ruby-search-failed")
+      });
+    } catch (fallbackErr) {
+      return res.status(500).json({
+        error: "search-failed",
+        detail: String(fallbackErr.message || fallbackErr),
+        rubyError: String((err && err.message) || err || "ruby-search-failed")
+      });
     }
-    res.status(500).json({ error: "search-failed", detail: String(err.message || err) });
   }
 });
 

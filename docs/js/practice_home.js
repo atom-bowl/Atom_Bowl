@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isOpen = nav.classList.toggle('open');
         overlay.classList.toggle('show');
         hamburger.classList.toggle('open');
-        hamburger.textContent = isOpen ? 'âœ•' : 'â˜°';
+        hamburger.textContent = isOpen ? 'X' : '|||';
     }
     hamburger.addEventListener('click', toggleNav);
     overlay.addEventListener('click', toggleNav);
@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedBank = ((_a = els.bankSelect) === null || _a === void 0 ? void 0 : _a.value) || 'data/set_B.json';
         const normalizedBank = selectedBank.replace(/^\.\/+/, '');
         try {
-            els.bankStatus.textContent = 'Loadingâ€¦';
+            els.bankStatus.textContent = 'Loading...';
             const res = await fetch(`./${normalizedBank}`, { cache: 'no-store' });
             if (!res.ok)
                 throw new Error(`${normalizedBank} not found`);
@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
             els.bankStatus.textContent = 'Ready';
             els.bankStatus.style.background = 'rgba(57,217,138,0.14)';
             els.bankStatus.style.borderColor = 'rgba(57,217,138,0.24)';
-            els.bankMeta.textContent = `${normalizedBank} â€¢ ${bank.length.toLocaleString()} questions detected`;
+            els.bankMeta.textContent = `${normalizedBank} | ${bank.length.toLocaleString()} questions detected`;
             updateCounts();
         }
         catch (e) {
