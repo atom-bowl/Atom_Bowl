@@ -31,7 +31,7 @@ body {
   background: radial-gradient(circle at 10% 0%, #142032, #0b0f14 55%);
   min-height: 100vh;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: hidden !important;
 }
 
 .theme-light body {

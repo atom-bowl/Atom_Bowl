@@ -29,7 +29,7 @@ body {
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: hidden !important;
 }
 
 body::before {
