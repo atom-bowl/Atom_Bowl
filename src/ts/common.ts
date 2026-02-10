@@ -344,13 +344,27 @@
     const style = document.createElement('style');
     style.id = 'pageTransitionStyle';
     style.textContent = `
+      html,
+      body {
+        overflow-x: hidden;
+      }
+
+      body {
+        overflow-y: auto;
+      }
+
       .page-shell {
         transition: opacity 0.18s ease, transform 0.18s ease;
         will-change: opacity, transform;
         width: 100%;
         min-height: 100vh;
-        overflow-x: hidden;
+        overflow: visible;
         position: relative;
+      }
+
+      .page-shell .main {
+        overflow: visible;
+        max-height: none;
       }
 
       .page-leave .page-shell {

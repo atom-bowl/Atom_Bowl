@@ -21,6 +21,7 @@
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
+      overflow-y: hidden;
     }
 
     body::before {
