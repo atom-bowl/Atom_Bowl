@@ -210,7 +210,38 @@
         border-radius: 12px !important;
       }
 
+      .nav-settings {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 12px !important;
+      }
+
+      .nav-settings .icon {
+        transition: transform 0.35s ease;
+      }
+
+      .nav-settings:hover .icon {
+        transform: rotate(155deg);
+      }
+
       .nav-account .label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+        white-space: nowrap;
+      }
+
+      .nav-settings .label {
         position: absolute;
         width: 1px;
         height: 1px;
@@ -241,6 +272,13 @@
         }
 
         .nav-account {
+          width: 100%;
+          height: auto;
+          justify-content: center;
+          padding: 10px 12px !important;
+        }
+
+        .nav-settings {
           width: 100%;
           height: auto;
           justify-content: center;
@@ -436,7 +474,7 @@
       }
 
       .page-shell {
-        transition: opacity 0.18s ease, transform 0.18s ease;
+        transition: opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1), transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
         will-change: opacity, transform;
         width: 100%;
         min-height: 100vh;
@@ -451,13 +489,13 @@
 
       .page-leave .page-shell {
         opacity: 0;
-        transform: translateX(-18px);
+        transform: translateX(-10px);
       }
 
       .page-enter .page-shell {
         opacity: 0;
-        transform: translateX(18px);
-        transition-duration: 0.32s;
+        transform: translateX(10px);
+        transition-duration: 0.46s;
       }
     `;
         document.head.appendChild(style);
@@ -469,71 +507,333 @@
         style.id = 'modernRefreshStyle';
         style.textContent = `
       :root {
-        --glow-color: color-mix(in srgb, var(--accent) 72%, #7de7ff 28%);
+        --app-font: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        --zen-purple: #9b5cff;
+        --zen-bg-1: rgba(78, 143, 217, 0.2);
+        --zen-bg-2: rgba(79, 124, 255, 0.17);
+        --zen-bg-3: rgba(68, 199, 170, 0.18);
+        --zen-surface: rgba(12, 18, 32, 0.46);
+        --zen-surface-border: rgba(150, 190, 255, 0.2);
+        --zen-soft-shadow: 0 24px 48px rgba(3, 8, 24, 0.22);
+      }
+
+      .theme-light {
+        --zen-bg-1: rgba(120, 186, 255, 0.22);
+        --zen-bg-2: rgba(94, 130, 235, 0.16);
+        --zen-bg-3: rgba(90, 201, 180, 0.18);
+        --zen-surface: rgba(255, 255, 255, 0.58);
+        --zen-surface-border: rgba(120, 150, 220, 0.26);
+        --zen-soft-shadow: 0 22px 44px rgba(20, 30, 55, 0.12);
+      }
+
+      body,
+      input,
+      button,
+      select,
+      textarea {
+        font-family: var(--app-font) !important;
+        font-weight: 400;
+      }
+
+      html:not(.high-contrast) .title,
+      html:not(.high-contrast) .subtitle,
+      html:not(.high-contrast) h1,
+      html:not(.high-contrast) h2,
+      html:not(.high-contrast) h3,
+      html:not(.high-contrast) h4,
+      html:not(.high-contrast) h5,
+      html:not(.high-contrast) h6,
+      html:not(.high-contrast) .btn,
+      html:not(.high-contrast) button,
+      html:not(.high-contrast) .nav a,
+      html:not(.high-contrast) .bottom-nav a {
+        font-weight: 400 !important;
+      }
+
+      .high-contrast h1,
+      .high-contrast h2,
+      .high-contrast h3,
+      .high-contrast h4,
+      .high-contrast h5,
+      .high-contrast h6,
+      .high-contrast .btn,
+      .high-contrast button,
+      .high-contrast .nav a.active,
+      .high-contrast .bottom-nav a.active {
+        font-weight: 700 !important;
       }
 
       body {
+        position: relative;
         background:
-          radial-gradient(1200px 800px at 88% -10%, rgba(79,124,255,0.22), transparent 58%),
-          radial-gradient(900px 640px at -12% 108%, rgba(57,217,138,0.16), transparent 62%),
-          var(--bg);
+          radial-gradient(68rem 48rem at -6% -8%, var(--zen-bg-1), transparent 62%),
+          radial-gradient(72rem 52rem at 110% 8%, var(--zen-bg-2), transparent 66%),
+          radial-gradient(54rem 40rem at 50% 112%, var(--zen-bg-3), transparent 62%),
+          linear-gradient(140deg, color-mix(in srgb, var(--bg) 88%, #0f1b2d 12%), var(--bg) 62%);
+        background-attachment: fixed;
+        animation: zenHueFlow 18s linear infinite;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: -22vmax;
+        pointer-events: none;
+        background:
+          radial-gradient(34vmax 24vmax at 16% 22%, rgba(123, 193, 255, 0.12), transparent 72%),
+          radial-gradient(34vmax 24vmax at 84% 72%, rgba(120, 129, 255, 0.1), transparent 72%);
+        filter: blur(8px);
+        animation: zenDrift 26s ease-in-out infinite alternate;
+        z-index: 0;
+      }
+
+      .page-shell,
+      .main,
+      .main > * {
+        position: relative;
+        z-index: 1;
       }
 
       .main > * {
-        animation: riseIn 0.48s ease both;
+        animation: zenRise 0.5s ease both;
       }
 
-      .main > *:nth-child(2) { animation-delay: 0.06s; }
-      .main > *:nth-child(3) { animation-delay: 0.12s; }
-      .main > *:nth-child(4) { animation-delay: 0.18s; }
+      .main > *:nth-child(2) { animation-delay: 0.05s; }
+      .main > *:nth-child(3) { animation-delay: 0.1s; }
+      .main > *:nth-child(4) { animation-delay: 0.15s; }
+
+      .title,
+      .subtitle,
+      .header,
+      .grid,
+      .form-grid,
+      .stats-grid,
+      .button-row,
+      .nav,
+      .bottom-nav {
+        animation: zenPopIn 0.62s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .nav a,
+      .bottom-nav a,
+      .nav-more-btn,
+      .nav-account,
+      .nav-settings {
+        animation: zenItemPop 0.62s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .nav a:nth-of-type(1),
+      .bottom-nav a:nth-of-type(1) { animation-delay: 0.03s; }
+      .nav a:nth-of-type(2),
+      .bottom-nav a:nth-of-type(2) { animation-delay: 0.06s; }
+      .nav a:nth-of-type(3),
+      .bottom-nav a:nth-of-type(3) { animation-delay: 0.09s; }
+      .nav a:nth-of-type(4),
+      .bottom-nav a:nth-of-type(4) { animation-delay: 0.12s; }
+      .nav a:nth-of-type(5),
+      .bottom-nav a:nth-of-type(5) { animation-delay: 0.15s; }
+      .nav a:nth-of-type(6),
+      .bottom-nav a:nth-of-type(6) { animation-delay: 0.18s; }
+
+      .nav-account .icon,
+      .nav-settings .icon,
+      .bottom-nav a[href*="settings.html"] .icon,
+      .bottom-more-menu a[href*="account.html"] .icon {
+        filter: grayscale(1) saturate(0) brightness(1.02);
+      }
+
+      .nav a[href*="index.html"] .icon,
+      .nav a[href*="generate.html"] .icon,
+      .nav a[href*="practice_home.html"] .icon,
+      .nav a[href*="question_bank.html"] .icon,
+      .bottom-nav a[href*="index.html"] .icon,
+      .bottom-nav a[href*="generate.html"] .icon,
+      .bottom-nav a[href*="practice_home.html"] .icon,
+      .bottom-nav a[href*="question_bank.html"] .icon {
+        filter: none !important;
+      }
+
+      img.brand-icon,
+      img[src*="Google-Symbol"],
+      img[src*="microsoft.svg"],
+      img[src*="microsoft"],
+      .provider.google .brand-icon,
+      .provider.microsoft .brand-icon {
+        filter: none !important;
+      }
+
+      a,
+      button,
+      .btn,
+      .tab,
+      .nav a,
+      .bottom-nav a,
+      .card,
+      .panel,
+      .tile,
+      .question-card,
+      .stat-box,
+      .modal-card,
+      input,
+      select {
+        transition:
+          transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+          border-color 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+          background-color 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+          color 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+          filter 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .card,
+      .stat-box,
+      .modal-card,
+      .panel,
+      .tile,
+      .question-card {
+        position: relative;
+        border: 1px solid var(--zen-surface-border);
+        background: color-mix(in srgb, var(--zen-surface) 82%, transparent);
+        box-shadow: var(--zen-soft-shadow);
+        backdrop-filter: blur(7px) saturate(112%);
+        animation: zenItemPop 0.66s cubic-bezier(0.22, 1, 0.36, 1) both, zenFloat 8.5s ease-in-out infinite 0.66s;
+      }
+
+      .card:nth-of-type(2n),
+      .tile:nth-of-type(2n),
+      .stat-box:nth-of-type(2n) {
+        animation-delay: 0.16s, 0.76s;
+      }
+
+      .card:nth-of-type(3n),
+      .tile:nth-of-type(3n),
+      .stat-box:nth-of-type(3n) {
+        animation-delay: 0.24s, 0.84s;
+      }
+
+      .grid > *:nth-child(1),
+      .stats-grid > *:nth-child(1),
+      .form-grid > *:nth-child(1) { animation-delay: 0.04s, 0.7s; }
+      .grid > *:nth-child(2),
+      .stats-grid > *:nth-child(2),
+      .form-grid > *:nth-child(2) { animation-delay: 0.08s, 0.74s; }
+      .grid > *:nth-child(3),
+      .stats-grid > *:nth-child(3),
+      .form-grid > *:nth-child(3) { animation-delay: 0.12s, 0.78s; }
+      .grid > *:nth-child(4),
+      .stats-grid > *:nth-child(4),
+      .form-grid > *:nth-child(4) { animation-delay: 0.16s, 0.82s; }
+      .grid > *:nth-child(5),
+      .stats-grid > *:nth-child(5),
+      .form-grid > *:nth-child(5) { animation-delay: 0.2s, 0.86s; }
+      .grid > *:nth-child(6),
+      .stats-grid > *:nth-child(6),
+      .form-grid > *:nth-child(6) { animation-delay: 0.24s, 0.9s; }
+
+      .modal,
+      .modal-card {
+        animation: zenModalIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .tab,
+      .btn,
+      input,
+      select,
+      textarea,
+      .label,
+      .row,
+      .hotkey-item,
+      .topic-option,
+      .topic-super,
+      .player-card,
+      .log-item,
+      .stats-table tr,
+      .choice-btn,
+      .kbd {
+        animation: zenItemPop 0.56s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus,
+      .btn:focus,
+      .tab:focus {
+        animation: zenFocusPulse 1.4s ease-in-out infinite;
+      }
+
+      .card::before,
+      .stat-box::before,
+      .modal-card::before,
+      .panel::before,
+      .tile::before,
+      .question-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        border: 1px solid rgba(208, 230, 255, 0.12);
+      }
+
+      .card:hover,
+      .tile:hover,
+      .question-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 30px 58px rgba(5, 12, 30, 0.28);
+      }
+
 
       .btn,
       button.btn,
       .tab,
       .nav-more-btn,
-      .bottom-more-btn {
-        border-color: rgba(117, 166, 255, 0.38);
+      .bottom-more-btn,
+      .nav-settings,
+      .nav-account {
+        border-color: rgba(130, 174, 255, 0.34);
         box-shadow:
-          0 0 0 1px rgba(79,124,255,0.18) inset,
-          0 0 24px rgba(79,124,255,0.22);
-        animation: buttonBreathe 3.2s ease-in-out infinite;
+          0 0 0 1px rgba(100, 150, 240, 0.18) inset,
+          0 10px 24px rgba(38, 75, 135, 0.2);
+        animation: zenPulse 4s ease-in-out infinite;
+      }
+
+      .nav-settings,
+      .nav-account {
+        border: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        animation: none !important;
       }
 
       .btn:hover,
       button.btn:hover,
       .tab:hover,
       .nav-more-btn:hover,
-      .bottom-more-btn:hover {
+      .bottom-more-btn:hover,
+      .nav-settings:hover,
+      .nav-account:hover {
         box-shadow:
-          0 0 0 1px rgba(79,124,255,0.34) inset,
-          0 0 34px rgba(79,124,255,0.38),
-          0 0 62px rgba(79,124,255,0.22);
+          0 0 0 1px rgba(100, 150, 240, 0.3) inset,
+          0 16px 28px rgba(38, 75, 135, 0.26);
       }
 
-      .card,
-      .stat-box,
-      .modal-card {
-        position: relative;
+      .nav-settings:hover,
+      .nav-account:hover {
+        box-shadow: none !important;
+        background: transparent !important;
       }
 
-      .card::before,
-      .stat-box::before,
-      .modal-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        pointer-events: none;
-        border: 1px solid rgba(123, 168, 255, 0.2);
-        box-shadow: inset 0 0 24px rgba(79,124,255,0.08);
-      }
-
-      .title {
-        animation: titleGlow 4.6s ease-in-out infinite;
-      }
-
-      .nav-title {
-        letter-spacing: 0.4px;
+      .nav a:hover,
+      .bottom-nav a:hover,
+      .nav-more-btn:hover,
+      .nav-settings:hover,
+      .nav-account:hover {
+        background: color-mix(in srgb, var(--zen-purple) 22%, transparent) !important;
+        color: color-mix(in srgb, #ffffff 85%, var(--zen-purple) 15%) !important;
+        box-shadow:
+          0 0 0 1px color-mix(in srgb, var(--zen-purple) 58%, #ffffff 42%) inset,
+          0 12px 26px color-mix(in srgb, var(--zen-purple) 34%, transparent) !important;
       }
 
       @media (min-width: 821px) {
@@ -558,7 +858,6 @@
           box-shadow:
             0 18px 50px rgba(0,0,0,0.32),
             0 0 0 1px rgba(107,155,255,0.22) inset !important;
-          animation: navDrop 0.56s ease both;
           overflow: visible;
         }
 
@@ -582,10 +881,6 @@
           border-radius: 11px !important;
         }
 
-        .nav a[data-hover]::after {
-          display: none !important;
-        }
-
         .main {
           margin: 0 auto !important;
           width: min(1240px, calc(100% - 36px)) !important;
@@ -601,7 +896,6 @@
           width: auto;
           padding: 10px 14px;
           border-radius: 12px;
-          font-weight: 800;
           background: rgba(79,124,255,0.16);
         }
 
@@ -628,33 +922,71 @@
         }
       }
 
-      @keyframes riseIn {
-        from { opacity: 0; transform: translateY(16px) scale(0.985); }
-        to { opacity: 1; transform: translateY(0) scale(1); }
-      }
-
-      @keyframes navDrop {
-        from { opacity: 0; transform: translateY(-10px); }
+      @keyframes zenRise {
+        from { opacity: 0; transform: translateY(14px); }
         to { opacity: 1; transform: translateY(0); }
       }
 
-      @keyframes titleGlow {
-        0%, 100% { text-shadow: 0 0 0 rgba(79,124,255,0); }
-        50% { text-shadow: 0 0 22px rgba(79,124,255,0.4); }
+      @keyframes zenPopIn {
+        0% { opacity: 0; transform: translateY(10px) scale(0.985); filter: blur(1px); }
+        65% { opacity: 1; transform: translateY(-2px) scale(1.008); filter: blur(0); }
+        100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
       }
 
-      @keyframes buttonBreathe {
+      @keyframes zenItemPop {
+        0% { opacity: 0; transform: translateY(8px) scale(0.96); }
+        60% { opacity: 1; transform: translateY(-1px) scale(1.01); }
+        100% { opacity: 1; transform: translateY(0) scale(1); }
+      }
+
+      @keyframes zenPulse {
         0%, 100% {
           box-shadow:
-            0 0 0 1px rgba(79,124,255,0.18) inset,
-            0 0 18px rgba(79,124,255,0.22);
+            0 0 0 1px rgba(100, 150, 240, 0.18) inset,
+            0 10px 24px rgba(38, 75, 135, 0.2);
         }
         50% {
           box-shadow:
-            0 0 0 1px rgba(79,124,255,0.32) inset,
-            0 0 30px rgba(79,124,255,0.34);
+            0 0 0 1px rgba(100, 150, 240, 0.3) inset,
+            0 14px 30px rgba(38, 75, 135, 0.28);
         }
       }
+
+      @keyframes zenDrift {
+        from { transform: translate3d(-1.2%, -0.8%, 0) scale(1); }
+        to { transform: translate3d(1.1%, 1.2%, 0) scale(1.03); }
+      }
+
+      @keyframes zenHueFlow {
+        from { filter: hue-rotate(0deg); }
+        to { filter: hue-rotate(12deg); }
+      }
+
+      @keyframes zenFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-3px); }
+      }
+
+
+      @keyframes zenModalIn {
+        0% { opacity: 0; transform: translateY(14px) scale(0.96); }
+        70% { opacity: 1; transform: translateY(-2px) scale(1.01); }
+        100% { opacity: 1; transform: translateY(0) scale(1); }
+      }
+
+      @keyframes zenFocusPulse {
+        0%, 100% {
+          box-shadow:
+            0 0 0 1px rgba(100, 150, 240, 0.28) inset,
+            0 0 0 0 rgba(100, 150, 240, 0.24);
+        }
+        50% {
+          box-shadow:
+            0 0 0 1px rgba(100, 150, 240, 0.42) inset,
+            0 0 0 8px rgba(100, 150, 240, 0.1);
+        }
+      }
+
     `;
         document.head.appendChild(style);
     }
@@ -829,6 +1161,23 @@
         }
         return link;
     }
+    function ensureSettingsQuickLink() {
+        const nav = document.querySelector('.nav');
+        if (!nav)
+            return null;
+        const link = nav.querySelector('a[href*="settings.html"]');
+        if (!link)
+            return null;
+        link.classList.add('nav-settings');
+        link.innerHTML = '<span class="icon" aria-hidden="true">&#9881;&#65039;</span><span class="label">Settings</span>';
+        link.setAttribute('aria-label', 'Settings');
+        link.title = 'Settings';
+        const path = window.location.pathname || '';
+        if (path.endsWith('settings.html')) {
+            link.classList.add('active');
+        }
+        return link;
+    }
     function getNavUsername(account, user) {
         var _a;
         const profile = ((_a = account === null || account === void 0 ? void 0 : account.getProfile) === null || _a === void 0 ? void 0 : _a.call(account)) || null;
@@ -887,9 +1236,10 @@
     resolveApiBase();
     async function bindAccountNav() {
         ensureNavHomeFromTitle();
-        const link = ensureAccountLink();
+        const accountLink = ensureAccountLink();
+        const settingsLink = ensureSettingsQuickLink();
         const navMoreWrap = document.querySelector('[data-nav-more]');
-        if (navMoreWrap && link && navMoreWrap.parentElement) {
+        if (navMoreWrap && navMoreWrap.parentElement) {
             let controls = navMoreWrap.closest('.nav-quick-controls');
             if (!controls) {
                 controls = document.createElement('div');
@@ -897,7 +1247,13 @@
                 navMoreWrap.insertAdjacentElement('beforebegin', controls);
             }
             controls.appendChild(navMoreWrap);
-            controls.appendChild(link);
+            if (accountLink)
+                controls.appendChild(accountLink);
+            if (settingsLink)
+                controls.appendChild(settingsLink);
+        }
+        else if (accountLink && settingsLink && settingsLink.previousElementSibling !== accountLink) {
+            accountLink.insertAdjacentElement('afterend', settingsLink);
         }
         try {
             await import('./account_store.js');
@@ -908,7 +1264,7 @@
         const account = window.atomAccount;
         if (!(account === null || account === void 0 ? void 0 : account.onAuthChange))
             return;
-        account.onAuthChange((user) => updateAccountLinkLabel(link, user, account));
+        account.onAuthChange((user) => updateAccountLinkLabel(accountLink, user, account));
     }
     bindAccountNav();
     function ensureGlobalFooter() {
