@@ -100,9 +100,20 @@
         const style = document.createElement('style');
         style.id = 'navMoreStyle';
         style.textContent = `
+      .nav-title-link {
+        color: inherit;
+        text-decoration: none;
+      }
+
       .nav-more {
         position: relative;
         margin-top: 12px;
+      }
+
+      .nav-quick-controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
 
       .nav-more-btn {
@@ -188,7 +199,34 @@
         background: rgba(79,124,255,0.12);
       }
 
+      .nav-account {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 12px !important;
+      }
+
+      .nav-account .label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+        white-space: nowrap;
+      }
+
       @media (max-width: 820px) {
+        .nav-quick-controls {
+          display: block;
+        }
+
         .nav-more-menu {
           position: static;
           transform: none;
@@ -200,6 +238,13 @@
 
         .nav-more-btn {
           justify-content: center;
+        }
+
+        .nav-account {
+          width: 100%;
+          height: auto;
+          justify-content: center;
+          padding: 10px 12px !important;
         }
       }
     `;
@@ -340,6 +385,41 @@
     `;
         document.head.appendChild(style);
     }
+    function ensureGlobalFooterStyle() {
+        if (document.getElementById('globalFooterStyle'))
+            return;
+        const style = document.createElement('style');
+        style.id = 'globalFooterStyle';
+        style.textContent = `
+      .global-site-footer {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 4px;
+        text-align: center;
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 11px;
+        line-height: 1.2;
+        color: rgba(154,164,178,0.9);
+        z-index: 1190;
+        pointer-events: none;
+        user-select: none;
+        padding: 0 12px;
+      }
+
+      .theme-light .global-site-footer {
+        color: rgba(95,102,117,0.92);
+      }
+
+      @media (max-width: 820px) {
+        .global-site-footer {
+          bottom: 72px;
+          font-size: 10px;
+        }
+      }
+    `;
+        document.head.appendChild(style);
+    }
     function ensurePageTransitionStyle() {
         if (document.getElementById('pageTransitionStyle'))
             return;
@@ -382,6 +462,202 @@
     `;
         document.head.appendChild(style);
     }
+    function ensureModernRefreshStyle() {
+        if (document.getElementById('modernRefreshStyle'))
+            return;
+        const style = document.createElement('style');
+        style.id = 'modernRefreshStyle';
+        style.textContent = `
+      :root {
+        --glow-color: color-mix(in srgb, var(--accent) 72%, #7de7ff 28%);
+      }
+
+      body {
+        background:
+          radial-gradient(1200px 800px at 88% -10%, rgba(79,124,255,0.22), transparent 58%),
+          radial-gradient(900px 640px at -12% 108%, rgba(57,217,138,0.16), transparent 62%),
+          var(--bg);
+      }
+
+      .main > * {
+        animation: riseIn 0.48s ease both;
+      }
+
+      .main > *:nth-child(2) { animation-delay: 0.06s; }
+      .main > *:nth-child(3) { animation-delay: 0.12s; }
+      .main > *:nth-child(4) { animation-delay: 0.18s; }
+
+      .btn,
+      button.btn,
+      .tab,
+      .nav-more-btn,
+      .bottom-more-btn {
+        border-color: rgba(117, 166, 255, 0.38);
+        box-shadow:
+          0 0 0 1px rgba(79,124,255,0.18) inset,
+          0 0 24px rgba(79,124,255,0.22);
+        animation: buttonBreathe 3.2s ease-in-out infinite;
+      }
+
+      .btn:hover,
+      button.btn:hover,
+      .tab:hover,
+      .nav-more-btn:hover,
+      .bottom-more-btn:hover {
+        box-shadow:
+          0 0 0 1px rgba(79,124,255,0.34) inset,
+          0 0 34px rgba(79,124,255,0.38),
+          0 0 62px rgba(79,124,255,0.22);
+      }
+
+      .card,
+      .stat-box,
+      .modal-card {
+        position: relative;
+      }
+
+      .card::before,
+      .stat-box::before,
+      .modal-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        border: 1px solid rgba(123, 168, 255, 0.2);
+        box-shadow: inset 0 0 24px rgba(79,124,255,0.08);
+      }
+
+      .title {
+        animation: titleGlow 4.6s ease-in-out infinite;
+      }
+
+      .nav-title {
+        letter-spacing: 0.4px;
+      }
+
+      @media (min-width: 821px) {
+        body {
+          padding-top: 86px;
+        }
+
+        .nav {
+          left: 16px !important;
+          right: 16px !important;
+          top: 14px !important;
+          bottom: auto !important;
+          width: auto !important;
+          height: 62px !important;
+          border-right: 0 !important;
+          border-radius: 18px !important;
+          display: flex !important;
+          align-items: center !important;
+          gap: 10px !important;
+          padding: 10px 14px !important;
+          background: linear-gradient(120deg, rgba(12,16,26,0.9), rgba(18,26,42,0.88)) !important;
+          box-shadow:
+            0 18px 50px rgba(0,0,0,0.32),
+            0 0 0 1px rgba(107,155,255,0.22) inset !important;
+          animation: navDrop 0.56s ease both;
+          overflow: visible;
+        }
+
+        .theme-light .nav {
+          background: linear-gradient(120deg, rgba(255,255,255,0.94), rgba(242,247,255,0.94)) !important;
+          box-shadow:
+            0 12px 32px rgba(16,24,40,0.12),
+            0 0 0 1px rgba(79,124,255,0.2) inset !important;
+        }
+
+        .nav-title {
+          margin: 0 8px 0 0 !important;
+          min-width: max-content;
+          font-size: 1.06rem !important;
+        }
+
+        .nav a {
+          margin: 0 !important;
+          white-space: nowrap;
+          padding: 9px 12px !important;
+          border-radius: 11px !important;
+        }
+
+        .nav a[data-hover]::after {
+          display: none !important;
+        }
+
+        .main {
+          margin: 0 auto !important;
+          width: min(1240px, calc(100% - 36px)) !important;
+          max-width: 1240px !important;
+          padding-top: 34px !important;
+        }
+
+        .nav-more {
+          margin-top: 0;
+        }
+
+        .nav-more-btn {
+          width: auto;
+          padding: 10px 14px;
+          border-radius: 12px;
+          font-weight: 800;
+          background: rgba(79,124,255,0.16);
+        }
+
+        .nav-quick-controls {
+          margin-left: auto;
+        }
+
+        .nav-more-menu {
+          left: auto;
+          right: 0;
+          top: calc(100% + 10px);
+          transform: translateY(-6px);
+          min-width: 220px;
+          background: rgba(11,16,27,0.97);
+        }
+
+        .theme-light .nav-more-menu {
+          background: rgba(255,255,255,0.98);
+        }
+
+        .nav-more.open .nav-more-menu,
+        .nav-more:hover .nav-more-menu {
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes riseIn {
+        from { opacity: 0; transform: translateY(16px) scale(0.985); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+
+      @keyframes navDrop {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes titleGlow {
+        0%, 100% { text-shadow: 0 0 0 rgba(79,124,255,0); }
+        50% { text-shadow: 0 0 22px rgba(79,124,255,0.4); }
+      }
+
+      @keyframes buttonBreathe {
+        0%, 100% {
+          box-shadow:
+            0 0 0 1px rgba(79,124,255,0.18) inset,
+            0 0 18px rgba(79,124,255,0.22);
+        }
+        50% {
+          box-shadow:
+            0 0 0 1px rgba(79,124,255,0.32) inset,
+            0 0 30px rgba(79,124,255,0.34);
+        }
+      }
+    `;
+        document.head.appendChild(style);
+    }
     function applySettings(s) {
         var _a;
         if (!s)
@@ -412,7 +688,9 @@
     ensureNavWeightStyle();
     ensureBottomMoreStyle();
     ensureBottomNavPinnedStyle();
+    ensureGlobalFooterStyle();
     ensurePageTransitionStyle();
+    ensureModernRefreshStyle();
     function ensurePageShell() {
         if (!document.body)
             return;
@@ -473,7 +751,7 @@
     const navMore = document.querySelector('[data-nav-more]');
     const navMoreBtn = navMore === null || navMore === void 0 ? void 0 : navMore.querySelector('.nav-more-btn');
     if (navMore && navMoreBtn) {
-        navMoreBtn.innerHTML = '<span class="icon">&#8942;</span><span>More Tools</span>';
+        navMoreBtn.innerHTML = '<span>Buzzers</span><span aria-hidden="true">&#9662;</span>';
         const menuLinks = navMore.querySelectorAll('.nav-more-menu a');
         menuLinks.forEach((link) => {
             const href = link.getAttribute('href') || '';
@@ -497,18 +775,48 @@
             }
         });
     }
+    function ensureNavHomeFromTitle() {
+        const nav = document.querySelector('.nav');
+        if (!nav)
+            return;
+        const homeLinks = Array.from(nav.querySelectorAll('a[href*="index.html"]'));
+        homeLinks.forEach((link) => {
+            if (!link.classList.contains('nav-title-link')) {
+                link.remove();
+            }
+        });
+        const title = nav.querySelector('.nav-title');
+        if (!title)
+            return;
+        if (title.querySelector('.nav-title-link'))
+            return;
+        const titleText = (title.textContent || '').trim() || 'Atom Bowl';
+        title.textContent = '';
+        const titleLink = document.createElement('a');
+        titleLink.href = 'index.html';
+        titleLink.className = 'nav-title-link';
+        titleLink.textContent = titleText;
+        title.appendChild(titleLink);
+    }
     function ensureAccountLink() {
         const nav = document.querySelector('.nav');
         if (!nav)
             return null;
         let link = nav.querySelector('a[href*="account.html"]');
-        if (link)
+        if (link) {
+            link.classList.add('nav-account');
+            link.innerHTML = '<span class="icon" aria-hidden="true">&#128100;</span><span class="label">Account</span>';
+            link.setAttribute('aria-label', 'Account');
+            link.title = 'Account';
             return link;
+        }
         const settingsLink = nav.querySelector('a[href*="settings.html"]');
         link = document.createElement('a');
         link.href = 'account.html';
         link.className = 'nav-account';
-        link.innerHTML = '<span class="icon">&#128100;</span><span class="label">Sign in</span>';
+        link.innerHTML = '<span class="icon" aria-hidden="true">&#128100;</span><span class="label">Account</span>';
+        link.setAttribute('aria-label', 'Account');
+        link.title = 'Account';
         if (settingsLink && settingsLink.parentElement === nav) {
             settingsLink.insertAdjacentElement('afterend', link);
         }
@@ -521,18 +829,34 @@
         }
         return link;
     }
-    function updateAccountLinkLabel(link, user) {
+    function getNavUsername(account, user) {
+        var _a;
+        const profile = ((_a = account === null || account === void 0 ? void 0 : account.getProfile) === null || _a === void 0 ? void 0 : _a.call(account)) || null;
+        const username = String((profile === null || profile === void 0 ? void 0 : profile.username) || '').trim();
+        if (username)
+            return username;
+        const email = String((user === null || user === void 0 ? void 0 : user.email) || '').trim();
+        if (email && email.includes('@'))
+            return email.split('@')[0];
+        return String((user === null || user === void 0 ? void 0 : user.displayName) || '').trim();
+    }
+    function updateAccountLinkLabel(link, user, account) {
         if (!link)
             return;
         const label = link.querySelector('.label');
         if (!label)
             return;
         if (user) {
-            const name = user.displayName || user.email || 'Account';
-            label.textContent = String(name || 'Account');
+            const name = getNavUsername(account, user);
+            const displayName = String(name || 'Account').trim();
+            label.textContent = displayName || 'Account';
+            link.setAttribute('aria-label', `${displayName || 'Account'} account`);
+            link.title = displayName || 'Account';
         }
         else {
-            label.textContent = 'Sign in';
+            label.textContent = 'Account';
+            link.setAttribute('aria-label', 'Account');
+            link.title = 'Account';
         }
     }
     function resolveApiBase() {
@@ -562,7 +886,19 @@
     }
     resolveApiBase();
     async function bindAccountNav() {
+        ensureNavHomeFromTitle();
         const link = ensureAccountLink();
+        const navMoreWrap = document.querySelector('[data-nav-more]');
+        if (navMoreWrap && link && navMoreWrap.parentElement) {
+            let controls = navMoreWrap.closest('.nav-quick-controls');
+            if (!controls) {
+                controls = document.createElement('div');
+                controls.className = 'nav-quick-controls';
+                navMoreWrap.insertAdjacentElement('beforebegin', controls);
+            }
+            controls.appendChild(navMoreWrap);
+            controls.appendChild(link);
+        }
         try {
             await import('./account_store.js');
         }
@@ -572,9 +908,18 @@
         const account = window.atomAccount;
         if (!(account === null || account === void 0 ? void 0 : account.onAuthChange))
             return;
-        account.onAuthChange((user) => updateAccountLinkLabel(link, user));
+        account.onAuthChange((user) => updateAccountLinkLabel(link, user, account));
     }
     bindAccountNav();
+    function ensureGlobalFooter() {
+        if (document.querySelector('.global-site-footer'))
+            return;
+        const footer = document.createElement('footer');
+        footer.className = 'global-site-footer';
+        footer.textContent = 'Made by Sachin Shankar using Github + Firebase + Render';
+        document.body.appendChild(footer);
+    }
+    ensureGlobalFooter();
     const bottomNav = document.querySelector('.bottom-nav');
     if (bottomNav) {
         const gameClockLink = bottomNav.querySelector('a[href*="game_clock.html"]');
@@ -586,7 +931,7 @@
             btn.className = 'bottom-more-btn';
             btn.setAttribute('aria-haspopup', 'true');
             btn.setAttribute('aria-expanded', 'false');
-            btn.innerHTML = '<span class="icon">&#8942;</span><span>More</span>';
+            btn.innerHTML = '<span class="icon">&#128295;</span><span>Buzzers</span>';
             const menu = document.createElement('div');
             menu.className = 'bottom-more-menu';
             menu.innerHTML = `

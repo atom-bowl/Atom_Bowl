@@ -42,10 +42,31 @@ declare global {
     bank?: unknown[];
     atomAccount?: {
       getUser: () => unknown | null;
+      getProfile?: () => {
+        username?: string;
+        playerName?: string;
+        displayName?: string;
+        firstName?: string;
+        lastName?: string;
+        email?: string;
+        phone?: string;
+        photoURL?: string;
+      } | null;
+      getGuestTag?: () => string;
       onAuthChange: (cb: (user: unknown | null) => void) => () => void;
       signInWithProvider: (providerId: string) => Promise<unknown>;
       signInWithEmail: (email: string, password: string) => Promise<unknown>;
+      signInWithIdentifier?: (identifier: string, password: string) => Promise<unknown>;
       signUpWithEmail: (email: string, password: string, displayName?: string) => Promise<unknown>;
+      signUpWithDetails?: (details: {
+        firstName: string;
+        lastName: string;
+        email: string;
+        phone?: string;
+        username: string;
+        password: string;
+        playerName?: string;
+      }) => Promise<unknown>;
       signOut: () => Promise<void>;
       loadRemoteSettings: () => Promise<unknown | null>;
       saveSettings: (settings: AtomSettings) => Promise<void>;
@@ -56,6 +77,22 @@ declare global {
         totalTime?: number;
         totalSlowCorrect?: number;
       }) => Promise<void>;
+      loadPracticeStats?: () => Promise<{
+        totalRuns?: number;
+        totalAnswered?: number;
+        totalCorrect?: number;
+        totalTime?: number;
+        totalSlowCorrect?: number;
+      } | null>;
+      isUsernameAvailable?: (username: string) => Promise<boolean>;
+      resolveEmailFromUsername?: (username: string) => Promise<string>;
+      updateAccountProfile?: (patch: {
+        playerName?: string;
+        firstName?: string;
+        lastName?: string;
+        phone?: string;
+        photoURL?: string;
+      }) => Promise<unknown>;
       loadBuzzerProfile: () => Promise<{ name?: string; team?: string } | null>;
       saveBuzzerProfile: (profile: { name?: string; team?: string }) => Promise<void>;
     };
@@ -99,6 +136,7 @@ declare module "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js"
   export const updateDoc: any;
   export const serverTimestamp: any;
   export const increment: any;
+  export const runTransaction: any;
 }
 
 declare module "./firebase.js" {
