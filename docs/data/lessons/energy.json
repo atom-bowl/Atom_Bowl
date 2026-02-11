@@ -1,0 +1,161 @@
+{
+  "subject": "energy",
+  "lessons": [
+    {
+      "id": "nrg_01",
+      "title": "Forms & Conservation of Energy",
+      "sections": [
+        {
+          "heading": "Types of Energy",
+          "body": "Energy is the ability to do work. Kinetic energy is the energy of motion, calculated as KE = 1/2 mv^2. Potential energy is stored energy due to position or configuration. Gravitational potential energy is PE = mgh. Elastic potential energy is stored in stretched or compressed materials. Thermal energy (heat) is the total kinetic energy of particles in a substance. Chemical energy is stored in chemical bonds. Electrical energy results from the flow of charged particles. Nuclear energy is stored in atomic nuclei.",
+          "keyTerms": ["kinetic energy", "potential energy", "gravitational potential energy", "thermal energy", "chemical energy", "electrical energy", "nuclear energy"]
+        },
+        {
+          "heading": "Conservation of Energy",
+          "body": "The law of conservation of energy states that energy cannot be created or destroyed, only converted from one form to another. The total energy of an isolated system remains constant. In mechanical systems, kinetic and potential energy convert back and forth, but total mechanical energy stays the same in the absence of friction. In real systems, some energy is always converted to thermal energy through friction, making perpetual motion machines impossible. Energy efficiency is the ratio of useful output energy to total input energy.",
+          "keyTerms": ["conservation of energy", "energy conversion", "mechanical energy", "energy efficiency", "friction"]
+        },
+        {
+          "heading": "Work and Power",
+          "body": "Work is done when a force causes displacement: W = Fd cos(theta), where theta is the angle between force and displacement. Work is measured in joules (J). No work is done if there is no displacement or if force is perpendicular to displacement. Power is the rate of doing work: P = W/t, measured in watts (W). One watt equals one joule per second. One horsepower equals 746 watts. The work-energy theorem states that net work equals the change in kinetic energy.",
+          "keyTerms": ["work", "joule", "power", "watt", "horsepower", "work-energy theorem"]
+        },
+        {
+          "heading": "Energy Transformations in Daily Life",
+          "body": "Energy transformations are everywhere. A car engine converts chemical energy (fuel) to thermal energy (combustion) to mechanical energy (motion). A hydroelectric dam converts gravitational potential energy to kinetic energy to electrical energy. Solar panels convert radiant energy to electrical energy via the photovoltaic effect. Plants convert light energy to chemical energy through photosynthesis. Batteries store chemical energy and convert it to electrical energy. In every transformation, some energy becomes thermal energy, increasing entropy.",
+          "keyTerms": ["energy transformation", "photovoltaic effect", "photosynthesis", "entropy"]
+        }
+      ]
+    },
+    {
+      "id": "nrg_02",
+      "title": "Thermodynamics",
+      "sections": [
+        {
+          "heading": "First Law of Thermodynamics",
+          "body": "The first law of thermodynamics is the conservation of energy applied to thermal systems. The internal energy of a system changes due to heat added (Q) and work done (W): delta U = Q - W. Heat is energy transferred due to temperature difference. Work is energy transferred by mechanical means. In an adiabatic process, no heat is exchanged (Q = 0). In an isothermal process, temperature stays constant. In an isochoric (isovolumetric) process, volume stays constant. In an isobaric process, pressure stays constant.",
+          "keyTerms": ["first law of thermodynamics", "internal energy", "adiabatic", "isothermal", "isochoric", "isobaric"]
+        },
+        {
+          "heading": "Second Law and Entropy",
+          "body": "The second law of thermodynamics states that heat flows spontaneously from hot to cold objects, never the reverse. Entropy (disorder) of an isolated system always increases or remains the same. A heat engine converts thermal energy to work but cannot be 100% efficient. The Carnot engine represents the maximum possible efficiency: efficiency = 1 - Tc/Th (temperatures in Kelvin). Refrigerators and heat pumps move heat from cold to hot by doing work. The third law states that entropy approaches zero as temperature approaches absolute zero (0 K).",
+          "keyTerms": ["second law of thermodynamics", "entropy", "heat engine", "Carnot engine", "third law of thermodynamics", "absolute zero"]
+        },
+        {
+          "heading": "Heat Transfer Methods",
+          "body": "Heat transfers via three methods. Conduction is heat transfer through direct contact between particles. Metals are good conductors; insulators (wood, air, foam) resist conduction. Convection is heat transfer through fluid movement (liquids and gases). Natural convection creates circulation patterns as warm fluid rises and cool fluid sinks. Forced convection uses fans or pumps. Radiation is heat transfer through electromagnetic waves, requiring no medium. All objects emit thermal radiation; hotter objects emit more and at shorter wavelengths (Wien's law). Stefan-Boltzmann law relates radiated power to temperature.",
+          "keyTerms": ["conduction", "convection", "radiation", "conductor", "insulator", "Wien's law", "Stefan-Boltzmann law"]
+        },
+        {
+          "heading": "Specific Heat and Calorimetry",
+          "body": "Specific heat capacity (c) is the amount of heat needed to raise 1 gram of a substance by 1 degree Celsius. Water has a high specific heat (4.184 J/g·C), making it excellent for temperature regulation. The heat equation is Q = mc(delta T). Calorimetry measures heat changes in chemical reactions or physical processes. In a calorimeter, heat lost by one substance equals heat gained by another (assuming no heat loss to surroundings). Latent heat is the energy required for phase changes without temperature change: latent heat of fusion (melting) and latent heat of vaporization (boiling).",
+          "keyTerms": ["specific heat capacity", "calorimetry", "latent heat", "latent heat of fusion", "latent heat of vaporization"]
+        }
+      ]
+    },
+    {
+      "id": "nrg_03",
+      "title": "Electricity & Magnetism",
+      "sections": [
+        {
+          "heading": "Electric Charge and Fields",
+          "body": "Electric charge comes in two types: positive and negative. Like charges repel; opposite charges attract. Charge is quantized in units of the elementary charge (1.6 x 10^-19 C). Charge is conserved in all processes. Coulomb's law gives the force between two charges: F = kq1q2/r^2, where k = 8.99 x 10^9 N·m^2/C^2. An electric field surrounds any charge: E = F/q = kQ/r^2. Field lines point away from positive charges and toward negative charges. Electric potential energy is U = kq1q2/r. Voltage (potential difference) is V = U/q.",
+          "keyTerms": ["electric charge", "Coulomb's law", "electric field", "field lines", "voltage", "potential difference", "elementary charge"]
+        },
+        {
+          "heading": "Electric Circuits",
+          "body": "Current (I) is the flow of charge, measured in amperes (A). Conventional current flows from positive to negative. Resistance (R) opposes current flow, measured in ohms. Ohm's law: V = IR. Power dissipated: P = IV = I^2R = V^2/R. In series circuits, current is the same through all components and voltages add. In parallel circuits, voltage is the same across all branches and currents add. Total resistance in series: Rt = R1 + R2 + ... In parallel: 1/Rt = 1/R1 + 1/R2 + ...",
+          "keyTerms": ["current", "ampere", "resistance", "ohm", "Ohm's law", "series circuit", "parallel circuit", "power"]
+        },
+        {
+          "heading": "Magnetism",
+          "body": "Magnets have north and south poles; like poles repel, opposite poles attract. Magnetic field lines go from north to south poles outside the magnet. Earth has a magnetic field generated by convection in the liquid outer core. Moving charges create magnetic fields. A current-carrying wire produces a circular magnetic field (right-hand rule). A solenoid (coil of wire) creates a uniform field inside, acting as an electromagnet. The force on a charge moving in a magnetic field is F = qvB sin(theta).",
+          "keyTerms": ["magnetic field", "north pole", "south pole", "right-hand rule", "solenoid", "electromagnet"]
+        },
+        {
+          "heading": "Electromagnetic Induction",
+          "body": "Faraday's law states that a changing magnetic flux through a loop induces an electromotive force (EMF). Lenz's law states that the induced current opposes the change in flux that caused it. Generators convert mechanical energy to electrical energy by rotating a coil in a magnetic field. Transformers change voltage levels using electromagnetic induction between two coils: V1/V2 = N1/N2 (turns ratio). Step-up transformers increase voltage; step-down transformers decrease it. Power transmission uses high voltage to reduce current and minimize energy loss.",
+          "keyTerms": ["Faraday's law", "Lenz's law", "electromagnetic induction", "EMF", "generator", "transformer", "step-up", "step-down"]
+        }
+      ]
+    },
+    {
+      "id": "nrg_04",
+      "title": "Fossil Fuels & Nuclear Energy",
+      "sections": [
+        {
+          "heading": "Fossil Fuels",
+          "body": "Fossil fuels (coal, oil, natural gas) formed from ancient organisms over millions of years. Coal formed from compressed plant material in swamps (peat, lignite, bituminous, anthracite). Oil and natural gas formed from marine organisms buried under sediment, subjected to heat and pressure. Fossil fuels are nonrenewable resources. Combustion releases CO2, a greenhouse gas contributing to climate change. Other pollutants include SO2 (acid rain), NOx (smog), and particulate matter.",
+          "keyTerms": ["fossil fuels", "coal", "oil", "natural gas", "nonrenewable", "combustion", "greenhouse gas", "acid rain"]
+        },
+        {
+          "heading": "Nuclear Fission",
+          "body": "Nuclear fission splits heavy nuclei (typically uranium-235 or plutonium-239) into lighter nuclei, releasing enormous energy. A neutron strikes U-235, causing it to split into two fission fragments plus 2-3 neutrons and energy. These neutrons can trigger more fissions, creating a chain reaction. Nuclear reactors use control rods (absorb neutrons) to maintain a controlled chain reaction. A moderator (water, graphite) slows neutrons. Nuclear fuel produces no direct CO2 emissions but generates radioactive waste requiring safe storage for thousands of years.",
+          "keyTerms": ["nuclear fission", "uranium-235", "chain reaction", "control rods", "moderator", "radioactive waste"]
+        },
+        {
+          "heading": "Nuclear Fusion",
+          "body": "Nuclear fusion combines light nuclei (typically hydrogen isotopes deuterium and tritium) into heavier nuclei, releasing energy. Fusion powers the Sun and stars through the proton-proton chain. Fusion requires extremely high temperatures (over 100 million degrees) to overcome electrostatic repulsion (Coulomb barrier). At these temperatures, matter exists as plasma. Fusion produces much more energy per unit mass than fission and creates minimal radioactive waste. Achieving controlled fusion on Earth remains an engineering challenge; current approaches include tokamaks and laser confinement.",
+          "keyTerms": ["nuclear fusion", "deuterium", "tritium", "proton-proton chain", "plasma", "Coulomb barrier", "tokamak"]
+        },
+        {
+          "heading": "Radioactivity",
+          "body": "Radioactive decay occurs when unstable nuclei emit particles or energy. Alpha decay emits a helium-4 nucleus (2 protons, 2 neutrons), reducing atomic number by 2 and mass number by 4. Beta decay emits an electron (beta-minus) or positron (beta-plus), changing a neutron to a proton or vice versa. Gamma decay emits high-energy electromagnetic radiation with no change in atomic or mass number. Half-life is the time for half of a radioactive sample to decay. Radiation is measured in becquerels (activity), grays (absorbed dose), and sieverts (biological effect).",
+          "keyTerms": ["radioactive decay", "alpha decay", "beta decay", "gamma decay", "half-life", "becquerel", "gray", "sievert"]
+        }
+      ]
+    },
+    {
+      "id": "nrg_05",
+      "title": "Renewable Energy Sources",
+      "sections": [
+        {
+          "heading": "Solar Energy",
+          "body": "Solar energy comes from nuclear fusion in the Sun. Photovoltaic (PV) cells convert sunlight directly to electricity using semiconductors (usually silicon). When photons strike the cell, they knock electrons free, creating current. Solar thermal systems use mirrors or lenses to concentrate sunlight, heating a fluid to drive turbines. Advantages: abundant, no emissions during operation, decreasing costs. Challenges: intermittent (day/night, clouds), requires energy storage, large land area for utility-scale installations. Solar cell efficiency has improved from about 6% to over 25% for commercial panels.",
+          "keyTerms": ["solar energy", "photovoltaic", "semiconductor", "silicon", "solar thermal", "intermittent"]
+        },
+        {
+          "heading": "Wind Energy",
+          "body": "Wind is caused by unequal heating of Earth's surface. Wind turbines convert kinetic energy of wind to electrical energy. Modern turbines have three blades on a horizontal axis. Power output is proportional to the cube of wind speed: P = 1/2 rho A v^3. The Betz limit states that a turbine can capture at most 59.3% of wind energy. Onshore wind farms are cost-effective; offshore wind farms access stronger, more consistent winds. Challenges include intermittency, visual impact, noise, and effects on wildlife (especially birds and bats).",
+          "keyTerms": ["wind turbine", "Betz limit", "onshore", "offshore", "intermittency"]
+        },
+        {
+          "heading": "Hydroelectric and Geothermal Energy",
+          "body": "Hydroelectric power converts gravitational potential energy of water to electricity. Dams store water in reservoirs; released water drives turbines. Run-of-river systems divert part of a river's flow. Pumped-storage facilities pump water uphill during low demand and release it during peak demand. Hydropower is reliable and dispatchable but can disrupt ecosystems and displace communities. Geothermal energy taps heat from Earth's interior. Geothermal power plants use steam from underground reservoirs to drive turbines. Geothermal heat pumps use shallow ground temperature for heating and cooling buildings.",
+          "keyTerms": ["hydroelectric", "dam", "reservoir", "pumped-storage", "geothermal", "geothermal heat pump"]
+        },
+        {
+          "heading": "Biomass and Emerging Technologies",
+          "body": "Biomass energy comes from organic materials: wood, crop residues, animal waste, and dedicated energy crops. Biofuels include ethanol (from corn or sugarcane fermentation) and biodiesel (from vegetable oils or animal fats). Biogas (mainly methane) is produced by anaerobic digestion of organic waste. Biomass is considered carbon-neutral if regrowth absorbs the CO2 released during combustion. Emerging technologies include hydrogen fuel cells (combining H2 and O2 to produce electricity and water), tidal and wave energy, and advanced nuclear designs (small modular reactors, thorium reactors).",
+          "keyTerms": ["biomass", "biofuel", "ethanol", "biodiesel", "biogas", "anaerobic digestion", "hydrogen fuel cell", "tidal energy"]
+        }
+      ]
+    },
+    {
+      "id": "nrg_06",
+      "title": "Energy Policy & Environmental Impact",
+      "sections": [
+        {
+          "heading": "Climate Change Science",
+          "body": "Earth's average temperature has risen about 1.1 degrees C since pre-industrial times, primarily due to increasing atmospheric CO2 from fossil fuel combustion. CO2 levels have risen from about 280 ppm (pre-industrial) to over 420 ppm. The greenhouse effect traps outgoing infrared radiation. Consequences include rising sea levels (thermal expansion and ice melt), more extreme weather events, ocean acidification (CO2 dissolving in seawater), shifts in ecosystems and species ranges, and threats to food and water security.",
+          "keyTerms": ["climate change", "CO2", "greenhouse effect", "sea level rise", "ocean acidification", "global warming"]
+        },
+        {
+          "heading": "Carbon Footprint and Emissions",
+          "body": "A carbon footprint is the total greenhouse gas emissions caused by an individual, organization, event, or product. Major sources: electricity generation (25%), transportation (16%), industry (21%), agriculture (10%), and buildings (6%). Carbon dioxide equivalent (CO2e) standardizes different greenhouse gases by their global warming potential (GWP). Methane has a GWP of about 80 over 20 years. Nitrous oxide has a GWP of about 273. Reducing emissions involves energy efficiency, switching to renewables, electrifying transportation, and changing land use practices.",
+          "keyTerms": ["carbon footprint", "CO2 equivalent", "global warming potential", "emissions", "energy efficiency"]
+        },
+        {
+          "heading": "Energy Efficiency and Conservation",
+          "body": "Energy efficiency means using less energy to perform the same task. Building efficiency includes insulation, LED lighting, high-efficiency HVAC systems, and smart thermostats. Transportation efficiency includes fuel economy standards, electric vehicles, and public transit. Industrial efficiency includes cogeneration (combined heat and power), waste heat recovery, and process optimization. The rebound effect occurs when efficiency gains lead to increased consumption. Energy conservation means using less energy through behavioral changes.",
+          "keyTerms": ["energy efficiency", "insulation", "LED", "HVAC", "cogeneration", "rebound effect", "energy conservation"]
+        },
+        {
+          "heading": "Energy Policy and Sustainability",
+          "body": "Energy policy balances economic growth, environmental protection, and energy security. The Paris Agreement aims to limit warming to 1.5-2 degrees C above pre-industrial levels. Carbon pricing mechanisms include carbon taxes (directly pricing emissions) and cap-and-trade systems (setting emission limits and allowing trading of allowances). Renewable portfolio standards require utilities to generate a percentage of electricity from renewables. Sustainability means meeting present needs without compromising the ability of future generations to meet their needs. The energy transition requires massive investment in clean energy, grid modernization, and energy storage.",
+          "keyTerms": ["Paris Agreement", "carbon tax", "cap-and-trade", "renewable portfolio standard", "sustainability", "energy transition"]
+        }
+      ]
+    }
+  ]
+}

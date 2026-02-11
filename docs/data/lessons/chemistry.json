@@ -1,0 +1,161 @@
+{
+  "subject": "chemistry",
+  "lessons": [
+    {
+      "id": "chem_01",
+      "title": "Atomic Structure",
+      "sections": [
+        {
+          "heading": "Subatomic Particles",
+          "body": "Atoms consist of three subatomic particles. Protons have a positive charge and are located in the nucleus; the number of protons defines the element (atomic number Z). Neutrons have no charge and are also in the nucleus; they contribute to atomic mass. Electrons have a negative charge and orbit the nucleus in electron clouds. The mass number (A) equals protons plus neutrons. Isotopes are atoms of the same element with different numbers of neutrons.",
+          "keyTerms": ["proton", "neutron", "electron", "atomic number", "mass number", "isotope"]
+        },
+        {
+          "heading": "Electron Configuration",
+          "body": "Electrons occupy orbitals described by quantum numbers. The principal quantum number (n) indicates energy level. The angular momentum quantum number (l) indicates orbital shape (s, p, d, f). The magnetic quantum number (ml) indicates orbital orientation. The spin quantum number (ms) is +1/2 or -1/2. The Aufbau principle states electrons fill lowest energy orbitals first. The Pauli exclusion principle says no two electrons can have identical quantum numbers. Hund's rule states electrons fill degenerate orbitals singly before pairing.",
+          "keyTerms": ["quantum numbers", "orbital", "Aufbau principle", "Pauli exclusion principle", "Hund's rule", "electron configuration"]
+        },
+        {
+          "heading": "Periodic Trends",
+          "body": "The periodic table organizes elements by atomic number. Periods are horizontal rows; groups are vertical columns. Key periodic trends: atomic radius decreases across a period (increasing nuclear charge) and increases down a group (more electron shells). Ionization energy increases across a period and decreases down a group. Electronegativity (tendency to attract electrons) increases across a period and decreases down a group. Electron affinity generally becomes more negative across a period.",
+          "keyTerms": ["periodic table", "period", "group", "atomic radius", "ionization energy", "electronegativity", "electron affinity"]
+        },
+        {
+          "heading": "Historical Atomic Models",
+          "body": "Dalton proposed that atoms are indivisible solid spheres. Thomson's plum pudding model placed electrons in a positive matrix. Rutherford's gold foil experiment revealed a dense positive nucleus. Bohr's model placed electrons in fixed circular orbits with quantized energy levels. The modern quantum mechanical model describes electrons as probability clouds (orbitals) based on Schrodinger's wave equation. Heisenberg's uncertainty principle states you cannot simultaneously know both the position and momentum of an electron precisely.",
+          "keyTerms": ["Dalton", "Thomson", "Rutherford", "Bohr model", "quantum mechanical model", "Heisenberg uncertainty principle"]
+        }
+      ]
+    },
+    {
+      "id": "chem_02",
+      "title": "Chemical Bonding",
+      "sections": [
+        {
+          "heading": "Ionic Bonds",
+          "body": "Ionic bonds form when electrons are transferred from a metal to a nonmetal, creating oppositely charged ions that attract. Cations are positively charged ions (metals lose electrons). Anions are negatively charged ions (nonmetals gain electrons). Ionic compounds form crystal lattices, have high melting points, conduct electricity when dissolved or molten, and are generally soluble in water. Lattice energy measures the strength of ionic bonds.",
+          "keyTerms": ["ionic bond", "cation", "anion", "crystal lattice", "lattice energy"]
+        },
+        {
+          "heading": "Covalent Bonds",
+          "body": "Covalent bonds form when atoms share electrons, typically between nonmetals. Single bonds share one pair, double bonds share two pairs, and triple bonds share three pairs. Bond energy and bond length are inversely related: triple bonds are shortest and strongest. Polar covalent bonds have unequal sharing due to electronegativity differences. Nonpolar covalent bonds have equal sharing. Lewis structures show bonding and lone pair electrons. The octet rule states atoms tend to achieve eight valence electrons.",
+          "keyTerms": ["covalent bond", "single bond", "double bond", "triple bond", "polar covalent", "nonpolar covalent", "Lewis structure", "octet rule", "lone pair"]
+        },
+        {
+          "heading": "VSEPR Theory and Molecular Geometry",
+          "body": "VSEPR (Valence Shell Electron Pair Repulsion) theory predicts molecular geometry based on minimizing electron pair repulsion. Common geometries: linear (2 bonding, 0 lone pairs, 180 degrees), trigonal planar (3 bonding, 0 lone, 120 degrees), tetrahedral (4 bonding, 0 lone, 109.5 degrees), bent (2 bonding, 1-2 lone), trigonal pyramidal (3 bonding, 1 lone). Molecular polarity depends on both bond polarity and molecular geometry. Symmetric molecules can be nonpolar despite having polar bonds.",
+          "keyTerms": ["VSEPR", "molecular geometry", "linear", "trigonal planar", "tetrahedral", "bent", "trigonal pyramidal", "molecular polarity"]
+        },
+        {
+          "heading": "Intermolecular Forces",
+          "body": "Intermolecular forces (IMFs) are attractions between molecules. London dispersion forces (weakest) exist in all molecules and increase with molar mass. Dipole-dipole forces occur between polar molecules. Hydrogen bonds (strongest IMF) occur when H is bonded to N, O, or F and interacts with another N, O, or F. IMFs determine physical properties: stronger IMFs mean higher boiling points, higher viscosity, and greater surface tension. Metallic bonding involves a sea of delocalized electrons shared among metal atoms.",
+          "keyTerms": ["intermolecular forces", "London dispersion forces", "dipole-dipole", "hydrogen bond", "metallic bonding"]
+        }
+      ]
+    },
+    {
+      "id": "chem_03",
+      "title": "Stoichiometry & Reactions",
+      "sections": [
+        {
+          "heading": "The Mole Concept",
+          "body": "A mole is 6.022 x 10^23 particles (Avogadro's number). The molar mass of an element equals its atomic mass in grams per mole. For compounds, molar mass is the sum of all atomic masses in the formula. Molar volume of an ideal gas at STP (0 degrees C, 1 atm) is 22.4 L/mol. Conversions between grams, moles, and particles use molar mass and Avogadro's number as conversion factors.",
+          "keyTerms": ["mole", "Avogadro's number", "molar mass", "STP", "molar volume"]
+        },
+        {
+          "heading": "Balancing Chemical Equations",
+          "body": "The law of conservation of mass states that matter is neither created nor destroyed in a chemical reaction. Chemical equations must be balanced so that atoms of each element are equal on both sides. Coefficients (not subscripts) are adjusted to balance equations. Types of reactions: synthesis (A + B -> AB), decomposition (AB -> A + B), single replacement (A + BC -> AC + B), double replacement (AB + CD -> AD + CB), and combustion (hydrocarbon + O2 -> CO2 + H2O).",
+          "keyTerms": ["conservation of mass", "coefficient", "synthesis", "decomposition", "single replacement", "double replacement", "combustion"]
+        },
+        {
+          "heading": "Stoichiometric Calculations",
+          "body": "Stoichiometry uses mole ratios from balanced equations to convert between amounts of reactants and products. The general approach: convert given quantity to moles, use mole ratio to find moles of desired substance, then convert to required units. The limiting reagent is the reactant that runs out first, determining the theoretical yield. Excess reagent is left over. Percent yield equals (actual yield / theoretical yield) x 100%.",
+          "keyTerms": ["stoichiometry", "mole ratio", "limiting reagent", "theoretical yield", "percent yield", "excess reagent"]
+        },
+        {
+          "heading": "Oxidation-Reduction Reactions",
+          "body": "Redox reactions involve transfer of electrons. Oxidation is loss of electrons (increase in oxidation number). Reduction is gain of electrons (decrease in oxidation number). The mnemonic OIL RIG helps remember: Oxidation Is Loss, Reduction Is Gain. The oxidizing agent is reduced (gains electrons). The reducing agent is oxidized (loses electrons). Oxidation numbers follow specific rules: free elements are 0, monatomic ions equal their charge, and oxygen is usually -2, hydrogen is usually +1.",
+          "keyTerms": ["oxidation", "reduction", "redox", "oxidizing agent", "reducing agent", "oxidation number"]
+        }
+      ]
+    },
+    {
+      "id": "chem_04",
+      "title": "States of Matter & Solutions",
+      "sections": [
+        {
+          "heading": "Gas Laws",
+          "body": "Boyle's law: at constant temperature, pressure and volume are inversely proportional (P1V1 = P2V2). Charles's law: at constant pressure, volume and temperature are directly proportional (V1/T1 = V2/T2). Gay-Lussac's law: at constant volume, pressure and temperature are directly proportional. The combined gas law merges all three. The ideal gas law is PV = nRT, where R = 0.0821 L·atm/(mol·K). Dalton's law of partial pressures states total pressure equals the sum of individual gas pressures.",
+          "keyTerms": ["Boyle's law", "Charles's law", "Gay-Lussac's law", "ideal gas law", "Dalton's law", "partial pressure"]
+        },
+        {
+          "heading": "Phase Changes",
+          "body": "Matter exists as solid, liquid, gas, or plasma. Phase transitions: melting (solid to liquid), freezing (liquid to solid), vaporization (liquid to gas), condensation (gas to liquid), sublimation (solid to gas), and deposition (gas to solid). During phase changes, temperature remains constant as energy goes into breaking or forming intermolecular forces. Phase diagrams show temperature and pressure conditions for each phase. The triple point is where all three phases coexist. The critical point is where liquid and gas become indistinguishable.",
+          "keyTerms": ["melting", "freezing", "vaporization", "condensation", "sublimation", "deposition", "phase diagram", "triple point", "critical point"]
+        },
+        {
+          "heading": "Solutions and Concentration",
+          "body": "A solution is a homogeneous mixture of a solute dissolved in a solvent. Concentration can be expressed as molarity (moles of solute per liter of solution), molality (moles of solute per kilogram of solvent), percent by mass, or parts per million (ppm). 'Like dissolves like': polar solvents dissolve polar solutes, nonpolar solvents dissolve nonpolar solutes. Solubility generally increases with temperature for solids and decreases for gases. Henry's law states that gas solubility is proportional to partial pressure.",
+          "keyTerms": ["solution", "solute", "solvent", "molarity", "molality", "solubility", "Henry's law"]
+        },
+        {
+          "heading": "Colligative Properties",
+          "body": "Colligative properties depend on the number of solute particles, not their identity. Boiling point elevation: adding solute raises the boiling point. Freezing point depression: adding solute lowers the freezing point. Vapor pressure lowering (Raoult's law): adding solute decreases vapor pressure. Osmotic pressure drives solvent flow across a semipermeable membrane from low to high solute concentration. The van't Hoff factor (i) accounts for dissociation of ionic compounds in solution.",
+          "keyTerms": ["colligative properties", "boiling point elevation", "freezing point depression", "Raoult's law", "osmotic pressure", "van't Hoff factor"]
+        }
+      ]
+    },
+    {
+      "id": "chem_05",
+      "title": "Acids, Bases & Equilibrium",
+      "sections": [
+        {
+          "heading": "Acid-Base Theories",
+          "body": "Arrhenius acids produce H+ in water; Arrhenius bases produce OH-. Bronsted-Lowry acids are proton donors; Bronsted-Lowry bases are proton acceptors. Lewis acids are electron pair acceptors; Lewis bases are electron pair donors. Strong acids (HCl, HNO3, H2SO4, HBr, HI, HClO4) completely dissociate. Weak acids partially dissociate and have an equilibrium constant Ka. Strong bases (NaOH, KOH) completely dissociate. Weak bases have Kb.",
+          "keyTerms": ["Arrhenius", "Bronsted-Lowry", "Lewis acid", "Lewis base", "strong acid", "weak acid", "Ka", "Kb"]
+        },
+        {
+          "heading": "pH and Buffers",
+          "body": "pH = -log[H+], where [H+] is the hydrogen ion concentration. Neutral pH is 7. Acidic solutions have pH < 7; basic solutions have pH > 7. pOH = -log[OH-]. pH + pOH = 14 at 25 degrees C. The ion product of water: Kw = [H+][OH-] = 1.0 x 10^-14. Buffers resist changes in pH and consist of a weak acid and its conjugate base (or weak base and its conjugate acid). The Henderson-Hasselbalch equation: pH = pKa + log([A-]/[HA]).",
+          "keyTerms": ["pH", "pOH", "Kw", "buffer", "conjugate acid", "conjugate base", "Henderson-Hasselbalch"]
+        },
+        {
+          "heading": "Chemical Equilibrium",
+          "body": "Chemical equilibrium occurs when forward and reverse reaction rates are equal. The equilibrium constant K = [products]/[reactants], each raised to their stoichiometric coefficients. A large K favors products; a small K favors reactants. Le Chatelier's principle states that if a system at equilibrium is disturbed, it shifts to counteract the change. Adding reactant shifts right; adding product shifts left. Increasing temperature shifts toward the endothermic direction. Changing pressure affects gaseous equilibria.",
+          "keyTerms": ["chemical equilibrium", "equilibrium constant", "Le Chatelier's principle", "endothermic", "exothermic"]
+        },
+        {
+          "heading": "Titration and Solubility Equilibria",
+          "body": "Titration determines the concentration of an unknown solution by reacting it with a known solution. The equivalence point is where moles of acid equal moles of base. Indicators change color near the equivalence point. Strong acid-strong base titrations have an equivalence point at pH 7. Weak acid-strong base titrations have equivalence points above 7. The solubility product constant (Ksp) describes the equilibrium for slightly soluble ionic compounds. The common ion effect decreases solubility when a shared ion is already present.",
+          "keyTerms": ["titration", "equivalence point", "indicator", "Ksp", "solubility product", "common ion effect"]
+        }
+      ]
+    },
+    {
+      "id": "chem_06",
+      "title": "Thermodynamics & Kinetics",
+      "sections": [
+        {
+          "heading": "Enthalpy and Hess's Law",
+          "body": "Enthalpy (H) is the heat content of a system at constant pressure. An exothermic reaction releases heat (negative delta H). An endothermic reaction absorbs heat (positive delta H). Hess's law states that the total enthalpy change is independent of the path taken. Standard enthalpy of formation (delta Hf) is the enthalpy change when one mole of a compound forms from its elements. Bond energies can estimate delta H: energy required to break bonds minus energy released forming bonds.",
+          "keyTerms": ["enthalpy", "exothermic", "endothermic", "Hess's law", "enthalpy of formation", "bond energy"]
+        },
+        {
+          "heading": "Entropy and Gibbs Free Energy",
+          "body": "Entropy (S) measures disorder or randomness. The second law of thermodynamics states that entropy of the universe always increases. Entropy increases when: solids become liquids or gases, temperature increases, or the number of particles increases. Gibbs free energy (G) combines enthalpy and entropy: delta G = delta H - T(delta S). A reaction is spontaneous when delta G < 0, nonspontaneous when delta G > 0, and at equilibrium when delta G = 0. The relationship delta G = -RT ln K connects free energy to the equilibrium constant.",
+          "keyTerms": ["entropy", "second law of thermodynamics", "Gibbs free energy", "spontaneous", "nonspontaneous"]
+        },
+        {
+          "heading": "Reaction Rates",
+          "body": "Reaction rate measures how quickly reactants are consumed or products are formed. Factors affecting rate: concentration (higher concentration increases rate), temperature (higher temperature increases rate), surface area (more surface area increases rate), and catalysts (lower activation energy). The rate law expresses rate as k[A]^m[B]^n, where k is the rate constant and m, n are reaction orders determined experimentally. The Arrhenius equation relates the rate constant to temperature and activation energy: k = Ae^(-Ea/RT).",
+          "keyTerms": ["reaction rate", "rate law", "rate constant", "reaction order", "activation energy", "Arrhenius equation", "catalyst"]
+        },
+        {
+          "heading": "Reaction Mechanisms and Catalysis",
+          "body": "A reaction mechanism is a series of elementary steps that describe how a reaction occurs. The rate-determining step is the slowest step and determines the overall rate. Intermediates are formed in one step and consumed in another. The molecularity of an elementary step is the number of reactant molecules involved (unimolecular, bimolecular). Catalysts speed up reactions by providing an alternative pathway with lower activation energy. Enzymes are biological catalysts. Homogeneous catalysts are in the same phase as reactants; heterogeneous catalysts are in a different phase.",
+          "keyTerms": ["reaction mechanism", "rate-determining step", "intermediate", "molecularity", "catalyst", "enzyme", "homogeneous catalyst", "heterogeneous catalyst"]
+        }
+      ]
+    }
+  ]
+}

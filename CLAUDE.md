@@ -7,7 +7,7 @@ Atom Bowl is a browser-based Science Bowl (NSB) practice platform. It features a
 ## Tech Stack
 
 - **Frontend:** TypeScript (compiled to ES2020 JS), vanilla CSS with custom properties, no framework
-- **Backend:** Node.js + Express, Python (`autochecker.py` for answer grading), Ruby (`search.rb` for search)
+- **Backend:** Node.js + Express, Python (`autochecker.py` for answer grading), Ruby (`search.rb` for search), Firebase, Render (Docker)
 - **Database/Auth:** Firebase Firestore + Firebase Auth
 - **Deployment:** GitHub Pages (static frontend in `docs/`), Docker on Render (backend)
 

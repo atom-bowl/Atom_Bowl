@@ -1,0 +1,161 @@
+{
+  "subject": "earth_space",
+  "lessons": [
+    {
+      "id": "es_01",
+      "title": "Earth's Interior & Plate Tectonics",
+      "sections": [
+        {
+          "heading": "Layers of the Earth",
+          "body": "The Earth has four main layers. The crust is the thin outermost layer: oceanic crust (5-10 km, basaltic) and continental crust (30-70 km, granitic). The mantle extends to about 2,900 km depth and is made of silicate rock; the upper mantle includes the rigid lithosphere and plastic asthenosphere. The outer core is liquid iron and nickel (2,900-5,150 km), generating Earth's magnetic field through convection currents. The inner core is solid iron and nickel (5,150-6,371 km) under extreme pressure.",
+          "keyTerms": ["crust", "mantle", "lithosphere", "asthenosphere", "outer core", "inner core", "magnetic field"]
+        },
+        {
+          "heading": "Plate Tectonics Theory",
+          "body": "The lithosphere is divided into tectonic plates that float on the asthenosphere. Alfred Wegener proposed continental drift, supported by fossil evidence, matching coastlines, and rock formations. Seafloor spreading at mid-ocean ridges (discovered by Harry Hess) produces new oceanic crust. Paleomagnetism in ocean floor rocks shows magnetic reversals, confirming spreading. Convection currents in the mantle, ridge push, and slab pull drive plate movement.",
+          "keyTerms": ["tectonic plates", "continental drift", "Wegener", "seafloor spreading", "mid-ocean ridge", "paleomagnetism", "convection currents"]
+        },
+        {
+          "heading": "Plate Boundaries",
+          "body": "Divergent boundaries occur where plates move apart, creating rift valleys and mid-ocean ridges. Convergent boundaries occur where plates collide: oceanic-continental convergence creates subduction zones and volcanic arcs; oceanic-oceanic convergence creates island arcs and trenches; continental-continental convergence creates mountain ranges (e.g., Himalayas). Transform boundaries occur where plates slide past each other horizontally, causing earthquakes (e.g., San Andreas Fault).",
+          "keyTerms": ["divergent", "convergent", "subduction zone", "transform boundary", "rift valley", "volcanic arc", "trench"]
+        },
+        {
+          "heading": "Earthquakes and Volcanoes",
+          "body": "Earthquakes occur when stress along faults exceeds rock strength. The focus is the point of rupture underground; the epicenter is directly above on the surface. Seismic waves include P-waves (primary, compressional, fastest), S-waves (secondary, shear, cannot travel through liquids), and surface waves (slowest, most destructive). The Richter scale measures magnitude logarithmically. Volcanoes form at convergent boundaries, divergent boundaries, and hotspots. Volcanic types include shield (gentle slopes, basaltic), stratovolcano (steep, explosive), and cinder cone (small, steep).",
+          "keyTerms": ["earthquake", "focus", "epicenter", "P-waves", "S-waves", "seismic waves", "Richter scale", "shield volcano", "stratovolcano", "hotspot"]
+        }
+      ]
+    },
+    {
+      "id": "es_02",
+      "title": "Rocks & Minerals",
+      "sections": [
+        {
+          "heading": "Minerals",
+          "body": "A mineral is a naturally occurring, inorganic solid with a definite chemical composition and crystalline structure. Minerals are identified by properties: hardness (Mohs scale 1-10), luster (metallic or nonmetallic), streak (color of powder), cleavage (breaks along flat planes) or fracture (irregular breaks), specific gravity, and crystal system. Common rock-forming minerals include quartz, feldspar, mica, calcite, and olivine. Silicates are the most abundant mineral group.",
+          "keyTerms": ["mineral", "Mohs scale", "hardness", "luster", "streak", "cleavage", "fracture", "silicates"]
+        },
+        {
+          "heading": "Igneous Rocks",
+          "body": "Igneous rocks form from the cooling and crystallization of magma or lava. Intrusive (plutonic) igneous rocks cool slowly underground, forming large crystals (e.g., granite). Extrusive (volcanic) igneous rocks cool quickly at the surface, forming small crystals or glass (e.g., basalt, obsidian). Igneous rock composition ranges from felsic (high silica, light-colored: granite, rhyolite) to mafic (low silica, dark-colored: gabbro, basalt) to ultramafic (very low silica: peridotite).",
+          "keyTerms": ["igneous", "intrusive", "extrusive", "granite", "basalt", "felsic", "mafic", "magma", "lava"]
+        },
+        {
+          "heading": "Sedimentary Rocks",
+          "body": "Sedimentary rocks form from compaction and cementation of sediments. Clastic sedimentary rocks are made of fragments: conglomerate (gravel), sandstone (sand), shale (clay). Chemical sedimentary rocks precipitate from solution: limestone (calcium carbonate), rock salt (halite). Organic sedimentary rocks form from biological remains: coal, some limestone. Sedimentary rocks often contain fossils and show layering (stratification). They cover about 75% of Earth's surface.",
+          "keyTerms": ["sedimentary", "clastic", "chemical sedimentary", "compaction", "cementation", "stratification", "sandstone", "limestone", "shale"]
+        },
+        {
+          "heading": "Metamorphic Rocks and the Rock Cycle",
+          "body": "Metamorphic rocks form when existing rocks are changed by heat, pressure, or chemical processes without melting. Contact metamorphism occurs near igneous intrusions. Regional metamorphism occurs over large areas during mountain building. Foliated metamorphic rocks have aligned minerals (slate, schist, gneiss). Non-foliated rocks lack alignment (marble from limestone, quartzite from sandstone). The rock cycle describes how rocks transform between igneous, sedimentary, and metamorphic types through various processes.",
+          "keyTerms": ["metamorphic", "contact metamorphism", "regional metamorphism", "foliated", "non-foliated", "slate", "marble", "quartzite", "rock cycle"]
+        }
+      ]
+    },
+    {
+      "id": "es_03",
+      "title": "Atmosphere & Weather",
+      "sections": [
+        {
+          "heading": "Atmospheric Layers",
+          "body": "The troposphere (0-12 km) contains 75% of atmospheric mass and all weather. Temperature decreases with altitude. The stratosphere (12-50 km) contains the ozone layer, which absorbs UV radiation; temperature increases with altitude. The mesosphere (50-80 km) is the coldest layer. The thermosphere (80-700 km) contains the ionosphere, where auroras occur; temperature increases dramatically. The exosphere (700+ km) transitions to outer space. Atmospheric composition: 78% nitrogen, 21% oxygen, 1% argon and trace gases.",
+          "keyTerms": ["troposphere", "stratosphere", "ozone layer", "mesosphere", "thermosphere", "ionosphere", "exosphere"]
+        },
+        {
+          "heading": "Weather Systems",
+          "body": "Weather is driven by unequal heating of Earth's surface. Warm air rises (low pressure) and cool air sinks (high pressure). Wind flows from high to low pressure, deflected by the Coriolis effect (right in Northern Hemisphere, left in Southern). Global circulation includes Hadley cells (0-30 degrees), Ferrel cells (30-60 degrees), and Polar cells (60-90 degrees). Jet streams are fast upper-atmosphere winds at boundaries between cells.",
+          "keyTerms": ["low pressure", "high pressure", "Coriolis effect", "Hadley cell", "Ferrel cell", "jet stream", "wind"]
+        },
+        {
+          "heading": "Fronts and Severe Weather",
+          "body": "A front is the boundary between two air masses. Cold fronts occur when cold air pushes under warm air, causing rapid uplift and often severe weather. Warm fronts occur when warm air slides over cold air, producing widespread, gentle precipitation. Stationary fronts remain in place. Occluded fronts form when a cold front overtakes a warm front. Severe weather includes thunderstorms (caused by convection in unstable air), tornadoes (rotating columns, measured by Enhanced Fujita scale), and hurricanes (tropical cyclones, measured by Saffir-Simpson scale, require warm ocean water above 26.5 degrees C).",
+          "keyTerms": ["cold front", "warm front", "stationary front", "occluded front", "thunderstorm", "tornado", "hurricane", "Fujita scale", "Saffir-Simpson scale"]
+        },
+        {
+          "heading": "Climate and Climate Change",
+          "body": "Climate is the long-term average of weather patterns. Climate zones are determined by latitude, altitude, proximity to water, ocean currents, and prevailing winds. The Koppen classification system categorizes climates into tropical, dry, temperate, continental, and polar. The greenhouse effect is a natural process where CO2, methane, water vapor, and other gases trap heat. Enhanced greenhouse effect from burning fossil fuels increases global temperatures. Milankovitch cycles describe natural climate variation due to changes in Earth's orbit, axial tilt, and precession.",
+          "keyTerms": ["climate", "Koppen classification", "greenhouse effect", "greenhouse gases", "Milankovitch cycles", "precession", "axial tilt"]
+        }
+      ]
+    },
+    {
+      "id": "es_04",
+      "title": "Oceanography",
+      "sections": [
+        {
+          "heading": "Ocean Structure",
+          "body": "The ocean has distinct layers based on temperature. The surface mixed layer (0-200 m) is warm and well-mixed by wind. The thermocline (200-1000 m) shows a rapid temperature decrease. The deep ocean (below 1000 m) is cold and uniform. Ocean water averages 3.5% salinity, primarily sodium chloride. Salinity varies with evaporation, precipitation, river input, and ice formation. The ocean floor features continental shelves, continental slopes, abyssal plains, mid-ocean ridges, and ocean trenches.",
+          "keyTerms": ["thermocline", "salinity", "continental shelf", "abyssal plain", "mid-ocean ridge", "ocean trench"]
+        },
+        {
+          "heading": "Ocean Currents",
+          "body": "Surface currents are driven by wind and deflected by the Coriolis effect, forming gyres that rotate clockwise in the Northern Hemisphere and counterclockwise in the Southern. Major currents include the Gulf Stream (warm, northwest Atlantic), California Current (cold, eastern Pacific), and Kuroshio Current (warm, western Pacific). Thermohaline circulation (the global conveyor belt) is driven by density differences from temperature and salinity. Cold, salty water sinks in the North Atlantic and flows deep, returning warm water to the surface.",
+          "keyTerms": ["surface currents", "gyre", "Gulf Stream", "thermohaline circulation", "global conveyor belt", "Coriolis effect"]
+        },
+        {
+          "heading": "Tides",
+          "body": "Tides are caused by the gravitational pull of the Moon and Sun on Earth's oceans. Spring tides (highest highs and lowest lows) occur during full and new moons when the Sun, Moon, and Earth are aligned. Neap tides (smallest tidal range) occur during quarter moons when the Sun and Moon are at right angles. Most coastlines experience semidiurnal tides (two high and two low tides per day). The tidal bulge forms on both the side facing the Moon and the opposite side due to inertia.",
+          "keyTerms": ["tides", "spring tides", "neap tides", "semidiurnal", "tidal bulge", "gravitational pull"]
+        },
+        {
+          "heading": "Marine Geology",
+          "body": "The ocean floor is mapped using sonar (Sound Navigation and Ranging). Mid-ocean ridges are underwater mountain chains where new crust forms through seafloor spreading. Hydrothermal vents at ridges support unique ecosystems through chemosynthesis. Ocean trenches are the deepest parts of the ocean, formed at subduction zones. The Mariana Trench is the deepest point (about 11,034 m). Coral reefs form in warm, shallow, clear water and support enormous biodiversity. Seamounts are underwater volcanic mountains that do not reach the surface.",
+          "keyTerms": ["sonar", "hydrothermal vent", "chemosynthesis", "Mariana Trench", "coral reef", "seamount"]
+        }
+      ]
+    },
+    {
+      "id": "es_05",
+      "title": "Astronomy & the Solar System",
+      "sections": [
+        {
+          "heading": "The Solar System",
+          "body": "The solar system formed about 4.6 billion years ago from a collapsing nebula (solar nebula hypothesis). The Sun contains 99.86% of the system's mass. The four inner (terrestrial) planets are Mercury, Venus, Earth, and Mars (rocky, small, dense). The four outer (Jovian) planets are Jupiter, Saturn, Uranus, and Neptune (gaseous or icy, large, less dense). The asteroid belt lies between Mars and Jupiter. The Kuiper Belt beyond Neptune contains dwarf planets like Pluto. The Oort Cloud is a distant spherical shell of icy bodies.",
+          "keyTerms": ["solar nebula", "terrestrial planets", "Jovian planets", "asteroid belt", "Kuiper Belt", "Oort Cloud", "dwarf planet"]
+        },
+        {
+          "heading": "Stars and Stellar Evolution",
+          "body": "Stars form in nebulae when gravity causes gas and dust to collapse. A protostar becomes a main sequence star when hydrogen fusion begins in its core. Stars spend most of their lives on the main sequence. Low-mass stars become red giants, then planetary nebulae, leaving white dwarfs. High-mass stars become red supergiants, then explode as supernovae, leaving neutron stars or black holes. The Hertzsprung-Russell (H-R) diagram plots luminosity versus temperature, revealing stellar classification.",
+          "keyTerms": ["nebula", "protostar", "main sequence", "red giant", "white dwarf", "supernova", "neutron star", "black hole", "H-R diagram"]
+        },
+        {
+          "heading": "Galaxies and Cosmology",
+          "body": "Galaxies are massive collections of stars, gas, and dust bound by gravity. Types include spiral (like the Milky Way), elliptical, and irregular. The Milky Way is a barred spiral galaxy about 100,000 light-years across. The Big Bang theory states the universe began 13.8 billion years ago from an extremely hot, dense point. Evidence includes cosmic microwave background radiation (CMB), Hubble's law (galaxies recede proportional to distance), and the abundance of light elements. Dark matter and dark energy together make up about 95% of the universe.",
+          "keyTerms": ["galaxy", "spiral galaxy", "elliptical galaxy", "Milky Way", "Big Bang", "cosmic microwave background", "Hubble's law", "dark matter", "dark energy"]
+        },
+        {
+          "heading": "Earth-Moon-Sun System",
+          "body": "Earth orbits the Sun in an elliptical path, taking 365.25 days (one year). Earth's axial tilt of 23.5 degrees causes seasons. The Moon orbits Earth every 27.3 days (sidereal period) and completes a synodic period (full cycle of phases) every 29.5 days. Lunar phases progress: new moon, waxing crescent, first quarter, waxing gibbous, full moon, waning gibbous, third quarter, waning crescent. Solar eclipses occur when the Moon blocks the Sun (new moon). Lunar eclipses occur when Earth's shadow falls on the Moon (full moon).",
+          "keyTerms": ["axial tilt", "seasons", "lunar phases", "solar eclipse", "lunar eclipse", "synodic period", "sidereal period"]
+        }
+      ]
+    },
+    {
+      "id": "es_06",
+      "title": "Earth's History & Geologic Time",
+      "sections": [
+        {
+          "heading": "Relative and Absolute Dating",
+          "body": "Relative dating determines the order of events without exact ages. Key principles: superposition (older layers are below younger), original horizontality (sediments deposit horizontally), cross-cutting relationships (features that cut across rocks are younger), and faunal succession (fossil assemblages succeed each other in a recognizable order). Unconformities represent gaps in the geologic record. Absolute dating uses radioactive decay. Parent isotopes decay to daughter isotopes at a known rate (half-life). Common methods: carbon-14 (up to 50,000 years), potassium-40/argon-40 (for older rocks), and uranium-lead (for the oldest rocks).",
+          "keyTerms": ["relative dating", "superposition", "cross-cutting relationships", "unconformity", "absolute dating", "half-life", "carbon-14", "radiometric dating"]
+        },
+        {
+          "heading": "The Geologic Time Scale",
+          "body": "The geologic time scale divides Earth's 4.6 billion year history into eons, eras, periods, and epochs. The Hadean eon (4.6-4.0 Ga) saw Earth's formation and heavy bombardment. The Archean eon (4.0-2.5 Ga) saw the first life (prokaryotes) and banded iron formations. The Proterozoic eon (2.5-0.541 Ga) saw the Great Oxidation Event and first eukaryotes. The Phanerozoic eon (541 Ma-present) includes three eras: Paleozoic, Mesozoic, and Cenozoic. Major boundaries are defined by mass extinctions and evolutionary events.",
+          "keyTerms": ["geologic time scale", "eon", "era", "period", "epoch", "Hadean", "Archean", "Proterozoic", "Phanerozoic"]
+        },
+        {
+          "heading": "Major Eras of Life",
+          "body": "The Paleozoic era (541-252 Ma) began with the Cambrian explosion of complex life. Fish, amphibians, reptiles, and land plants appeared. It ended with the largest mass extinction (Permian-Triassic, killing about 96% of marine species). The Mesozoic era (252-66 Ma), the Age of Dinosaurs, included the Triassic, Jurassic, and Cretaceous periods. Flowering plants and mammals appeared. It ended with the Cretaceous-Paleogene extinction (asteroid impact). The Cenozoic era (66 Ma-present), the Age of Mammals, includes the diversification of mammals, evolution of primates, and the Quaternary ice ages.",
+          "keyTerms": ["Paleozoic", "Cambrian explosion", "Mesozoic", "Cenozoic", "Permian-Triassic extinction", "Cretaceous-Paleogene extinction", "mass extinction"]
+        },
+        {
+          "heading": "Fossils and Fossilization",
+          "body": "Fossils are preserved remains or traces of ancient organisms. Types include body fossils (bones, shells, petrified wood), trace fossils (footprints, burrows, coprolites), molds and casts, and amber preservation. Fossilization requires rapid burial to prevent decomposition. Permineralization occurs when minerals fill pore spaces. Index fossils are widespread, short-lived species used to date rock layers. The fossil record is biased toward organisms with hard parts, marine environments, and certain geologic settings.",
+          "keyTerms": ["fossil", "body fossil", "trace fossil", "index fossil", "permineralization", "petrified", "mold", "cast"]
+        }
+      ]
+    }
+  ]
+}

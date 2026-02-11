@@ -1,0 +1,161 @@
+{
+  "subject": "mathematics",
+  "lessons": [
+    {
+      "id": "math_01",
+      "title": "Algebra & Functions",
+      "sections": [
+        {
+          "heading": "Polynomials",
+          "body": "A polynomial is an expression of the form a_n*x^n + a_(n-1)*x^(n-1) + ... + a_1*x + a_0. The degree is the highest power of x. Linear polynomials have degree 1, quadratic degree 2, cubic degree 3. The Fundamental Theorem of Algebra states that a polynomial of degree n has exactly n roots (counting multiplicity and complex roots). Polynomial long division and synthetic division divide polynomials. The Remainder Theorem states that the remainder when dividing f(x) by (x - c) is f(c). The Factor Theorem states that (x - c) is a factor if and only if f(c) = 0.",
+          "keyTerms": ["polynomial", "degree", "Fundamental Theorem of Algebra", "synthetic division", "Remainder Theorem", "Factor Theorem"]
+        },
+        {
+          "heading": "Quadratic Functions",
+          "body": "A quadratic function has the form f(x) = ax^2 + bx + c. Its graph is a parabola opening up (a > 0) or down (a < 0). The vertex is at x = -b/(2a). The quadratic formula gives roots: x = (-b +/- sqrt(b^2 - 4ac)) / (2a). The discriminant (b^2 - 4ac) determines the nature of roots: positive gives two real roots, zero gives one repeated root, negative gives two complex roots. Completing the square converts to vertex form: f(x) = a(x - h)^2 + k, where (h, k) is the vertex.",
+          "keyTerms": ["quadratic", "parabola", "vertex", "quadratic formula", "discriminant", "completing the square"]
+        },
+        {
+          "heading": "Functions and Transformations",
+          "body": "A function assigns exactly one output to each input. The domain is the set of valid inputs; the range is the set of outputs. A function is one-to-one if each output corresponds to exactly one input (passes horizontal line test). Inverse functions reverse the mapping: f(f^(-1)(x)) = x. Transformations: f(x) + k shifts up by k, f(x - h) shifts right by h, -f(x) reflects over x-axis, f(-x) reflects over y-axis, af(x) stretches vertically by factor a. Composition of functions: (f o g)(x) = f(g(x)).",
+          "keyTerms": ["function", "domain", "range", "one-to-one", "inverse function", "transformation", "composition"]
+        },
+        {
+          "heading": "Rational and Radical Expressions",
+          "body": "A rational expression is a ratio of two polynomials. Restrictions on the domain occur where the denominator equals zero. Simplify by factoring and canceling common factors. To add or subtract rational expressions, find a common denominator. A rational function has vertical asymptotes where the denominator is zero (after simplification), horizontal asymptotes determined by degree comparison, and oblique asymptotes when the numerator's degree is one more than the denominator's. Radical expressions involve roots: the nth root of a equals a^(1/n). Rationalizing the denominator eliminates radicals from the denominator.",
+          "keyTerms": ["rational expression", "vertical asymptote", "horizontal asymptote", "radical", "rationalizing"]
+        }
+      ]
+    },
+    {
+      "id": "math_02",
+      "title": "Geometry & Trigonometry",
+      "sections": [
+        {
+          "heading": "Triangle Properties",
+          "body": "The sum of angles in a triangle is 180 degrees. Types by angles: acute (all angles < 90 degrees), right (one 90-degree angle), obtuse (one angle > 90 degrees). Types by sides: equilateral (all equal), isosceles (two equal), scalene (none equal). The Pythagorean theorem for right triangles: a^2 + b^2 = c^2. The triangle inequality theorem states that any side must be less than the sum of the other two. Area = (1/2)bh. Similar triangles have proportional sides and equal angles. Congruence criteria: SSS, SAS, ASA, AAS.",
+          "keyTerms": ["Pythagorean theorem", "acute", "obtuse", "equilateral", "isosceles", "similar triangles", "congruent", "SSS", "SAS"]
+        },
+        {
+          "heading": "Circles",
+          "body": "A circle is the set of all points equidistant from a center. Circumference = 2*pi*r. Area = pi*r^2. A chord connects two points on the circle. A diameter is a chord through the center. A tangent touches the circle at exactly one point and is perpendicular to the radius at that point. Central angles equal their intercepted arc. Inscribed angles are half their intercepted arc. The equation of a circle centered at (h, k) with radius r is (x - h)^2 + (y - k)^2 = r^2.",
+          "keyTerms": ["circle", "circumference", "chord", "diameter", "tangent", "central angle", "inscribed angle", "arc"]
+        },
+        {
+          "heading": "Trigonometric Functions",
+          "body": "For a right triangle, the six trigonometric ratios are: sin(theta) = opposite/hypotenuse, cos(theta) = adjacent/hypotenuse, tan(theta) = opposite/adjacent, and their reciprocals csc, sec, cot. The unit circle defines trig functions for all angles. Key angles (in degrees/radians): 0, 30 (pi/6), 45 (pi/4), 60 (pi/3), 90 (pi/2). The Pythagorean identity: sin^2(theta) + cos^2(theta) = 1. Other identities include double angle formulas: sin(2theta) = 2sin(theta)cos(theta), cos(2theta) = cos^2(theta) - sin^2(theta).",
+          "keyTerms": ["sine", "cosine", "tangent", "unit circle", "Pythagorean identity", "double angle formula", "radian"]
+        },
+        {
+          "heading": "Law of Sines and Cosines",
+          "body": "The Law of Sines relates sides and angles of any triangle: a/sin(A) = b/sin(B) = c/sin(C). It is used when given AAS, ASA, or SSA (ambiguous case). The ambiguous case can yield zero, one, or two solutions. The Law of Cosines generalizes the Pythagorean theorem: c^2 = a^2 + b^2 - 2ab*cos(C). It is used when given SAS or SSS. Area of any triangle can also be found using: Area = (1/2)ab*sin(C). Heron's formula gives area from three sides: Area = sqrt(s(s-a)(s-b)(s-c)), where s is the semi-perimeter.",
+          "keyTerms": ["Law of Sines", "Law of Cosines", "ambiguous case", "Heron's formula", "semi-perimeter"]
+        }
+      ]
+    },
+    {
+      "id": "math_03",
+      "title": "Probability & Statistics",
+      "sections": [
+        {
+          "heading": "Basic Probability",
+          "body": "Probability measures the likelihood of an event, ranging from 0 (impossible) to 1 (certain). For equally likely outcomes, P(A) = favorable outcomes / total outcomes. The complement rule: P(not A) = 1 - P(A). The addition rule: P(A or B) = P(A) + P(B) - P(A and B). For mutually exclusive events, P(A and B) = 0. The multiplication rule for independent events: P(A and B) = P(A) * P(B). Conditional probability: P(A|B) = P(A and B) / P(B). Bayes' theorem relates conditional probabilities: P(A|B) = P(B|A) * P(A) / P(B).",
+          "keyTerms": ["probability", "complement", "addition rule", "multiplication rule", "independent events", "conditional probability", "Bayes' theorem", "mutually exclusive"]
+        },
+        {
+          "heading": "Combinatorics",
+          "body": "The counting principle: if one event can occur in m ways and another in n ways, both can occur in m * n ways. Permutations are ordered arrangements: P(n, r) = n! / (n - r)!. Combinations are unordered selections: C(n, r) = n! / (r!(n - r)!), also written as 'n choose r'. The binomial theorem expands (a + b)^n using binomial coefficients. Pascal's triangle displays binomial coefficients. Factorials: n! = n * (n-1) * ... * 1, with 0! = 1.",
+          "keyTerms": ["permutation", "combination", "factorial", "counting principle", "binomial theorem", "Pascal's triangle"]
+        },
+        {
+          "heading": "Descriptive Statistics",
+          "body": "Measures of center: mean (average), median (middle value), and mode (most frequent). The mean is sensitive to outliers; the median is resistant. Measures of spread: range (max - min), interquartile range IQR (Q3 - Q1), variance (average of squared deviations from the mean), and standard deviation (square root of variance). A box plot displays the five-number summary: minimum, Q1, median, Q3, maximum. The empirical rule (68-95-99.7) describes data in a normal distribution within 1, 2, and 3 standard deviations of the mean.",
+          "keyTerms": ["mean", "median", "mode", "range", "variance", "standard deviation", "IQR", "box plot", "empirical rule", "normal distribution"]
+        },
+        {
+          "heading": "Probability Distributions",
+          "body": "A discrete probability distribution assigns probabilities to each outcome. The binomial distribution models the number of successes in n independent trials, each with probability p: P(X = k) = C(n,k) * p^k * (1-p)^(n-k). Its mean is np and standard deviation is sqrt(np(1-p)). The normal (Gaussian) distribution is continuous, bell-shaped, and described by mean (mu) and standard deviation (sigma). Z-scores standardize values: z = (x - mu) / sigma. The standard normal distribution has mean 0 and standard deviation 1.",
+          "keyTerms": ["probability distribution", "binomial distribution", "normal distribution", "Gaussian", "z-score", "standard normal"]
+        }
+      ]
+    },
+    {
+      "id": "math_04",
+      "title": "Number Theory",
+      "sections": [
+        {
+          "heading": "Primes and Divisibility",
+          "body": "A prime number has exactly two factors: 1 and itself. The Fundamental Theorem of Arithmetic states every integer greater than 1 has a unique prime factorization. The Sieve of Eratosthenes finds all primes up to n by eliminating multiples. There are infinitely many primes (proven by Euclid). Divisibility rules: divisible by 2 if last digit is even, by 3 if digit sum is divisible by 3, by 5 if last digit is 0 or 5. The greatest common divisor (GCD) is the largest number dividing both; the least common multiple (LCM) is the smallest number both divide into. GCD * LCM = product of the two numbers.",
+          "keyTerms": ["prime number", "Fundamental Theorem of Arithmetic", "Sieve of Eratosthenes", "GCD", "LCM", "divisibility"]
+        },
+        {
+          "heading": "Modular Arithmetic",
+          "body": "Modular arithmetic deals with remainders. We write a is congruent to b (mod n) if n divides (a - b). Properties: if a is congruent to b and c is congruent to d (mod n), then a + c is congruent to b + d, and a * c is congruent to b * d (mod n). Fermat's Little Theorem: if p is prime and a is not divisible by p, then a^(p-1) is congruent to 1 (mod p). Applications include cryptography (RSA algorithm), check digits, and hash functions.",
+          "keyTerms": ["modular arithmetic", "congruence", "remainder", "Fermat's Little Theorem", "RSA"]
+        },
+        {
+          "heading": "Diophantine Equations",
+          "body": "Diophantine equations are polynomial equations seeking integer solutions. A linear Diophantine equation ax + by = c has integer solutions if and only if gcd(a, b) divides c. The Euclidean algorithm finds the GCD efficiently: gcd(a, b) = gcd(b, a mod b), continuing until the remainder is 0. The Extended Euclidean Algorithm also finds integers x, y such that ax + by = gcd(a, b). Pythagorean triples (a, b, c) satisfy a^2 + b^2 = c^2; primitive triples have gcd(a, b, c) = 1.",
+          "keyTerms": ["Diophantine equation", "Euclidean algorithm", "Extended Euclidean Algorithm", "Pythagorean triple"]
+        },
+        {
+          "heading": "Special Numbers and Patterns",
+          "body": "Fibonacci numbers follow the recurrence F(n) = F(n-1) + F(n-2), starting with F(1) = F(2) = 1. The ratio of consecutive Fibonacci numbers approaches the golden ratio phi = (1 + sqrt(5)) / 2 approximately equal to 1.618. Perfect numbers equal the sum of their proper divisors (e.g., 6 = 1 + 2 + 3). Triangular numbers are sums of consecutive integers: T(n) = n(n+1)/2. Square numbers are perfect squares. Pascal's triangle contains binomial coefficients and harbors many number patterns, including triangular numbers and Fibonacci numbers.",
+          "keyTerms": ["Fibonacci numbers", "golden ratio", "perfect number", "triangular number", "Pascal's triangle"]
+        }
+      ]
+    },
+    {
+      "id": "math_05",
+      "title": "Sequences & Series",
+      "sections": [
+        {
+          "heading": "Arithmetic Sequences",
+          "body": "An arithmetic sequence has a constant common difference d between consecutive terms. The general term is a_n = a_1 + (n-1)d. The sum of the first n terms is S_n = n/2 * (a_1 + a_n) = n/2 * (2a_1 + (n-1)d). The arithmetic mean of two numbers a and b is (a + b) / 2. Examples include evenly spaced numbers, linear growth patterns, and regular payment schedules.",
+          "keyTerms": ["arithmetic sequence", "common difference", "arithmetic mean", "arithmetic series"]
+        },
+        {
+          "heading": "Geometric Sequences",
+          "body": "A geometric sequence has a constant common ratio r between consecutive terms. The general term is a_n = a_1 * r^(n-1). The sum of the first n terms is S_n = a_1 * (1 - r^n) / (1 - r) for r not equal to 1. The geometric mean of two positive numbers a and b is sqrt(ab). Compound interest follows a geometric pattern: A = P(1 + r/n)^(nt). Exponential growth (r > 1) and exponential decay (0 < r < 1) model many natural phenomena.",
+          "keyTerms": ["geometric sequence", "common ratio", "geometric mean", "geometric series", "compound interest", "exponential growth", "exponential decay"]
+        },
+        {
+          "heading": "Infinite Series and Convergence",
+          "body": "An infinite geometric series converges if |r| < 1, with sum S = a_1 / (1 - r). If |r| >= 1, the series diverges. The harmonic series (sum of 1/n) diverges even though terms approach 0. A p-series (sum of 1/n^p) converges if p > 1. Convergence tests include the comparison test, ratio test (useful for series with factorials or exponentials), root test, and integral test. A series is absolutely convergent if the series of absolute values converges. An alternating series converges if its terms decrease to 0.",
+          "keyTerms": ["convergence", "divergence", "infinite series", "harmonic series", "p-series", "ratio test", "alternating series"]
+        },
+        {
+          "heading": "Recursive Sequences",
+          "body": "A recursive sequence defines each term using previous terms. A recursive formula needs an initial condition and a recurrence relation. Linear recurrence relations have the form a_n = c_1*a_(n-1) + c_2*a_(n-2) + ... The Fibonacci sequence is defined by F(n) = F(n-1) + F(n-2) with F(1) = F(2) = 1. To solve linear recurrences, find the characteristic equation and its roots. Some recursive sequences can be converted to explicit (closed-form) formulas. The Tower of Hanoi problem requires 2^n - 1 moves for n disks.",
+          "keyTerms": ["recursive sequence", "recurrence relation", "initial condition", "characteristic equation", "closed-form", "Tower of Hanoi"]
+        }
+      ]
+    },
+    {
+      "id": "math_06",
+      "title": "Calculus Fundamentals",
+      "sections": [
+        {
+          "heading": "Limits",
+          "body": "A limit describes the value a function approaches as the input approaches some value. lim(x->a) f(x) = L means f(x) gets arbitrarily close to L as x approaches a. The limit may exist even if f(a) is undefined. One-sided limits approach from the left (x->a-) or right (x->a+). A limit exists if and only if both one-sided limits exist and are equal. Important limits: lim(x->0) sin(x)/x = 1, lim(x->infinity) (1 + 1/x)^x = e. L'Hopital's rule evaluates indeterminate forms (0/0, infinity/infinity) by taking derivatives: lim f(x)/g(x) = lim f'(x)/g'(x).",
+          "keyTerms": ["limit", "one-sided limit", "L'Hopital's rule", "indeterminate form", "continuity"]
+        },
+        {
+          "heading": "Derivatives",
+          "body": "The derivative measures the instantaneous rate of change. f'(x) = lim(h->0) [f(x+h) - f(x)] / h. Geometrically, the derivative gives the slope of the tangent line. Basic rules: power rule d/dx[x^n] = nx^(n-1), constant multiple rule, sum rule. Product rule: (fg)' = f'g + fg'. Quotient rule: (f/g)' = (f'g - fg')/g^2. Chain rule: d/dx[f(g(x))] = f'(g(x)) * g'(x). Derivatives of trig functions: d/dx[sin(x)] = cos(x), d/dx[cos(x)] = -sin(x). d/dx[e^x] = e^x, d/dx[ln(x)] = 1/x.",
+          "keyTerms": ["derivative", "tangent line", "power rule", "product rule", "quotient rule", "chain rule", "rate of change"]
+        },
+        {
+          "heading": "Applications of Derivatives",
+          "body": "Critical points occur where f'(x) = 0 or f'(x) is undefined. The first derivative test determines local maxima and minima by checking sign changes of f'. The second derivative test: if f''(c) > 0, local minimum; if f''(c) < 0, local maximum. Inflection points occur where concavity changes (f'' changes sign). Related rates problems use implicit differentiation with respect to time. Optimization problems find maximum or minimum values subject to constraints. The Mean Value Theorem states that for a continuous, differentiable function on [a,b], there exists c where f'(c) = (f(b) - f(a))/(b - a).",
+          "keyTerms": ["critical point", "local maximum", "local minimum", "inflection point", "concavity", "optimization", "Mean Value Theorem", "related rates"]
+        },
+        {
+          "heading": "Integrals",
+          "body": "The definite integral calculates the signed area under a curve: integral from a to b of f(x)dx. The Fundamental Theorem of Calculus connects derivatives and integrals: if F'(x) = f(x), then integral from a to b of f(x)dx = F(b) - F(a). The antiderivative (indefinite integral) reverses differentiation: integral of x^n dx = x^(n+1)/(n+1) + C. Integration techniques include substitution (reverse chain rule), integration by parts (integral of u dv = uv - integral of v du), and partial fractions for rational functions. Applications include area between curves, volumes of revolution (disk and shell methods), and average value of a function.",
+          "keyTerms": ["integral", "antiderivative", "Fundamental Theorem of Calculus", "substitution", "integration by parts", "area under curve", "volume of revolution"]
+        }
+      ]
+    }
+  ]
+}

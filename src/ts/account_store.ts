@@ -290,6 +290,24 @@ async function updatePracticeStats(patch: {
   await setDoc(ref, next, { merge: true });
 }
 
+function learnProgressRef(uid: string) {
+  return doc(db, "users", uid, "learn", "progress");
+}
+
+async function loadLearnProgress(): Promise<string[] | null> {
+  if (!currentUser?.uid) return null;
+  const snap = await getDoc(learnProgressRef(currentUser.uid));
+  if (!snap.exists()) return null;
+  return Array.isArray(snap.data()?.completedLessons) ? snap.data().completedLessons : null;
+}
+
+async function saveLearnProgress(completedLessons: string[]) {
+  if (!currentUser?.uid) return;
+  await setDoc(learnProgressRef(currentUser.uid), {
+    completedLessons, updatedAt: serverTimestamp()
+  }, { merge: true });
+}
+
 function buildProvider(providerId: string) {
   if (providerId === "google") return new GoogleAuthProvider();
   if (providerId === "microsoft") return new OAuthProvider("microsoft.com");

@@ -1,0 +1,161 @@
+{
+  "subject": "biology",
+  "lessons": [
+    {
+      "id": "bio_01",
+      "title": "Cell Structure & Function",
+      "sections": [
+        {
+          "heading": "Introduction to Cells",
+          "body": "All living organisms are composed of cells, the basic unit of life. The cell theory states that all living things are made of cells, cells are the basic unit of structure and function, and all cells come from pre-existing cells. Cells range in size from about 1 micrometer (bacteria) to over 100 micrometers (some plant and animal cells).",
+          "keyTerms": ["cell theory", "micrometer"]
+        },
+        {
+          "heading": "Prokaryotic vs Eukaryotic Cells",
+          "body": "Prokaryotic cells lack a membrane-bound nucleus and organelles. They include bacteria and archaea. Their DNA is found in a nucleoid region and they often have plasmids (small circular DNA). Eukaryotic cells have a true nucleus enclosed by a nuclear envelope, membrane-bound organelles, and are generally larger. Eukaryotes include animals, plants, fungi, and protists.",
+          "keyTerms": ["prokaryotic", "eukaryotic", "nucleoid", "plasmid", "nuclear envelope"]
+        },
+        {
+          "heading": "Organelles and Their Functions",
+          "body": "The nucleus stores genetic information and controls cell activities. The endoplasmic reticulum (ER) comes in rough (with ribosomes, for protein synthesis) and smooth (lipid synthesis, detoxification) forms. The Golgi apparatus modifies, packages, and ships proteins. Mitochondria are the powerhouses of the cell, generating ATP through cellular respiration. Lysosomes contain digestive enzymes for breaking down waste. The cytoskeleton provides structural support and aids in cell movement. Plant cells additionally have chloroplasts (for photosynthesis), a cell wall (made of cellulose), and a large central vacuole.",
+          "keyTerms": ["nucleus", "endoplasmic reticulum", "Golgi apparatus", "mitochondria", "ATP", "lysosomes", "cytoskeleton", "chloroplasts", "cell wall", "central vacuole"]
+        },
+        {
+          "heading": "Cell Membrane",
+          "body": "The cell membrane (plasma membrane) is a phospholipid bilayer with embedded proteins, described by the fluid mosaic model. Phospholipids have hydrophilic heads and hydrophobic tails. Integral proteins span the membrane while peripheral proteins attach to the surface. The membrane is selectively permeable, controlling what enters and exits the cell. Transport mechanisms include passive transport (diffusion, osmosis, facilitated diffusion) which requires no energy, and active transport (pumps, endocytosis, exocytosis) which requires ATP.",
+          "keyTerms": ["phospholipid bilayer", "fluid mosaic model", "selectively permeable", "diffusion", "osmosis", "facilitated diffusion", "active transport", "endocytosis", "exocytosis"]
+        }
+      ]
+    },
+    {
+      "id": "bio_02",
+      "title": "Cell Division & Genetics",
+      "sections": [
+        {
+          "heading": "The Cell Cycle",
+          "body": "The cell cycle consists of interphase and the mitotic (M) phase. Interphase includes G1 (cell growth), S phase (DNA replication), and G2 (preparation for division). The cell cycle is regulated by cyclins and cyclin-dependent kinases (CDKs). Checkpoints at G1, G2, and during mitosis ensure proper progression. Uncontrolled cell division can lead to cancer.",
+          "keyTerms": ["cell cycle", "interphase", "G1 phase", "S phase", "G2 phase", "cyclins", "CDKs"]
+        },
+        {
+          "heading": "Mitosis",
+          "body": "Mitosis produces two genetically identical daughter cells. It consists of prophase (chromosomes condense, spindle forms), metaphase (chromosomes align at the metaphase plate), anaphase (sister chromatids separate), and telophase (nuclear envelopes reform). Cytokinesis divides the cytoplasm. In animal cells, a cleavage furrow forms; in plant cells, a cell plate develops.",
+          "keyTerms": ["mitosis", "prophase", "metaphase", "anaphase", "telophase", "cytokinesis", "cleavage furrow", "cell plate"]
+        },
+        {
+          "heading": "Meiosis",
+          "body": "Meiosis produces four genetically unique haploid cells from one diploid cell. It consists of two divisions: meiosis I (homologous chromosomes separate) and meiosis II (sister chromatids separate). Crossing over during prophase I exchanges genetic material between homologous chromosomes, increasing genetic diversity. Independent assortment during metaphase I further increases variation. Meiosis is essential for sexual reproduction and produces gametes (sperm and eggs).",
+          "keyTerms": ["meiosis", "haploid", "diploid", "crossing over", "independent assortment", "gametes", "homologous chromosomes"]
+        },
+        {
+          "heading": "Mendelian Genetics",
+          "body": "Gregor Mendel established fundamental laws of inheritance. The Law of Segregation states that allele pairs separate during gamete formation. The Law of Independent Assortment states that genes on different chromosomes sort independently. Dominant alleles mask recessive alleles. A Punnett square predicts offspring genotype and phenotype ratios. Incomplete dominance produces a blended phenotype. Codominance expresses both alleles simultaneously (e.g., AB blood type). Sex-linked traits are carried on the X chromosome.",
+          "keyTerms": ["allele", "dominant", "recessive", "Punnett square", "genotype", "phenotype", "incomplete dominance", "codominance", "sex-linked"]
+        }
+      ]
+    },
+    {
+      "id": "bio_03",
+      "title": "Molecular Biology",
+      "sections": [
+        {
+          "heading": "DNA Structure",
+          "body": "DNA (deoxyribonucleic acid) is a double helix consisting of two antiparallel strands of nucleotides. Each nucleotide contains a deoxyribose sugar, a phosphate group, and a nitrogenous base. The four bases are adenine (A), thymine (T), guanine (G), and cytosine (C). Adenine pairs with thymine via two hydrogen bonds, and guanine pairs with cytosine via three hydrogen bonds (Chargaff's rules). The structure was described by Watson and Crick in 1953.",
+          "keyTerms": ["DNA", "double helix", "nucleotide", "adenine", "thymine", "guanine", "cytosine", "Chargaff's rules", "Watson and Crick"]
+        },
+        {
+          "heading": "DNA Replication",
+          "body": "DNA replication is semiconservative, meaning each new molecule contains one original and one new strand. Helicase unwinds the double helix at the replication fork. DNA polymerase synthesizes new strands in the 5' to 3' direction. The leading strand is synthesized continuously while the lagging strand is made in Okazaki fragments joined by DNA ligase. Primase lays down RNA primers to initiate synthesis. Proofreading by DNA polymerase ensures high fidelity.",
+          "keyTerms": ["semiconservative", "helicase", "DNA polymerase", "replication fork", "leading strand", "lagging strand", "Okazaki fragments", "DNA ligase", "primase"]
+        },
+        {
+          "heading": "Transcription and Translation",
+          "body": "Transcription converts DNA to messenger RNA (mRNA) in the nucleus. RNA polymerase reads the template strand 3' to 5' and builds mRNA 5' to 3'. In eukaryotes, pre-mRNA undergoes processing: a 5' cap and 3' poly-A tail are added, and introns are spliced out, leaving exons. Translation occurs at ribosomes in the cytoplasm. Transfer RNA (tRNA) carries amino acids matching mRNA codons via anticodons. Translation begins at the start codon AUG (methionine) and ends at a stop codon (UAA, UAG, or UGA).",
+          "keyTerms": ["transcription", "mRNA", "RNA polymerase", "introns", "exons", "translation", "tRNA", "codon", "anticodon", "start codon", "stop codon", "ribosome"]
+        },
+        {
+          "heading": "Gene Regulation",
+          "body": "Gene expression is regulated at multiple levels. In prokaryotes, operons (like the lac operon) control gene expression by grouping related genes under one promoter with an operator. In eukaryotes, regulation occurs through transcription factors, enhancers, silencers, and epigenetic modifications such as DNA methylation and histone acetylation. Post-transcriptional regulation includes alternative splicing, mRNA stability, and RNA interference (RNAi).",
+          "keyTerms": ["gene expression", "operon", "lac operon", "promoter", "transcription factors", "enhancers", "epigenetic", "DNA methylation", "histone acetylation", "RNA interference"]
+        }
+      ]
+    },
+    {
+      "id": "bio_04",
+      "title": "Evolution & Taxonomy",
+      "sections": [
+        {
+          "heading": "Natural Selection",
+          "body": "Charles Darwin proposed natural selection as the mechanism of evolution. It requires variation within a population, heritability of traits, differential survival and reproduction, and accumulation of favorable traits over generations. Fitness refers to an organism's ability to survive and reproduce in its environment. Types of selection include directional (favoring one extreme), stabilizing (favoring the average), and disruptive (favoring both extremes).",
+          "keyTerms": ["natural selection", "variation", "fitness", "directional selection", "stabilizing selection", "disruptive selection"]
+        },
+        {
+          "heading": "Evidence for Evolution",
+          "body": "Evidence includes the fossil record showing transitional forms, comparative anatomy revealing homologous structures (shared ancestry) and analogous structures (convergent evolution), embryology showing similar developmental stages, molecular biology comparing DNA and protein sequences, and biogeography showing species distribution patterns related to geographic isolation. Vestigial structures are remnants of organs that had a function in ancestors.",
+          "keyTerms": ["fossil record", "homologous structures", "analogous structures", "convergent evolution", "vestigial structures", "biogeography"]
+        },
+        {
+          "heading": "Speciation",
+          "body": "Speciation is the formation of new species. Allopatric speciation occurs when populations are geographically separated. Sympatric speciation occurs without geographic isolation, often through polyploidy in plants. Reproductive isolation mechanisms include prezygotic barriers (habitat, temporal, behavioral, mechanical, gametic isolation) and postzygotic barriers (hybrid inviability, hybrid sterility, hybrid breakdown). The biological species concept defines species as groups that can interbreed and produce fertile offspring.",
+          "keyTerms": ["speciation", "allopatric", "sympatric", "polyploidy", "reproductive isolation", "prezygotic", "postzygotic", "biological species concept"]
+        },
+        {
+          "heading": "Classification and Taxonomy",
+          "body": "Taxonomy organizes organisms into hierarchical categories: Domain, Kingdom, Phylum, Class, Order, Family, Genus, Species. The three domains are Bacteria, Archaea, and Eukarya. Binomial nomenclature (developed by Linnaeus) assigns each species a two-part Latin name (genus + species). Modern phylogenetics uses DNA sequence data and cladistics to construct evolutionary trees (cladograms). A monophyletic group (clade) includes an ancestor and all its descendants.",
+          "keyTerms": ["taxonomy", "domain", "binomial nomenclature", "Linnaeus", "phylogenetics", "cladistics", "cladogram", "monophyletic", "clade"]
+        }
+      ]
+    },
+    {
+      "id": "bio_05",
+      "title": "Ecology & Ecosystems",
+      "sections": [
+        {
+          "heading": "Levels of Ecological Organization",
+          "body": "Ecology studies interactions at multiple levels: individual organisms, populations (same species in an area), communities (all species in an area), ecosystems (community plus abiotic factors), biomes (large geographic areas with similar climate and organisms), and the biosphere (all living things on Earth). Abiotic factors include temperature, water, light, and soil. Biotic factors include predators, prey, competitors, and parasites.",
+          "keyTerms": ["population", "community", "ecosystem", "biome", "biosphere", "abiotic", "biotic"]
+        },
+        {
+          "heading": "Energy Flow and Trophic Levels",
+          "body": "Energy flows through ecosystems in one direction. Producers (autotrophs) convert sunlight to chemical energy through photosynthesis. Primary consumers (herbivores) eat producers. Secondary consumers eat primary consumers. Tertiary consumers eat secondary consumers. Decomposers break down dead organic matter. Only about 10% of energy transfers between trophic levels (10% rule). Energy pyramids illustrate this loss. Food webs show complex feeding relationships in an ecosystem.",
+          "keyTerms": ["producers", "autotrophs", "consumers", "herbivores", "decomposers", "trophic levels", "10% rule", "food web", "energy pyramid"]
+        },
+        {
+          "heading": "Biogeochemical Cycles",
+          "body": "Matter cycles through ecosystems via biogeochemical cycles. The carbon cycle involves photosynthesis, respiration, decomposition, and combustion of fossil fuels. The nitrogen cycle includes nitrogen fixation (by bacteria converting N2 to NH3), nitrification, assimilation, ammonification, and denitrification. The water cycle involves evaporation, transpiration, condensation, precipitation, and runoff. The phosphorus cycle lacks a significant atmospheric component and moves through rocks, soil, water, and organisms.",
+          "keyTerms": ["carbon cycle", "nitrogen cycle", "nitrogen fixation", "nitrification", "denitrification", "water cycle", "phosphorus cycle", "transpiration"]
+        },
+        {
+          "heading": "Population Ecology",
+          "body": "Population growth can be exponential (J-curve, unlimited resources) or logistic (S-curve, limited by carrying capacity K). Growth rate depends on birth rate, death rate, immigration, and emigration. Density-dependent factors (competition, predation, disease) increase with population density. Density-independent factors (natural disasters, climate) affect populations regardless of density. r-selected species produce many offspring with little parental care, while K-selected species produce few offspring with extensive parental care.",
+          "keyTerms": ["exponential growth", "logistic growth", "carrying capacity", "density-dependent", "density-independent", "r-selected", "K-selected"]
+        }
+      ]
+    },
+    {
+      "id": "bio_06",
+      "title": "Human Body Systems",
+      "sections": [
+        {
+          "heading": "Nervous System",
+          "body": "The nervous system consists of the central nervous system (CNS: brain and spinal cord) and the peripheral nervous system (PNS: nerves and ganglia). Neurons transmit electrical signals (action potentials) along axons. Neurotransmitters cross synapses to relay signals between neurons. The brain includes the cerebrum (higher functions), cerebellum (coordination), and brainstem (vital functions). The autonomic nervous system has sympathetic (fight-or-flight) and parasympathetic (rest-and-digest) divisions.",
+          "keyTerms": ["CNS", "PNS", "neuron", "action potential", "axon", "neurotransmitter", "synapse", "cerebrum", "cerebellum", "sympathetic", "parasympathetic"]
+        },
+        {
+          "heading": "Circulatory System",
+          "body": "The human heart has four chambers: right atrium, right ventricle, left atrium, and left ventricle. Deoxygenated blood enters the right atrium, goes to the right ventricle, then to the lungs via pulmonary arteries. Oxygenated blood returns via pulmonary veins to the left atrium, then left ventricle, and out through the aorta. Arteries carry blood away from the heart, veins return blood, and capillaries enable gas exchange. Blood contains red blood cells (carry oxygen via hemoglobin), white blood cells (immune defense), platelets (clotting), and plasma.",
+          "keyTerms": ["atrium", "ventricle", "pulmonary", "aorta", "arteries", "veins", "capillaries", "hemoglobin", "red blood cells", "white blood cells", "platelets", "plasma"]
+        },
+        {
+          "heading": "Respiratory System",
+          "body": "Air enters through the nasal cavity, passes through the pharynx and larynx, down the trachea, through the bronchi and bronchioles, and into the alveoli. Gas exchange occurs at the alveoli, where oxygen diffuses into the blood and carbon dioxide diffuses out. The diaphragm contracts during inhalation, expanding the chest cavity and reducing pressure. Exhalation is typically passive as the diaphragm relaxes. Oxygen binds to hemoglobin in red blood cells for transport.",
+          "keyTerms": ["trachea", "bronchi", "bronchioles", "alveoli", "gas exchange", "diaphragm", "inhalation", "exhalation"]
+        },
+        {
+          "heading": "Immune System",
+          "body": "The innate immune system provides non-specific defense through skin barriers, mucous membranes, phagocytes (neutrophils, macrophages), natural killer cells, and inflammation. The adaptive immune system provides specific defense through B cells (produce antibodies for humoral immunity) and T cells (cell-mediated immunity, including helper T cells and cytotoxic T cells). Antibodies are Y-shaped proteins that bind to specific antigens. Memory cells provide long-term immunity after initial exposure. Vaccines stimulate adaptive immunity by introducing weakened or inactivated pathogens.",
+          "keyTerms": ["innate immunity", "adaptive immunity", "phagocytes", "B cells", "T cells", "antibodies", "antigens", "memory cells", "vaccines", "humoral immunity", "cell-mediated immunity"]
+        }
+      ]
+    }
+  ]
+}

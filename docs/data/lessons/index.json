@@ -1,0 +1,88 @@
+{
+  "subjects": [
+    {
+      "id": "biology",
+      "label": "Biology",
+      "icon": "\uD83E\uDDEC",
+      "file": "biology.json",
+      "lessons": [
+        { "id": "bio_01", "title": "Cell Structure & Function", "description": "Prokaryotic vs eukaryotic cells, organelles, and cellular organization.", "order": 1 },
+        { "id": "bio_02", "title": "Cell Division & Genetics", "description": "Mitosis, meiosis, DNA replication, and inheritance patterns.", "order": 2 },
+        { "id": "bio_03", "title": "Molecular Biology", "description": "DNA, RNA, protein synthesis, and gene expression.", "order": 3 },
+        { "id": "bio_04", "title": "Evolution & Taxonomy", "description": "Natural selection, speciation, phylogenetics, and classification.", "order": 4 },
+        { "id": "bio_05", "title": "Ecology & Ecosystems", "description": "Biomes, food webs, population dynamics, and biogeochemical cycles.", "order": 5 },
+        { "id": "bio_06", "title": "Human Body Systems", "description": "Nervous, circulatory, respiratory, digestive, and immune systems.", "order": 6 }
+      ]
+    },
+    {
+      "id": "chemistry",
+      "label": "Chemistry",
+      "icon": "\u2697\uFE0F",
+      "file": "chemistry.json",
+      "lessons": [
+        { "id": "chem_01", "title": "Atomic Structure", "description": "Subatomic particles, electron configuration, and periodic trends.", "order": 1 },
+        { "id": "chem_02", "title": "Chemical Bonding", "description": "Ionic, covalent, and metallic bonds; VSEPR theory and molecular geometry.", "order": 2 },
+        { "id": "chem_03", "title": "Stoichiometry & Reactions", "description": "Balancing equations, mole concept, limiting reagents, and yield.", "order": 3 },
+        { "id": "chem_04", "title": "States of Matter & Solutions", "description": "Gas laws, phase diagrams, colligative properties, and solubility.", "order": 4 },
+        { "id": "chem_05", "title": "Acids, Bases & Equilibrium", "description": "pH, buffers, titration, Le Chatelier's principle, and Ksp.", "order": 5 },
+        { "id": "chem_06", "title": "Thermodynamics & Kinetics", "description": "Enthalpy, entropy, Gibbs free energy, reaction rates, and catalysis.", "order": 6 }
+      ]
+    },
+    {
+      "id": "earth_space",
+      "label": "Earth & Space",
+      "icon": "\uD83C\uDF0D",
+      "file": "earth_space.json",
+      "lessons": [
+        { "id": "es_01", "title": "Earth's Interior & Plate Tectonics", "description": "Layers of the Earth, plate boundaries, earthquakes, and volcanism.", "order": 1 },
+        { "id": "es_02", "title": "Rocks & Minerals", "description": "Rock cycle, mineral identification, igneous, sedimentary, and metamorphic rocks.", "order": 2 },
+        { "id": "es_03", "title": "Atmosphere & Weather", "description": "Atmospheric layers, pressure systems, fronts, and severe weather.", "order": 3 },
+        { "id": "es_04", "title": "Oceanography", "description": "Ocean currents, tides, salinity, and marine geology.", "order": 4 },
+        { "id": "es_05", "title": "Astronomy & the Solar System", "description": "Planets, moons, stars, galaxies, and cosmology.", "order": 5 },
+        { "id": "es_06", "title": "Earth's History & Geologic Time", "description": "Fossils, relative and absolute dating, eras, and mass extinctions.", "order": 6 }
+      ]
+    },
+    {
+      "id": "energy",
+      "label": "Energy",
+      "icon": "\uD83D\uDD0B",
+      "file": "energy.json",
+      "lessons": [
+        { "id": "nrg_01", "title": "Forms & Conservation of Energy", "description": "Kinetic, potential, thermal energy, and the law of conservation.", "order": 1 },
+        { "id": "nrg_02", "title": "Thermodynamics", "description": "Laws of thermodynamics, heat transfer, and entropy.", "order": 2 },
+        { "id": "nrg_03", "title": "Electricity & Magnetism", "description": "Circuits, Ohm's law, electromagnetic induction, and motors.", "order": 3 },
+        { "id": "nrg_04", "title": "Fossil Fuels & Nuclear Energy", "description": "Coal, oil, natural gas, fission, fusion, and radioactivity.", "order": 4 },
+        { "id": "nrg_05", "title": "Renewable Energy Sources", "description": "Solar, wind, hydroelectric, geothermal, and biomass energy.", "order": 5 },
+        { "id": "nrg_06", "title": "Energy Policy & Environmental Impact", "description": "Climate change, carbon footprint, energy efficiency, and sustainability.", "order": 6 }
+      ]
+    },
+    {
+      "id": "mathematics",
+      "label": "Mathematics",
+      "icon": "\uD83D\uDCCA",
+      "file": "mathematics.json",
+      "lessons": [
+        { "id": "math_01", "title": "Algebra & Functions", "description": "Polynomials, rational expressions, function notation, and graphing.", "order": 1 },
+        { "id": "math_02", "title": "Geometry & Trigonometry", "description": "Triangles, circles, coordinate geometry, trig identities, and unit circle.", "order": 2 },
+        { "id": "math_03", "title": "Probability & Statistics", "description": "Combinatorics, distributions, mean, median, standard deviation.", "order": 3 },
+        { "id": "math_04", "title": "Number Theory", "description": "Primes, divisibility, modular arithmetic, and Diophantine equations.", "order": 4 },
+        { "id": "math_05", "title": "Sequences & Series", "description": "Arithmetic, geometric, recursive sequences, and convergence.", "order": 5 },
+        { "id": "math_06", "title": "Calculus Fundamentals", "description": "Limits, derivatives, integrals, and the fundamental theorem.", "order": 6 }
+      ]
+    },
+    {
+      "id": "physics",
+      "label": "Physics",
+      "icon": "\u2699\uFE0F",
+      "file": "physics.json",
+      "lessons": [
+        { "id": "phys_01", "title": "Kinematics & Motion", "description": "Displacement, velocity, acceleration, and projectile motion.", "order": 1 },
+        { "id": "phys_02", "title": "Forces & Newton's Laws", "description": "Free-body diagrams, friction, tension, and circular motion.", "order": 2 },
+        { "id": "phys_03", "title": "Work, Energy & Momentum", "description": "Work-energy theorem, conservation laws, impulse, and collisions.", "order": 3 },
+        { "id": "phys_04", "title": "Waves & Optics", "description": "Wave properties, sound, light, reflection, refraction, and diffraction.", "order": 4 },
+        { "id": "phys_05", "title": "Electricity & Circuits", "description": "Coulomb's law, electric fields, capacitors, and DC circuits.", "order": 5 },
+        { "id": "phys_06", "title": "Modern Physics", "description": "Relativity, quantum mechanics, atomic models, and nuclear physics.", "order": 6 }
+      ]
+    }
+  ]
+}
