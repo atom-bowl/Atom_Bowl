@@ -5,4 +5,8 @@
 node_modules/** linguist-vendored=true
 
 # Exclude large non-code assets from language stats
-
+docs/** linguist-detectable=true
+docs/**/*.js linguist-language=JavaScript
+docs/**/*.html linguist-language=HTML
+docs/**/*.css linguist-language=CSS
+docs/data/**/*.json linguist-generated=true
