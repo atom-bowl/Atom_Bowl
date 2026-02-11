@@ -5,4 +5,4 @@
 node_modules/** linguist-vendored=true
 
 # Exclude large non-code assets from language stats
-docs/** linguist-generated=true
+
