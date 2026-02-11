@@ -291,25 +291,9 @@ async function signInWithProvider(providerId) {
     return res.user;
 }
 async function signInWithEmail(email, password) {
-    var _a;
     const normalizedEmail = String(email || "").trim().toLowerCase();
     if (!normalizedEmail)
         throw new Error("Email is required.");
-    if ((_a = auth.currentUser) === null || _a === void 0 ? void 0 : _a.isAnonymous) {
-        const cred = EmailAuthProvider.credential(normalizedEmail, password);
-        try {
-            const res = await linkWithCredential(auth.currentUser, cred);
-            return res.user;
-        }
-        catch (err) {
-            const code = (err === null || err === void 0 ? void 0 : err.code) || "";
-            if (code === "auth/credential-already-in-use" || code === "auth/email-already-in-use") {
-                const res = await signInWithEmailAndPassword(auth, normalizedEmail, password);
-                return res.user;
-            }
-            throw err;
-        }
-    }
     const res = await signInWithEmailAndPassword(auth, normalizedEmail, password);
     return res.user;
 }

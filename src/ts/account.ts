@@ -54,7 +54,6 @@ const signupUsername = document.getElementById("signupUsername") as HTMLInputEle
 const signupPlayerName = document.getElementById("signupPlayerName") as HTMLInputElement | null;
 const signupPassword = document.getElementById("signupPassword") as HTMLInputElement | null;
 const signupPassword2 = document.getElementById("signupPassword2") as HTMLInputElement | null;
-const checkUsernameBtn = document.getElementById("checkUsernameBtn");
 const signupBtn = document.getElementById("signupBtn");
 
 let pendingPhotoData = "";
@@ -102,6 +101,31 @@ function setBusy(isBusy: boolean) {
   document.querySelectorAll("[data-auth-action]").forEach((el) => {
     (el as HTMLButtonElement).disabled = isBusy;
   });
+}
+
+function friendlyAuthError(err: any): string {
+  const code = err?.code || "";
+  switch (code) {
+    case "auth/user-not-found":
+    case "auth/invalid-credential":
+      return "Invalid email/username or password.";
+    case "auth/wrong-password":
+      return "Incorrect password.";
+    case "auth/email-already-in-use":
+      return "An account with this email already exists. Try signing in.";
+    case "auth/weak-password":
+      return "Password must be at least 6 characters.";
+    case "auth/invalid-email":
+      return "Please enter a valid email address.";
+    case "auth/too-many-requests":
+      return "Too many attempts. Please try again later.";
+    case "auth/network-request-failed":
+      return "Network error. Check your connection.";
+    case "auth/popup-closed-by-user":
+      return "Sign-in popup was closed.";
+    default:
+      return err?.message || "Authentication failed.";
+  }
 }
 
 function toReadableTime(totalSeconds: number) {
@@ -168,7 +192,10 @@ async function renderStats() {
 
 async function renderSignedOut() {
   const account = requireAccount();
-  if (statusText) statusText.textContent = "Not Signed In";
+  if (statusText) {
+    statusText.textContent = "Not Signed In";
+    statusText.classList.remove("signed-in");
+  }
   if (statusSub) statusSub.textContent = "Sign in to sync your profile and stats.";
   if (profileUsername) profileUsername.textContent = "Sign In";
   if (profilePlayerName) profilePlayerName.textContent = "Guest";
@@ -196,7 +223,10 @@ async function renderSignedIn(user: any) {
   const email = String(profile?.email || user?.email || "");
   const photo = String(profile?.photoURL || user?.photoURL || "favicon.png");
 
-  if (statusText) statusText.textContent = "Signed In";
+  if (statusText) {
+    statusText.textContent = "Signed In";
+    statusText.classList.add("signed-in");
+  }
   if (statusSub) statusSub.textContent = "Your account is synced across devices.";
   if (guestTagEl) guestTagEl.textContent = account.getGuestTag?.() || fallbackGuestTag();
   if (profileUsername) profileUsername.textContent = username;
@@ -260,7 +290,7 @@ googleBtn?.addEventListener("click", async () => {
     setBusy(true);
     await requireAccount().signInWithProvider("google");
   } catch (err: any) {
-    setAuthError(err?.message || "Google sign-in failed.");
+    setAuthError(friendlyAuthError(err));
   } finally {
     setBusy(false);
   }
@@ -287,23 +317,30 @@ signinBtn?.addEventListener("click", async () => {
       await account.signInWithEmail(identifier, password);
     }
   } catch (err: any) {
-    setAuthError(err?.message || "Sign-in failed.");
+    setAuthError(friendlyAuthError(err));
   } finally {
     setBusy(false);
   }
 });
 
-checkUsernameBtn?.addEventListener("click", async () => {
+signupUsername?.addEventListener("blur", async () => {
   if (!signupUsername || !usernameStatus) return;
   const username = signupUsername.value.trim().toLowerCase();
+  if (!username) {
+    usernameStatus.textContent = "";
+    usernameStatus.className = "status-note";
+    return;
+  }
   if (!/^[a-z0-9]{3,20}$/.test(username)) {
     usernameStatus.textContent = "Use 3-20 lowercase letters/numbers.";
     usernameStatus.className = "status-note bad";
     return;
   }
+  usernameStatus.textContent = "Checking...";
+  usernameStatus.className = "status-note";
   try {
     const ok = await requireAccount().isUsernameAvailable?.(username);
-    usernameStatus.textContent = ok ? "Username is available." : "Username is taken.";
+    usernameStatus.textContent = ok ? "Username is available!" : "Username is taken.";
     usernameStatus.className = ok ? "status-note good" : "status-note bad";
   } catch {
     usernameStatus.textContent = "Could not check username.";
@@ -352,7 +389,7 @@ signupBtn?.addEventListener("click", async () => {
       await account.signUpWithEmail(email, password, playerName || username);
     }
   } catch (err: any) {
-    setAuthError(err?.message || "Sign-up failed.");
+    setAuthError(friendlyAuthError(err));
   } finally {
     setBusy(false);
   }

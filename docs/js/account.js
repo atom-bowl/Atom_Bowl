@@ -49,7 +49,6 @@ const signupUsername = document.getElementById("signupUsername");
 const signupPlayerName = document.getElementById("signupPlayerName");
 const signupPassword = document.getElementById("signupPassword");
 const signupPassword2 = document.getElementById("signupPassword2");
-const checkUsernameBtn = document.getElementById("checkUsernameBtn");
 const signupBtn = document.getElementById("signupBtn");
 let pendingPhotoData = "";
 function refreshAccountCopy() {
@@ -96,6 +95,30 @@ function setBusy(isBusy) {
     document.querySelectorAll("[data-auth-action]").forEach((el) => {
         el.disabled = isBusy;
     });
+}
+function friendlyAuthError(err) {
+    const code = (err === null || err === void 0 ? void 0 : err.code) || "";
+    switch (code) {
+        case "auth/user-not-found":
+        case "auth/invalid-credential":
+            return "Invalid email/username or password.";
+        case "auth/wrong-password":
+            return "Incorrect password.";
+        case "auth/email-already-in-use":
+            return "An account with this email already exists. Try signing in.";
+        case "auth/weak-password":
+            return "Password must be at least 6 characters.";
+        case "auth/invalid-email":
+            return "Please enter a valid email address.";
+        case "auth/too-many-requests":
+            return "Too many attempts. Please try again later.";
+        case "auth/network-request-failed":
+            return "Network error. Check your connection.";
+        case "auth/popup-closed-by-user":
+            return "Sign-in popup was closed.";
+        default:
+            return (err === null || err === void 0 ? void 0 : err.message) || "Authentication failed.";
+    }
 }
 function toReadableTime(totalSeconds) {
     const s = Math.max(0, Math.round(Number(totalSeconds || 0)));
@@ -166,8 +189,10 @@ async function renderStats() {
 async function renderSignedOut() {
     var _a;
     const account = requireAccount();
-    if (statusText)
+    if (statusText) {
         statusText.textContent = "Not Signed In";
+        statusText.classList.remove("signed-in");
+    }
     if (statusSub)
         statusSub.textContent = "Sign in to sync your profile and stats.";
     if (profileUsername)
@@ -208,8 +233,10 @@ async function renderSignedIn(user) {
     const phone = String((profile === null || profile === void 0 ? void 0 : profile.phone) || "");
     const email = String((profile === null || profile === void 0 ? void 0 : profile.email) || (user === null || user === void 0 ? void 0 : user.email) || "");
     const photo = String((profile === null || profile === void 0 ? void 0 : profile.photoURL) || (user === null || user === void 0 ? void 0 : user.photoURL) || "favicon.png");
-    if (statusText)
+    if (statusText) {
         statusText.textContent = "Signed In";
+        statusText.classList.add("signed-in");
+    }
     if (statusSub)
         statusSub.textContent = "Your account is synced across devices.";
     if (guestTagEl)
@@ -283,7 +310,7 @@ googleBtn === null || googleBtn === void 0 ? void 0 : googleBtn.addEventListener
         await requireAccount().signInWithProvider("google");
     }
     catch (err) {
-        setAuthError((err === null || err === void 0 ? void 0 : err.message) || "Google sign-in failed.");
+        setAuthError(friendlyAuthError(err));
     }
     finally {
         setBusy(false);
@@ -311,25 +338,32 @@ signinBtn === null || signinBtn === void 0 ? void 0 : signinBtn.addEventListener
         }
     }
     catch (err) {
-        setAuthError((err === null || err === void 0 ? void 0 : err.message) || "Sign-in failed.");
+        setAuthError(friendlyAuthError(err));
     }
     finally {
         setBusy(false);
     }
 });
-checkUsernameBtn === null || checkUsernameBtn === void 0 ? void 0 : checkUsernameBtn.addEventListener("click", async () => {
+signupUsername === null || signupUsername === void 0 ? void 0 : signupUsername.addEventListener("blur", async () => {
     var _a, _b;
     if (!signupUsername || !usernameStatus)
         return;
     const username = signupUsername.value.trim().toLowerCase();
+    if (!username) {
+        usernameStatus.textContent = "";
+        usernameStatus.className = "status-note";
+        return;
+    }
     if (!/^[a-z0-9]{3,20}$/.test(username)) {
         usernameStatus.textContent = "Use 3-20 lowercase letters/numbers.";
         usernameStatus.className = "status-note bad";
         return;
     }
+    usernameStatus.textContent = "Checking...";
+    usernameStatus.className = "status-note";
     try {
         const ok = await ((_b = (_a = requireAccount()).isUsernameAvailable) === null || _b === void 0 ? void 0 : _b.call(_a, username));
-        usernameStatus.textContent = ok ? "Username is available." : "Username is taken.";
+        usernameStatus.textContent = ok ? "Username is available!" : "Username is taken.";
         usernameStatus.className = ok ? "status-note good" : "status-note bad";
     }
     catch {
@@ -378,7 +412,7 @@ signupBtn === null || signupBtn === void 0 ? void 0 : signupBtn.addEventListener
         }
     }
     catch (err) {
-        setAuthError((err === null || err === void 0 ? void 0 : err.message) || "Sign-up failed.");
+        setAuthError(friendlyAuthError(err));
     }
     finally {
         setBusy(false);

@@ -181,7 +181,7 @@ body {
 .card {
   background: linear-gradient(145deg, rgba(20,27,46,0.95), rgba(15,21,36,0.92));
   border-radius: 18px;
-  padding: 18px;
+  padding: 28px;
   border: 1px solid rgba(255,255,255,0.06);
 }
 
@@ -197,20 +197,54 @@ body {
 }
 
 .avatar {
-  width: 72px;
-  height: 72px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 3px solid rgba(79,124,255,0.4);
+  box-shadow: 0 0 20px rgba(79,124,255,0.15);
 }
 
-.profile-name { font-weight: 900; font-size: 1.15rem; }
-.profile-username, .profile-email { color: var(--muted); font-weight: 700; margin-top: 4px; }
+.profile-name { font-weight: 900; font-size: 1.25rem; }
+.profile-username, .profile-email { color: var(--muted); font-weight: 700; margin-top: 4px; font-size: 0.92rem; }
 
-.status { margin-top: 14px; }
-.status-text { font-weight: 900; font-size: 1.15rem; }
-.status-sub { color: var(--muted); margin-top: 5px; font-weight: 700; }
-.guest-row { margin-top: 10px; color: var(--muted); font-weight: 700; font-size: 0.9rem; }
+.status {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.theme-light .status { border-top-color: rgba(0,0,0,0.06); }
+
+.status-text {
+  font-weight: 900;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-text::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bad);
+  flex-shrink: 0;
+  box-shadow: 0 0 8px var(--bad);
+}
+
+.status-text.signed-in::before {
+  background: var(--good);
+  box-shadow: 0 0 8px var(--good);
+}
+
+.status-sub { color: var(--muted); font-weight: 700; font-size: 0.9rem; }
+.guest-row { color: var(--muted); font-weight: 700; font-size: 0.85rem; width: 100%; margin-top: 4px; }
 .guest-row code {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   background: rgba(79,124,255,0.16);
@@ -219,10 +253,35 @@ body {
   color: var(--text);
 }
 
+#signedInPanel h2,
+.stats-card h2 {
+  font-size: 1.1rem;
+  font-weight: 900;
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  color: var(--text);
+}
+
+.theme-light #signedInPanel h2,
+.theme-light .stats-card h2 {
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+
+#signedInPanel {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.theme-light #signedInPanel {
+  border-top-color: rgba(0,0,0,0.06);
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 12px;
 }
 
 .full-span { grid-column: 1 / -1; }
@@ -230,7 +289,9 @@ body {
 .label {
   display: block;
   font-weight: 800;
+  font-size: 0.88rem;
   margin: 10px 0 6px;
+  color: var(--muted);
 }
 
 .input {
@@ -241,6 +302,25 @@ body {
   background: rgba(18,24,36,0.85);
   color: var(--text);
   font-weight: 700;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: rgba(79,124,255,0.5);
+  box-shadow: 0 0 0 3px rgba(79,124,255,0.12);
+}
+
+.theme-light .input {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.12);
+}
+
+.theme-light .input:focus {
+  border-color: rgba(79,124,255,0.5);
+  box-shadow: 0 0 0 3px rgba(79,124,255,0.1);
 }
 
 .input-readonly {
@@ -363,7 +443,14 @@ body {
   border: 1px solid rgba(255,255,255,0.08);
   background: rgba(12,16,26,0.35);
   border-radius: 14px;
-  padding: 12px;
+  padding: 16px;
+  text-align: center;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.stat-box:hover {
+  border-color: rgba(79,124,255,0.25);
+  transform: translateY(-2px);
 }
 
 .theme-light .stat-box {
@@ -371,8 +458,8 @@ body {
   background: rgba(15,23,42,0.03);
 }
 
-.stat-label { color: var(--muted); font-weight: 700; font-size: 0.82rem; }
-.stat-value { margin-top: 6px; font-weight: 900; font-size: 1.25rem; }
+.stat-label { color: var(--muted); font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.02em; }
+.stat-value { margin-top: 8px; font-weight: 900; font-size: 1.4rem; color: var(--accent); }
 
 .brand-icon {
   width: 20px;
@@ -415,8 +502,9 @@ body {
 
 .status-note {
   min-height: 18px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 800;
+  margin-top: 6px;
 }
 
 .status-note.good { color: var(--good); }

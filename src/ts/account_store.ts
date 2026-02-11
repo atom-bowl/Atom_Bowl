@@ -321,21 +321,6 @@ async function signInWithProvider(providerId: string) {
 async function signInWithEmail(email: string, password: string) {
   const normalizedEmail = String(email || "").trim().toLowerCase();
   if (!normalizedEmail) throw new Error("Email is required.");
-  if (auth.currentUser?.isAnonymous) {
-    const cred = EmailAuthProvider.credential(normalizedEmail, password);
-    try {
-      const res = await linkWithCredential(auth.currentUser, cred);
-      return res.user;
-    } catch (err: any) {
-      const code = err?.code || "";
-      if (code === "auth/credential-already-in-use" || code === "auth/email-already-in-use") {
-        const res = await signInWithEmailAndPassword(auth, normalizedEmail, password);
-        return res.user;
-      }
-      throw err;
-    }
-  }
-
   const res = await signInWithEmailAndPassword(auth, normalizedEmail, password);
   return res.user;
 }
