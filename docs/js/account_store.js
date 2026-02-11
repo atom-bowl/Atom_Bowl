@@ -261,6 +261,25 @@ async function updatePracticeStats(patch) {
     };
     await setDoc(ref, next, { merge: true });
 }
+function learnProgressRef(uid) {
+    return doc(db, "users", uid, "learn", "progress");
+}
+async function loadLearnProgress() {
+    var _a;
+    if (!(currentUser === null || currentUser === void 0 ? void 0 : currentUser.uid))
+        return null;
+    const snap = await getDoc(learnProgressRef(currentUser.uid));
+    if (!snap.exists())
+        return null;
+    return Array.isArray((_a = snap.data()) === null || _a === void 0 ? void 0 : _a.completedLessons) ? snap.data().completedLessons : null;
+}
+async function saveLearnProgress(completedLessons) {
+    if (!(currentUser === null || currentUser === void 0 ? void 0 : currentUser.uid))
+        return;
+    await setDoc(learnProgressRef(currentUser.uid), {
+        completedLessons, updatedAt: serverTimestamp()
+    }, { merge: true });
+}
 function buildProvider(providerId) {
     if (providerId === "google")
         return new GoogleAuthProvider();
@@ -426,6 +445,8 @@ window.atomAccount = {
     resolveEmailFromUsername,
     updateAccountProfile,
     loadBuzzerProfile,
-    saveBuzzerProfile
+    saveBuzzerProfile,
+    loadLearnProgress,
+    saveLearnProgress
 };
 //# sourceMappingURL=account_store.js.map

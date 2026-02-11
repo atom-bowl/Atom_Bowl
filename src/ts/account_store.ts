@@ -489,5 +489,7 @@ window.atomAccount = {
   resolveEmailFromUsername,
   updateAccountProfile,
   loadBuzzerProfile,
-  saveBuzzerProfile
+  saveBuzzerProfile,
+  loadLearnProgress,
+  saveLearnProgress
 };

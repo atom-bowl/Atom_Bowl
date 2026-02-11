@@ -5,7 +5,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
-    "server": "node server/index.js"
+    "server": "node server/index.js",
+    "start": "npm run server"
   },
   "dependencies": {
     "express": "^4.19.2"
