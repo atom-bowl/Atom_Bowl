@@ -1276,13 +1276,14 @@
       btn.className = 'bottom-more-btn';
       btn.setAttribute('aria-haspopup', 'true');
       btn.setAttribute('aria-expanded', 'false');
-        btn.innerHTML = '<span class="icon">&#128295;</span><span>Buzzers</span>';
+        btn.innerHTML = '<span class="icon">&#8942;</span><span>More</span>';
       const menu = document.createElement('div');
       menu.className = 'bottom-more-menu';
         menu.innerHTML = `
         <a href="game_clock.html"><span class="icon">&#9201;</span><span>Game Clock</span></a>
         <a href="buzzer_rooms.html"><span class="icon">&#128680;</span><span>Buzzer Rooms</span></a>
-        <a href="account.html"><span class="icon">&#128100;</span><span>Account</span></a>
+        <a href="settings.html"><span class="icon">&#9881;&#65039;</span><span>Settings</span></a>
+        <a href="practice_home.html"><span class="icon">&#128214;</span><span>Learn</span></a>
         `;
       moreWrap.appendChild(btn);
       moreWrap.appendChild(menu);
