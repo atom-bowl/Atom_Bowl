@@ -821,9 +821,9 @@ input {
   }
 
   .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    position: fixed !important;
+    bottom: max(0px, env(safe-area-inset-bottom)) !important;
+    left: 0 !important;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -831,6 +831,9 @@ input {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding: 10px 0;
     z-index: 1000;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 
   .theme-light .bottom-nav {

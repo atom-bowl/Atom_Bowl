@@ -1348,4 +1348,36 @@
     }
     document.addEventListener('click', handleSameWindowNavigation);
 })();
+// Mobile bottom nav dropdown toggle
+function toggleBottomNavMore(event) {
+    event.stopPropagation();
+    const button = event.currentTarget;
+    const menu = button.nextElementSibling;
+    const isActive = menu.classList.contains('active');
+    // Close all other open menus
+    document.querySelectorAll('.bottom-nav-more-menu.active').forEach(m => {
+        m.classList.remove('active');
+    });
+    if (!isActive) {
+        menu.classList.add('active');
+        button.setAttribute('aria-expanded', 'true');
+    }
+    else {
+        button.setAttribute('aria-expanded', 'false');
+    }
+}
+// Close dropdown when clicking outside
+document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!target.closest('.bottom-nav-more')) {
+        document.querySelectorAll('.bottom-nav-more-menu.active').forEach(menu => {
+            menu.classList.remove('active');
+            const button = menu.previousElementSibling;
+            if (button)
+                button.setAttribute('aria-expanded', 'false');
+        });
+    }
+});
+// Make the function globally available
+window.toggleBottomNavMore = toggleBottomNavMore;
 //# sourceMappingURL=common.js.map

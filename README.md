@@ -7,13 +7,15 @@ It focuses on realism, speed, and accuracy: no fluff, no gimmicks.
 
 Built for students who want to grind questions the way real rounds feel.
 
+The final update before Atom Bowl v1 will be AI Generate using Gemini API and adding a Bank C with more questions!
+
 🔗 **Live site:** https://atom-bowl.github.io/Atom_Bowl/
 
 ---
 
 ## 🚀 Features
-- 🆕 **New Features from v0.3 update**
-  - Buzzer Rooms v1!!!
+- 🆕 **New Features from v0.9 update**
+  - Buzzer Rooms v1
   - Game Clock
   - Autocorrect
   - Light mode
