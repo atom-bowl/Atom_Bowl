@@ -299,11 +299,54 @@ input {
 
 .checkbox-row {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  justify-content: flex-start;
   margin-top: 14px;
   color: var(--text);
 }
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.toggle input {
+  display: none;
+}
+
+/* Switch body */
+.slider {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: #2a2f3a;
+  border-radius: 50px;
+  transition: 0.25s ease;
+}
+
+/* Switch circle */
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 2px;
+  top: 2px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.25s ease;
+}
+
+/* ON state */
+.toggle input:checked + .slider {
+  background: #4f7cff; /* adjust to your theme blue */
+}
+
+.toggle input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
 
 .advanced {
   margin-top: 16px;
