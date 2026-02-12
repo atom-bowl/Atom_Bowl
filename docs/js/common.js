@@ -306,6 +306,89 @@
     `;
         document.head.appendChild(style);
     }
+    function ensureBottomMoreStyle() {
+        if (document.getElementById('bottomMoreStyle'))
+            return;
+        const style = document.createElement('style');
+        style.id = 'bottomMoreStyle';
+        style.textContent = `
+      .bottom-more {
+        position: relative;
+      }
+
+      .bottom-more-btn {
+        background: none;
+        border: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .bottom-more-btn .icon {
+        line-height: 1;
+        position: relative;
+        top: 10px;
+      }
+
+      .bottom-more-menu {
+        position: absolute;
+        bottom: 56px;
+        right: 0;
+        min-width: 180px;
+        padding: 8px;
+        border-radius: 12px;
+        background: rgba(12,16,26,0.96);
+        border: 1px solid rgba(255,255,255,0.12);
+        box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        z-index: 1200;
+      }
+
+      .bottom-more-menu a {
+        text-decoration: none;
+        color: var(--text);
+        padding: 8px 10px;
+        border-radius: 10px;
+        background: rgba(79,124,255,0.16);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+      }
+
+      .bottom-more.open .bottom-more-menu {
+        display: flex;
+      }
+
+      .theme-light .bottom-more-menu {
+        background: rgba(255,255,255,0.98);
+        border: 1px solid rgba(0,0,0,0.12);
+        box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+      }
+
+      .theme-light .bottom-more-menu a {
+        color: #0f172a;
+        background: rgba(79,124,255,0.12);
+      }
+
+      @media (max-width: 820px) {
+        .bottom-more-btn span:last-child {
+          display: none;
+        }
+
+        .bottom-more-menu a span:not(.icon) {
+          display: inline;
+        }
+      }
+    `;
+        document.head.appendChild(style);
+    }
     function ensureBottomNavPinnedStyle() {
         if (document.getElementById('bottomNavPinnedStyle'))
             return;
@@ -314,16 +397,16 @@
         style.textContent = `
       .bottom-nav {
         position: fixed !important;
-        left: 12px !important;
-        right: 12px !important;
-        bottom: 12px !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
         z-index: 1200 !important;
       }
 
       @media (max-width: 820px) {
         .bottom-nav {
           padding: 10px 12px !important;
-          border-radius: 22px !important;
+          border-radius: 0 !important;
           gap: 8px !important;
         }
 
@@ -335,6 +418,38 @@
 
         .bottom-nav a .icon {
           font-size: 1.15rem !important;
+        }
+
+        /* Hide labels for main nav items and more button */
+        .bottom-nav a span:not(.icon),
+        .bottom-nav-more button span:not(.icon) {
+          display: none !important;
+        }
+
+        /* Remove gap and center icons for main nav */
+        .bottom-nav a,
+        .bottom-nav-more button {
+          font-size: 0 !important;
+          gap: 0 !important;
+          justify-content: center !important;
+          align-items: center !important;
+        }
+
+        /* Ensure icons are properly sized */
+        .bottom-nav a .icon,
+        .bottom-nav-more button .icon {
+          font-size: 1.3rem !important;
+          display: block !important;
+        }
+
+        /* Show labels ONLY for items inside the more menu dropdown */
+        .bottom-nav-more-menu a {
+          font-size: 0.9rem !important;
+          gap: 10px !important;
+        }
+
+        .bottom-nav-more-menu a span:not(.icon) {
+          display: inline !important;
         }
       }
     `;

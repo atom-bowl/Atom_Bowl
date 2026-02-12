@@ -313,16 +313,16 @@
     style.textContent = `
       .bottom-nav {
         position: fixed !important;
-        left: 12px !important;
-        right: 12px !important;
-        bottom: 12px !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
         z-index: 1200 !important;
       }
 
       @media (max-width: 820px) {
         .bottom-nav {
           padding: 10px 12px !important;
-          border-radius: 22px !important;
+          border-radius: 0 !important;
           gap: 8px !important;
         }
 
@@ -334,6 +334,38 @@
 
         .bottom-nav a .icon {
           font-size: 1.15rem !important;
+        }
+
+        /* Hide labels for main nav items and more button */
+        .bottom-nav a span:not(.icon),
+        .bottom-nav-more button span:not(.icon) {
+          display: none !important;
+        }
+
+        /* Remove gap and center icons for main nav */
+        .bottom-nav a,
+        .bottom-nav-more button {
+          font-size: 0 !important;
+          gap: 0 !important;
+          justify-content: center !important;
+          align-items: center !important;
+        }
+
+        /* Ensure icons are properly sized */
+        .bottom-nav a .icon,
+        .bottom-nav-more button .icon {
+          font-size: 1.3rem !important;
+          display: block !important;
+        }
+
+        /* Show labels ONLY for items inside the more menu dropdown */
+        .bottom-nav-more-menu a {
+          font-size: 0.9rem !important;
+          gap: 10px !important;
+        }
+
+        .bottom-nav-more-menu a span:not(.icon) {
+          display: inline !important;
         }
       }
     `;
