@@ -1,6 +1,6 @@
 # ⚛️ Atom Bowl
 
-**Atom Bowl** (current version 0.9) is a fast, clean, browser-based question platform designed for **National Science Bowl (NSB)** preparation and it also contains live NSB-like buzzer rooms and game clock settings using Firebase.
+**Atom Bowl** (current version 0.9.1) is a fast, clean, browser-based question platform designed for **National Science Bowl (NSB)** preparation and it also contains live NSB-like buzzer rooms and game clock settings using Firebase.
 It focuses on realism, speed, and accuracy along with low latency servers designed for the pros.
 
 ![Demo](docs/data/introduction.gif)
@@ -15,17 +15,18 @@ Note: Atom Bowl v1 is coming! It will include AI Generate using Gemini API, a wo
 ---
 
 ## 🚀 Features
-- 🆕 **New Features from v0.9 update**
+- 🆕 **New Features from v0.9.1 update**
   - Buzzer Rooms v1
   - Game Clock
-  - Autocorrect
+  - Autocorrect (using efficient Python scripts)
   - Light mode
   - Interrupt
   - AtomScore(R)
   - Learn using 90+ lessons across 6 topics
   - Practice Engine v0.3
   - Subtopics
-  - Question Bank Upgrade 
+  - Strong backend powered by Firebase and Render Docker
+  - Question Bank Upgrade (Bank A + B powered by Ruby)
 
 - 📚 **Real NSB-style questions**
   - Physics
