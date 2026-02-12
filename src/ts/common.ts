@@ -310,79 +310,99 @@
     const style = document.createElement('style');
     style.id = 'bottomMoreStyle';
     style.textContent = `
-      .bottom-more {
+      .bottom-nav-more {
         position: relative;
+        flex: 1;
       }
 
-      .bottom-more-btn {
+      .bottom-nav-more button {
+        width: 100%;
         background: none;
         border: none;
-        color: inherit;
+        color: var(--muted);
+        font-weight: 700;
+        font-size: 0.75rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 4px;
-        font: inherit;
+        padding: 8px 6px;
+        border-radius: 14px;
         cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease;
       }
 
-      .bottom-more-btn .icon {
-        line-height: 1;
-        position: relative;
-        top: 10px;
+      .bottom-nav-more button .icon {
+        font-size: 1.15rem;
       }
 
-      .bottom-more-menu {
+      .bottom-nav-more button:hover {
+        background: rgba(79,124,255,0.12);
+      }
+
+      .theme-light .bottom-nav-more button {
+        color: #5f6675;
+      }
+
+      .theme-light .bottom-nav-more button:hover {
+        color: #0f172a;
+      }
+
+      .bottom-nav-more-menu {
         position: absolute;
-        bottom: 56px;
+        bottom: calc(100% + 12px);
         right: 0;
-        min-width: 180px;
-        padding: 8px;
-        border-radius: 12px;
         background: rgba(12,16,26,0.96);
         border: 1px solid rgba(255,255,255,0.12);
-        box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+        border-radius: 16px;
+        padding: 8px;
+        min-width: 200px;
+        box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+        backdrop-filter: blur(12px);
         display: none;
         flex-direction: column;
         gap: 6px;
-        z-index: 1200;
+        z-index: 1250;
       }
 
-      .bottom-more-menu a {
-        text-decoration: none;
-        color: var(--text);
-        padding: 8px 10px;
-        border-radius: 10px;
-        background: rgba(79,124,255,0.16);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: 600;
-      }
-
-      .bottom-more.open .bottom-more-menu {
+      .bottom-nav-more-menu.active {
         display: flex;
       }
 
-      .theme-light .bottom-more-menu {
+      .theme-light .bottom-nav-more-menu {
         background: rgba(255,255,255,0.98);
         border: 1px solid rgba(0,0,0,0.12);
         box-shadow: 0 12px 28px rgba(0,0,0,0.12);
       }
 
-      .theme-light .bottom-more-menu a {
+      .bottom-nav-more-menu a {
+        text-decoration: none;
+        color: var(--text);
+        padding: 12px 16px;
+        border-radius: 12px;
+        background: rgba(79,124,255,0.16);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .bottom-nav-more-menu a:hover {
+        background: rgba(79,124,255,0.22);
+      }
+
+      .theme-light .bottom-nav-more-menu a {
         color: #0f172a;
         background: rgba(79,124,255,0.12);
       }
 
-      @media (max-width: 820px) {
-        .bottom-more-btn span:last-child {
-          display: none;
-        }
+      .theme-light .bottom-nav-more-menu a:hover {
+        background: rgba(79,124,255,0.18);
+      }
 
-        .bottom-more-menu a span:not(.icon) {
-          display: inline;
-        }
+      .bottom-nav-more-menu a .icon {
+        font-size: 1.2rem;
       }
     `;
     document.head.appendChild(style);
@@ -395,16 +415,16 @@
     style.textContent = `
       .bottom-nav {
         position: fixed !important;
-        left: 12px !important;
-        right: 12px !important;
-        bottom: 12px !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
         z-index: 1200 !important;
       }
 
       @media (max-width: 820px) {
         .bottom-nav {
           padding: 10px 12px !important;
-          border-radius: 22px !important;
+          border-radius: 0 !important;
           gap: 8px !important;
         }
 
@@ -416,6 +436,38 @@
 
         .bottom-nav a .icon {
           font-size: 1.15rem !important;
+        }
+
+        /* Hide labels for main nav items and more button */
+        .bottom-nav a span:not(.icon),
+        .bottom-nav-more button span:not(.icon) {
+          display: none !important;
+        }
+
+        /* Remove gap and center icons for main nav */
+        .bottom-nav a,
+        .bottom-nav-more button {
+          font-size: 0 !important;
+          gap: 0 !important;
+          justify-content: center !important;
+          align-items: center !important;
+        }
+
+        /* Ensure icons are properly sized */
+        .bottom-nav a .icon,
+        .bottom-nav-more button .icon {
+          font-size: 1.3rem !important;
+          display: block !important;
+        }
+
+        /* Show labels ONLY for items inside the more menu dropdown */
+        .bottom-nav-more-menu a {
+          font-size: 0.9rem !important;
+          gap: 10px !important;
+        }
+
+        .bottom-nav-more-menu a span:not(.icon) {
+          display: inline !important;
         }
       }
     `;
@@ -1264,46 +1316,6 @@
   }
 
   ensureGlobalFooter();
-
-  const bottomNav = document.querySelector('.bottom-nav');
-  if (bottomNav) {
-    const gameClockLink = bottomNav.querySelector('a[href*="game_clock.html"]');
-    if (gameClockLink) {
-      const moreWrap = document.createElement('div');
-      moreWrap.className = 'bottom-more';
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'bottom-more-btn';
-      btn.setAttribute('aria-haspopup', 'true');
-      btn.setAttribute('aria-expanded', 'false');
-        btn.innerHTML = '<span class="icon">&#8942;</span><span>More</span>';
-      const menu = document.createElement('div');
-      menu.className = 'bottom-more-menu';
-        menu.innerHTML = `
-        <a href="game_clock.html"><span class="icon">&#9201;</span><span>Game Clock</span></a>
-        <a href="buzzer_rooms.html"><span class="icon">&#128680;</span><span>Buzzer Rooms</span></a>
-        <a href="settings.html"><span class="icon">&#9881;&#65039;</span><span>Settings</span></a>
-        <a href="practice_home.html"><span class="icon">&#128214;</span><span>Learn</span></a>
-        `;
-      moreWrap.appendChild(btn);
-      moreWrap.appendChild(menu);
-      gameClockLink.replaceWith(moreWrap);
-
-      btn.addEventListener('click', (event) => {
-        event.preventDefault();
-        const isOpen = moreWrap.classList.toggle('open');
-        btn.setAttribute('aria-expanded', String(isOpen));
-      });
-
-      document.addEventListener('click', (event) => {
-        const target = event.target as Node | null;
-        if (!target || !moreWrap.contains(target)) {
-          moreWrap.classList.remove('open');
-          btn.setAttribute('aria-expanded', 'false');
-        }
-      });
-    }
-  }
 
   const mq = window.matchMedia?.('(prefers-color-scheme: light)');
   if (mq?.addEventListener) {
