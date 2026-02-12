@@ -154,7 +154,7 @@
 
     .hamburger,
     .overlay {
-      display: none;
+      display: none !important;
     }
 
     .hamburger {
@@ -196,7 +196,7 @@
       background: rgba(12,16,26,0.92);
       border: 1px solid rgba(255,255,255,0.08);
       box-shadow: 0 16px 50px rgba(0,0,0,0.45);
-      display: none;
+      display: none !important;
       justify-content: space-around;
       gap: 8px;
       z-index: 1200;
@@ -300,7 +300,7 @@
       min-width: 180px;
       box-shadow: 0 12px 40px rgba(0,0,0,0.5);
       backdrop-filter: blur(12px);
-      display: none;
+      display: none !important;
       flex-direction: column;
       gap: 4px;
       z-index: 1250;
@@ -343,7 +343,7 @@
 
       .hamburger,
       .overlay {
-        display: none;
+        display: none !important;
       }
 
       .main {
@@ -356,7 +356,7 @@
       .nav,
       .overlay,
       .hamburger {
-        display: none;
+        display: none !important;
       }
 
       body {
@@ -783,20 +783,23 @@
       /* Hide text labels on all mobile screens */
       .bottom-nav a span:not(.icon),
       .bottom-nav-more button span:not(.icon) {
-        display: none;
+        display: none !important;
       }
 
       /* Remove gap since no text */
       .bottom-nav a,
       .bottom-nav-more button {
-        font-size: 0;
-        gap: 0;
+        font-size: 0 !important;
+        gap: 0 !important;
+      justify-content: center !important;
+      align-items: center !important;
       }
 
       /* Ensure icons are centered and properly sized */
       .bottom-nav a .icon,
       .bottom-nav-more button .icon {
-        font-size: 1.3rem;
+        font-size: 1.3rem !important;
+      display: block !important;
       }
     }
 

@@ -401,20 +401,23 @@
       /* Hide text labels on all mobile screens */
       .bottom-nav a span:not(.icon),
       .bottom-nav-more button span:not(.icon) {
-        display: none;
+        display: none !important;
       }
 
-      /* Remove gap since no text */
+      /* Remove gap and center icons */
       .bottom-nav a,
       .bottom-nav-more button {
-        font-size: 0;
-        gap: 0;
+        font-size: 0 !important;
+        gap: 0 !important;
+        justify-content: center !important;
+        align-items: center !important;
       }
 
       /* Ensure icons are centered and properly sized */
       .bottom-nav a .icon,
       .bottom-nav-more button .icon {
-        font-size: 1.3rem;
+        font-size: 1.3rem !important;
+        display: block !important;
       }
     }
 
