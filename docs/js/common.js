@@ -306,89 +306,6 @@
     `;
         document.head.appendChild(style);
     }
-    function ensureBottomMoreStyle() {
-        if (document.getElementById('bottomMoreStyle'))
-            return;
-        const style = document.createElement('style');
-        style.id = 'bottomMoreStyle';
-        style.textContent = `
-      .bottom-more {
-        position: relative;
-      }
-
-      .bottom-more-btn {
-        background: none;
-        border: none;
-        color: inherit;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 4px;
-        font: inherit;
-        cursor: pointer;
-      }
-
-      .bottom-more-btn .icon {
-        line-height: 1;
-        position: relative;
-        top: 10px;
-      }
-
-      .bottom-more-menu {
-        position: absolute;
-        bottom: 56px;
-        right: 0;
-        min-width: 180px;
-        padding: 8px;
-        border-radius: 12px;
-        background: rgba(12,16,26,0.96);
-        border: 1px solid rgba(255,255,255,0.12);
-        box-shadow: 0 12px 28px rgba(0,0,0,0.35);
-        display: none;
-        flex-direction: column;
-        gap: 6px;
-        z-index: 1200;
-      }
-
-      .bottom-more-menu a {
-        text-decoration: none;
-        color: var(--text);
-        padding: 8px 10px;
-        border-radius: 10px;
-        background: rgba(79,124,255,0.16);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: 600;
-      }
-
-      .bottom-more.open .bottom-more-menu {
-        display: flex;
-      }
-
-      .theme-light .bottom-more-menu {
-        background: rgba(255,255,255,0.98);
-        border: 1px solid rgba(0,0,0,0.12);
-        box-shadow: 0 12px 28px rgba(0,0,0,0.12);
-      }
-
-      .theme-light .bottom-more-menu a {
-        color: #0f172a;
-        background: rgba(79,124,255,0.12);
-      }
-
-      @media (max-width: 820px) {
-        .bottom-more-btn span:last-child {
-          display: none;
-        }
-
-        .bottom-more-menu a span:not(.icon) {
-          display: inline;
-        }
-      }
-    `;
-        document.head.appendChild(style);
-    }
     function ensureBottomNavPinnedStyle() {
         if (document.getElementById('bottomNavPinnedStyle'))
             return;
@@ -571,7 +488,6 @@
           radial-gradient(54rem 40rem at 50% 112%, var(--zen-bg-3), transparent 62%),
           linear-gradient(140deg, color-mix(in srgb, var(--bg) 88%, #0f1b2d 12%), var(--bg) 62%);
         background-attachment: fixed;
-        animation: zenHueFlow 18s linear infinite;
       }
 
       body::after {
@@ -581,9 +497,10 @@
         pointer-events: none;
         background:
           radial-gradient(34vmax 24vmax at 16% 22%, rgba(123, 193, 255, 0.12), transparent 72%),
-          radial-gradient(34vmax 24vmax at 84% 72%, rgba(120, 129, 255, 0.1), transparent 72%);
+          radial-gradient(34vmax 24vmax at 84% 72%, rgba(120, 129, 255, 0.1), transparent 72%),
+          radial-gradient(28vmax 28vmax at 50% 50%, rgba(147, 112, 219, 0.08), transparent 68%);
         filter: blur(8px);
-        animation: zenDrift 26s ease-in-out infinite alternate;
+        animation: zenDrift 26s ease-in-out infinite alternate, zenGradientFlow 20s linear infinite;
         z-index: 0;
       }
 
@@ -637,8 +554,7 @@
 
       .nav-account .icon,
       .nav-settings .icon,
-      .bottom-nav a[href*="settings.html"] .icon,
-      .bottom-more-menu a[href*="account.html"] .icon {
+      .bottom-nav a[href*="settings.html"] .icon {
         filter: grayscale(1) saturate(0) brightness(1.02);
       }
 
@@ -788,7 +704,6 @@
       button.btn,
       .tab,
       .nav-more-btn,
-      .bottom-more-btn,
       .nav-settings,
       .nav-account {
         border-color: rgba(130, 174, 255, 0.34);
@@ -810,7 +725,6 @@
       button.btn:hover,
       .tab:hover,
       .nav-more-btn:hover,
-      .bottom-more-btn:hover,
       .nav-settings:hover,
       .nav-account:hover {
         box-shadow:
@@ -830,7 +744,6 @@
       .nav-settings:hover,
       .nav-account:hover {
         background: color-mix(in srgb, var(--zen-purple) 22%, transparent) !important;
-        color: color-mix(in srgb, #ffffff 85%, var(--zen-purple) 15%) !important;
         box-shadow:
           0 0 0 1px color-mix(in srgb, var(--zen-purple) 58%, #ffffff 42%) inset,
           0 12px 26px color-mix(in srgb, var(--zen-purple) 34%, transparent) !important;
@@ -957,9 +870,12 @@
         to { transform: translate3d(1.1%, 1.2%, 0) scale(1.03); }
       }
 
-      @keyframes zenHueFlow {
-        from { filter: hue-rotate(0deg); }
-        to { filter: hue-rotate(12deg); }
+      @keyframes zenGradientFlow {
+        0% { opacity: 1; transform: translate3d(0, 0, 0) rotate(0deg); }
+        25% { opacity: 0.95; transform: translate3d(0.5%, -0.5%, 0) rotate(1deg); }
+        50% { opacity: 0.92; transform: translate3d(-0.3%, 0.4%, 0) rotate(-0.5deg); }
+        75% { opacity: 0.95; transform: translate3d(0.4%, 0.3%, 0) rotate(0.8deg); }
+        100% { opacity: 1; transform: translate3d(0, 0, 0) rotate(0deg); }
       }
 
       @keyframes zenFloat {
@@ -1018,7 +934,6 @@
     ensureHoverPillStyle();
     ensureNavMoreStyle();
     ensureNavWeightStyle();
-    ensureBottomMoreStyle();
     ensureBottomNavPinnedStyle();
     ensureGlobalFooterStyle();
     ensurePageTransitionStyle();
@@ -1276,43 +1191,6 @@
         document.body.appendChild(footer);
     }
     ensureGlobalFooter();
-    const bottomNav = document.querySelector('.bottom-nav');
-    if (bottomNav) {
-        const gameClockLink = bottomNav.querySelector('a[href*="game_clock.html"]');
-        if (gameClockLink) {
-            const moreWrap = document.createElement('div');
-            moreWrap.className = 'bottom-more';
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'bottom-more-btn';
-            btn.setAttribute('aria-haspopup', 'true');
-            btn.setAttribute('aria-expanded', 'false');
-            btn.innerHTML = '<span class="icon">&#8942;</span><span>More</span>';
-            const menu = document.createElement('div');
-            menu.className = 'bottom-more-menu';
-            menu.innerHTML = `
-        <a href="game_clock.html"><span class="icon">&#9201;</span><span>Game Clock</span></a>
-        <a href="buzzer_rooms.html"><span class="icon">&#128680;</span><span>Buzzer Rooms</span></a>
-        <a href="settings.html"><span class="icon">&#9881;&#65039;</span><span>Settings</span></a>
-        <a href="practice_home.html"><span class="icon">&#128214;</span><span>Learn</span></a>
-        `;
-            moreWrap.appendChild(btn);
-            moreWrap.appendChild(menu);
-            gameClockLink.replaceWith(moreWrap);
-            btn.addEventListener('click', (event) => {
-                event.preventDefault();
-                const isOpen = moreWrap.classList.toggle('open');
-                btn.setAttribute('aria-expanded', String(isOpen));
-            });
-            document.addEventListener('click', (event) => {
-                const target = event.target;
-                if (!target || !moreWrap.contains(target)) {
-                    moreWrap.classList.remove('open');
-                    btn.setAttribute('aria-expanded', 'false');
-                }
-            });
-        }
-    }
     const mq = (_a = window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, '(prefers-color-scheme: light)');
     if (mq === null || mq === void 0 ? void 0 : mq.addEventListener) {
         mq.addEventListener('change', () => {
