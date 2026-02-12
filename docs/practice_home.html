@@ -21,13 +21,22 @@
     </svg>
   </div>
 
-  <div class="nav" id="nav">
-    <h2 class="nav-title">⚛ Atom Bowl</h2>
-    <a href="index.html"><span class="icon">🏠</span> Home</a>
-    <a href="generate.html"><span class="icon">🤖</span> Generate</a>
-    <a href="practice_home.html" class="active"><span class="icon">⚡</span> Practice</a>
-    <a href="question_bank.html"><span class="icon">📚</span> Question Bank</a>
-    <a href="settings.html"><span class="icon">⚙️</span> Settings</a>
+  <!-- NAV -->
+    <div class="nav" id="nav">
+    <h2 class="nav-title">&#x269B; Atom Bowl</h2>
+    <a href="index.html" class="active"><span class="icon">&#x1F3E0;</span> Home</a>
+    <a href="generate.html"><span class="icon">&#x1F916;</span> Generate</a>
+    <a href="practice_home.html"><span class="icon">&#x26A1;</span> Practice</a>
+    <a href="question_bank.html"><span class="icon">&#x1F4DA;</span> Question Bank</a>
+    <a href="learn.html"><span class="icon">&#x1F4D6;</span> Learn</a>
+    <a href="settings.html"><span class="icon">&#x2699;&#xFE0F;</span> Settings</a>
+    <div class="nav-more" data-nav-more>
+      <button class="nav-more-btn" type="button" aria-haspopup="true" aria-expanded="false">... More Tools</button>
+      <div class="nav-more-menu">
+        <a href="more_options.html">Game Clock</a>
+        <a href="buzzer_rooms.html">Buzzer Rooms</a>
+      </div>
+    </div>
   </div>
 
   <div class="overlay" id="overlay"></div>
@@ -75,9 +84,9 @@
         <div class="field">
           <label for="qaType">Question Type</label>
           <select id="qaType">
-            <option value="ANY">Both (SA + WXYZ)</option>
-            <option value="SA">Short Answer (SA)</option>
-            <option value="MC">Multiple Choice (WXYZ)</option>
+            <option value="ANY">Both (SA + MC)</option>
+            <option value="SA">Short Answer</option>
+            <option value="MC">Multiple Choice</option>
           </select>
         </div>
 
@@ -100,10 +109,12 @@
           <input id="seconds" type="number" min="5" max="30" step="1" value="10" />
         </div>
         
-        <label style="display:flex;align-items:center;gap:6px;margin-top:4px">
+        <label class="toggle">
           <input type="checkbox" id="noTimerCheck">
-          No timer
+          <span class="slider"></span>
+          <span class="label-text">No timer</span>
         </label>
+
 
 
         <div class="field" style="grid-column: span 2;">
