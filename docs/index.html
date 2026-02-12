@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/index.css">
 </head>
-<body class="page-transition page-enter">
+<body>
 
   <!-- NAV -->
     <div class="nav" id="nav">
@@ -24,12 +24,11 @@
     <a href="generate.html"><span class="icon">&#x1F916;</span> Generate</a>
     <a href="practice_home.html"><span class="icon">&#x26A1;</span> Practice</a>
     <a href="question_bank.html"><span class="icon">&#x1F4DA;</span> Question Bank</a>
-    <a href="learn.html"><span class="icon">&#x1F9E0;</span> Learn</a>
     <a href="settings.html"><span class="icon">&#x2699;&#xFE0F;</span> Settings</a>
     <div class="nav-more" data-nav-more>
-      <button class="nav-more-btn" type="button" aria-haspopup="true" aria-expanded="false">... NSB Tools</button>
+      <button class="nav-more-btn" type="button" aria-haspopup="true" aria-expanded="false">... More Tools</button>
       <div class="nav-more-menu">
-        <a href="game_clock.html">Game Clock</a>
+        <a href="more_options.html">Game Clock</a>
         <a href="buzzer_rooms.html">Buzzer Rooms</a>
       </div>
     </div>
@@ -42,7 +41,7 @@
   <!-- MAIN -->
   <div class="main">
     <div class="title">Atom Bowl</div>
-    <div class="subtitle">Fast, detailed, Science Bowl practice + New Buzzer Rooms (in production (beta, expect issues)).</div>
+    <div class="subtitle">Your ultimate Science Bowl (NSB) hub. Accounts are under production and you will face issues during sign up.</div>
 
     <div class="grid">
       <div class="card" onclick="go('practice_home.html')">
@@ -54,6 +53,11 @@
         <h3>🤖 Generate</h3>
         <p>Create custom AI-powered practice sets (Coming February 2026).</p>
       </div>
+
+      <div class="card" onclick="go('learn.html')">
+        <h3>📖 Learn</h3>
+        <p>Learn new topics with key terms and important concepts (flashcards coming soon).</p>
+      </div>
     
       <div class="card" onclick="go('question_bank.html')">
         <h3>📚 Question Bank</h3>
@@ -64,13 +68,17 @@
         <h3>⚙️ Settings</h3>
         <p>Division, subjects, timers, difficulty, and preferences.</p>
       </div>
-      <div class="card" onclick="go('game_clock.html')">
+      <div class="card" onclick="go('more_options.html')">
         <h3>&#x23F1;&#xFE0F; Game Clock</h3>
         <p>Score calculator, quick timers, and other live-game tools.</p>
       </div>
       <div class="card" onclick="go('buzzer_rooms.html')">
         <h3>🚨 Buzzer Rooms</h3>
         <p>Buzzer rooms to emulate real Science Bowl conditions (🧑‍💻 beta).</p>
+      </div>
+      <div class="card" onclick="go('account.html')">
+        <h3>👤 Account</h3>
+        <p>Manage your account and preferences (beta).</p>
       </div>
     </div>
 
@@ -84,14 +92,11 @@
     <a href="generate.html"><span class="icon">&#x1F916;</span><span>Generate</span></a>
     <a href="practice_home.html"><span class="icon">&#x26A1;</span><span>Practice</span></a>
     <a href="question_bank.html"><span class="icon">&#x1F4DA;</span><span>Bank</span></a>
-    <a href="learn.html"><span class="icon">&#x1F9E0;</span><span>Learn</span></a>
     <a href="settings.html"><span class="icon">&#x2699;&#xFE0F;</span><span>Settings</span></a>
-    <a href="game_clock.html"><span class="icon">&#x23F1;&#xFE0F;</span><span>Game Clock</span></a>
+    <a href="more_options.html"><span class="icon">&#x23F1;&#xFE0F;</span><span>Game Clock</span></a>
   </nav>
   <script src="js/common.js"></script>
-  <script src="js/index.js"></script>y
+  <script src="js/index.js"></script>
   <script type="module" src="./app.js"></script>
 </body>
 </html>
-
-
