@@ -102,7 +102,6 @@
     const accentSelect = document.getElementById('accentSelect');
     const themeSelect = document.getElementById('themeSelect');
     const toast = document.getElementById('toast');
-    const applyBtn = document.getElementById('apply');
     const resetBtn = document.getElementById('reset');
     [sfxToggle, ttsToggle, hcToggle, animToggle, rememberTopicsToggle, autoCheckToggle].forEach(wireToggle);
     function showToast(msg) {
@@ -183,31 +182,52 @@
             theme: themeSelect.value
         };
     }
+    function persistCurrentSettings() {
+        const next = collectUI();
+        saveSettings(next);
+        syncAccountSettings(next);
+        applyThemePreview(next);
+    }
     // Live preview on dropdowns
     [fontSelect, accentSelect, themeSelect].forEach(el => {
         el.addEventListener('change', () => {
-            const s = collectUI();
-            applyThemePreview(s);
+            persistCurrentSettings();
         });
     });
-    hcToggle.addEventListener('click', () => applyThemePreview(collectUI()));
+    [sfxToggle, ttsToggle, hcToggle, animToggle, rememberTopicsToggle, autoCheckToggle].forEach(el => {
+        el.addEventListener('click', () => persistCurrentSettings());
+        el.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ')
+                persistCurrentSettings();
+        });
+    });
     autoThreshold.addEventListener('input', () => {
         autoThresholdValue.textContent = Number(autoThreshold.value).toFixed(2);
+        persistCurrentSettings();
+    });
+    [divSelect, modeSelect].forEach(el => {
+        el.addEventListener('change', () => persistCurrentSettings());
     });
     if (voiceRate) {
         voiceRate.addEventListener('input', () => {
             voiceRateValue.textContent = `${Number(voiceRate.value).toFixed(2)}x`;
+            persistCurrentSettings();
         });
     }
     if (voicePitch) {
         voicePitch.addEventListener('input', () => {
             voicePitchValue.textContent = Number(voicePitch.value).toFixed(2);
+            persistCurrentSettings();
         });
     }
     if (voiceVolume) {
         voiceVolume.addEventListener('input', () => {
             voiceVolumeValue.textContent = `${Math.round(Number(voiceVolume.value) * 100)}%`;
+            persistCurrentSettings();
         });
+    }
+    if (voiceSelect) {
+        voiceSelect.addEventListener('change', () => persistCurrentSettings());
     }
     function populateVoices(s) {
         if (!voiceSelect)
@@ -264,13 +284,6 @@
             window.speechSynthesis.speak(u);
         });
     }
-    applyBtn.addEventListener('click', () => {
-        const s = collectUI();
-        saveSettings(s);
-        syncAccountSettings(s);
-        applyThemePreview(s);
-        showToast('Saved ✅');
-    });
     resetBtn.addEventListener('click', () => {
         const next = { ...DEFAULTS };
         saveSettings(next);

@@ -24,6 +24,7 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
+  overflow-y: hidden !important;
 }
 
 .waves {
@@ -131,11 +132,11 @@ body {
 
 .bottom-nav {
   position: fixed !important;
-  left: 12px !important;
-  right: 12px !important;
-  bottom: max(14px, env(safe-area-inset-bottom)) !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
   padding: 10px 12px;
-  border-radius: 22px;
+  border-radius: 0;
   background: rgba(12,16,26,0.92);
   border: 1px solid rgba(255,255,255,0.08);
   display: none;
@@ -193,6 +194,15 @@ body {
 
 .theme-light .bottom-nav-more button {
   color: #5f6675;
+}
+
+.theme-light .bottom-nav a:hover {
+  color: #0f172a;
+  background: rgba(79,124,255,0.12);
+}
+
+.theme-light .bottom-nav-more button:hover {
+  color: #0f172a;
 }
 
 .bottom-nav-more-menu {
@@ -712,3 +722,4 @@ body {
     grid-template-columns: 1fr;
   }
 }
+

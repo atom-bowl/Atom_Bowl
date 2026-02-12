@@ -841,6 +841,15 @@ input {
     border-top: 1px solid rgba(15, 23, 42, 0.1);
   }
 
+  .theme-light .bottom-nav a:hover {
+    color: #0f172a;
+    background: rgba(79,124,255,0.12);
+  }
+
+  .theme-light .bottom-nav-more button:hover {
+    color: #0f172a;
+  }
+
   .bottom-nav a {
     color: var(--text);
     text-decoration: none;
