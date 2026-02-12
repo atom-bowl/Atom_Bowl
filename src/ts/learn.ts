@@ -26,6 +26,7 @@ interface LessonSection {
   heading: string;
   body: string;
   keyTerms: string[];
+  keyTermsDefs?: Record<string, string>;
 }
 
 interface LessonFull {
@@ -56,8 +57,14 @@ const lessonContent = document.getElementById("lessonContent")!;
 const backBtn = document.getElementById("backBtn")!;
 const completeBtn = document.getElementById("completeBtn")!;
 const completeStatus = document.getElementById("completeStatus")!;
+const sectionProgress = document.getElementById("sectionProgress")!;
+const prevSectionBtn = document.getElementById("prevSectionBtn")!;
+const nextSectionBtn = document.getElementById("nextSectionBtn")!;
+const keyTermTooltip = document.getElementById("keyTermTooltip")!;
 
 let currentLessonId = "";
+let currentLesson: LessonFull | null = null;
+let currentSectionIndex = 0;
 
 // ---- Utility ----
 function escapeHtml(str: string): string {
@@ -201,28 +208,65 @@ function highlightKeyTerms(body: string, keyTerms: string[]): string {
   for (const term of sorted) {
     const escapedTerm = escapeHtml(term);
     const regex = new RegExp(`(?<![\\w-])${escapedTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\w-])`, "gi");
-    result = result.replace(regex, `<mark class="key-term">$&</mark>`);
+    result = result.replace(regex, `<mark class="key-term" data-term="${escapedTerm}">$&</mark>`);
   }
   return result;
 }
 
-function renderLesson(lesson: LessonFull) {
-  let html = "";
-  for (const section of lesson.sections) {
-    html += `
-      <div class="lesson-section">
-        <h3>${escapeHtml(section.heading)}</h3>
-        <div class="lesson-section-body">${highlightKeyTerms(section.body, section.keyTerms)}</div>
-        ${section.keyTerms.length ? `
-          <div class="key-terms-section">
-            <div class="key-terms-label">Key Terms</div>
-            <div class="key-terms-list">
-              ${section.keyTerms.map((t) => `<span class="key-term-pill">${escapeHtml(t)}</span>`).join("")}
-            </div>
-          </div>` : ""}
-      </div>`;
-  }
+function renderSection(lesson: LessonFull, sectionIndex: number) {
+  if (sectionIndex < 0 || sectionIndex >= lesson.sections.length) return;
+
+  const section = lesson.sections[sectionIndex];
+  const html = `
+    <div class="lesson-section">
+      <h3>${escapeHtml(section.heading)}</h3>
+      <div class="lesson-section-body">${highlightKeyTerms(section.body, section.keyTerms)}</div>
+      ${section.keyTerms.length ? `
+        <div class="key-terms-section">
+          <div class="key-terms-label">Key Terms</div>
+          <div class="key-terms-list">
+            ${section.keyTerms.map((t) => `<span class="key-term-pill" data-term="${escapeHtml(t)}">${escapeHtml(t)}</span>`).join("")}
+          </div>
+        </div>` : ""}
+    </div>`;
+
   lessonContent.innerHTML = html;
+
+  // Update progress text
+  sectionProgress.textContent = `Section ${sectionIndex + 1} of ${lesson.sections.length}`;
+
+  // Update nav button states
+  (prevSectionBtn as HTMLButtonElement).disabled = sectionIndex === 0;
+  (nextSectionBtn as HTMLButtonElement).disabled = sectionIndex === lesson.sections.length - 1;
+
+  // Setup tooltips
+  setupKeyTermTooltips(section);
+}
+
+function setupKeyTermTooltips(section: LessonSection) {
+  const defs = section.keyTermsDefs || {};
+  const terms = lessonContent.querySelectorAll(".key-term, .key-term-pill");
+
+  terms.forEach((term) => {
+    const termText = (term as HTMLElement).dataset.term || term.textContent?.trim() || "";
+    const def = defs[termText];
+
+    if (!def) return;
+
+    term.addEventListener("mouseenter", (e) => {
+      const target = e.target as HTMLElement;
+      const rect = target.getBoundingClientRect();
+      keyTermTooltip.textContent = def;
+      keyTermTooltip.style.left = `${rect.left + rect.width / 2}px`;
+      keyTermTooltip.style.top = `${rect.top - 10}px`;
+      keyTermTooltip.style.transform = "translate(-50%, -100%)";
+      keyTermTooltip.classList.remove("hidden");
+    });
+
+    term.addEventListener("mouseleave", () => {
+      keyTermTooltip.classList.add("hidden");
+    });
+  });
 }
 
 // ---- View switching ----
@@ -230,6 +274,8 @@ function showBrowser() {
   browserView.classList.remove("hidden");
   readerView.classList.add("hidden");
   currentLessonId = "";
+  currentLesson = null;
+  currentSectionIndex = 0;
   renderGrid();
   updateProgressUI();
 }
@@ -240,13 +286,38 @@ async function showReader(lessonId: string, file: string) {
   if (!lesson) return;
 
   currentLessonId = lessonId;
+  currentLesson = lesson;
+  currentSectionIndex = 0;
   readerTitle.textContent = lesson.title;
-  renderLesson(lesson);
+  renderSection(lesson, currentSectionIndex);
   updateCompleteUI();
 
   browserView.classList.add("hidden");
   readerView.classList.remove("hidden");
   window.scrollTo(0, 0);
+}
+
+function navigateSection(direction: number) {
+  if (!currentLesson) return;
+
+  const newIndex = currentSectionIndex + direction;
+  if (newIndex < 0 || newIndex >= currentLesson.sections.length) return;
+
+  // Add animation class
+  lessonContent.classList.add(direction > 0 ? "slide-out-left" : "slide-out-right");
+
+  setTimeout(() => {
+    currentSectionIndex = newIndex;
+    renderSection(currentLesson!, currentSectionIndex);
+    lessonContent.classList.remove("slide-out-left", "slide-out-right");
+    lessonContent.classList.add(direction > 0 ? "slide-in-right" : "slide-in-left");
+
+    setTimeout(() => {
+      lessonContent.classList.remove("slide-in-right", "slide-in-left");
+    }, 300);
+
+    window.scrollTo(0, 0);
+  }, 300);
 }
 
 function updateCompleteUI() {
@@ -273,6 +344,9 @@ lessonGrid.addEventListener("click", (e) => {
 });
 
 backBtn.addEventListener("click", showBrowser);
+
+prevSectionBtn.addEventListener("click", () => navigateSection(-1));
+nextSectionBtn.addEventListener("click", () => navigateSection(1));
 
 completeBtn.addEventListener("click", async () => {
   if (!currentLessonId) return;

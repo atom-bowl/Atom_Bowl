@@ -156,6 +156,240 @@
           "keyTerms": ["reaction mechanism", "rate-determining step", "intermediate", "molecularity", "catalyst", "enzyme", "homogeneous catalyst", "heterogeneous catalyst"]
         }
       ]
+    },
+    {
+      "id": "chem_07",
+      "title": "Electrochemistry",
+      "sections": [
+        {
+          "heading": "Redox Reactions and Half-Reactions",
+          "body": "Electrochemistry studies the interconversion of chemical and electrical energy through redox reactions. Oxidation occurs at the anode (loses electrons), and reduction occurs at the cathode (gains electrons). Half-reactions separate oxidation and reduction processes. Balancing redox equations in acidic solution uses H+ and H2O; in basic solution, use OH- and H2O. The standard reduction potential (E°) measures the tendency of a species to be reduced. A more positive E° indicates a stronger oxidizing agent.",
+          "keyTerms": ["electrochemistry", "anode", "cathode", "half-reaction", "standard reduction potential", "oxidizing agent"]
+        },
+        {
+          "heading": "Galvanic Cells",
+          "body": "Galvanic (voltaic) cells convert chemical energy to electrical energy spontaneously. The cell consists of two half-cells connected by a salt bridge, which maintains electrical neutrality. The cell potential E°cell = E°cathode - E°anode. A positive E°cell indicates a spontaneous reaction. The relationship between cell potential and free energy is delta G = -nFE, where n is moles of electrons and F is Faraday's constant (96,485 C/mol). Common galvanic cells include the Daniell cell (zinc-copper) and the lead-acid battery.",
+          "keyTerms": ["galvanic cell", "voltaic cell", "salt bridge", "cell potential", "Faraday's constant", "spontaneous"]
+        },
+        {
+          "heading": "Electrolytic Cells",
+          "body": "Electrolytic cells use electrical energy to drive non-spontaneous redox reactions. Examples include electroplating, purification of metals, and production of chemicals. The anode is still where oxidation occurs, but in an electrolytic cell it is connected to the positive terminal. Water can be electrolyzed into hydrogen and oxygen gases. Faraday's laws of electrolysis relate the amount of substance produced to the current and time: mass is proportional to charge passed (Q = It). Electrorefining purifies metals like copper.",
+          "keyTerms": ["electrolytic cell", "electroplating", "electrolysis", "Faraday's laws", "electrorefining"]
+        },
+        {
+          "heading": "Batteries and Fuel Cells",
+          "body": "Batteries store chemical energy and convert it to electrical energy. Primary batteries (alkaline, zinc-carbon) are single-use. Secondary batteries (lead-acid, lithium-ion, nickel-metal hydride) are rechargeable. Lithium-ion batteries have high energy density and are used in portable electronics and electric vehicles. Fuel cells continuously generate electricity from reactants supplied externally. Hydrogen fuel cells combine H2 and O2 to produce electricity, with water as the only byproduct. The Nernst equation relates cell potential to concentrations: E = E° - (RT/nF)ln(Q).",
+          "keyTerms": ["battery", "primary battery", "secondary battery", "lithium-ion", "fuel cell", "Nernst equation"]
+        }
+      ]
+    },
+    {
+      "id": "chem_08",
+      "title": "Organic Chemistry",
+      "sections": [
+        {
+          "heading": "Hydrocarbons",
+          "body": "Hydrocarbons contain only carbon and hydrogen. Alkanes have single bonds (CnH2n+2) and are saturated. Alkenes have at least one double bond (CnH2n). Alkynes have at least one triple bond (CnH2n-2). Aromatic hydrocarbons contain benzene rings with delocalized pi electrons. IUPAC nomenclature uses prefixes for carbon chain length (meth-, eth-, prop-, but-) and suffixes indicating bond type (-ane, -ene, -yne). Structural isomers have the same molecular formula but different connectivity.",
+          "keyTerms": ["hydrocarbon", "alkane", "alkene", "alkyne", "aromatic", "benzene", "IUPAC", "structural isomer"]
+        },
+        {
+          "heading": "Functional Groups",
+          "body": "Functional groups are specific atom arrangements that determine chemical properties. Alcohols have -OH groups (nomenclature: -ol). Aldehydes have a carbonyl at the end of a chain (-al). Ketones have a carbonyl within the chain (-one). Carboxylic acids have -COOH groups (-oic acid). Esters form from carboxylic acids and alcohols (-oate). Amines contain nitrogen (-amine). Ethers have an oxygen between two carbons. Functional groups undergo characteristic reactions.",
+          "keyTerms": ["functional group", "alcohol", "aldehyde", "ketone", "carboxylic acid", "ester", "amine", "ether"]
+        },
+        {
+          "heading": "Isomerism",
+          "body": "Isomers have the same molecular formula but different structures. Structural isomers differ in connectivity. Stereoisomers have the same connectivity but different spatial arrangements. Geometric (cis-trans) isomers differ in arrangement around a double bond or ring. Optical isomers (enantiomers) are non-superimposable mirror images. Chiral molecules lack a plane of symmetry and rotate plane-polarized light. A racemic mixture contains equal amounts of both enantiomers. Diastereomers are stereoisomers that are not mirror images.",
+          "keyTerms": ["isomer", "stereoisomer", "geometric isomer", "cis-trans", "enantiomer", "chiral", "racemic mixture", "diastereomer"]
+        },
+        {
+          "heading": "Organic Reactions",
+          "body": "Addition reactions add atoms across a double or triple bond (e.g., hydrogenation, halogenation). Substitution reactions replace one atom or group with another (e.g., halogenation of alkanes). Elimination reactions remove atoms to form double or triple bonds (e.g., dehydration of alcohols). Condensation reactions join molecules with loss of a small molecule (often water). Polymerization joins monomers to form polymers. Oxidation of alcohols produces aldehydes or ketones. Reduction of aldehydes or ketones produces alcohols.",
+          "keyTerms": ["addition reaction", "substitution", "elimination", "condensation", "polymerization", "hydrogenation", "halogenation"]
+        }
+      ]
+    },
+    {
+      "id": "chem_09",
+      "title": "Nuclear Chemistry",
+      "sections": [
+        {
+          "heading": "Radioactive Decay",
+          "body": "Radioactive decay is the spontaneous emission of particles or energy from unstable nuclei. Alpha decay emits an alpha particle (helium-4 nucleus), reducing atomic number by 2 and mass number by 4. Beta-minus decay converts a neutron to a proton, emitting an electron and antineutrino. Beta-plus decay converts a proton to a neutron, emitting a positron and neutrino. Gamma decay emits high-energy photons without changing atomic or mass number. Electron capture occurs when a nucleus captures an inner electron, converting a proton to a neutron.",
+          "keyTerms": ["radioactive decay", "alpha particle", "beta decay", "gamma ray", "positron", "electron capture"]
+        },
+        {
+          "heading": "Half-Life and Decay Kinetics",
+          "body": "Half-life (t1/2) is the time for half of a radioactive sample to decay. Radioactive decay follows first-order kinetics: N(t) = N0 * e^(-lambda*t), where lambda is the decay constant. The relationship between half-life and decay constant is t1/2 = ln(2)/lambda = 0.693/lambda. Carbon-14 dating uses the decay of C-14 (half-life 5,730 years) to date organic materials up to about 50,000 years old. Uranium-lead dating is used for much older rocks. Activity is measured in becquerels (decays per second) or curies.",
+          "keyTerms": ["half-life", "decay constant", "first-order kinetics", "carbon-14 dating", "uranium-lead dating", "activity", "becquerel"]
+        },
+        {
+          "heading": "Nuclear Fission and Fusion",
+          "body": "Nuclear fission splits heavy nuclei into lighter nuclei, releasing energy. U-235 and Pu-239 are fissile materials. A neutron strikes the nucleus, causing it to split into two fission fragments plus neutrons. These neutrons can trigger more fissions in a chain reaction. Nuclear reactors control the chain reaction using control rods and moderators. Nuclear fusion combines light nuclei into heavier nuclei, releasing even more energy per unit mass. The Sun fuses hydrogen into helium. Fusion requires extremely high temperatures to overcome electrostatic repulsion.",
+          "keyTerms": ["nuclear fission", "fissile", "chain reaction", "nuclear reactor", "nuclear fusion", "fusion", "U-235", "Pu-239"]
+        },
+        {
+          "heading": "Applications of Nuclear Chemistry",
+          "body": "Medical applications include PET scans (positron emission tomography), radiation therapy for cancer, and radioactive tracers for diagnosis. Nuclear medicine uses isotopes like Tc-99m, I-131, and Co-60. Industrial applications include radiography for testing welds, gauging thickness, and sterilizing equipment. Nuclear power plants generate electricity through controlled fission. Challenges include radioactive waste disposal and safety concerns. Nuclear weapons use uncontrolled fission or fusion. Radiation exposure is measured in grays (absorbed dose) and sieverts (biological effect).",
+          "keyTerms": ["PET scan", "radiation therapy", "radioactive tracer", "nuclear medicine", "radiography", "nuclear power", "sievert", "gray"]
+        }
+      ]
+    },
+    {
+      "id": "chem_10",
+      "title": "Transition Metals & Coordination",
+      "sections": [
+        {
+          "heading": "Properties of Transition Metals",
+          "body": "Transition metals occupy the d-block of the periodic table (groups 3-12). They have partially filled d orbitals and exhibit variable oxidation states (e.g., Fe2+ and Fe3+). Transition metals form colored compounds due to d-d electron transitions. They often act as catalysts due to their ability to change oxidation states. They have high melting points, high densities, and good electrical and thermal conductivity. Lanthanides and actinides are f-block elements with partially filled f orbitals.",
+          "keyTerms": ["transition metals", "d-block", "variable oxidation states", "colored compounds", "lanthanides", "actinides", "catalyst"]
+        },
+        {
+          "heading": "Coordination Compounds",
+          "body": "Coordination compounds contain a central metal ion bonded to ligands. Ligands are Lewis bases that donate electron pairs. The coordination number is the number of ligand donor atoms bonded to the metal (commonly 4 or 6). Monodentate ligands (H2O, NH3, Cl-) bind through one atom. Bidentate ligands (ethylenediamine) bind through two atoms. Polydentate ligands (EDTA) bind through multiple atoms. Common geometries include tetrahedral (coordination number 4), square planar (4), and octahedral (6).",
+          "keyTerms": ["coordination compound", "ligand", "coordination number", "monodentate", "bidentate", "polydentate", "EDTA", "octahedral"]
+        },
+        {
+          "heading": "Nomenclature and Isomerism",
+          "body": "Coordination compound nomenclature lists ligands alphabetically before the metal. Anionic ligands end in -o (chloro, hydroxo). Neutral ligands keep their names (except aqua for H2O, ammine for NH3). The oxidation state of the metal is given in Roman numerals. Geometric isomers include cis (similar groups adjacent) and trans (similar groups opposite). Optical isomers (enantiomers) are non-superimposable mirror images. Linkage isomers have ligands that can bind through different atoms (e.g., NO2- can bind through N or O).",
+          "keyTerms": ["nomenclature", "cis", "trans", "geometric isomers", "optical isomers", "linkage isomers"]
+        },
+        {
+          "heading": "Crystal Field Theory",
+          "body": "Crystal field theory explains the bonding, color, and magnetism of coordination compounds. Ligands create an electrostatic field that splits d orbitals into different energy levels. In an octahedral field, d orbitals split into lower-energy t2g and higher-energy eg levels. The energy difference is the crystal field splitting energy (delta). Strong-field ligands (CN-, CO) cause large splitting and favor low-spin complexes (electrons pair in lower orbitals). Weak-field ligands (I-, Br-) cause small splitting and favor high-spin complexes. Color arises from d-d transitions absorbing specific wavelengths.",
+          "keyTerms": ["crystal field theory", "crystal field splitting", "t2g", "eg", "strong-field ligands", "weak-field ligands", "low-spin", "high-spin"]
+        }
+      ]
+    },
+    {
+      "id": "chem_11",
+      "title": "Spectroscopy & Analysis",
+      "sections": [
+        {
+          "heading": "Infrared Spectroscopy",
+          "body": "Infrared (IR) spectroscopy measures the absorption of infrared radiation by molecular vibrations. Different functional groups absorb at characteristic frequencies (wavenumbers, cm-1). O-H stretches appear at 3200-3600 cm-1 (broad for alcohols). N-H stretches appear at 3300-3500 cm-1. C=O stretches appear at 1650-1750 cm-1. C-H stretches appear at 2850-3000 cm-1. The fingerprint region (below 1500 cm-1) is unique to each molecule. IR spectroscopy identifies functional groups and confirms molecular structure.",
+          "keyTerms": ["infrared spectroscopy", "IR", "wavenumber", "functional groups", "fingerprint region", "molecular vibrations"]
+        },
+        {
+          "heading": "UV-Visible Spectroscopy",
+          "body": "UV-Visible spectroscopy measures the absorption of ultraviolet and visible light by electrons transitioning between energy levels. Conjugated systems and aromatic compounds absorb strongly in the UV region. The Beer-Lambert law relates absorbance to concentration: A = epsilon*b*c, where epsilon is the molar absorptivity, b is path length, and c is concentration. UV-Vis spectroscopy determines concentration, measures reaction rates, and studies electronic structure. Colored compounds absorb in the visible region (400-700 nm). The color observed is complementary to the color absorbed.",
+          "keyTerms": ["UV-Visible spectroscopy", "Beer-Lambert law", "absorbance", "molar absorptivity", "conjugated system", "electronic transitions"]
+        },
+        {
+          "heading": "Nuclear Magnetic Resonance Spectroscopy",
+          "body": "Nuclear Magnetic Resonance (NMR) spectroscopy detects nuclei with non-zero spin (1H, 13C, 31P) in a magnetic field. Proton NMR (1H-NMR) is most common. Chemical shift (delta, in ppm) indicates the electronic environment. Equivalent protons appear at the same chemical shift. Integration gives the relative number of protons. Splitting patterns arise from spin-spin coupling with neighboring protons (n+1 rule). A singlet has no neighboring protons, doublet has one, triplet has two, quartet has three. Carbon-13 NMR provides information about carbon environments.",
+          "keyTerms": ["NMR", "nuclear magnetic resonance", "chemical shift", "ppm", "integration", "splitting", "spin-spin coupling", "n+1 rule"]
+        },
+        {
+          "heading": "Mass Spectrometry",
+          "body": "Mass spectrometry (MS) measures the mass-to-charge ratio (m/z) of ions. A sample is ionized, producing a molecular ion (M+). Fragmentation produces smaller ions characteristic of the molecular structure. The molecular ion peak gives the molecular mass. Isotope patterns help identify elements (chlorine and bromine have distinctive patterns). High-resolution MS determines molecular formulas. MS is coupled with chromatography (GC-MS, LC-MS) for complex mixture analysis. Tandem MS (MS/MS) provides structural information through successive fragmentation.",
+          "keyTerms": ["mass spectrometry", "MS", "molecular ion", "fragmentation", "m/z ratio", "isotope pattern", "GC-MS", "LC-MS"]
+        }
+      ]
+    },
+    {
+      "id": "chem_12",
+      "title": "Polymers & Materials",
+      "sections": [
+        {
+          "heading": "Addition Polymers",
+          "body": "Addition polymerization (chain-growth polymerization) occurs when monomers with double bonds link together without loss of atoms. The process involves initiation (forming a reactive species), propagation (adding monomers to the chain), and termination. Common addition polymers include polyethylene (PE) from ethylene, polypropylene (PP) from propylene, polystyrene (PS) from styrene, and polyvinyl chloride (PVC) from vinyl chloride. High-density polyethylene (HDPE) is linear and strong. Low-density polyethylene (LDPE) is branched and flexible. Teflon (PTFE) is made from tetrafluoroethylene.",
+          "keyTerms": ["addition polymerization", "chain-growth", "polyethylene", "polypropylene", "polystyrene", "PVC", "HDPE", "LDPE", "Teflon"]
+        },
+        {
+          "heading": "Condensation Polymers",
+          "body": "Condensation polymerization (step-growth polymerization) occurs when monomers join with loss of a small molecule (usually water). Polyesters form from diols and dicarboxylic acids (e.g., PET from ethylene glycol and terephthalic acid). Polyamides form from diamines and dicarboxylic acids (e.g., nylon-6,6). Polycarbonates are used in eyeglass lenses and CDs. Polyurethanes form from diols and diisocyanates, used in foams and coatings. Natural condensation polymers include proteins (amino acids) and cellulose (glucose).",
+          "keyTerms": ["condensation polymerization", "step-growth", "polyester", "PET", "polyamide", "nylon", "polycarbonate", "polyurethane"]
+        },
+        {
+          "heading": "Polymer Properties",
+          "body": "Polymer properties depend on molecular structure and intermolecular forces. Thermoplastics soften when heated and can be reshaped (PE, PP, PS, PVC). Thermosets form cross-linked networks and cannot be reshaped after curing (epoxy, phenol-formaldehyde). Elastomers are flexible polymers that can be stretched (rubber, silicone). Crystallinity increases strength and rigidity. Branching decreases crystallinity and density. Cross-linking increases strength and heat resistance. Glass transition temperature (Tg) is where a polymer changes from brittle to flexible.",
+          "keyTerms": ["thermoplastic", "thermoset", "elastomer", "crystallinity", "cross-linking", "glass transition temperature", "Tg"]
+        },
+        {
+          "heading": "Advanced Materials",
+          "body": "Composites combine two or more materials to achieve superior properties. Fiberglass combines glass fibers in a polymer matrix. Carbon fiber composites are lightweight and strong, used in aerospace and sports equipment. Ceramics are inorganic, non-metallic materials with high melting points, hardness, and brittleness. Semiconductors have conductivity between conductors and insulators, essential for electronics. Nanomaterials have dimensions of 1-100 nm and exhibit unique properties. Carbon nanotubes and graphene have exceptional strength and conductivity. Smart materials respond to external stimuli (shape-memory alloys, self-healing polymers).",
+          "keyTerms": ["composite", "fiberglass", "carbon fiber", "ceramics", "semiconductors", "nanomaterials", "carbon nanotubes", "graphene"]
+        }
+      ]
+    },
+    {
+      "id": "chem_13",
+      "title": "Environmental Chemistry",
+      "sections": [
+        {
+          "heading": "Air Pollution",
+          "body": "Major air pollutants include particulate matter (PM2.5 and PM10), carbon monoxide (CO), sulfur dioxide (SO2), nitrogen oxides (NOx), ozone (O3), and volatile organic compounds (VOCs). Photochemical smog forms when NOx and VOCs react in sunlight, producing ozone. Acid rain forms when SO2 and NOx dissolve in atmospheric water, producing sulfuric and nitric acids. Acid rain damages forests, lakes, and buildings. The Clean Air Act regulates air pollutants. Catalytic converters in vehicles reduce CO, NOx, and hydrocarbons.",
+          "keyTerms": ["air pollution", "particulate matter", "photochemical smog", "acid rain", "SO2", "NOx", "ozone", "catalytic converter"]
+        },
+        {
+          "heading": "Ozone Depletion",
+          "body": "The ozone layer in the stratosphere absorbs harmful UV-B radiation. Chlorofluorocarbons (CFCs) release chlorine atoms in the stratosphere. Chlorine catalytically destroys ozone: Cl + O3 -> ClO + O2, then ClO + O -> Cl + O2, regenerating chlorine. One chlorine atom can destroy thousands of ozone molecules. The Antarctic ozone hole appears each spring. The Montreal Protocol (1987) phased out CFCs and other ozone-depleting substances. Replacement compounds include HFCs (hydrochlorofluorocarbons) and HFCs (hydrofluorocarbons).",
+          "keyTerms": ["ozone layer", "ozone depletion", "CFCs", "chlorofluorocarbons", "Montreal Protocol", "ozone hole", "UV radiation"]
+        },
+        {
+          "heading": "Water Pollution and Treatment",
+          "body": "Water pollutants include pathogens, organic matter (measured by BOD - biochemical oxygen demand), nutrients (nitrogen and phosphorus causing eutrophication), heavy metals (lead, mercury), and synthetic chemicals (pesticides, pharmaceuticals). Eutrophication occurs when excess nutrients promote algal blooms, which die and decompose, depleting oxygen. Water treatment includes coagulation and flocculation, sedimentation, filtration, and disinfection (chlorination, UV, ozone). Wastewater treatment involves primary treatment (physical removal), secondary treatment (biological decomposition), and tertiary treatment (nutrient removal).",
+          "keyTerms": ["water pollution", "BOD", "eutrophication", "heavy metals", "coagulation", "flocculation", "wastewater treatment"]
+        },
+        {
+          "heading": "Green Chemistry",
+          "body": "Green chemistry designs chemical products and processes to reduce or eliminate hazardous substances. The 12 principles include preventing waste, designing safer chemicals, using renewable feedstocks, designing for energy efficiency, using catalysts, and designing for degradation. Atom economy measures the efficiency of a reaction: (mass of desired product / total mass of products) x 100%. Green solvents include water, supercritical CO2, and ionic liquids. Biocatalysis uses enzymes for chemical transformations. Green chemistry reduces environmental impact and improves sustainability.",
+          "keyTerms": ["green chemistry", "atom economy", "renewable feedstocks", "green solvents", "biocatalysis", "sustainability"]
+        }
+      ]
+    },
+    {
+      "id": "chem_14",
+      "title": "Biochemistry",
+      "sections": [
+        {
+          "heading": "Carbohydrates",
+          "body": "Carbohydrates have the general formula (CH2O)n. Monosaccharides are simple sugars (glucose, fructose, ribose). Disaccharides form from two monosaccharides via glycosidic bonds (sucrose = glucose + fructose, lactose = glucose + galactose, maltose = glucose + glucose). Polysaccharides are polymers: starch and glycogen store energy, cellulose provides structure in plants, and chitin provides structure in arthropods. Glucose exists in linear and cyclic forms (alpha and beta anomers). Carbohydrates provide energy (4 kcal/g) and structural support.",
+          "keyTerms": ["carbohydrate", "monosaccharide", "disaccharide", "polysaccharide", "glucose", "glycosidic bond", "starch", "cellulose"]
+        },
+        {
+          "heading": "Lipids",
+          "body": "Lipids are hydrophobic molecules including fats, oils, waxes, and steroids. Fatty acids have a carboxylic acid head and a long hydrocarbon tail. Saturated fatty acids have no double bonds; unsaturated fatty acids have one or more double bonds. Triglycerides (triacylglycerols) consist of glycerol esterified to three fatty acids, serving as energy storage (9 kcal/g). Phospholipids form cell membranes with hydrophilic heads and hydrophobic tails. Steroids have a four-ring structure (cholesterol, testosterone, estrogen). Lipids are insoluble in water but soluble in nonpolar solvents.",
+          "keyTerms": ["lipid", "fatty acid", "saturated", "unsaturated", "triglyceride", "phospholipid", "steroid", "cholesterol"]
+        },
+        {
+          "heading": "Proteins",
+          "body": "Proteins are polymers of amino acids linked by peptide bonds. There are 20 standard amino acids, each with an amino group, carboxyl group, and unique side chain (R group). Protein structure has four levels: primary (amino acid sequence), secondary (alpha helix, beta sheet stabilized by hydrogen bonds), tertiary (3D folding stabilized by disulfide bonds, ionic interactions, hydrophobic effects), and quaternary (multiple polypeptide subunits). Enzymes catalyze biochemical reactions. Denaturation disrupts protein structure through heat, pH changes, or chemicals.",
+          "keyTerms": ["protein", "amino acid", "peptide bond", "primary structure", "secondary structure", "alpha helix", "beta sheet", "tertiary structure", "quaternary structure", "enzyme", "denaturation"]
+        },
+        {
+          "heading": "Nucleic Acids and Metabolism",
+          "body": "Nucleic acids (DNA and RNA) are polymers of nucleotides. Each nucleotide has a sugar (ribose or deoxyribose), a phosphate group, and a nitrogenous base. DNA bases are adenine, thymine, guanine, cytosine. RNA uses uracil instead of thymine. DNA is double-stranded with complementary base pairing (A-T, G-C). Metabolism includes catabolism (breaking down molecules for energy) and anabolism (building molecules). Cellular respiration converts glucose to ATP. Glycolysis breaks glucose into pyruvate. The citric acid cycle produces NADH and FADH2. The electron transport chain produces most ATP.",
+          "keyTerms": ["nucleic acid", "DNA", "RNA", "nucleotide", "base pairing", "metabolism", "catabolism", "anabolism", "glycolysis", "citric acid cycle", "ATP"]
+        }
+      ]
+    },
+    {
+      "id": "chem_15",
+      "title": "Industrial Chemistry",
+      "sections": [
+        {
+          "heading": "The Haber Process",
+          "body": "The Haber process synthesizes ammonia from nitrogen and hydrogen: N2(g) + 3H2(g) <-> 2NH3(g). The reaction is exothermic (delta H = -92 kJ/mol) and produces fewer moles of gas. According to Le Chatelier's principle, high pressure (150-250 atm) favors ammonia production. Lower temperatures favor ammonia but slow the reaction, so a compromise temperature of 400-500 degrees C is used with an iron catalyst. Ammonia is used to produce fertilizers (ammonium nitrate, urea), explosives, and nitric acid. The Haber process enabled large-scale food production.",
+          "keyTerms": ["Haber process", "ammonia synthesis", "Le Chatelier's principle", "catalyst", "fertilizer", "nitrogen fixation"]
+        },
+        {
+          "heading": "The Contact Process",
+          "body": "The contact process produces sulfuric acid, the most widely produced industrial chemical. Step 1: Sulfur or sulfide ores are burned to produce SO2. Step 2: SO2 is oxidized to SO3 using a vanadium(V) oxide catalyst: 2SO2 + O2 <-> 2SO3. The reaction is exothermic, so lower temperatures favor SO3, but 450 degrees C is used for practical rates. High pressure is not needed despite favoring products. Step 3: SO3 is dissolved in concentrated H2SO4 (forming oleum), then diluted with water. Sulfuric acid is used in fertilizers, petroleum refining, and chemical manufacturing.",
+          "keyTerms": ["contact process", "sulfuric acid", "SO2", "SO3", "vanadium oxide", "oleum"]
+        },
+        {
+          "heading": "Petroleum Refining",
+          "body": "Petroleum is a complex mixture of hydrocarbons. Fractional distillation separates crude oil into fractions based on boiling points: refinery gas, gasoline (naphtha), kerosene, diesel, lubricating oil, and bitumen. Cracking breaks large hydrocarbons into smaller, more useful molecules using heat and catalysts (catalytic cracking) or steam (steam cracking). Reforming converts straight-chain hydrocarbons into branched and aromatic compounds, increasing octane number. Alkylation combines small molecules into larger gasoline-range molecules. Hydrotreating removes sulfur, nitrogen, and metals.",
+          "keyTerms": ["petroleum", "fractional distillation", "cracking", "catalytic cracking", "reforming", "octane number", "alkylation"]
+        },
+        {
+          "heading": "Other Industrial Processes",
+          "body": "The Ostwald process produces nitric acid from ammonia: ammonia is oxidized to NO using a platinum catalyst, NO is oxidized to NO2, and NO2 dissolves in water to form HNO3. The Solvay process produces sodium carbonate (soda ash) from salt, limestone, and ammonia. The Chloralkali process electrolyzes brine to produce chlorine, hydrogen, and sodium hydroxide. The Hall-Heroult process produces aluminum by electrolysis of molten aluminum oxide in cryolite. The Frasch process extracts sulfur from underground deposits using superheated water.",
+          "keyTerms": ["Ostwald process", "nitric acid", "Solvay process", "sodium carbonate", "Chloralkali process", "Hall-Heroult process", "Frasch process"]
+        }
+      ]
     }
   ]
 }

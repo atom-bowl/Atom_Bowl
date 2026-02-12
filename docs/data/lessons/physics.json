@@ -8,22 +8,47 @@
         {
           "heading": "Displacement, Velocity, and Acceleration",
           "body": "Displacement is the change in position (a vector quantity). Distance is the total path length (a scalar). Average velocity = displacement / time. Instantaneous velocity is the velocity at a specific moment. Speed is the magnitude of velocity. Acceleration is the rate of change of velocity: a = delta v / delta t. Positive acceleration means speeding up in the positive direction or slowing down in the negative direction. Negative acceleration (deceleration) means the opposite.",
-          "keyTerms": ["displacement", "velocity", "acceleration", "speed", "vector", "scalar", "instantaneous velocity"]
+          "keyTerms": [
+            "displacement",
+            "velocity",
+            "acceleration",
+            "speed",
+            "vector",
+            "scalar",
+            "instantaneous velocity"
+          ]
         },
         {
           "heading": "Kinematic Equations",
           "body": "For constant acceleration, four kinematic equations relate position, velocity, acceleration, and time. v = v0 + at (velocity as function of time). x = x0 + v0*t + (1/2)at^2 (position as function of time). v^2 = v0^2 + 2a(x - x0) (velocity as function of position). x = x0 + (1/2)(v + v0)*t (position using average velocity). Free fall is motion under gravity alone, with a = g = 9.8 m/s^2 downward (near Earth's surface). Air resistance is neglected in ideal free-fall problems.",
-          "keyTerms": ["kinematic equations", "constant acceleration", "free fall", "g", "initial velocity"]
+          "keyTerms": [
+            "kinematic equations",
+            "constant acceleration",
+            "free fall",
+            "g",
+            "initial velocity"
+          ]
         },
         {
           "heading": "Projectile Motion",
           "body": "Projectile motion is two-dimensional motion under gravity. The horizontal and vertical components are independent. Horizontal: constant velocity (ax = 0), x = v0x * t. Vertical: constant acceleration (ay = -g), same kinematic equations as free fall. The trajectory is a parabola. At the peak, vertical velocity is zero. Range is maximized at a launch angle of 45 degrees (neglecting air resistance). Time of flight depends only on vertical motion. The horizontal and vertical components of initial velocity: v0x = v0*cos(theta), v0y = v0*sin(theta).",
-          "keyTerms": ["projectile motion", "trajectory", "range", "launch angle", "horizontal component", "vertical component"]
+          "keyTerms": [
+            "projectile motion",
+            "trajectory",
+            "range",
+            "launch angle",
+            "horizontal component",
+            "vertical component"
+          ]
         },
         {
           "heading": "Relative Motion",
           "body": "Velocity is measured relative to a reference frame. If object A moves at velocity v_AB relative to B, and B moves at v_BC relative to C, then A's velocity relative to C is v_AC = v_AB + v_BC (vector addition). This principle applies to boats crossing rivers, airplanes in wind, and passengers on moving vehicles. In one dimension, velocities add algebraically. In two dimensions, use vector components. The choice of reference frame does not affect the physics but can simplify problem-solving.",
-          "keyTerms": ["reference frame", "relative velocity", "vector addition"]
+          "keyTerms": [
+            "reference frame",
+            "relative velocity",
+            "vector addition"
+          ]
         }
       ]
     },
@@ -34,22 +59,51 @@
         {
           "heading": "Newton's Three Laws",
           "body": "Newton's First Law (Inertia): An object at rest stays at rest, and an object in motion stays in uniform motion, unless acted upon by a net external force. Inertia is proportional to mass. Newton's Second Law: The net force on an object equals its mass times acceleration: F_net = ma. Force is measured in newtons (1 N = 1 kg*m/s^2). Newton's Third Law: For every action, there is an equal and opposite reaction. Action-reaction pairs act on different objects.",
-          "keyTerms": ["Newton's First Law", "inertia", "Newton's Second Law", "net force", "Newton's Third Law", "action-reaction", "newton"]
+          "keyTerms": [
+            "Newton's First Law",
+            "inertia",
+            "Newton's Second Law",
+            "net force",
+            "Newton's Third Law",
+            "action-reaction",
+            "newton"
+          ]
         },
         {
           "heading": "Common Forces",
           "body": "Weight is the gravitational force on an object: W = mg. The normal force is perpendicular to the contact surface, preventing objects from passing through each other. Friction opposes relative motion: static friction (f_s <= mu_s * N) prevents motion, kinetic friction (f_k = mu_k * N) acts during motion. Tension is the pulling force in ropes and strings. The spring force follows Hooke's law: F = -kx, where k is the spring constant and x is displacement from equilibrium. Applied forces are pushes or pulls from external agents.",
-          "keyTerms": ["weight", "normal force", "friction", "static friction", "kinetic friction", "tension", "Hooke's law", "spring constant"]
+          "keyTerms": [
+            "weight",
+            "normal force",
+            "friction",
+            "static friction",
+            "kinetic friction",
+            "tension",
+            "Hooke's law",
+            "spring constant"
+          ]
         },
         {
           "heading": "Free-Body Diagrams",
           "body": "A free-body diagram (FBD) shows all forces acting on a single object as vectors. Steps: isolate the object, identify all forces (gravity, normal, friction, tension, applied), draw force arrows from the object's center with correct direction and relative magnitude. Resolve forces into x and y components. Apply Newton's second law in each direction: sum of Fx = max, sum of Fy = may. For equilibrium (no acceleration), the net force is zero. Inclined plane problems decompose gravity into components parallel and perpendicular to the surface.",
-          "keyTerms": ["free-body diagram", "equilibrium", "components", "inclined plane"]
+          "keyTerms": [
+            "free-body diagram",
+            "equilibrium",
+            "components",
+            "inclined plane"
+          ]
         },
         {
           "heading": "Circular Motion and Gravitation",
           "body": "Uniform circular motion requires centripetal acceleration directed toward the center: a_c = v^2/r. The centripetal force is not a separate force but the net inward force causing circular motion: F_c = mv^2/r. Examples include tension in a string, gravity for orbits, friction for turning cars. Newton's Law of Universal Gravitation: F = Gm1m2/r^2, where G = 6.674 x 10^-11 N*m^2/kg^2. Orbital velocity for a satellite: v = sqrt(GM/r). Kepler's Third Law: T^2 is proportional to r^3 for orbits around the same body.",
-          "keyTerms": ["centripetal acceleration", "centripetal force", "uniform circular motion", "universal gravitation", "orbital velocity", "Kepler's Third Law"]
+          "keyTerms": [
+            "centripetal acceleration",
+            "centripetal force",
+            "uniform circular motion",
+            "universal gravitation",
+            "orbital velocity",
+            "Kepler's Third Law"
+          ]
         }
       ]
     },
@@ -60,22 +114,43 @@
         {
           "heading": "Work and the Work-Energy Theorem",
           "body": "Work is done when a force causes displacement: W = Fd*cos(theta). Work is positive when force is in the direction of displacement, negative when opposite, and zero when perpendicular. The work-energy theorem states that net work equals the change in kinetic energy: W_net = delta KE = (1/2)mv^2 - (1/2)mv0^2. Work done by gravity: W_g = -mgh (positive going down). Work done by friction is always negative (removes kinetic energy). Power is the rate of doing work: P = W/t = Fv.",
-          "keyTerms": ["work", "work-energy theorem", "kinetic energy", "power"]
+          "keyTerms": [
+            "work",
+            "work-energy theorem",
+            "kinetic energy",
+            "power"
+          ]
         },
         {
           "heading": "Conservation of Energy",
           "body": "In conservative systems (no friction or other non-conservative forces), total mechanical energy is conserved: KE_i + PE_i = KE_f + PE_f. Gravitational potential energy: PE = mgh. Elastic potential energy (spring): PE = (1/2)kx^2. When non-conservative forces are present: KE_i + PE_i + W_nc = KE_f + PE_f (work done by friction is negative). Energy conservation is often easier to use than kinematic equations for problems involving height changes or springs.",
-          "keyTerms": ["conservation of energy", "mechanical energy", "potential energy", "conservative force", "non-conservative force"]
+          "keyTerms": [
+            "conservation of energy",
+            "mechanical energy",
+            "potential energy",
+            "conservative force",
+            "non-conservative force"
+          ]
         },
         {
           "heading": "Linear Momentum",
           "body": "Momentum is the product of mass and velocity: p = mv. It is a vector quantity. The impulse-momentum theorem: impulse J = F*delta t = delta p (change in momentum). Newton's second law in terms of momentum: F = dp/dt. Conservation of momentum: in an isolated system (no external forces), total momentum is constant. This principle applies to collisions, explosions, and recoil. In two dimensions, momentum is conserved independently in x and y directions.",
-          "keyTerms": ["momentum", "impulse", "impulse-momentum theorem", "conservation of momentum"]
+          "keyTerms": [
+            "momentum",
+            "impulse",
+            "impulse-momentum theorem",
+            "conservation of momentum"
+          ]
         },
         {
           "heading": "Collisions",
           "body": "Elastic collisions conserve both momentum and kinetic energy. In a perfectly elastic collision between equal masses, the objects exchange velocities. Inelastic collisions conserve momentum but not kinetic energy (some KE is converted to heat, sound, deformation). In a perfectly inelastic collision, the objects stick together: m1v1 + m2v2 = (m1 + m2)v_f. Coefficient of restitution e = relative speed after / relative speed before (e = 1 for elastic, e = 0 for perfectly inelastic). Two-dimensional collisions require conservation of momentum in both x and y.",
-          "keyTerms": ["elastic collision", "inelastic collision", "perfectly inelastic", "coefficient of restitution"]
+          "keyTerms": [
+            "elastic collision",
+            "inelastic collision",
+            "perfectly inelastic",
+            "coefficient of restitution"
+          ]
         }
       ]
     },
@@ -86,22 +161,54 @@
         {
           "heading": "Wave Properties",
           "body": "A wave is a disturbance that transfers energy without transferring matter. Transverse waves oscillate perpendicular to the direction of travel (e.g., light, string waves). Longitudinal waves oscillate parallel to the direction of travel (e.g., sound). Key properties: wavelength (lambda, distance between crests), frequency (f, oscillations per second in hertz), amplitude (maximum displacement), and period (T = 1/f). Wave speed: v = f*lambda. The principle of superposition: when waves overlap, displacements add algebraically.",
-          "keyTerms": ["transverse wave", "longitudinal wave", "wavelength", "frequency", "amplitude", "period", "superposition"]
+          "keyTerms": [
+            "transverse wave",
+            "longitudinal wave",
+            "wavelength",
+            "frequency",
+            "amplitude",
+            "period",
+            "superposition"
+          ]
         },
         {
           "heading": "Sound Waves",
           "body": "Sound is a longitudinal mechanical wave requiring a medium. The speed of sound depends on the medium: about 343 m/s in air at 20 degrees C, faster in liquids and solids. Pitch corresponds to frequency; loudness corresponds to amplitude. The Doppler effect causes a frequency shift when source and observer are in relative motion: approaching increases frequency, receding decreases it. Resonance occurs when a driving frequency matches a natural frequency, producing large amplitudes. Standing waves form when waves reflect and interfere, creating nodes (no motion) and antinodes (maximum motion).",
-          "keyTerms": ["sound", "Doppler effect", "resonance", "standing wave", "node", "antinode", "pitch"]
+          "keyTerms": [
+            "sound",
+            "Doppler effect",
+            "resonance",
+            "standing wave",
+            "node",
+            "antinode",
+            "pitch"
+          ]
         },
         {
           "heading": "Reflection and Refraction",
           "body": "The law of reflection: angle of incidence equals angle of reflection, measured from the normal. Specular reflection occurs on smooth surfaces; diffuse reflection on rough surfaces. Refraction is the bending of light at a boundary between media with different optical densities. Snell's law: n1*sin(theta1) = n2*sin(theta2), where n is the index of refraction (n = c/v). Light bends toward the normal when entering a denser medium. Total internal reflection occurs when light tries to exit a denser medium at an angle greater than the critical angle: sin(theta_c) = n2/n1.",
-          "keyTerms": ["reflection", "refraction", "Snell's law", "index of refraction", "total internal reflection", "critical angle", "normal"]
+          "keyTerms": [
+            "reflection",
+            "refraction",
+            "Snell's law",
+            "index of refraction",
+            "total internal reflection",
+            "critical angle",
+            "normal"
+          ]
         },
         {
           "heading": "Diffraction and Interference",
           "body": "Diffraction is the bending of waves around obstacles or through openings. It is most noticeable when the opening is comparable to the wavelength. Young's double-slit experiment demonstrated the wave nature of light: light passing through two slits creates an interference pattern of bright and dark fringes. Constructive interference occurs when waves are in phase (path difference = m*lambda). Destructive interference occurs when waves are out of phase (path difference = (m + 1/2)*lambda). Thin film interference creates colored patterns in soap bubbles and oil slicks. Diffraction gratings separate light into its component wavelengths.",
-          "keyTerms": ["diffraction", "interference", "constructive interference", "destructive interference", "double-slit experiment", "diffraction grating", "thin film"]
+          "keyTerms": [
+            "diffraction",
+            "interference",
+            "constructive interference",
+            "destructive interference",
+            "double-slit experiment",
+            "diffraction grating",
+            "thin film"
+          ]
         }
       ]
     },
@@ -112,22 +219,54 @@
         {
           "heading": "Electric Charge and Coulomb's Law",
           "body": "Electric charge is a fundamental property of matter. Protons carry positive charge (+e), electrons carry negative charge (-e), where e = 1.602 x 10^-19 C. Like charges repel, opposite charges attract. Charge is conserved and quantized. Conductors allow free movement of charge; insulators do not. Coulomb's law gives the electrostatic force: F = kq1q2/r^2, where k = 8.99 x 10^9 N*m^2/C^2. The force is along the line connecting the charges. For multiple charges, use the superposition principle (vector sum of individual forces).",
-          "keyTerms": ["electric charge", "Coulomb's law", "conductor", "insulator", "superposition principle", "electrostatic force"]
+          "keyTerms": [
+            "electric charge",
+            "Coulomb's law",
+            "conductor",
+            "insulator",
+            "superposition principle",
+            "electrostatic force"
+          ]
         },
         {
           "heading": "Electric Fields and Potential",
           "body": "An electric field is the force per unit charge: E = F/q, measured in N/C or V/m. Field lines point from positive to negative charges. The field due to a point charge is E = kQ/r^2. Electric potential (voltage) is the potential energy per unit charge: V = U/q = kQ/r. Potential difference drives current flow. Equipotential surfaces are perpendicular to field lines. A parallel plate capacitor creates a uniform field between plates: E = V/d. Capacitance C = Q/V, measured in farads. Energy stored in a capacitor: U = (1/2)CV^2.",
-          "keyTerms": ["electric field", "electric potential", "voltage", "equipotential", "capacitor", "capacitance", "farad"]
+          "keyTerms": [
+            "electric field",
+            "electric potential",
+            "voltage",
+            "equipotential",
+            "capacitor",
+            "capacitance",
+            "farad"
+          ]
         },
         {
           "heading": "DC Circuits",
           "body": "Current is the flow of charge: I = Q/t, measured in amperes (A). Conventional current flows from positive to negative. Resistance opposes current: R = V/I (Ohm's law), measured in ohms. Resistivity depends on material: R = rho*L/A. In series: same current, voltages add, R_total = R1 + R2. In parallel: same voltage, currents add, 1/R_total = 1/R1 + 1/R2. Kirchhoff's junction rule: currents entering a junction equal currents leaving. Kirchhoff's loop rule: voltage drops around any closed loop sum to zero. Power: P = IV = I^2R = V^2/R.",
-          "keyTerms": ["current", "Ohm's law", "resistance", "series", "parallel", "Kirchhoff's rules", "resistivity"]
+          "keyTerms": [
+            "current",
+            "Ohm's law",
+            "resistance",
+            "series",
+            "parallel",
+            "Kirchhoff's rules",
+            "resistivity"
+          ]
         },
         {
           "heading": "Magnetism and Electromagnetic Induction",
           "body": "Moving charges create magnetic fields. The force on a charge in a magnetic field is F = qvB*sin(theta), perpendicular to both v and B (right-hand rule). A current-carrying wire in a magnetic field experiences force F = BIL*sin(theta). A solenoid produces a uniform interior field: B = mu_0*nI. Faraday's law: a changing magnetic flux induces an EMF: EMF = -d(phi_B)/dt. Lenz's law: induced current opposes the change in flux. Applications include generators (mechanical to electrical), transformers (change voltage), and electric motors (electrical to mechanical).",
-          "keyTerms": ["magnetic field", "right-hand rule", "Faraday's law", "Lenz's law", "solenoid", "generator", "transformer", "motor"]
+          "keyTerms": [
+            "magnetic field",
+            "right-hand rule",
+            "Faraday's law",
+            "Lenz's law",
+            "solenoid",
+            "generator",
+            "transformer",
+            "motor"
+          ]
         }
       ]
     },
@@ -138,22 +277,428 @@
         {
           "heading": "Special Relativity",
           "body": "Einstein's special relativity (1905) is based on two postulates: the laws of physics are the same in all inertial reference frames, and the speed of light in vacuum (c = 3 x 10^8 m/s) is constant for all observers. Consequences: time dilation (moving clocks run slower: delta t = gamma * delta t_0), length contraction (moving objects are shorter: L = L_0 / gamma), where gamma = 1/sqrt(1 - v^2/c^2). Mass-energy equivalence: E = mc^2. Nothing with mass can reach the speed of light. Relativistic momentum: p = gamma * mv.",
-          "keyTerms": ["special relativity", "time dilation", "length contraction", "Lorentz factor", "E=mc^2", "speed of light"]
+          "keyTerms": [
+            "special relativity",
+            "time dilation",
+            "length contraction",
+            "Lorentz factor",
+            "E=mc^2",
+            "speed of light"
+          ]
         },
         {
           "heading": "Quantum Mechanics Basics",
           "body": "Quantum mechanics describes physics at atomic and subatomic scales. Planck proposed that energy is quantized in packets called quanta: E = hf, where h = 6.626 x 10^-34 J*s (Planck's constant). Einstein explained the photoelectric effect: light consists of photons, each with energy E = hf. Below the threshold frequency, no electrons are ejected regardless of intensity. De Broglie proposed wave-particle duality: all matter has wavelength lambda = h/(mv). Heisenberg's uncertainty principle: delta x * delta p >= h/(4pi). The Schrodinger equation describes the quantum state of a system.",
-          "keyTerms": ["quantum mechanics", "Planck's constant", "photon", "photoelectric effect", "wave-particle duality", "de Broglie wavelength", "Heisenberg uncertainty principle"]
+          "keyTerms": [
+            "quantum mechanics",
+            "Planck's constant",
+            "photon",
+            "photoelectric effect",
+            "wave-particle duality",
+            "de Broglie wavelength",
+            "Heisenberg uncertainty principle"
+          ]
         },
         {
           "heading": "Atomic Models",
           "body": "Thomson's plum pudding model had electrons embedded in positive material. Rutherford's gold foil experiment revealed the nuclear atom: a tiny dense positive nucleus with electrons orbiting far away. Bohr's model explained hydrogen's emission spectrum with quantized electron orbits: electrons can only exist in specific energy levels, emitting photons when jumping to lower levels. The quantum mechanical model uses probability clouds (orbitals) rather than fixed orbits. Electron energy levels explain atomic spectra: E = -13.6/n^2 eV for hydrogen.",
-          "keyTerms": ["Thomson model", "Rutherford model", "Bohr model", "energy levels", "emission spectrum", "orbital", "quantum numbers"]
+          "keyTerms": [
+            "Thomson model",
+            "Rutherford model",
+            "Bohr model",
+            "energy levels",
+            "emission spectrum",
+            "orbital",
+            "quantum numbers"
+          ]
         },
         {
           "heading": "Nuclear Physics",
           "body": "The nucleus contains protons and neutrons (nucleons) held together by the strong nuclear force. Binding energy is the energy needed to separate all nucleons; it equals the mass defect times c^2. The binding energy per nucleon curve peaks at iron-56, explaining why fusion of light nuclei and fission of heavy nuclei both release energy. Radioactive decay types: alpha (helium-4 emission), beta-minus (neutron to proton, emitting electron and antineutrino), beta-plus (proton to neutron, emitting positron and neutrino), and gamma (high-energy photon). Nuclear reactions must conserve charge, mass number, energy, and momentum.",
-          "keyTerms": ["strong nuclear force", "binding energy", "mass defect", "alpha decay", "beta decay", "gamma decay", "fission", "fusion"]
+          "keyTerms": [
+            "strong nuclear force",
+            "binding energy",
+            "mass defect",
+            "alpha decay",
+            "beta decay",
+            "gamma decay",
+            "fission",
+            "fusion"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phys_07",
+      "title": "Rotational Motion",
+      "sections": [
+        {
+          "heading": "Angular Kinematics",
+          "body": "Rotational motion parallels linear motion using angular displacement (\u03b8), angular velocity (\u03c9 = d\u03b8/dt), and angular acceleration (\u03b1 = d\u03c9/dt). For constant angular acceleration: \u03c9 = \u03c90 + \u03b1t and \u03b8 = \u03c90 t + \u00bd\u03b1t\u00b2. Linear and angular quantities relate through v = r\u03c9 and a_t = r\u03b1. Centripetal acceleration for circular motion is a_c = r\u03c9\u00b2 = v\u00b2/r, directed toward the center of rotation. These relations allow translation between rotational and linear dynamics in rigid body systems.",
+          "keyTerms": [
+            "angular displacement",
+            "angular velocity",
+            "angular acceleration",
+            "centripetal acceleration",
+            "rigid body"
+          ]
+        },
+        {
+          "heading": "Torque and Rotational Dynamics",
+          "body": "Torque (\u03c4 = rF sin\u03b8) measures the rotational effectiveness of a force applied at a distance. The lever arm is the perpendicular distance from axis to force line of action. Newton\u2019s second law for rotation is \u03c4_net = I\u03b1, where I is moment of inertia. Static equilibrium requires both \u03a3F = 0 and \u03a3\u03c4 = 0. Torque analysis explains seesaws, bridges, gears, and rotational machinery.",
+          "keyTerms": [
+            "torque",
+            "lever arm",
+            "rotational equilibrium",
+            "moment of inertia",
+            "Newton's second law for rotation"
+          ]
+        },
+        {
+          "heading": "Moment of Inertia and Energy",
+          "body": "Moment of inertia depends on mass distribution relative to the axis: I = \u03a3mr\u00b2. Rotational kinetic energy is KE_rot = \u00bdI\u03c9\u00b2. For rolling motion without slipping, total kinetic energy includes translational and rotational components. The parallel-axis theorem states I = I_cm + Md\u00b2. Distribution of mass strongly affects rotational resistance and stability.",
+          "keyTerms": [
+            "rotational kinetic energy",
+            "parallel-axis theorem",
+            "rolling motion",
+            "mass distribution"
+          ]
+        },
+        {
+          "heading": "Angular Momentum Conservation",
+          "body": "Angular momentum is L = I\u03c9 and is conserved when external torque is zero. Conservation explains phenomena such as spinning skaters pulling arms inward, collapsing stars increasing spin, and planetary orbital stability. In vector form, angular momentum direction follows right-hand rule. Rotational symmetry underlies conservation laws in classical mechanics.",
+          "keyTerms": [
+            "angular momentum",
+            "conservation law",
+            "rotational symmetry",
+            "right-hand rule"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phys_08",
+      "title": "Gravitation",
+      "sections": [
+        {
+          "heading": "Newtonian Gravitation",
+          "body": "Newton\u2019s universal law of gravitation states F = Gm\u2081m\u2082/r\u00b2, describing mutual attraction between masses. The gravitational field strength is g = GM/r\u00b2. This inverse-square law governs planetary motion, satellite dynamics, and astrophysical systems. Gravitational force acts along the line connecting mass centers.",
+          "keyTerms": [
+            "gravitational force",
+            "inverse-square law",
+            "gravitational field"
+          ]
+        },
+        {
+          "heading": "Orbital Mechanics",
+          "body": "For circular orbit, gravitational force provides centripetal force: GMm/r\u00b2 = mv\u00b2/r. Orbital speed is v = \u221a(GM/r). Period obeys T\u00b2 \u221d r\u00b3 (Kepler\u2019s third law). Orbital energy is E = \u2212GMm/(2r). Satellites, planets, and binary stars obey these relationships.",
+          "keyTerms": [
+            "orbital velocity",
+            "orbital period",
+            "centripetal force",
+            "orbital energy"
+          ]
+        },
+        {
+          "heading": "Gravitational Potential and Escape",
+          "body": "Gravitational potential energy is U = \u2212GMm/r. Escape velocity is v_e = \u221a(2GM/r). Total mechanical energy determines whether motion is bound (elliptical) or unbound (parabolic/hyperbolic). Energy conservation governs rocket launches and interplanetary transfers.",
+          "keyTerms": [
+            "escape velocity",
+            "gravitational potential energy",
+            "bound orbit"
+          ]
+        },
+        {
+          "heading": "Beyond Newton",
+          "body": "Einstein\u2019s general relativity describes gravity as curvature of spacetime caused by mass-energy. Predictions include gravitational time dilation and light bending. While Newtonian gravity suffices for most classical problems, relativistic corrections become important near massive objects.",
+          "keyTerms": [
+            "general relativity",
+            "spacetime curvature",
+            "gravitational time dilation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phys_09",
+      "title": "Fluid Mechanics",
+      "sections": [
+        {
+          "heading": "Fluid Properties",
+          "body": "Fluids include liquids and gases that flow under shear stress. Density (\u03c1) and pressure (P = F/A) characterize fluid behavior. Hydrostatic pressure increases with depth: P = \u03c1gh. Pascal\u2019s principle states pressure applied to confined fluid transmits equally in all directions.",
+          "keyTerms": [
+            "density",
+            "hydrostatic pressure",
+            "Pascal's principle"
+          ]
+        },
+        {
+          "heading": "Buoyancy and Archimedes",
+          "body": "Archimedes\u2019 principle: buoyant force equals weight of displaced fluid. Floating depends on density comparison between object and fluid. Applications include ship design and hot-air balloons.",
+          "keyTerms": [
+            "buoyant force",
+            "Archimedes' principle",
+            "fluid displacement"
+          ]
+        },
+        {
+          "heading": "Fluid Flow",
+          "body": "Continuity equation: A\u2081v\u2081 = A\u2082v\u2082 for incompressible flow. Bernoulli\u2019s equation: P + \u00bd\u03c1v\u00b2 + \u03c1gh = constant along streamline. It explains lift on airplane wings and pressure differences in flowing systems.",
+          "keyTerms": [
+            "continuity equation",
+            "Bernoulli's equation",
+            "streamline"
+          ]
+        },
+        {
+          "heading": "Viscosity and Real Fluids",
+          "body": "Viscosity measures internal resistance to flow. Laminar flow transitions to turbulent flow at high Reynolds numbers. Real fluid systems lose energy to friction and turbulence.",
+          "keyTerms": [
+            "viscosity",
+            "laminar flow",
+            "turbulence",
+            "Reynolds number"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phys_10",
+      "title": "Thermodynamics",
+      "sections": [
+        {
+          "heading": "Temperature and Heat",
+          "body": "Temperature measures average kinetic energy of particles. Heat is energy transfer due to temperature difference. Heat transfer occurs via conduction, convection, and radiation.",
+          "keyTerms": [
+            "temperature",
+            "heat transfer",
+            "conduction",
+            "convection",
+            "radiation"
+          ]
+        },
+        {
+          "heading": "First Law of Thermodynamics",
+          "body": "\u0394U = Q \u2212 W expresses conservation of energy in thermodynamic systems. Internal energy changes through heat and work interactions.",
+          "keyTerms": [
+            "internal energy",
+            "First Law",
+            "work"
+          ]
+        },
+        {
+          "heading": "Ideal Gas Law",
+          "body": "PV = nRT relates pressure, volume, temperature, and moles. Gas behavior approximates ideal conditions at low pressure and high temperature.",
+          "keyTerms": [
+            "ideal gas law",
+            "pressure",
+            "volume",
+            "temperature"
+          ]
+        },
+        {
+          "heading": "Second Law and Entropy",
+          "body": "Entropy measures disorder. Heat flows naturally from hot to cold. No engine can exceed Carnot efficiency.",
+          "keyTerms": [
+            "entropy",
+            "Second Law",
+            "Carnot efficiency"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phys_11",
+      "title": "Oscillations & Simple Harmonic Motion",
+      "sections": [
+        {
+          "heading": "Simple Harmonic Motion",
+          "body": "SHM occurs when restoring force is proportional to displacement: F = \u2212kx. Solutions are sinusoidal with period T = 2\u03c0\u221a(m/k).",
+          "keyTerms": [
+            "simple harmonic motion",
+            "restoring force",
+            "period"
+          ]
+        },
+        {
+          "heading": "Energy in Oscillations",
+          "body": "Total mechanical energy remains constant in ideal SHM. Energy oscillates between kinetic and potential forms.",
+          "keyTerms": [
+            "oscillatory energy",
+            "kinetic energy",
+            "potential energy"
+          ]
+        },
+        {
+          "heading": "Pendulums",
+          "body": "For small angles, period T = 2\u03c0\u221a(L/g). Depends only on length and gravity.",
+          "keyTerms": [
+            "pendulum",
+            "small-angle approximation"
+          ]
+        },
+        {
+          "heading": "Damping and Resonance",
+          "body": "Damping reduces amplitude over time. Resonance occurs when driving frequency matches natural frequency.",
+          "keyTerms": [
+            "damping",
+            "resonance",
+            "natural frequency"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phys_12",
+      "title": "AC Circuits & Electromagnetic Waves",
+      "sections": [
+        {
+          "heading": "Alternating Current",
+          "body": "AC voltage varies sinusoidally. RMS values describe effective power delivery.",
+          "keyTerms": [
+            "alternating current",
+            "RMS voltage"
+          ]
+        },
+        {
+          "heading": "RLC Circuits",
+          "body": "Resistors, inductors, and capacitors combine to form oscillatory circuits. Impedance governs current flow.",
+          "keyTerms": [
+            "RLC circuit",
+            "impedance",
+            "inductance"
+          ]
+        },
+        {
+          "heading": "Maxwell's Equations",
+          "body": "Maxwell unified electricity and magnetism. EM waves propagate at speed of light.",
+          "keyTerms": [
+            "Maxwell's equations",
+            "electromagnetic wave"
+          ]
+        },
+        {
+          "heading": "Electromagnetic Spectrum",
+          "body": "Spectrum ranges from radio waves to gamma rays. Frequency determines energy.",
+          "keyTerms": [
+            "EM spectrum",
+            "frequency",
+            "photon energy"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phys_13",
+      "title": "Quantum Mechanics",
+      "sections": [
+        {
+          "heading": "Wave-Particle Duality",
+          "body": "Particles exhibit wave behavior. De Broglie wavelength \u03bb = h/p.",
+          "keyTerms": [
+            "wave-particle duality",
+            "de Broglie wavelength"
+          ]
+        },
+        {
+          "heading": "Uncertainty Principle",
+          "body": "\u0394x\u0394p \u2265 \u0127/2 limits precision of position and momentum.",
+          "keyTerms": [
+            "Heisenberg uncertainty principle"
+          ]
+        },
+        {
+          "heading": "Schrodinger Equation",
+          "body": "Describes evolution of wavefunctions. Energy levels are quantized.",
+          "keyTerms": [
+            "wavefunction",
+            "Schrodinger equation",
+            "quantization"
+          ]
+        },
+        {
+          "heading": "Quantum Tunneling",
+          "body": "Particles can cross barriers with nonzero probability.",
+          "keyTerms": [
+            "quantum tunneling"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phys_14",
+      "title": "Particle Physics",
+      "sections": [
+        {
+          "heading": "Standard Model",
+          "body": "Describes quarks, leptons, gauge bosons, and Higgs boson.",
+          "keyTerms": [
+            "quark",
+            "lepton",
+            "boson",
+            "Higgs"
+          ]
+        },
+        {
+          "heading": "Fundamental Forces",
+          "body": "Four forces: gravitational, electromagnetic, strong, weak.",
+          "keyTerms": [
+            "fundamental forces"
+          ]
+        },
+        {
+          "heading": "Particle Interactions",
+          "body": "Feynman diagrams represent interactions and conservation laws.",
+          "keyTerms": [
+            "Feynman diagram",
+            "conservation laws"
+          ]
+        },
+        {
+          "heading": "Beyond the Standard Model",
+          "body": "Dark matter and neutrino mass suggest physics beyond current theory.",
+          "keyTerms": [
+            "dark matter",
+            "neutrino"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phys_15",
+      "title": "Astrophysics",
+      "sections": [
+        {
+          "heading": "Stellar Evolution",
+          "body": "Stars evolve from nebulae to main sequence, red giants, and remnants.",
+          "keyTerms": [
+            "stellar evolution",
+            "main sequence"
+          ]
+        },
+        {
+          "heading": "Black Holes",
+          "body": "Form from collapsed massive stars. Event horizon marks no escape boundary.",
+          "keyTerms": [
+            "black hole",
+            "event horizon"
+          ]
+        },
+        {
+          "heading": "Cosmology",
+          "body": "Big Bang theory describes universe expansion. Hubble\u2019s law v = H\u2080d.",
+          "keyTerms": [
+            "Big Bang",
+            "Hubble's law"
+          ]
+        },
+        {
+          "heading": "Dark Matter and Energy",
+          "body": "Dark matter affects galaxy rotation. Dark energy drives accelerated expansion.",
+          "keyTerms": [
+            "dark matter",
+            "dark energy"
+          ]
         }
       ]
     }

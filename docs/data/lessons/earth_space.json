@@ -8,22 +8,57 @@
         {
           "heading": "Layers of the Earth",
           "body": "The Earth has four main layers. The crust is the thin outermost layer: oceanic crust (5-10 km, basaltic) and continental crust (30-70 km, granitic). The mantle extends to about 2,900 km depth and is made of silicate rock; the upper mantle includes the rigid lithosphere and plastic asthenosphere. The outer core is liquid iron and nickel (2,900-5,150 km), generating Earth's magnetic field through convection currents. The inner core is solid iron and nickel (5,150-6,371 km) under extreme pressure.",
-          "keyTerms": ["crust", "mantle", "lithosphere", "asthenosphere", "outer core", "inner core", "magnetic field"]
+          "keyTerms": [
+            "crust",
+            "mantle",
+            "lithosphere",
+            "asthenosphere",
+            "outer core",
+            "inner core",
+            "magnetic field"
+          ]
         },
         {
           "heading": "Plate Tectonics Theory",
           "body": "The lithosphere is divided into tectonic plates that float on the asthenosphere. Alfred Wegener proposed continental drift, supported by fossil evidence, matching coastlines, and rock formations. Seafloor spreading at mid-ocean ridges (discovered by Harry Hess) produces new oceanic crust. Paleomagnetism in ocean floor rocks shows magnetic reversals, confirming spreading. Convection currents in the mantle, ridge push, and slab pull drive plate movement.",
-          "keyTerms": ["tectonic plates", "continental drift", "Wegener", "seafloor spreading", "mid-ocean ridge", "paleomagnetism", "convection currents"]
+          "keyTerms": [
+            "tectonic plates",
+            "continental drift",
+            "Wegener",
+            "seafloor spreading",
+            "mid-ocean ridge",
+            "paleomagnetism",
+            "convection currents"
+          ]
         },
         {
           "heading": "Plate Boundaries",
           "body": "Divergent boundaries occur where plates move apart, creating rift valleys and mid-ocean ridges. Convergent boundaries occur where plates collide: oceanic-continental convergence creates subduction zones and volcanic arcs; oceanic-oceanic convergence creates island arcs and trenches; continental-continental convergence creates mountain ranges (e.g., Himalayas). Transform boundaries occur where plates slide past each other horizontally, causing earthquakes (e.g., San Andreas Fault).",
-          "keyTerms": ["divergent", "convergent", "subduction zone", "transform boundary", "rift valley", "volcanic arc", "trench"]
+          "keyTerms": [
+            "divergent",
+            "convergent",
+            "subduction zone",
+            "transform boundary",
+            "rift valley",
+            "volcanic arc",
+            "trench"
+          ]
         },
         {
           "heading": "Earthquakes and Volcanoes",
           "body": "Earthquakes occur when stress along faults exceeds rock strength. The focus is the point of rupture underground; the epicenter is directly above on the surface. Seismic waves include P-waves (primary, compressional, fastest), S-waves (secondary, shear, cannot travel through liquids), and surface waves (slowest, most destructive). The Richter scale measures magnitude logarithmically. Volcanoes form at convergent boundaries, divergent boundaries, and hotspots. Volcanic types include shield (gentle slopes, basaltic), stratovolcano (steep, explosive), and cinder cone (small, steep).",
-          "keyTerms": ["earthquake", "focus", "epicenter", "P-waves", "S-waves", "seismic waves", "Richter scale", "shield volcano", "stratovolcano", "hotspot"]
+          "keyTerms": [
+            "earthquake",
+            "focus",
+            "epicenter",
+            "P-waves",
+            "S-waves",
+            "seismic waves",
+            "Richter scale",
+            "shield volcano",
+            "stratovolcano",
+            "hotspot"
+          ]
         }
       ]
     },
@@ -34,22 +69,61 @@
         {
           "heading": "Minerals",
           "body": "A mineral is a naturally occurring, inorganic solid with a definite chemical composition and crystalline structure. Minerals are identified by properties: hardness (Mohs scale 1-10), luster (metallic or nonmetallic), streak (color of powder), cleavage (breaks along flat planes) or fracture (irregular breaks), specific gravity, and crystal system. Common rock-forming minerals include quartz, feldspar, mica, calcite, and olivine. Silicates are the most abundant mineral group.",
-          "keyTerms": ["mineral", "Mohs scale", "hardness", "luster", "streak", "cleavage", "fracture", "silicates"]
+          "keyTerms": [
+            "mineral",
+            "Mohs scale",
+            "hardness",
+            "luster",
+            "streak",
+            "cleavage",
+            "fracture",
+            "silicates"
+          ]
         },
         {
           "heading": "Igneous Rocks",
           "body": "Igneous rocks form from the cooling and crystallization of magma or lava. Intrusive (plutonic) igneous rocks cool slowly underground, forming large crystals (e.g., granite). Extrusive (volcanic) igneous rocks cool quickly at the surface, forming small crystals or glass (e.g., basalt, obsidian). Igneous rock composition ranges from felsic (high silica, light-colored: granite, rhyolite) to mafic (low silica, dark-colored: gabbro, basalt) to ultramafic (very low silica: peridotite).",
-          "keyTerms": ["igneous", "intrusive", "extrusive", "granite", "basalt", "felsic", "mafic", "magma", "lava"]
+          "keyTerms": [
+            "igneous",
+            "intrusive",
+            "extrusive",
+            "granite",
+            "basalt",
+            "felsic",
+            "mafic",
+            "magma",
+            "lava"
+          ]
         },
         {
           "heading": "Sedimentary Rocks",
           "body": "Sedimentary rocks form from compaction and cementation of sediments. Clastic sedimentary rocks are made of fragments: conglomerate (gravel), sandstone (sand), shale (clay). Chemical sedimentary rocks precipitate from solution: limestone (calcium carbonate), rock salt (halite). Organic sedimentary rocks form from biological remains: coal, some limestone. Sedimentary rocks often contain fossils and show layering (stratification). They cover about 75% of Earth's surface.",
-          "keyTerms": ["sedimentary", "clastic", "chemical sedimentary", "compaction", "cementation", "stratification", "sandstone", "limestone", "shale"]
+          "keyTerms": [
+            "sedimentary",
+            "clastic",
+            "chemical sedimentary",
+            "compaction",
+            "cementation",
+            "stratification",
+            "sandstone",
+            "limestone",
+            "shale"
+          ]
         },
         {
           "heading": "Metamorphic Rocks and the Rock Cycle",
           "body": "Metamorphic rocks form when existing rocks are changed by heat, pressure, or chemical processes without melting. Contact metamorphism occurs near igneous intrusions. Regional metamorphism occurs over large areas during mountain building. Foliated metamorphic rocks have aligned minerals (slate, schist, gneiss). Non-foliated rocks lack alignment (marble from limestone, quartzite from sandstone). The rock cycle describes how rocks transform between igneous, sedimentary, and metamorphic types through various processes.",
-          "keyTerms": ["metamorphic", "contact metamorphism", "regional metamorphism", "foliated", "non-foliated", "slate", "marble", "quartzite", "rock cycle"]
+          "keyTerms": [
+            "metamorphic",
+            "contact metamorphism",
+            "regional metamorphism",
+            "foliated",
+            "non-foliated",
+            "slate",
+            "marble",
+            "quartzite",
+            "rock cycle"
+          ]
         }
       ]
     },
@@ -60,22 +134,56 @@
         {
           "heading": "Atmospheric Layers",
           "body": "The troposphere (0-12 km) contains 75% of atmospheric mass and all weather. Temperature decreases with altitude. The stratosphere (12-50 km) contains the ozone layer, which absorbs UV radiation; temperature increases with altitude. The mesosphere (50-80 km) is the coldest layer. The thermosphere (80-700 km) contains the ionosphere, where auroras occur; temperature increases dramatically. The exosphere (700+ km) transitions to outer space. Atmospheric composition: 78% nitrogen, 21% oxygen, 1% argon and trace gases.",
-          "keyTerms": ["troposphere", "stratosphere", "ozone layer", "mesosphere", "thermosphere", "ionosphere", "exosphere"]
+          "keyTerms": [
+            "troposphere",
+            "stratosphere",
+            "ozone layer",
+            "mesosphere",
+            "thermosphere",
+            "ionosphere",
+            "exosphere"
+          ]
         },
         {
           "heading": "Weather Systems",
           "body": "Weather is driven by unequal heating of Earth's surface. Warm air rises (low pressure) and cool air sinks (high pressure). Wind flows from high to low pressure, deflected by the Coriolis effect (right in Northern Hemisphere, left in Southern). Global circulation includes Hadley cells (0-30 degrees), Ferrel cells (30-60 degrees), and Polar cells (60-90 degrees). Jet streams are fast upper-atmosphere winds at boundaries between cells.",
-          "keyTerms": ["low pressure", "high pressure", "Coriolis effect", "Hadley cell", "Ferrel cell", "jet stream", "wind"]
+          "keyTerms": [
+            "low pressure",
+            "high pressure",
+            "Coriolis effect",
+            "Hadley cell",
+            "Ferrel cell",
+            "jet stream",
+            "wind"
+          ]
         },
         {
           "heading": "Fronts and Severe Weather",
           "body": "A front is the boundary between two air masses. Cold fronts occur when cold air pushes under warm air, causing rapid uplift and often severe weather. Warm fronts occur when warm air slides over cold air, producing widespread, gentle precipitation. Stationary fronts remain in place. Occluded fronts form when a cold front overtakes a warm front. Severe weather includes thunderstorms (caused by convection in unstable air), tornadoes (rotating columns, measured by Enhanced Fujita scale), and hurricanes (tropical cyclones, measured by Saffir-Simpson scale, require warm ocean water above 26.5 degrees C).",
-          "keyTerms": ["cold front", "warm front", "stationary front", "occluded front", "thunderstorm", "tornado", "hurricane", "Fujita scale", "Saffir-Simpson scale"]
+          "keyTerms": [
+            "cold front",
+            "warm front",
+            "stationary front",
+            "occluded front",
+            "thunderstorm",
+            "tornado",
+            "hurricane",
+            "Fujita scale",
+            "Saffir-Simpson scale"
+          ]
         },
         {
           "heading": "Climate and Climate Change",
           "body": "Climate is the long-term average of weather patterns. Climate zones are determined by latitude, altitude, proximity to water, ocean currents, and prevailing winds. The Koppen classification system categorizes climates into tropical, dry, temperate, continental, and polar. The greenhouse effect is a natural process where CO2, methane, water vapor, and other gases trap heat. Enhanced greenhouse effect from burning fossil fuels increases global temperatures. Milankovitch cycles describe natural climate variation due to changes in Earth's orbit, axial tilt, and precession.",
-          "keyTerms": ["climate", "Koppen classification", "greenhouse effect", "greenhouse gases", "Milankovitch cycles", "precession", "axial tilt"]
+          "keyTerms": [
+            "climate",
+            "Koppen classification",
+            "greenhouse effect",
+            "greenhouse gases",
+            "Milankovitch cycles",
+            "precession",
+            "axial tilt"
+          ]
         }
       ]
     },
@@ -86,22 +194,50 @@
         {
           "heading": "Ocean Structure",
           "body": "The ocean has distinct layers based on temperature. The surface mixed layer (0-200 m) is warm and well-mixed by wind. The thermocline (200-1000 m) shows a rapid temperature decrease. The deep ocean (below 1000 m) is cold and uniform. Ocean water averages 3.5% salinity, primarily sodium chloride. Salinity varies with evaporation, precipitation, river input, and ice formation. The ocean floor features continental shelves, continental slopes, abyssal plains, mid-ocean ridges, and ocean trenches.",
-          "keyTerms": ["thermocline", "salinity", "continental shelf", "abyssal plain", "mid-ocean ridge", "ocean trench"]
+          "keyTerms": [
+            "thermocline",
+            "salinity",
+            "continental shelf",
+            "abyssal plain",
+            "mid-ocean ridge",
+            "ocean trench"
+          ]
         },
         {
           "heading": "Ocean Currents",
           "body": "Surface currents are driven by wind and deflected by the Coriolis effect, forming gyres that rotate clockwise in the Northern Hemisphere and counterclockwise in the Southern. Major currents include the Gulf Stream (warm, northwest Atlantic), California Current (cold, eastern Pacific), and Kuroshio Current (warm, western Pacific). Thermohaline circulation (the global conveyor belt) is driven by density differences from temperature and salinity. Cold, salty water sinks in the North Atlantic and flows deep, returning warm water to the surface.",
-          "keyTerms": ["surface currents", "gyre", "Gulf Stream", "thermohaline circulation", "global conveyor belt", "Coriolis effect"]
+          "keyTerms": [
+            "surface currents",
+            "gyre",
+            "Gulf Stream",
+            "thermohaline circulation",
+            "global conveyor belt",
+            "Coriolis effect"
+          ]
         },
         {
           "heading": "Tides",
           "body": "Tides are caused by the gravitational pull of the Moon and Sun on Earth's oceans. Spring tides (highest highs and lowest lows) occur during full and new moons when the Sun, Moon, and Earth are aligned. Neap tides (smallest tidal range) occur during quarter moons when the Sun and Moon are at right angles. Most coastlines experience semidiurnal tides (two high and two low tides per day). The tidal bulge forms on both the side facing the Moon and the opposite side due to inertia.",
-          "keyTerms": ["tides", "spring tides", "neap tides", "semidiurnal", "tidal bulge", "gravitational pull"]
+          "keyTerms": [
+            "tides",
+            "spring tides",
+            "neap tides",
+            "semidiurnal",
+            "tidal bulge",
+            "gravitational pull"
+          ]
         },
         {
           "heading": "Marine Geology",
           "body": "The ocean floor is mapped using sonar (Sound Navigation and Ranging). Mid-ocean ridges are underwater mountain chains where new crust forms through seafloor spreading. Hydrothermal vents at ridges support unique ecosystems through chemosynthesis. Ocean trenches are the deepest parts of the ocean, formed at subduction zones. The Mariana Trench is the deepest point (about 11,034 m). Coral reefs form in warm, shallow, clear water and support enormous biodiversity. Seamounts are underwater volcanic mountains that do not reach the surface.",
-          "keyTerms": ["sonar", "hydrothermal vent", "chemosynthesis", "Mariana Trench", "coral reef", "seamount"]
+          "keyTerms": [
+            "sonar",
+            "hydrothermal vent",
+            "chemosynthesis",
+            "Mariana Trench",
+            "coral reef",
+            "seamount"
+          ]
         }
       ]
     },
@@ -112,22 +248,58 @@
         {
           "heading": "The Solar System",
           "body": "The solar system formed about 4.6 billion years ago from a collapsing nebula (solar nebula hypothesis). The Sun contains 99.86% of the system's mass. The four inner (terrestrial) planets are Mercury, Venus, Earth, and Mars (rocky, small, dense). The four outer (Jovian) planets are Jupiter, Saturn, Uranus, and Neptune (gaseous or icy, large, less dense). The asteroid belt lies between Mars and Jupiter. The Kuiper Belt beyond Neptune contains dwarf planets like Pluto. The Oort Cloud is a distant spherical shell of icy bodies.",
-          "keyTerms": ["solar nebula", "terrestrial planets", "Jovian planets", "asteroid belt", "Kuiper Belt", "Oort Cloud", "dwarf planet"]
+          "keyTerms": [
+            "solar nebula",
+            "terrestrial planets",
+            "Jovian planets",
+            "asteroid belt",
+            "Kuiper Belt",
+            "Oort Cloud",
+            "dwarf planet"
+          ]
         },
         {
           "heading": "Stars and Stellar Evolution",
           "body": "Stars form in nebulae when gravity causes gas and dust to collapse. A protostar becomes a main sequence star when hydrogen fusion begins in its core. Stars spend most of their lives on the main sequence. Low-mass stars become red giants, then planetary nebulae, leaving white dwarfs. High-mass stars become red supergiants, then explode as supernovae, leaving neutron stars or black holes. The Hertzsprung-Russell (H-R) diagram plots luminosity versus temperature, revealing stellar classification.",
-          "keyTerms": ["nebula", "protostar", "main sequence", "red giant", "white dwarf", "supernova", "neutron star", "black hole", "H-R diagram"]
+          "keyTerms": [
+            "nebula",
+            "protostar",
+            "main sequence",
+            "red giant",
+            "white dwarf",
+            "supernova",
+            "neutron star",
+            "black hole",
+            "H-R diagram"
+          ]
         },
         {
           "heading": "Galaxies and Cosmology",
           "body": "Galaxies are massive collections of stars, gas, and dust bound by gravity. Types include spiral (like the Milky Way), elliptical, and irregular. The Milky Way is a barred spiral galaxy about 100,000 light-years across. The Big Bang theory states the universe began 13.8 billion years ago from an extremely hot, dense point. Evidence includes cosmic microwave background radiation (CMB), Hubble's law (galaxies recede proportional to distance), and the abundance of light elements. Dark matter and dark energy together make up about 95% of the universe.",
-          "keyTerms": ["galaxy", "spiral galaxy", "elliptical galaxy", "Milky Way", "Big Bang", "cosmic microwave background", "Hubble's law", "dark matter", "dark energy"]
+          "keyTerms": [
+            "galaxy",
+            "spiral galaxy",
+            "elliptical galaxy",
+            "Milky Way",
+            "Big Bang",
+            "cosmic microwave background",
+            "Hubble's law",
+            "dark matter",
+            "dark energy"
+          ]
         },
         {
           "heading": "Earth-Moon-Sun System",
           "body": "Earth orbits the Sun in an elliptical path, taking 365.25 days (one year). Earth's axial tilt of 23.5 degrees causes seasons. The Moon orbits Earth every 27.3 days (sidereal period) and completes a synodic period (full cycle of phases) every 29.5 days. Lunar phases progress: new moon, waxing crescent, first quarter, waxing gibbous, full moon, waning gibbous, third quarter, waning crescent. Solar eclipses occur when the Moon blocks the Sun (new moon). Lunar eclipses occur when Earth's shadow falls on the Moon (full moon).",
-          "keyTerms": ["axial tilt", "seasons", "lunar phases", "solar eclipse", "lunar eclipse", "synodic period", "sidereal period"]
+          "keyTerms": [
+            "axial tilt",
+            "seasons",
+            "lunar phases",
+            "solar eclipse",
+            "lunar eclipse",
+            "synodic period",
+            "sidereal period"
+          ]
         }
       ]
     },
@@ -138,22 +310,619 @@
         {
           "heading": "Relative and Absolute Dating",
           "body": "Relative dating determines the order of events without exact ages. Key principles: superposition (older layers are below younger), original horizontality (sediments deposit horizontally), cross-cutting relationships (features that cut across rocks are younger), and faunal succession (fossil assemblages succeed each other in a recognizable order). Unconformities represent gaps in the geologic record. Absolute dating uses radioactive decay. Parent isotopes decay to daughter isotopes at a known rate (half-life). Common methods: carbon-14 (up to 50,000 years), potassium-40/argon-40 (for older rocks), and uranium-lead (for the oldest rocks).",
-          "keyTerms": ["relative dating", "superposition", "cross-cutting relationships", "unconformity", "absolute dating", "half-life", "carbon-14", "radiometric dating"]
+          "keyTerms": [
+            "relative dating",
+            "superposition",
+            "cross-cutting relationships",
+            "unconformity",
+            "absolute dating",
+            "half-life",
+            "carbon-14",
+            "radiometric dating"
+          ]
         },
         {
           "heading": "The Geologic Time Scale",
           "body": "The geologic time scale divides Earth's 4.6 billion year history into eons, eras, periods, and epochs. The Hadean eon (4.6-4.0 Ga) saw Earth's formation and heavy bombardment. The Archean eon (4.0-2.5 Ga) saw the first life (prokaryotes) and banded iron formations. The Proterozoic eon (2.5-0.541 Ga) saw the Great Oxidation Event and first eukaryotes. The Phanerozoic eon (541 Ma-present) includes three eras: Paleozoic, Mesozoic, and Cenozoic. Major boundaries are defined by mass extinctions and evolutionary events.",
-          "keyTerms": ["geologic time scale", "eon", "era", "period", "epoch", "Hadean", "Archean", "Proterozoic", "Phanerozoic"]
+          "keyTerms": [
+            "geologic time scale",
+            "eon",
+            "era",
+            "period",
+            "epoch",
+            "Hadean",
+            "Archean",
+            "Proterozoic",
+            "Phanerozoic"
+          ]
         },
         {
           "heading": "Major Eras of Life",
           "body": "The Paleozoic era (541-252 Ma) began with the Cambrian explosion of complex life. Fish, amphibians, reptiles, and land plants appeared. It ended with the largest mass extinction (Permian-Triassic, killing about 96% of marine species). The Mesozoic era (252-66 Ma), the Age of Dinosaurs, included the Triassic, Jurassic, and Cretaceous periods. Flowering plants and mammals appeared. It ended with the Cretaceous-Paleogene extinction (asteroid impact). The Cenozoic era (66 Ma-present), the Age of Mammals, includes the diversification of mammals, evolution of primates, and the Quaternary ice ages.",
-          "keyTerms": ["Paleozoic", "Cambrian explosion", "Mesozoic", "Cenozoic", "Permian-Triassic extinction", "Cretaceous-Paleogene extinction", "mass extinction"]
+          "keyTerms": [
+            "Paleozoic",
+            "Cambrian explosion",
+            "Mesozoic",
+            "Cenozoic",
+            "Permian-Triassic extinction",
+            "Cretaceous-Paleogene extinction",
+            "mass extinction"
+          ]
         },
         {
           "heading": "Fossils and Fossilization",
           "body": "Fossils are preserved remains or traces of ancient organisms. Types include body fossils (bones, shells, petrified wood), trace fossils (footprints, burrows, coprolites), molds and casts, and amber preservation. Fossilization requires rapid burial to prevent decomposition. Permineralization occurs when minerals fill pore spaces. Index fossils are widespread, short-lived species used to date rock layers. The fossil record is biased toward organisms with hard parts, marine environments, and certain geologic settings.",
-          "keyTerms": ["fossil", "body fossil", "trace fossil", "index fossil", "permineralization", "petrified", "mold", "cast"]
+          "keyTerms": [
+            "fossil",
+            "body fossil",
+            "trace fossil",
+            "index fossil",
+            "permineralization",
+            "petrified",
+            "mold",
+            "cast"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "es_07",
+      "title": "Water Cycle & Hydrology",
+      "sections": [
+        {
+          "heading": "The Hydrologic Cycle",
+          "body": "The hydrologic (water) cycle is the continuous movement of water among the atmosphere, oceans, land, and living things. Solar energy drives evaporation from oceans, lakes, and soils. Plants add water vapor through transpiration; together these are evapotranspiration. Rising moist air cools, leading to condensation on aerosols (tiny particles) that form clouds. When droplets or ice crystals grow large enough, precipitation falls as rain, snow, sleet, or hail. After reaching the surface, water may infiltrate into the ground, flow downhill as runoff, or be stored temporarily as snowpack, lakes, and soil moisture. Gravity moves water through streams and groundwater back toward the oceans, completing the cycle.",
+          "keyTerms": [
+            "hydrologic cycle",
+            "evaporation",
+            "transpiration",
+            "evapotranspiration",
+            "condensation",
+            "precipitation",
+            "runoff",
+            "infiltration"
+          ]
+        },
+        {
+          "heading": "Runoff, Streams, and Flooding",
+          "body": "Runoff occurs when precipitation rates exceed the ground’s infiltration capacity, when soils are saturated, or when surfaces are impermeable (pavement, bedrock, frozen ground). Streams collect runoff into channel flow. Stream velocity depends on slope (gradient), channel roughness, and discharge (volume flow rate). During heavy rainfall or rapid snowmelt, rivers can exceed their banks and inundate floodplains. Urbanization usually increases peak discharge because storm drains and pavement route water quickly into channels. Flood frequency is often described using recurrence intervals (for example, a “100-year flood” is a flood with a 1% chance of occurring in any given year).",
+          "keyTerms": [
+            "runoff",
+            "infiltration capacity",
+            "discharge",
+            "gradient",
+            "floodplain",
+            "peak discharge",
+            "recurrence interval"
+          ]
+        },
+        {
+          "heading": "Groundwater and Aquifers",
+          "body": "Groundwater is water that fills pore spaces and fractures below Earth’s surface. The water table is the upper boundary of the saturated zone; above it is the unsaturated (vadose) zone where pores contain both air and water. Aquifers are permeable layers (sand, gravel, sandstone, fractured rock) that store and transmit groundwater. Aquitards (clay, shale) slow groundwater flow. Confined aquifers are trapped between aquitards and may produce artesian wells if the pressure surface is above ground level. Key properties are porosity (storage) and permeability (flow). Excess pumping can lower the water table, cause land subsidence, and trigger saltwater intrusion near coasts.",
+          "keyTerms": [
+            "groundwater",
+            "water table",
+            "vadose zone",
+            "aquifer",
+            "aquitard",
+            "confined aquifer",
+            "artesian well",
+            "porosity",
+            "permeability",
+            "saltwater intrusion"
+          ]
+        },
+        {
+          "heading": "Watersheds and Water Quality",
+          "body": "A watershed (drainage basin) is the land area that drains to a common outlet such as a river mouth, lake, or reservoir. Watershed divides are high points separating neighboring basins. Human activities in a watershed strongly affect water quality downstream. Nutrient runoff (nitrogen and phosphorus) from fertilizers can cause eutrophication: algal blooms that reduce dissolved oxygen and create “dead zones.” Sediment from erosion increases turbidity and can smother aquatic habitats. Water quality is monitored using indicators such as pH, dissolved oxygen, turbidity, and conductivity. Management strategies include riparian buffers, wetland restoration, and controlling point-source pollution from pipes and outfalls.",
+          "keyTerms": [
+            "watershed",
+            "drainage basin",
+            "divide",
+            "eutrophication",
+            "dissolved oxygen",
+            "turbidity",
+            "riparian buffer",
+            "point-source pollution"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "es_08",
+      "title": "Soil Science",
+      "sections": [
+        {
+          "heading": "Soil Formation and the CLORPT Factors",
+          "body": "Soil forms as rock weathers into mineral particles and mixes with organic matter from living organisms. A common framework for soil formation is CLORPT: climate, organisms, relief (topography), parent material, and time. Climate controls temperature and precipitation, which affect weathering rates and leaching. Organisms add organic material and mix soil through roots and burrowing. Relief influences drainage and erosion on slopes. Parent material (bedrock, glacial till, volcanic ash, river sediment) sets the starting mineral composition. Time determines how strongly horizons develop; young soils have weak horizons, while old soils can show thick, well-developed layers. Soil is a dynamic system that continuously changes with environment and land use.",
+          "keyTerms": [
+            "soil formation",
+            "CLORPT",
+            "weathering",
+            "leaching",
+            "parent material",
+            "topography",
+            "soil horizons"
+          ]
+        },
+        {
+          "heading": "Soil Horizons and Soil Profiles",
+          "body": "Soils commonly develop distinct horizons. The O horizon is organic litter and humus (decomposed material). The A horizon (topsoil) is mineral-rich with added humus and is most important for plant growth. The E horizon is a zone of eluviation (leaching) where clay and minerals are washed downward, often appearing lighter. The B horizon (subsoil) is a zone of illuviation where clays, iron oxides, and other materials accumulate. The C horizon is partially weathered parent material, and the R horizon is unweathered bedrock. A soil profile is the vertical sequence of horizons and reveals processes like leaching, oxidation, and biological activity. Soil color can indicate composition: dark for high organic matter, red/brown for iron oxides, and gray for waterlogged conditions.",
+          "keyTerms": [
+            "O horizon",
+            "A horizon",
+            "E horizon",
+            "B horizon",
+            "C horizon",
+            "R horizon",
+            "eluviation",
+            "illuviation",
+            "humus",
+            "soil profile"
+          ]
+        },
+        {
+          "heading": "Soil Texture, Structure, and Chemistry",
+          "body": "Soil texture is the relative proportion of sand, silt, and clay. Sandy soils drain quickly but hold less water; clay-rich soils hold water well but drain slowly and can become compacted. Loam is a balanced mixture that supports many plants. Soil structure describes how particles aggregate into clumps (peds), influencing aeration and infiltration. Soil chemistry matters too: pH affects nutrient availability; most crops prefer slightly acidic to neutral soils. Cation exchange capacity (CEC) measures how well soil holds nutrient ions like Ca2+, K+, and Mg2+. Organic matter increases CEC, water-holding capacity, and microbial activity, making soils more fertile and resilient.",
+          "keyTerms": [
+            "sand",
+            "silt",
+            "clay",
+            "loam",
+            "soil structure",
+            "infiltration",
+            "pH",
+            "cation exchange capacity",
+            "organic matter"
+          ]
+        },
+        {
+          "heading": "Erosion and Soil Conservation",
+          "body": "Erosion is the removal and transport of soil by water, wind, ice, or gravity. Splash erosion from raindrops can break apart soil aggregates, and overland flow can create rills and gullies. Wind erosion is common in dry regions and on exposed fields. Losing topsoil reduces fertility because nutrients and organic matter are concentrated near the surface. Conservation practices reduce erosion by slowing water and protecting the surface: contour plowing follows elevation lines, terracing breaks steep slopes into steps, cover crops keep roots in the soil year-round, no-till farming reduces disturbance, and windbreaks slow airflow. Maintaining vegetation and managing grazing also help keep soils stable.",
+          "keyTerms": [
+            "erosion",
+            "rill",
+            "gully",
+            "contour plowing",
+            "terracing",
+            "cover crops",
+            "no-till",
+            "windbreak",
+            "overland flow"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "es_09",
+      "title": "Natural Resources",
+      "sections": [
+        {
+          "heading": "Renewable and Nonrenewable Resources",
+          "body": "Natural resources are materials and energy sources obtained from Earth. Renewable resources replenish on human time scales, including solar, wind, hydropower, biomass, and (often) sustainably managed forests. Nonrenewable resources form over very long periods and are finite in practical terms: fossil fuels (coal, oil, natural gas) and many mineral deposits. Some resources are “conditionally renewable” depending on management; freshwater can be renewed through the water cycle, but overuse can deplete aquifers faster than they recharge. Resource decisions involve availability, cost, energy density, environmental impacts, and the technology required to extract or convert the resource into useful forms.",
+          "keyTerms": [
+            "natural resources",
+            "renewable",
+            "nonrenewable",
+            "fossil fuels",
+            "energy density",
+            "biomass",
+            "aquifer recharge"
+          ]
+        },
+        {
+          "heading": "Mineral Resources and Mining",
+          "body": "Mineral resources include metallic ores (iron, copper, aluminum), industrial minerals (gypsum, phosphate), and construction materials (sand, gravel). Mining methods depend on depth and geology. Surface mining (open-pit, strip mining) removes overburden to access shallow deposits; it is efficient but can strongly alter landscapes. Underground mining reaches deeper veins but has higher safety risks. Ore processing often involves crushing, chemical separation, and smelting, which can produce waste rock and tailings. Environmental impacts can include habitat loss, dust, acid mine drainage (when sulfide minerals react with water and oxygen), and heavy metal contamination. Reclamation restores land after mining by reshaping, replanting, and stabilizing soils.",
+          "keyTerms": [
+            "ore",
+            "surface mining",
+            "open-pit",
+            "strip mining",
+            "tailings",
+            "smelting",
+            "acid mine drainage",
+            "reclamation"
+          ]
+        },
+        {
+          "heading": "Energy Resources and Tradeoffs",
+          "body": "Energy resources power transportation, industry, and electricity generation. Fossil fuels are energy-dense and historically cheap, but combustion releases carbon dioxide and other pollutants. Nuclear fission produces large amounts of electricity with low operational CO2 emissions but requires careful waste management and safety systems. Renewables like wind and solar have low fuel costs and reduced air pollution, but output can be variable and depends on storage, transmission, and grid design. Hydropower is reliable but can disrupt river ecosystems and sediment flow. Evaluating energy systems involves life-cycle impacts, reliability, land use, water use, and the feasibility of scaling technologies to meet demand.",
+          "keyTerms": [
+            "fossil fuels",
+            "carbon dioxide",
+            "air pollution",
+            "nuclear fission",
+            "renewable energy",
+            "grid",
+            "energy storage",
+            "life-cycle impacts"
+          ]
+        },
+        {
+          "heading": "Conservation and Sustainable Management",
+          "body": "Conservation aims to use resources efficiently and reduce waste so supplies last longer and ecosystems remain healthy. Strategies include reducing consumption, reusing materials, recycling metals and plastics, improving efficiency (better insulation, efficient motors), and shifting to cleaner energy. Sustainable forestry and fisheries maintain harvest rates at or below regeneration rates. Water conservation includes leak reduction, efficient irrigation, and protecting watersheds. Policies and economics also matter: resource pricing, regulations, protected areas, and incentives can change behavior. Sustainable management tries to balance human needs with long-term environmental stability and intergenerational fairness.",
+          "keyTerms": [
+            "conservation",
+            "recycling",
+            "efficiency",
+            "sustainable management",
+            "watershed protection",
+            "incentives",
+            "protected areas"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "es_10",
+      "title": "Natural Hazards",
+      "sections": [
+        {
+          "heading": "Earthquakes and Seismic Risk",
+          "body": "Earthquakes occur when accumulated stress along a fault is released as rocks suddenly slip. The focus (hypocenter) is where rupture begins, and the epicenter is directly above it at the surface. Seismic waves include P-waves (compressional, fastest), S-waves (shear, do not travel through liquids), and surface waves (slowest, often most damaging). Earthquake size is described by magnitude (energy released) and intensity (effects at a location). Risk depends on hazard (likelihood), exposure (people and infrastructure), and vulnerability (building strength). Liquefaction can occur when shaking causes water-saturated sediments to behave like a fluid, undermining foundations. Building codes and retrofitting reduce damage.",
+          "keyTerms": [
+            "fault",
+            "focus",
+            "epicenter",
+            "P-waves",
+            "S-waves",
+            "surface waves",
+            "magnitude",
+            "intensity",
+            "liquefaction",
+            "retrofitting"
+          ]
+        },
+        {
+          "heading": "Volcanoes and Eruptive Hazards",
+          "body": "Volcanoes form where magma reaches the surface, most commonly at subduction zones, rifts, and hotspots. Eruption style depends on magma viscosity and gas content. Basaltic magma is less viscous and tends to produce effusive lava flows (shield volcanoes). Andesitic and rhyolitic magmas are more viscous and can trap gases, leading to explosive eruptions (stratovolcanoes and calderas). Hazards include lava flows, ash fall, pyroclastic flows, lahars (volcanic mudflows), and toxic gases. Ash can disrupt aviation and damage engines. Monitoring includes seismicity, ground deformation, gas emissions, and thermal imaging to detect rising magma and forecast activity.",
+          "keyTerms": [
+            "magma viscosity",
+            "shield volcano",
+            "stratovolcano",
+            "caldera",
+            "ash fall",
+            "pyroclastic flow",
+            "lahar",
+            "hotspot",
+            "ground deformation"
+          ]
+        },
+        {
+          "heading": "Floods, Landslides, and Severe Weather",
+          "body": "Flooding can be caused by intense rainfall, rapid snowmelt, ice jams, dam failures, or storm surge along coasts. Flash floods develop quickly in steep terrain or urban areas. Landslides occur when gravity overcomes slope stability, often triggered by heavy rain, earthquakes, or human excavation. Severe thunderstorms can produce damaging winds, hail, and tornadoes. Tropical cyclones form over warm ocean waters and can bring extreme rainfall, storm surge, and destructive winds over large areas. Hazard impacts vary based on preparedness, land use, and early warnings. Avoiding development in high-risk floodplains and unstable slopes is one of the most effective mitigation strategies.",
+          "keyTerms": [
+            "flash flood",
+            "storm surge",
+            "landslide",
+            "slope stability",
+            "tornado",
+            "hail",
+            "tropical cyclone",
+            "mitigation",
+            "floodplain"
+          ]
+        },
+        {
+          "heading": "Disaster Preparedness and Risk Reduction",
+          "body": "Disaster preparedness reduces harm by combining science, planning, and public communication. Early warning systems detect hazards and provide time to respond (weather radar, flood gauges, seismic networks, satellite monitoring). Evacuation plans identify routes, shelters, and roles for emergency services. Building codes improve structural resilience to shaking, wind, and flooding. Risk communication must be clear and actionable so people respond appropriately. Community resilience also depends on supplies (water, food, medical kits), drills, and protecting critical infrastructure like hospitals and power lines. After events, recovery includes rebuilding safely, improving land-use planning, and updating hazard maps based on new data.",
+          "keyTerms": [
+            "early warning system",
+            "evacuation",
+            "building codes",
+            "risk communication",
+            "resilience",
+            "hazard map",
+            "critical infrastructure"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "es_11",
+      "title": "Climate Patterns",
+      "sections": [
+        {
+          "heading": "ENSO: El Niño and La Niña",
+          "body": "El Niño–Southern Oscillation (ENSO) is a coupled ocean–atmosphere pattern in the tropical Pacific that shifts global weather. During El Niño, trade winds weaken and warm surface water spreads eastward, reducing upwelling near South America and changing convection patterns. During La Niña, trade winds strengthen, upwelling increases, and the eastern tropical Pacific cools. These shifts alter the jet stream and storm tracks, affecting rainfall, drought risk, and temperature patterns far from the Pacific. ENSO events typically develop over months and can last 9–18 months, but timing and strength vary. Monitoring uses sea surface temperature anomalies, subsurface heat content, and atmospheric pressure patterns like the Southern Oscillation Index.",
+          "keyTerms": [
+            "ENSO",
+            "El Niño",
+            "La Niña",
+            "trade winds",
+            "upwelling",
+            "sea surface temperature anomaly",
+            "Southern Oscillation Index",
+            "jet stream"
+          ]
+        },
+        {
+          "heading": "Monsoons and Seasonal Circulation",
+          "body": "Monsoons are seasonal wind and precipitation patterns driven by differences in heating between land and ocean. In summer, land warms faster, creating low pressure that draws moist air inland; rising air produces heavy rainfall. In winter, land cools faster, creating high pressure and reversing winds, often leading to dry conditions. The strength of monsoons depends on sea surface temperatures, snow cover, land surface properties, and large-scale patterns such as ENSO. Monsoons support agriculture for billions of people, but variability can cause floods or drought. Regional examples include the South Asian monsoon and the West African monsoon, each with distinct timing and moisture pathways.",
+          "keyTerms": [
+            "monsoon",
+            "seasonal winds",
+            "low pressure",
+            "moisture transport",
+            "drought",
+            "flooding",
+            "South Asian monsoon",
+            "West African monsoon"
+          ]
+        },
+        {
+          "heading": "Global Circulation and Climate Zones",
+          "body": "Earth’s global circulation redistributes heat from the equator toward the poles. The Hadley cell dominates the tropics (rising air near the equator, sinking near 30°), helping create subtropical deserts where descending air is dry. Mid-latitudes are influenced by the Ferrel cell and frequent frontal systems, while polar regions are shaped by the Polar cell. Jet streams form near boundaries between circulation cells and guide storm tracks. Ocean currents also transport heat; warm currents moderate coastal climates, while cold currents can stabilize air and reduce rainfall. Together, circulation and ocean patterns help produce major climate zones, including tropical, arid, temperate, continental, and polar climates.",
+          "keyTerms": [
+            "Hadley cell",
+            "Ferrel cell",
+            "Polar cell",
+            "jet stream",
+            "storm track",
+            "ocean currents",
+            "climate zones",
+            "subtropical desert"
+          ]
+        },
+        {
+          "heading": "Oscillations and Teleconnections",
+          "body": "Beyond ENSO, many climate patterns operate on seasonal to multi-decade time scales and influence regional weather through teleconnections (long-distance links). The North Atlantic Oscillation (NAO) affects storm tracks and winter temperatures across Europe and eastern North America. The Pacific Decadal Oscillation (PDO) reflects longer-term sea surface temperature patterns in the North Pacific and can modulate ENSO impacts. The Indian Ocean Dipole (IOD) influences rainfall around the Indian Ocean basin. These patterns interact rather than acting alone, which is why seasonal forecasting focuses on multiple indices and physical mechanisms. Understanding teleconnections helps explain why a change in one ocean basin can shift precipitation and temperature far away.",
+          "keyTerms": [
+            "teleconnection",
+            "NAO",
+            "PDO",
+            "IOD",
+            "climate index",
+            "seasonal forecasting"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "es_12",
+      "title": "Planetary Science",
+      "sections": [
+        {
+          "heading": "Comparative Planetology",
+          "body": "Comparative planetology studies planets and moons by comparing their geology, atmospheres, interiors, and histories. By examining similarities and differences, scientists infer how planetary bodies form and evolve. For example, comparing Earth, Venus, and Mars highlights how atmosphere thickness, water availability, and tectonics shape climate and surface features. Comparing giant planets and ice giants reveals how composition and temperature affect structure, storms, and magnetospheres. Impact craters, volcanism, tectonic features, and erosion processes (including wind and ice) serve as “records” of surface age and activity. Comparative methods also help interpret exoplanet data, where we often only have mass, radius, and atmospheric spectra rather than direct surface observations.",
+          "keyTerms": [
+            "comparative planetology",
+            "terrestrial planet",
+            "giant planet",
+            "ice giant",
+            "magnetosphere",
+            "impact crater",
+            "planetary evolution"
+          ]
+        },
+        {
+          "heading": "Planetary Interiors and Atmospheres",
+          "body": "A planet’s interior structure is controlled by composition, pressure, and temperature. Many rocky planets have differentiated layers: crust, mantle, and core, driven by density differences. Heat sources include accretion, radioactive decay, and tidal heating (important for some moons). Atmospheres form through outgassing, impacts, and volatile delivery, and they evolve through escape to space and chemical reactions. Surface pressure and greenhouse gases strongly affect temperature; thick CO2 atmospheres can produce intense greenhouse warming. Atmospheric circulation depends on rotation rate, sunlight distribution, and topography. Studying atmospheres uses spectroscopy to identify gases and thermal structure, while spacecraft measure winds, pressure, and composition directly.",
+          "keyTerms": [
+            "differentiation",
+            "core",
+            "mantle",
+            "radioactive decay",
+            "tidal heating",
+            "outgassing",
+            "greenhouse effect",
+            "spectroscopy"
+          ]
+        },
+        {
+          "heading": "Exoplanets and Detection Methods",
+          "body": "Exoplanets are planets orbiting other stars. The transit method detects periodic dips in starlight when a planet crosses the star’s disk, allowing estimates of radius and orbital period. Radial velocity measures a star’s wobble caused by a planet’s gravity, giving a minimum mass. Combining both methods yields density, which hints at composition (rocky, icy, or gas-rich). Direct imaging captures light from a planet itself, usually for young, massive planets far from their stars. Microlensing detects planets through gravitational lensing effects when a foreground star passes in front of a background star. Spectroscopy during transits can reveal atmospheric gases, clouds, and potential chemical processes.",
+          "keyTerms": [
+            "exoplanet",
+            "transit method",
+            "radial velocity",
+            "direct imaging",
+            "microlensing",
+            "density",
+            "atmospheric spectroscopy"
+          ]
+        },
+        {
+          "heading": "Moons, Rings, and Small Bodies",
+          "body": "Moons and small bodies are essential to understanding solar system history. Many moons show geological activity driven by tides, such as volcanism or subsurface oceans. Rings form from debris around planets and are shaped by gravity and collisions; “shepherd moons” help maintain ring edges. Asteroids and comets are leftover building blocks from early formation. Asteroids are mostly rocky or metallic and are concentrated in the asteroid belt and near-Earth populations. Comets are icy and develop comae and tails when warmed near the Sun. Studying meteorites provides direct samples of early solar system material and helps determine ages through radiometric dating.",
+          "keyTerms": [
+            "tidal heating",
+            "subsurface ocean",
+            "rings",
+            "shepherd moon",
+            "asteroid",
+            "comet",
+            "meteorite",
+            "radiometric dating"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "es_13",
+      "title": "Stellar Astronomy",
+      "sections": [
+        {
+          "heading": "Star Formation and Main Sequence Stars",
+          "body": "Stars form inside cold, dense regions of molecular clouds when gravity overcomes pressure and causes collapse. As material falls inward, it forms a protostar surrounded by an accretion disk. Heating and compression raise core temperatures until hydrogen fusion begins, marking arrival on the main sequence. A star’s mass controls its luminosity, temperature, and lifetime: massive stars burn fuel faster and live shorter lives, while low-mass stars can last tens to hundreds of billions of years. The Hertzsprung–Russell (H–R) diagram plots luminosity versus temperature and reveals patterns such as the main sequence, giants, and white dwarfs. Spectral class (OBAFGKM) relates to surface temperature and color.",
+          "keyTerms": [
+            "molecular cloud",
+            "protostar",
+            "accretion disk",
+            "main sequence",
+            "H-R diagram",
+            "spectral class",
+            "fusion",
+            "OBAFGKM"
+          ]
+        },
+        {
+          "heading": "Stellar Evolution and End States",
+          "body": "After main-sequence hydrogen is depleted, a star’s core contracts and heats while outer layers expand. Low- and intermediate-mass stars become red giants, fuse helium into carbon and oxygen, and later shed outer layers as a planetary nebula, leaving a white dwarf supported by electron degeneracy pressure. If a white dwarf in a binary system gains too much mass, it may explode as a Type Ia supernova. High-mass stars become red supergiants and fuse heavier elements up to iron. Because iron fusion does not release energy, the core collapses, producing a core-collapse supernova that leaves a neutron star or black hole. These end states are crucial for producing and distributing many elements in the galaxy.",
+          "keyTerms": [
+            "red giant",
+            "planetary nebula",
+            "white dwarf",
+            "electron degeneracy",
+            "Type Ia",
+            "red supergiant",
+            "core-collapse supernova",
+            "neutron star",
+            "black hole"
+          ]
+        },
+        {
+          "heading": "Nucleosynthesis and the Origin of Elements",
+          "body": "Nucleosynthesis is the creation of new atomic nuclei. In stars, fusion converts hydrogen to helium and, in more massive cores, helium to carbon and oxygen. Advanced fusion in massive stars builds elements up to iron through stages (carbon, neon, oxygen, silicon burning). Elements heavier than iron are mostly formed by neutron-capture processes. The s-process (slow) occurs in evolved stars where neutrons are captured over long time scales. The r-process (rapid) occurs in extreme events like some supernovae and neutron star mergers, producing very heavy elements such as gold and uranium. Supernova explosions and stellar winds spread these elements into interstellar space, enriching future star and planet formation.",
+          "keyTerms": [
+            "nucleosynthesis",
+            "fusion",
+            "iron",
+            "s-process",
+            "r-process",
+            "neutron star merger",
+            "stellar winds",
+            "element enrichment"
+          ]
+        },
+        {
+          "heading": "Stellar Remnants and Extreme Physics",
+          "body": "Stellar remnants are the compact leftovers of stellar evolution. White dwarfs are Earth-sized but contain about the Sun’s mass; they cool over time and can form crystals as they age. Neutron stars are even denser—roughly city-sized—and can rotate rapidly, emitting beams of radiation observed as pulsars. Strong magnetic fields can create magnetars, which produce powerful high-energy bursts. Black holes are regions where gravity is so strong that not even light escapes beyond the event horizon. In binary systems, accretion disks around neutron stars and black holes can heat up and emit X-rays. Studying these objects tests physics under extreme density, gravity, and magnetic fields, and helps explain high-energy phenomena across the universe.",
+          "keyTerms": [
+            "white dwarf",
+            "pulsar",
+            "neutron star",
+            "magnetar",
+            "black hole",
+            "event horizon",
+            "accretion disk",
+            "X-rays"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "es_14",
+      "title": "Remote Sensing & GIS",
+      "sections": [
+        {
+          "heading": "Remote Sensing Fundamentals",
+          "body": "Remote sensing is the collection of information about Earth without direct contact, usually using aircraft or satellites. Sensors measure electromagnetic radiation reflected or emitted from the surface and atmosphere. Passive sensors detect natural energy (sunlight reflection, thermal emission), while active sensors emit energy and measure the return signal (radar, lidar). Different wavelengths reveal different properties: visible light shows color and land cover, infrared can detect vegetation health and temperature, and microwave radar can penetrate clouds and operate at night. Spatial resolution describes pixel size, spectral resolution describes the number and width of wavelength bands, and temporal resolution describes how often a sensor revisits an area.",
+          "keyTerms": [
+            "remote sensing",
+            "electromagnetic radiation",
+            "passive sensor",
+            "active sensor",
+            "radar",
+            "lidar",
+            "spatial resolution",
+            "spectral resolution",
+            "temporal resolution"
+          ]
+        },
+        {
+          "heading": "Satellite Imagery and Environmental Applications",
+          "body": "Satellite imagery supports monitoring of weather, climate, oceans, land use, and hazards. Meteorological satellites track cloud patterns, water vapor, and storm development. Land satellites measure vegetation, snow cover, wildfires, and urban growth. Indices like NDVI (Normalized Difference Vegetation Index) use red and near-infrared reflectance to estimate plant vigor. Thermal imagery identifies heat islands and surface temperature patterns. Radar is useful for mapping surface roughness, soil moisture, and flood extent through clouds. Remote sensing is essential for rapid assessment after disasters, including wildfire burn scars, landslide detection, and mapping flooded areas. Long-term datasets allow scientists to observe trends in ice loss, deforestation, and drought.",
+          "keyTerms": [
+            "satellite imagery",
+            "water vapor",
+            "NDVI",
+            "thermal infrared",
+            "soil moisture",
+            "flood extent",
+            "deforestation",
+            "drought monitoring"
+          ]
+        },
+        {
+          "heading": "GIS: Layers, Data Types, and Analysis",
+          "body": "Geographic Information Systems (GIS) store, visualize, and analyze spatial data. GIS data is commonly organized in layers that represent features like roads, rivers, elevation, land cover, or population. Two major data models are vector (points, lines, polygons) and raster (grids of cells, often from imagery). Spatial analysis includes buffering (distance zones), overlay (combining layers to find relationships), interpolation (estimating values between observations), and network analysis (routes and travel times). Coordinate systems and map projections matter because Earth is curved; projections preserve some properties (area, shape, distance) while distorting others. GIS is used in urban planning, ecology, hazard mapping, and resource management.",
+          "keyTerms": [
+            "GIS",
+            "layers",
+            "vector",
+            "raster",
+            "buffer",
+            "overlay",
+            "interpolation",
+            "map projection",
+            "coordinate system"
+          ]
+        },
+        {
+          "heading": "GPS, Mapping, and Accuracy",
+          "body": "GPS (Global Positioning System) determines location using timing signals from multiple satellites. A receiver calculates its distance from satellites based on signal travel time, then uses trilateration to find position. Accuracy depends on factors like satellite geometry, atmospheric delays, and signal reflections (multipath). Differential GPS improves accuracy by comparing a fixed reference station to a moving receiver. In mapping, ground truthing verifies that remotely sensed classifications match real-world conditions. Metadata describes how data was collected, including resolution, date, and processing steps. Combining GPS field data with GIS layers and satellite imagery enables detailed, evidence-based maps for science investigations and decision-making.",
+          "keyTerms": [
+            "GPS",
+            "trilateration",
+            "multipath",
+            "differential GPS",
+            "ground truthing",
+            "metadata",
+            "accuracy"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "es_15",
+      "title": "Space Exploration",
+      "sections": [
+        {
+          "heading": "Milestones in Spaceflight History",
+          "body": "Space exploration began with early rocketry and accelerated in the mid-20th century. Major milestones include the first artificial satellite (Sputnik), the first human in orbit (Yuri Gagarin), and the Apollo missions that landed humans on the lunar surface. Robotic missions expanded exploration to other worlds, including flybys, orbiters, landers, and rovers. Space stations enabled long-duration human presence in orbit and advanced life-support and microgravity research. Reusable spacecraft concepts reduced costs and increased launch cadence. These milestones reflect improvements in propulsion, guidance, communication, and materials, and they laid the foundation for modern exploration programs that combine government agencies and private industry.",
+          "keyTerms": [
+            "Sputnik",
+            "orbit",
+            "Apollo",
+            "lunar surface",
+            "rover",
+            "space station",
+            "reusability",
+            "guidance systems"
+          ]
+        },
+        {
+          "heading": "Rockets, Orbits, and Mission Design",
+          "body": "Launching to space requires reaching orbital velocity. Rockets provide thrust by expelling mass at high speed, described by Newton’s third law. Staging improves efficiency by discarding empty tanks and engines. Orbit choice depends on mission goals: low Earth orbit for imaging and crewed missions, geostationary orbit for communications, and polar or sun-synchronous orbits for global Earth observation. Interplanetary missions use transfer orbits and often gravity assists to change speed and direction using a planet’s motion. Trajectory planning balances fuel, travel time, launch windows, and spacecraft power and thermal constraints. Successful mission design also includes redundancy, fault protection, and communication links across large distances.",
+          "keyTerms": [
+            "orbital velocity",
+            "thrust",
+            "staging",
+            "low Earth orbit",
+            "geostationary orbit",
+            "sun-synchronous",
+            "gravity assist",
+            "launch window"
+          ]
+        },
+        {
+          "heading": "Spacecraft Systems and Instruments",
+          "body": "Spacecraft require several subsystems to operate: power (solar arrays, batteries, radioisotope sources), communications (antennas, transmitters), thermal control (radiators, insulation), propulsion (chemical or electric), attitude control (reaction wheels, thrusters), and onboard computing. Scientific payloads depend on the target and questions being asked. Cameras image surfaces and clouds, spectrometers identify chemicals by how they absorb or emit light, magnetometers measure magnetic fields, and radar can probe below surfaces or map through haze. For planets with atmospheres, entry, descent, and landing systems use heat shields, parachutes, and sometimes powered descent. Because repair is rare, reliability and testing are central to spacecraft engineering.",
+          "keyTerms": [
+            "solar arrays",
+            "thermal control",
+            "attitude control",
+            "reaction wheels",
+            "spectrometer",
+            "magnetometer",
+            "radar",
+            "entry descent landing",
+            "heat shield"
+          ]
+        },
+        {
+          "heading": "Current Programs and Future Prospects",
+          "body": "Modern exploration includes crewed missions in Earth orbit, robotic missions to the Moon, Mars, and the outer solar system, and powerful space telescopes that study galaxies and exoplanets. Programs emphasize sustainable exploration: developing habitats, advanced life support, in-situ resource utilization (using local materials for water, oxygen, or fuel), and improving propulsion and reentry technologies. Future goals include returning humans to the Moon, expanding science on Mars, sampling asteroids and comets, and searching for biosignatures on icy moons and exoplanets. As launch costs decrease and technology improves, missions can become more frequent, more ambitious, and more specialized, expanding both scientific knowledge and human capability beyond Earth.",
+          "keyTerms": [
+            "life support",
+            "in-situ resource utilization",
+            "propulsion",
+            "space telescope",
+            "biosignature",
+            "asteroid sample return",
+            "exploration"
+          ]
         }
       ]
     }

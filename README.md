@@ -1,6 +1,6 @@
 # ⚛️ Atom Bowl
 
-# NOTE: The site is back online! Check credits on README.md
+# NOTE: The site is back online (accounts are not working as of today, February 11th at 6:15pm)! Check credits on README.md
 
 **Atom Bowl** is a fast, clean, browser-based question platform designed for **National Science Bowl (NSB)** preparation and it also contains live NSB-like buzzer rooms and game clock settings using Firebase.
 It focuses on realism, speed, and accuracy: no fluff, no gimmicks.

@@ -72,13 +72,20 @@
         <button class="back-btn" id="backBtn" type="button">&larr; Back</button>
         <h1 class="reader-title" id="readerTitle"></h1>
       </div>
+      <div class="section-progress" id="sectionProgress">Section 1 of 1</div>
       <div class="lesson-content no-copy" id="lessonContent"></div>
+      <div class="section-nav">
+        <button class="section-nav-btn" id="prevSectionBtn" type="button">&larr; Previous</button>
+        <button class="section-nav-btn" id="nextSectionBtn" type="button">Next &rarr;</button>
+      </div>
       <div class="complete-section">
         <button class="complete-btn" id="completeBtn" type="button">Mark as Complete</button>
         <span class="complete-status hidden" id="completeStatus">Completed</span>
       </div>
     </div>
   </div>
+
+  <div class="key-term-tooltip hidden" id="keyTermTooltip"></div>
 
   <nav class="bottom-nav" aria-label="Primary">
     <a href="index.html"><span class="icon">&#x1F3E0;</span><span>Home</span></a>

@@ -8,22 +8,48 @@
         {
           "heading": "Types of Energy",
           "body": "Energy is the ability to do work. Kinetic energy is the energy of motion, calculated as KE = 1/2 mv^2. Potential energy is stored energy due to position or configuration. Gravitational potential energy is PE = mgh. Elastic potential energy is stored in stretched or compressed materials. Thermal energy (heat) is the total kinetic energy of particles in a substance. Chemical energy is stored in chemical bonds. Electrical energy results from the flow of charged particles. Nuclear energy is stored in atomic nuclei.",
-          "keyTerms": ["kinetic energy", "potential energy", "gravitational potential energy", "thermal energy", "chemical energy", "electrical energy", "nuclear energy"]
+          "keyTerms": [
+            "kinetic energy",
+            "potential energy",
+            "gravitational potential energy",
+            "thermal energy",
+            "chemical energy",
+            "electrical energy",
+            "nuclear energy"
+          ]
         },
         {
           "heading": "Conservation of Energy",
           "body": "The law of conservation of energy states that energy cannot be created or destroyed, only converted from one form to another. The total energy of an isolated system remains constant. In mechanical systems, kinetic and potential energy convert back and forth, but total mechanical energy stays the same in the absence of friction. In real systems, some energy is always converted to thermal energy through friction, making perpetual motion machines impossible. Energy efficiency is the ratio of useful output energy to total input energy.",
-          "keyTerms": ["conservation of energy", "energy conversion", "mechanical energy", "energy efficiency", "friction"]
+          "keyTerms": [
+            "conservation of energy",
+            "energy conversion",
+            "mechanical energy",
+            "energy efficiency",
+            "friction"
+          ]
         },
         {
           "heading": "Work and Power",
           "body": "Work is done when a force causes displacement: W = Fd cos(theta), where theta is the angle between force and displacement. Work is measured in joules (J). No work is done if there is no displacement or if force is perpendicular to displacement. Power is the rate of doing work: P = W/t, measured in watts (W). One watt equals one joule per second. One horsepower equals 746 watts. The work-energy theorem states that net work equals the change in kinetic energy.",
-          "keyTerms": ["work", "joule", "power", "watt", "horsepower", "work-energy theorem"]
+          "keyTerms": [
+            "work",
+            "joule",
+            "power",
+            "watt",
+            "horsepower",
+            "work-energy theorem"
+          ]
         },
         {
           "heading": "Energy Transformations in Daily Life",
           "body": "Energy transformations are everywhere. A car engine converts chemical energy (fuel) to thermal energy (combustion) to mechanical energy (motion). A hydroelectric dam converts gravitational potential energy to kinetic energy to electrical energy. Solar panels convert radiant energy to electrical energy via the photovoltaic effect. Plants convert light energy to chemical energy through photosynthesis. Batteries store chemical energy and convert it to electrical energy. In every transformation, some energy becomes thermal energy, increasing entropy.",
-          "keyTerms": ["energy transformation", "photovoltaic effect", "photosynthesis", "entropy"]
+          "keyTerms": [
+            "energy transformation",
+            "photovoltaic effect",
+            "photosynthesis",
+            "entropy"
+          ]
         }
       ]
     },
@@ -34,22 +60,50 @@
         {
           "heading": "First Law of Thermodynamics",
           "body": "The first law of thermodynamics is the conservation of energy applied to thermal systems. The internal energy of a system changes due to heat added (Q) and work done (W): delta U = Q - W. Heat is energy transferred due to temperature difference. Work is energy transferred by mechanical means. In an adiabatic process, no heat is exchanged (Q = 0). In an isothermal process, temperature stays constant. In an isochoric (isovolumetric) process, volume stays constant. In an isobaric process, pressure stays constant.",
-          "keyTerms": ["first law of thermodynamics", "internal energy", "adiabatic", "isothermal", "isochoric", "isobaric"]
+          "keyTerms": [
+            "first law of thermodynamics",
+            "internal energy",
+            "adiabatic",
+            "isothermal",
+            "isochoric",
+            "isobaric"
+          ]
         },
         {
           "heading": "Second Law and Entropy",
           "body": "The second law of thermodynamics states that heat flows spontaneously from hot to cold objects, never the reverse. Entropy (disorder) of an isolated system always increases or remains the same. A heat engine converts thermal energy to work but cannot be 100% efficient. The Carnot engine represents the maximum possible efficiency: efficiency = 1 - Tc/Th (temperatures in Kelvin). Refrigerators and heat pumps move heat from cold to hot by doing work. The third law states that entropy approaches zero as temperature approaches absolute zero (0 K).",
-          "keyTerms": ["second law of thermodynamics", "entropy", "heat engine", "Carnot engine", "third law of thermodynamics", "absolute zero"]
+          "keyTerms": [
+            "second law of thermodynamics",
+            "entropy",
+            "heat engine",
+            "Carnot engine",
+            "third law of thermodynamics",
+            "absolute zero"
+          ]
         },
         {
           "heading": "Heat Transfer Methods",
           "body": "Heat transfers via three methods. Conduction is heat transfer through direct contact between particles. Metals are good conductors; insulators (wood, air, foam) resist conduction. Convection is heat transfer through fluid movement (liquids and gases). Natural convection creates circulation patterns as warm fluid rises and cool fluid sinks. Forced convection uses fans or pumps. Radiation is heat transfer through electromagnetic waves, requiring no medium. All objects emit thermal radiation; hotter objects emit more and at shorter wavelengths (Wien's law). Stefan-Boltzmann law relates radiated power to temperature.",
-          "keyTerms": ["conduction", "convection", "radiation", "conductor", "insulator", "Wien's law", "Stefan-Boltzmann law"]
+          "keyTerms": [
+            "conduction",
+            "convection",
+            "radiation",
+            "conductor",
+            "insulator",
+            "Wien's law",
+            "Stefan-Boltzmann law"
+          ]
         },
         {
           "heading": "Specific Heat and Calorimetry",
           "body": "Specific heat capacity (c) is the amount of heat needed to raise 1 gram of a substance by 1 degree Celsius. Water has a high specific heat (4.184 J/g·C), making it excellent for temperature regulation. The heat equation is Q = mc(delta T). Calorimetry measures heat changes in chemical reactions or physical processes. In a calorimeter, heat lost by one substance equals heat gained by another (assuming no heat loss to surroundings). Latent heat is the energy required for phase changes without temperature change: latent heat of fusion (melting) and latent heat of vaporization (boiling).",
-          "keyTerms": ["specific heat capacity", "calorimetry", "latent heat", "latent heat of fusion", "latent heat of vaporization"]
+          "keyTerms": [
+            "specific heat capacity",
+            "calorimetry",
+            "latent heat",
+            "latent heat of fusion",
+            "latent heat of vaporization"
+          ]
         }
       ]
     },
@@ -60,22 +114,55 @@
         {
           "heading": "Electric Charge and Fields",
           "body": "Electric charge comes in two types: positive and negative. Like charges repel; opposite charges attract. Charge is quantized in units of the elementary charge (1.6 x 10^-19 C). Charge is conserved in all processes. Coulomb's law gives the force between two charges: F = kq1q2/r^2, where k = 8.99 x 10^9 N·m^2/C^2. An electric field surrounds any charge: E = F/q = kQ/r^2. Field lines point away from positive charges and toward negative charges. Electric potential energy is U = kq1q2/r. Voltage (potential difference) is V = U/q.",
-          "keyTerms": ["electric charge", "Coulomb's law", "electric field", "field lines", "voltage", "potential difference", "elementary charge"]
+          "keyTerms": [
+            "electric charge",
+            "Coulomb's law",
+            "electric field",
+            "field lines",
+            "voltage",
+            "potential difference",
+            "elementary charge"
+          ]
         },
         {
           "heading": "Electric Circuits",
           "body": "Current (I) is the flow of charge, measured in amperes (A). Conventional current flows from positive to negative. Resistance (R) opposes current flow, measured in ohms. Ohm's law: V = IR. Power dissipated: P = IV = I^2R = V^2/R. In series circuits, current is the same through all components and voltages add. In parallel circuits, voltage is the same across all branches and currents add. Total resistance in series: Rt = R1 + R2 + ... In parallel: 1/Rt = 1/R1 + 1/R2 + ...",
-          "keyTerms": ["current", "ampere", "resistance", "ohm", "Ohm's law", "series circuit", "parallel circuit", "power"]
+          "keyTerms": [
+            "current",
+            "ampere",
+            "resistance",
+            "ohm",
+            "Ohm's law",
+            "series circuit",
+            "parallel circuit",
+            "power"
+          ]
         },
         {
           "heading": "Magnetism",
           "body": "Magnets have north and south poles; like poles repel, opposite poles attract. Magnetic field lines go from north to south poles outside the magnet. Earth has a magnetic field generated by convection in the liquid outer core. Moving charges create magnetic fields. A current-carrying wire produces a circular magnetic field (right-hand rule). A solenoid (coil of wire) creates a uniform field inside, acting as an electromagnet. The force on a charge moving in a magnetic field is F = qvB sin(theta).",
-          "keyTerms": ["magnetic field", "north pole", "south pole", "right-hand rule", "solenoid", "electromagnet"]
+          "keyTerms": [
+            "magnetic field",
+            "north pole",
+            "south pole",
+            "right-hand rule",
+            "solenoid",
+            "electromagnet"
+          ]
         },
         {
           "heading": "Electromagnetic Induction",
           "body": "Faraday's law states that a changing magnetic flux through a loop induces an electromotive force (EMF). Lenz's law states that the induced current opposes the change in flux that caused it. Generators convert mechanical energy to electrical energy by rotating a coil in a magnetic field. Transformers change voltage levels using electromagnetic induction between two coils: V1/V2 = N1/N2 (turns ratio). Step-up transformers increase voltage; step-down transformers decrease it. Power transmission uses high voltage to reduce current and minimize energy loss.",
-          "keyTerms": ["Faraday's law", "Lenz's law", "electromagnetic induction", "EMF", "generator", "transformer", "step-up", "step-down"]
+          "keyTerms": [
+            "Faraday's law",
+            "Lenz's law",
+            "electromagnetic induction",
+            "EMF",
+            "generator",
+            "transformer",
+            "step-up",
+            "step-down"
+          ]
         }
       ]
     },
@@ -86,22 +173,55 @@
         {
           "heading": "Fossil Fuels",
           "body": "Fossil fuels (coal, oil, natural gas) formed from ancient organisms over millions of years. Coal formed from compressed plant material in swamps (peat, lignite, bituminous, anthracite). Oil and natural gas formed from marine organisms buried under sediment, subjected to heat and pressure. Fossil fuels are nonrenewable resources. Combustion releases CO2, a greenhouse gas contributing to climate change. Other pollutants include SO2 (acid rain), NOx (smog), and particulate matter.",
-          "keyTerms": ["fossil fuels", "coal", "oil", "natural gas", "nonrenewable", "combustion", "greenhouse gas", "acid rain"]
+          "keyTerms": [
+            "fossil fuels",
+            "coal",
+            "oil",
+            "natural gas",
+            "nonrenewable",
+            "combustion",
+            "greenhouse gas",
+            "acid rain"
+          ]
         },
         {
           "heading": "Nuclear Fission",
           "body": "Nuclear fission splits heavy nuclei (typically uranium-235 or plutonium-239) into lighter nuclei, releasing enormous energy. A neutron strikes U-235, causing it to split into two fission fragments plus 2-3 neutrons and energy. These neutrons can trigger more fissions, creating a chain reaction. Nuclear reactors use control rods (absorb neutrons) to maintain a controlled chain reaction. A moderator (water, graphite) slows neutrons. Nuclear fuel produces no direct CO2 emissions but generates radioactive waste requiring safe storage for thousands of years.",
-          "keyTerms": ["nuclear fission", "uranium-235", "chain reaction", "control rods", "moderator", "radioactive waste"]
+          "keyTerms": [
+            "nuclear fission",
+            "uranium-235",
+            "chain reaction",
+            "control rods",
+            "moderator",
+            "radioactive waste"
+          ]
         },
         {
           "heading": "Nuclear Fusion",
           "body": "Nuclear fusion combines light nuclei (typically hydrogen isotopes deuterium and tritium) into heavier nuclei, releasing energy. Fusion powers the Sun and stars through the proton-proton chain. Fusion requires extremely high temperatures (over 100 million degrees) to overcome electrostatic repulsion (Coulomb barrier). At these temperatures, matter exists as plasma. Fusion produces much more energy per unit mass than fission and creates minimal radioactive waste. Achieving controlled fusion on Earth remains an engineering challenge; current approaches include tokamaks and laser confinement.",
-          "keyTerms": ["nuclear fusion", "deuterium", "tritium", "proton-proton chain", "plasma", "Coulomb barrier", "tokamak"]
+          "keyTerms": [
+            "nuclear fusion",
+            "deuterium",
+            "tritium",
+            "proton-proton chain",
+            "plasma",
+            "Coulomb barrier",
+            "tokamak"
+          ]
         },
         {
           "heading": "Radioactivity",
           "body": "Radioactive decay occurs when unstable nuclei emit particles or energy. Alpha decay emits a helium-4 nucleus (2 protons, 2 neutrons), reducing atomic number by 2 and mass number by 4. Beta decay emits an electron (beta-minus) or positron (beta-plus), changing a neutron to a proton or vice versa. Gamma decay emits high-energy electromagnetic radiation with no change in atomic or mass number. Half-life is the time for half of a radioactive sample to decay. Radiation is measured in becquerels (activity), grays (absorbed dose), and sieverts (biological effect).",
-          "keyTerms": ["radioactive decay", "alpha decay", "beta decay", "gamma decay", "half-life", "becquerel", "gray", "sievert"]
+          "keyTerms": [
+            "radioactive decay",
+            "alpha decay",
+            "beta decay",
+            "gamma decay",
+            "half-life",
+            "becquerel",
+            "gray",
+            "sievert"
+          ]
         }
       ]
     },
@@ -112,22 +232,51 @@
         {
           "heading": "Solar Energy",
           "body": "Solar energy comes from nuclear fusion in the Sun. Photovoltaic (PV) cells convert sunlight directly to electricity using semiconductors (usually silicon). When photons strike the cell, they knock electrons free, creating current. Solar thermal systems use mirrors or lenses to concentrate sunlight, heating a fluid to drive turbines. Advantages: abundant, no emissions during operation, decreasing costs. Challenges: intermittent (day/night, clouds), requires energy storage, large land area for utility-scale installations. Solar cell efficiency has improved from about 6% to over 25% for commercial panels.",
-          "keyTerms": ["solar energy", "photovoltaic", "semiconductor", "silicon", "solar thermal", "intermittent"]
+          "keyTerms": [
+            "solar energy",
+            "photovoltaic",
+            "semiconductor",
+            "silicon",
+            "solar thermal",
+            "intermittent"
+          ]
         },
         {
           "heading": "Wind Energy",
           "body": "Wind is caused by unequal heating of Earth's surface. Wind turbines convert kinetic energy of wind to electrical energy. Modern turbines have three blades on a horizontal axis. Power output is proportional to the cube of wind speed: P = 1/2 rho A v^3. The Betz limit states that a turbine can capture at most 59.3% of wind energy. Onshore wind farms are cost-effective; offshore wind farms access stronger, more consistent winds. Challenges include intermittency, visual impact, noise, and effects on wildlife (especially birds and bats).",
-          "keyTerms": ["wind turbine", "Betz limit", "onshore", "offshore", "intermittency"]
+          "keyTerms": [
+            "wind turbine",
+            "Betz limit",
+            "onshore",
+            "offshore",
+            "intermittency"
+          ]
         },
         {
           "heading": "Hydroelectric and Geothermal Energy",
           "body": "Hydroelectric power converts gravitational potential energy of water to electricity. Dams store water in reservoirs; released water drives turbines. Run-of-river systems divert part of a river's flow. Pumped-storage facilities pump water uphill during low demand and release it during peak demand. Hydropower is reliable and dispatchable but can disrupt ecosystems and displace communities. Geothermal energy taps heat from Earth's interior. Geothermal power plants use steam from underground reservoirs to drive turbines. Geothermal heat pumps use shallow ground temperature for heating and cooling buildings.",
-          "keyTerms": ["hydroelectric", "dam", "reservoir", "pumped-storage", "geothermal", "geothermal heat pump"]
+          "keyTerms": [
+            "hydroelectric",
+            "dam",
+            "reservoir",
+            "pumped-storage",
+            "geothermal",
+            "geothermal heat pump"
+          ]
         },
         {
           "heading": "Biomass and Emerging Technologies",
           "body": "Biomass energy comes from organic materials: wood, crop residues, animal waste, and dedicated energy crops. Biofuels include ethanol (from corn or sugarcane fermentation) and biodiesel (from vegetable oils or animal fats). Biogas (mainly methane) is produced by anaerobic digestion of organic waste. Biomass is considered carbon-neutral if regrowth absorbs the CO2 released during combustion. Emerging technologies include hydrogen fuel cells (combining H2 and O2 to produce electricity and water), tidal and wave energy, and advanced nuclear designs (small modular reactors, thorium reactors).",
-          "keyTerms": ["biomass", "biofuel", "ethanol", "biodiesel", "biogas", "anaerobic digestion", "hydrogen fuel cell", "tidal energy"]
+          "keyTerms": [
+            "biomass",
+            "biofuel",
+            "ethanol",
+            "biodiesel",
+            "biogas",
+            "anaerobic digestion",
+            "hydrogen fuel cell",
+            "tidal energy"
+          ]
         }
       ]
     },
@@ -138,22 +287,601 @@
         {
           "heading": "Climate Change Science",
           "body": "Earth's average temperature has risen about 1.1 degrees C since pre-industrial times, primarily due to increasing atmospheric CO2 from fossil fuel combustion. CO2 levels have risen from about 280 ppm (pre-industrial) to over 420 ppm. The greenhouse effect traps outgoing infrared radiation. Consequences include rising sea levels (thermal expansion and ice melt), more extreme weather events, ocean acidification (CO2 dissolving in seawater), shifts in ecosystems and species ranges, and threats to food and water security.",
-          "keyTerms": ["climate change", "CO2", "greenhouse effect", "sea level rise", "ocean acidification", "global warming"]
+          "keyTerms": [
+            "climate change",
+            "CO2",
+            "greenhouse effect",
+            "sea level rise",
+            "ocean acidification",
+            "global warming"
+          ]
         },
         {
           "heading": "Carbon Footprint and Emissions",
           "body": "A carbon footprint is the total greenhouse gas emissions caused by an individual, organization, event, or product. Major sources: electricity generation (25%), transportation (16%), industry (21%), agriculture (10%), and buildings (6%). Carbon dioxide equivalent (CO2e) standardizes different greenhouse gases by their global warming potential (GWP). Methane has a GWP of about 80 over 20 years. Nitrous oxide has a GWP of about 273. Reducing emissions involves energy efficiency, switching to renewables, electrifying transportation, and changing land use practices.",
-          "keyTerms": ["carbon footprint", "CO2 equivalent", "global warming potential", "emissions", "energy efficiency"]
+          "keyTerms": [
+            "carbon footprint",
+            "CO2 equivalent",
+            "global warming potential",
+            "emissions",
+            "energy efficiency"
+          ]
         },
         {
           "heading": "Energy Efficiency and Conservation",
           "body": "Energy efficiency means using less energy to perform the same task. Building efficiency includes insulation, LED lighting, high-efficiency HVAC systems, and smart thermostats. Transportation efficiency includes fuel economy standards, electric vehicles, and public transit. Industrial efficiency includes cogeneration (combined heat and power), waste heat recovery, and process optimization. The rebound effect occurs when efficiency gains lead to increased consumption. Energy conservation means using less energy through behavioral changes.",
-          "keyTerms": ["energy efficiency", "insulation", "LED", "HVAC", "cogeneration", "rebound effect", "energy conservation"]
+          "keyTerms": [
+            "energy efficiency",
+            "insulation",
+            "LED",
+            "HVAC",
+            "cogeneration",
+            "rebound effect",
+            "energy conservation"
+          ]
         },
         {
           "heading": "Energy Policy and Sustainability",
           "body": "Energy policy balances economic growth, environmental protection, and energy security. The Paris Agreement aims to limit warming to 1.5-2 degrees C above pre-industrial levels. Carbon pricing mechanisms include carbon taxes (directly pricing emissions) and cap-and-trade systems (setting emission limits and allowing trading of allowances). Renewable portfolio standards require utilities to generate a percentage of electricity from renewables. Sustainability means meeting present needs without compromising the ability of future generations to meet their needs. The energy transition requires massive investment in clean energy, grid modernization, and energy storage.",
-          "keyTerms": ["Paris Agreement", "carbon tax", "cap-and-trade", "renewable portfolio standard", "sustainability", "energy transition"]
+          "keyTerms": [
+            "Paris Agreement",
+            "carbon tax",
+            "cap-and-trade",
+            "renewable portfolio standard",
+            "sustainability",
+            "energy transition"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nrg_07",
+      "title": "Energy Storage Technologies",
+      "sections": [
+        {
+          "heading": "Battery Technologies",
+          "body": "Batteries store energy through reversible electrochemical (redox) reactions. In lithium-ion cells, lithium ions shuttle between the anode and cathode through an electrolyte while electrons travel through the external circuit to do useful work. Performance is judged by energy density (Wh/kg), power density (W/kg), cycle life (capacity retention over many charge–discharge cycles), safety/thermal runaway risk, and round‑trip efficiency. Different cathode/anode chemistries trade off cost, energy density, and durability: lithium iron phosphate (LFP) is safer and long‑lasting, while nickel‑rich chemistries can deliver higher energy density. Battery packs also require battery management systems (BMS) to balance cells, prevent overcharge/overdischarge, and manage temperature. Emerging approaches include solid‑state batteries (solid electrolytes to reduce flammability and enable higher energy density), sodium‑ion batteries (abundant materials and potentially lower cost), and lithium‑sulfur (high theoretical capacity but challenging durability).",
+          "keyTerms": [
+            "battery",
+            "redox",
+            "lithium-ion",
+            "anode",
+            "cathode",
+            "electrolyte",
+            "energy density",
+            "power density",
+            "cycle life",
+            "round-trip efficiency",
+            "thermal runaway",
+            "battery management system",
+            "solid-state",
+            "sodium-ion"
+          ]
+        },
+        {
+          "heading": "Capacitors and Supercapacitors",
+          "body": "Capacitors store energy in an electric field between conductors separated by a dielectric. They charge and discharge extremely quickly, making them ideal for short bursts of power (power smoothing, pulse power, backup bridging). Traditional capacitors store relatively little energy, but supercapacitors (ultracapacitors) dramatically increase capacitance and can provide high power with long cycle life. Supercapacitors have lower energy density than batteries, so they are often paired with batteries to reduce stress during rapid acceleration or regenerative braking. Key metrics include capacitance, voltage rating, equivalent series resistance (ESR), and leakage/self‑discharge. Their fast response is useful for grid frequency support and stabilizing systems with fluctuating demand.",
+          "keyTerms": [
+            "capacitor",
+            "dielectric",
+            "supercapacitor",
+            "capacitance",
+            "ESR",
+            "leakage",
+            "pulse power",
+            "regenerative braking",
+            "frequency support"
+          ]
+        },
+        {
+          "heading": "Mechanical Storage: Pumped Hydro, CAES, and Flywheels",
+          "body": "Mechanical storage converts electricity into stored potential or kinetic energy. Pumped hydroelectric storage moves water uphill to a higher reservoir during low-demand periods and releases it through turbines during peak demand, offering large capacity and long lifetimes with typical round‑trip efficiencies around 70–85%. Compressed air energy storage (CAES) compresses air and stores it in underground caverns; the air is later expanded to drive turbines, sometimes with added heat management to improve efficiency. Flywheels store kinetic energy in a rapidly spinning rotor; they respond in milliseconds and tolerate frequent cycling, making them valuable for short‑duration grid stabilization and uninterruptible power applications. The main limitation for many mechanical systems is geography (elevation differences, suitable caverns) and infrastructure cost.",
+          "keyTerms": [
+            "pumped hydro",
+            "round-trip efficiency",
+            "reservoir",
+            "turbine",
+            "CAES",
+            "compressed air",
+            "flywheel",
+            "grid stabilization",
+            "peak demand"
+          ]
+        },
+        {
+          "heading": "Hydrogen and Other Chemical Storage",
+          "body": "Hydrogen storage converts electrical energy into chemical energy using electrolysis (splitting water into hydrogen and oxygen). Hydrogen can later be converted back to electricity with fuel cells or burned in turbines/engines. Hydrogen has high specific energy by mass, but low volumetric energy density, so storage often requires high-pressure tanks, liquefaction, or chemical carriers. Fuel cells generate electricity electrochemically, producing water and heat as byproducts. Because hydrogen systems can store large amounts of energy for long durations, they are often discussed for seasonal storage and for decarbonizing sectors that are hard to electrify directly (some industrial processes and long‑range transport). The overall efficiency depends on the full pathway (electricity → hydrogen → storage/transport → electricity or end use), so hydrogen is typically most valuable where long duration or high energy transport is needed.",
+          "keyTerms": [
+            "hydrogen",
+            "electrolysis",
+            "fuel cell",
+            "specific energy",
+            "compression",
+            "liquefaction",
+            "chemical carrier",
+            "seasonal storage"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nrg_08",
+      "title": "Power Generation & Distribution",
+      "sections": [
+        {
+          "heading": "How Electricity Is Generated",
+          "body": "Most electricity is generated by spinning a turbine connected to a generator, which converts mechanical rotation into electrical energy via electromagnetic induction. Thermal power plants (coal, natural gas, nuclear, some geothermal and solar thermal) use heat to produce steam that drives turbines. Combined‑cycle natural gas plants improve efficiency by using a gas turbine first and then capturing waste heat to run a steam turbine. Renewable generation can be direct mechanical (wind turbines, hydropower) or direct conversion (solar photovoltaic). Key evaluation metrics include thermal efficiency, capacity factor (actual output compared to maximum possible), dispatchability (ability to produce power on demand), and environmental impacts such as emissions and water use.",
+          "keyTerms": [
+            "generator",
+            "electromagnetic induction",
+            "turbine",
+            "steam turbine",
+            "combined-cycle",
+            "thermal efficiency",
+            "capacity factor",
+            "dispatchable"
+          ]
+        },
+        {
+          "heading": "Transmission: Moving Power Long Distances",
+          "body": "Electricity is transmitted at high voltage to reduce current and minimize resistive losses, since power loss in lines scales with I^2R. Step‑up transformers raise voltage at or near power plants; step‑down transformers lower voltage at substations for distribution. Most grids use alternating current (AC) because it is easy to transform voltages. High‑voltage direct current (HVDC) is used for very long distances and undersea cables because it can reduce losses and improve controllability. Transmission planning matters because the best renewable resources (wind corridors, desert solar) are often far from cities, so new lines and substations can be as important as building new generation.",
+          "keyTerms": [
+            "transmission",
+            "high voltage",
+            "I^2R loss",
+            "transformer",
+            "substation",
+            "AC",
+            "HVDC",
+            "grid"
+          ]
+        },
+        {
+          "heading": "Distribution and the Last Mile",
+          "body": "Distribution systems deliver electricity from substations to homes and businesses at lower voltages. Distribution networks include feeders, local transformers, and protective devices (breakers, reclosers) to isolate faults. Reliability is often measured by outage frequency and duration metrics. As more rooftop solar, batteries, and electric vehicles connect to distribution networks, utilities manage two‑way power flows and voltage regulation. Technologies such as voltage regulators, smart inverters, and capacitor banks help maintain stable voltage. Safety and reliability require coordination between equipment ratings, protection settings, and real‑time monitoring.",
+          "keyTerms": [
+            "distribution",
+            "feeder",
+            "recloser",
+            "voltage regulation",
+            "smart inverter",
+            "two-way power flow",
+            "reliability"
+          ]
+        },
+        {
+          "heading": "Smart Grids, Microgrids, and Resilience",
+          "body": "Smart grids add sensors, communication, and automation so operators can monitor and control the system in real time. Smart meters and advanced metering infrastructure enable detailed load data and demand response programs that shift consumption away from peak periods. Grid frequency must remain stable (typically 50 or 60 Hz); large deviations can signal imbalance between supply and demand. Microgrids can operate connected to the main grid or “island” during outages, improving resilience for critical facilities. Modernization also includes cybersecurity, weather hardening, and integrating storage to smooth renewable variability and provide fast frequency response.",
+          "keyTerms": [
+            "smart grid",
+            "smart meter",
+            "demand response",
+            "grid frequency",
+            "microgrid",
+            "islanding",
+            "cybersecurity",
+            "resilience"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nrg_09",
+      "title": "Transportation Energy",
+      "sections": [
+        {
+          "heading": "Internal Combustion Engines",
+          "body": "Most conventional vehicles use internal combustion engines (ICEs) that convert chemical energy in fuel into thermal energy via combustion, then into mechanical work on pistons. Gasoline engines typically use spark ignition and operate on an Otto cycle, while diesel engines use compression ignition and generally achieve higher efficiency. Engine efficiency is limited by thermodynamics (heat losses) and practical factors like friction, incomplete combustion, and pumping losses. Fuel economy depends on vehicle mass, aerodynamics, rolling resistance, and driving patterns. Emissions include CO2 (a greenhouse gas) and local pollutants such as NOx, carbon monoxide, unburned hydrocarbons, and particulate matter; modern vehicles reduce these using catalytic converters and particulate filters.",
+          "keyTerms": [
+            "internal combustion engine",
+            "Otto cycle",
+            "diesel",
+            "spark ignition",
+            "compression ignition",
+            "fuel economy",
+            "NOx",
+            "catalytic converter",
+            "particulate matter"
+          ]
+        },
+        {
+          "heading": "Electric Vehicles and Electric Drivetrains",
+          "body": "Electric vehicles (EVs) use electric motors powered by batteries, converting electrical energy into mechanical motion with high efficiency and strong torque at low speeds. Regenerative braking recovers kinetic energy during slowing and returns it to the battery, improving efficiency especially in stop‑and‑go driving. EV performance depends on battery capacity, motor efficiency, power electronics, and thermal management. Charging infrastructure includes Level 1/2 AC charging and fast DC charging; charging speed is limited by battery chemistry and heat. EV environmental benefits depend on the electricity generation mix and the life‑cycle impacts of battery materials and manufacturing. As grids decarbonize, EVs generally become cleaner over time.",
+          "keyTerms": [
+            "electric vehicle",
+            "electric motor",
+            "regenerative braking",
+            "power electronics",
+            "DC fast charging",
+            "thermal management",
+            "life-cycle impacts"
+          ]
+        },
+        {
+          "heading": "Hybrid Systems and Efficiency Strategies",
+          "body": "Hybrid vehicles combine an internal combustion engine with an electric motor and battery to improve efficiency. In a parallel hybrid, both engine and motor can drive the wheels; in a series hybrid, the engine generates electricity while the motor drives the wheels. Plug‑in hybrids (PHEVs) can charge from the grid and drive significant distances electrically. Hybrids improve efficiency by keeping the engine in more efficient operating ranges, recovering braking energy, and allowing engine shutoff at stops. Beyond powertrain choice, efficiency can be improved through lightweight materials, improved aerodynamics, low‑rolling‑resistance tires, and driving strategies like smoother acceleration.",
+          "keyTerms": [
+            "hybrid",
+            "parallel hybrid",
+            "series hybrid",
+            "plug-in hybrid",
+            "engine shutoff",
+            "lightweighting",
+            "rolling resistance",
+            "aerodynamics"
+          ]
+        },
+        {
+          "heading": "Biofuels, Hydrogen, and Alternative Fuels",
+          "body": "Alternative transportation fuels aim to reduce fossil fuel dependence and emissions. Biofuels include ethanol (often from fermentation of sugars/starches) and biodiesel (from oils/fats). Their climate benefits depend on land use, farming practices, and the full life‑cycle emissions; some biofuels can compete with food crops or drive deforestation if poorly managed. Hydrogen can power fuel‑cell vehicles, producing water as the tailpipe output, but hydrogen production, storage, and fueling infrastructure are challenging. Sustainable aviation fuels (SAF) and synthetic e‑fuels (made using captured CO2 and clean hydrogen) are being explored for sectors that are harder to electrify, such as aviation and long‑haul shipping.",
+          "keyTerms": [
+            "biofuel",
+            "ethanol",
+            "biodiesel",
+            "life-cycle emissions",
+            "fuel-cell vehicle",
+            "sustainable aviation fuel",
+            "e-fuel",
+            "hydrogen infrastructure"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nrg_10",
+      "title": "Building Energy Systems",
+      "sections": [
+        {
+          "heading": "Heat Transfer in Buildings",
+          "body": "Buildings use energy primarily for heating, cooling, lighting, and appliances. Heating and cooling loads are driven by heat transfer: conduction through walls and windows, convection through air movement, and radiation from the Sun and interior surfaces. Insulation reduces conductive heat loss by trapping air and lowering heat flow. Air sealing reduces infiltration (uncontrolled outside air leakage), which can be a major energy loss in leaky buildings. Window performance depends on glazing type, coatings, and frame design; low‑E coatings reduce infrared heat transfer while allowing visible light. Managing heat transfer is the foundation of efficient building design.",
+          "keyTerms": [
+            "conduction",
+            "convection",
+            "radiation",
+            "insulation",
+            "infiltration",
+            "air sealing",
+            "low-E window",
+            "heat transfer"
+          ]
+        },
+        {
+          "heading": "HVAC Systems",
+          "body": "Heating, ventilation, and air conditioning (HVAC) systems maintain indoor comfort and air quality. Furnaces and boilers provide heat using fuel or electricity, while air conditioners and heat pumps move heat using a refrigeration cycle. Heat pumps can provide both heating and cooling and are often more efficient than electric resistance heating because they move heat rather than creating it directly. Key metrics include COP (coefficient of performance) for heat pumps and SEER for air conditioners. Ventilation brings in fresh air but must be balanced with energy use; energy recovery ventilators (ERVs) and heat recovery ventilators (HRVs) reclaim heat (and sometimes moisture) from exhaust air. Proper sizing and duct sealing improve performance and prevent wasted energy.",
+          "keyTerms": [
+            "HVAC",
+            "heat pump",
+            "refrigeration cycle",
+            "COP",
+            "SEER",
+            "ventilation",
+            "ERV",
+            "HRV",
+            "duct sealing"
+          ]
+        },
+        {
+          "heading": "Passive Design and Net‑Zero Concepts",
+          "body": "Passive design reduces energy demand by using building orientation, shading, natural ventilation, and thermal mass. In cool climates, passive solar heating uses south‑facing windows and materials that store daytime heat and release it at night. In hot climates, shading, reflective roofs, and cross‑ventilation reduce cooling loads. Daylighting strategies use windows and light shelves to reduce electric lighting demand while minimizing glare and heat gain. Net‑zero energy buildings produce as much energy as they use over a year, often combining deep efficiency with on‑site solar and storage. Achieving net‑zero typically requires careful envelope design, efficient equipment, and smart controls.",
+          "keyTerms": [
+            "passive design",
+            "thermal mass",
+            "daylighting",
+            "shading",
+            "net-zero",
+            "building envelope",
+            "smart controls"
+          ]
+        },
+        {
+          "heading": "Efficiency Retrofits and Building Controls",
+          "body": "Existing buildings can cut energy use through retrofits: improving insulation, sealing leaks, upgrading windows, switching to LEDs, and installing high‑efficiency HVAC equipment. Smart thermostats and building automation systems optimize schedules and respond to occupancy. Demand-controlled ventilation adjusts fresh-air intake based on CO2 levels, reducing unnecessary heating/cooling of ventilation air. Electrification upgrades replace fossil fuel appliances with electric heat pumps, induction cooking, and electric water heating, which can reduce on-site emissions. Energy audits identify major losses and prioritize upgrades by cost-effectiveness, comfort, and resilience benefits.",
+          "keyTerms": [
+            "retrofit",
+            "LED",
+            "smart thermostat",
+            "building automation",
+            "demand-controlled ventilation",
+            "electrification",
+            "energy audit"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nrg_11",
+      "title": "Advanced Nuclear Technologies",
+      "sections": [
+        {
+          "heading": "Generation IV Reactor Concepts",
+          "body": "Generation IV reactors are advanced designs intended to improve safety, efficiency, fuel use, and waste characteristics compared to many current light‑water reactors. Concepts include sodium‑cooled fast reactors, lead‑cooled fast reactors, gas‑cooled reactors, and molten salt reactors. Fast reactors can use fast neutrons and potentially “burn” some long‑lived actinides, improving fuel utilization. Many advanced designs emphasize passive safety, where physics and natural circulation help remove heat without active pumping. Reactor design choices involve tradeoffs among coolant chemistry, operating temperature, materials durability, and the complexity of fuel handling and reprocessing.",
+          "keyTerms": [
+            "Generation IV",
+            "fast reactor",
+            "actinides",
+            "passive safety",
+            "molten salt reactor",
+            "sodium-cooled",
+            "lead-cooled",
+            "gas-cooled"
+          ]
+        },
+        {
+          "heading": "Small Modular Reactors and Deployment",
+          "body": "Small modular reactors (SMRs) aim to reduce construction risk and cost by using smaller standardized units that can be factory‑built and assembled on site. The modular approach can shorten construction timelines and allow incremental capacity additions. SMRs may include advanced safety features and can be designed for load‑following to complement variable renewables. Potential applications include supplying power to remote communities, industrial heat, or district heating. Challenges include licensing, first‑of‑a‑kind costs, supply chain readiness, and ensuring economic competitiveness against other clean energy options.",
+          "keyTerms": [
+            "SMR",
+            "modular",
+            "factory-built",
+            "load-following",
+            "industrial heat",
+            "licensing",
+            "first-of-a-kind"
+          ]
+        },
+        {
+          "heading": "Thorium Fuel Cycles",
+          "body": "Thorium is a fertile material that can be converted into fissile uranium‑233 through neutron capture and decay. Thorium fuel cycles are discussed because thorium is relatively abundant and can potentially produce less long‑lived transuranic waste depending on the implementation. However, thorium systems still require a neutron source to start (often using enriched uranium or plutonium) and involve complex fuel management and reprocessing considerations. Uranium‑233 is fissile and can support sustained fission, but its production and handling raise engineering, safety, and proliferation concerns. The feasibility of thorium depends on reactor design, fuel fabrication, and the full fuel‑cycle infrastructure.",
+          "keyTerms": [
+            "thorium",
+            "fertile",
+            "uranium-233",
+            "neutron capture",
+            "fuel cycle",
+            "reprocessing",
+            "transuranic"
+          ]
+        },
+        {
+          "heading": "Fusion Research and Nuclear Safety",
+          "body": "Fusion aims to combine light nuclei (typically deuterium and tritium) to release energy. Achieving fusion requires extremely high temperatures and confinement of plasma to sustain reactions. Magnetic confinement (tokamaks, stellarators) uses strong magnetic fields, while inertial confinement uses powerful lasers to compress fuel pellets. Fusion promises abundant fuel and low CO2 emissions during operation, but engineering challenges include plasma stability, materials that withstand neutron bombardment, and efficient tritium breeding. For fission and fusion, safety engineering focuses on controlling heat removal, preventing releases, and managing radioactive materials. Waste management, emergency planning, and rigorous regulation are central to responsible nuclear energy.",
+          "keyTerms": [
+            "fusion",
+            "deuterium",
+            "tritium",
+            "plasma",
+            "tokamak",
+            "stellarator",
+            "inertial confinement",
+            "tritium breeding",
+            "nuclear safety"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nrg_12",
+      "title": "Ocean Energy",
+      "sections": [
+        {
+          "heading": "Tidal Energy",
+          "body": "Tidal energy harnesses predictable water level and current changes caused by the gravitational pull of the Moon and Sun. Tidal range systems (barrages and lagoons) capture potential energy by trapping water at high tide and releasing it through turbines at low tide. Tidal stream systems place underwater turbines in fast currents, similar to wind turbines but in water. Tidal power is highly predictable but site‑limited to regions with strong tidal ranges or currents. Environmental considerations include impacts on sediment transport, marine habitats, and navigation.",
+          "keyTerms": [
+            "tidal energy",
+            "barrage",
+            "tidal lagoon",
+            "tidal stream",
+            "underwater turbine",
+            "predictable",
+            "sediment transport"
+          ]
+        },
+        {
+          "heading": "Wave Energy",
+          "body": "Wave energy converts the motion of ocean surface waves into electricity. Technologies include point absorbers (floating buoys that move up and down), oscillating water columns (air compressed by wave motion drives a turbine), and attenuators (long floating devices aligned with wave direction). The wave resource is strongest in certain coastal regions with persistent winds, but devices must survive harsh marine conditions such as storms, corrosion, and biofouling. Engineering focuses on durability, mooring systems, power take‑off mechanisms, and minimizing maintenance costs. Wave energy is still developing compared to wind and solar, but it offers the possibility of complementary generation patterns.",
+          "keyTerms": [
+            "wave energy",
+            "point absorber",
+            "oscillating water column",
+            "attenuator",
+            "corrosion",
+            "biofouling",
+            "mooring",
+            "power take-off"
+          ]
+        },
+        {
+          "heading": "Ocean Thermal Energy Conversion (OTEC)",
+          "body": "Ocean Thermal Energy Conversion uses the temperature difference between warm surface water and cold deep water to run a heat engine. In closed‑cycle OTEC, a working fluid with a low boiling point (like ammonia) is vaporized by warm water, drives a turbine, and is condensed by cold water. In open‑cycle OTEC, warm seawater is flash‑evaporated in a low‑pressure chamber to produce steam that drives a turbine, potentially producing fresh water as a byproduct. OTEC is most feasible in tropical regions where the temperature gradient is large. Challenges include large infrastructure, pumping requirements, and the economics of offshore systems.",
+          "keyTerms": [
+            "OTEC",
+            "heat engine",
+            "closed-cycle",
+            "open-cycle",
+            "temperature gradient",
+            "tropical",
+            "ammonia working fluid",
+            "fresh water"
+          ]
+        },
+        {
+          "heading": "Potential, Impacts, and Integration",
+          "body": "Ocean energy can diversify renewable portfolios, especially for coastal regions, but it faces technical and environmental hurdles. Marine systems must handle corrosion, storms, and maintenance in remote locations. Grid integration can be easier for predictable tidal generation, while wave energy may vary with weather patterns. Environmental assessment examines impacts on marine mammals, fish, seabed habitats, and local currents. Because many projects are early-stage, learning curves and standardization could lower costs over time. In the long term, ocean energy could complement wind and solar by providing different production timing and improved seasonal balance in some areas.",
+          "keyTerms": [
+            "marine renewable",
+            "grid integration",
+            "environmental assessment",
+            "corrosion",
+            "maintenance",
+            "diversification",
+            "seasonal balance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nrg_13",
+      "title": "Energy Economics",
+      "sections": [
+        {
+          "heading": "Energy Markets and Pricing",
+          "body": "Energy economics studies how energy is produced, traded, and consumed under constraints like resource availability, infrastructure, and policy. Electricity markets often balance supply and demand continuously, with prices influenced by fuel costs, plant efficiency, demand levels, and grid constraints. Some regions use wholesale markets where generators bid into an auction, while others rely on regulated utilities. Prices can vary by time of day due to peak demand and by location due to transmission congestion. Long‑term contracts and capacity markets can help ensure reliability by paying for available generation even when energy prices are low.",
+          "keyTerms": [
+            "energy markets",
+            "wholesale market",
+            "auction",
+            "price signal",
+            "transmission congestion",
+            "capacity market",
+            "regulated utility"
+          ]
+        },
+        {
+          "heading": "Costs: LCOE, CapEx, and OpEx",
+          "body": "Comparing energy technologies requires accounting for capital expenditures (CapEx), operating expenditures (OpEx), fuel costs, capacity factor, and financing. A common metric is levelized cost of energy (LCOE), which estimates the average cost per unit electricity over a plant’s lifetime. LCOE is useful but incomplete because it may not capture value differences like dispatchability, flexibility, or grid services. For example, variable renewables may have low LCOE but need storage or transmission to meet demand at all times. Economic evaluation also uses cost‑benefit analysis, discount rates, and sensitivity analysis to see how results change with fuel prices, interest rates, or policy incentives.",
+          "keyTerms": [
+            "LCOE",
+            "CapEx",
+            "OpEx",
+            "capacity factor",
+            "discount rate",
+            "cost-benefit analysis",
+            "sensitivity analysis",
+            "dispatchability"
+          ]
+        },
+        {
+          "heading": "Subsidies, Externalities, and Carbon Pricing",
+          "body": "Energy decisions are influenced by subsidies, taxes, and regulation. Subsidies can support emerging technologies, improve energy security, or reduce pollution, but they can also distort markets if poorly designed. Externalities are costs or benefits not reflected in market prices; air pollution and climate change are major negative externalities of fossil fuels. Carbon pricing aims to internalize climate costs by putting a price on emissions, either through a carbon tax (a set price per ton) or cap‑and‑trade (a limit with tradable permits). The effectiveness of carbon pricing depends on coverage, enforcement, and how revenue is used (rebates, clean energy investment, or tax reductions).",
+          "keyTerms": [
+            "subsidy",
+            "externality",
+            "carbon pricing",
+            "carbon tax",
+            "cap-and-trade",
+            "emissions",
+            "market distortion"
+          ]
+        },
+        {
+          "heading": "Reliability, Value, and Grid Services",
+          "body": "Not all electricity is equally valuable; power delivered during peak demand or shortages is often worth more than off‑peak power. Grid services include frequency regulation, voltage support, spinning reserve, and black start capability. Flexible resources like fast‑ramping plants, batteries, and demand response can provide these services. As renewable penetration increases, marginal prices can fall during high solar/wind output and spike when output drops, influencing investment in storage and transmission. Economists and planners use models to evaluate reliability and to design markets that reward both energy and the services needed to keep the grid stable.",
+          "keyTerms": [
+            "grid services",
+            "frequency regulation",
+            "spinning reserve",
+            "black start",
+            "demand response",
+            "marginal price",
+            "renewable penetration"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nrg_14",
+      "title": "Energy Access & Equity",
+      "sections": [
+        {
+          "heading": "Energy Poverty and Basic Access",
+          "body": "Energy access means reliable, affordable energy for lighting, cooking, heating/cooling, communication, and economic activity. Energy poverty occurs when households lack access to modern energy or must spend an excessive share of income on energy. In many regions, people rely on traditional biomass (wood, charcoal) for cooking, which can cause indoor air pollution and health problems. Expanding access improves education, healthcare, and productivity by powering schools, clinics, refrigeration, and water pumping. Access challenges include high upfront infrastructure costs, remote geography, and unstable political or economic conditions.",
+          "keyTerms": [
+            "energy access",
+            "energy poverty",
+            "affordability",
+            "traditional biomass",
+            "indoor air pollution",
+            "infrastructure"
+          ]
+        },
+        {
+          "heading": "Global Disparities and Development Solutions",
+          "body": "Energy use is uneven globally: high‑income countries consume far more energy per person than low‑income countries. Development strategies include extending national grids, building mini‑grids, and deploying off‑grid solar home systems. Mini‑grids can combine solar, storage, and backup generation to serve communities where grid expansion is expensive. Clean cooking solutions include electric stoves, LPG, biogas, and improved biomass stoves, each with tradeoffs in cost, supply chains, and emissions. Successful programs often combine technology with financing, maintenance training, and local ownership to ensure long-term reliability.",
+          "keyTerms": [
+            "per capita energy",
+            "mini-grid",
+            "off-grid",
+            "solar home system",
+            "clean cooking",
+            "LPG",
+            "biogas",
+            "financing"
+          ]
+        },
+        {
+          "heading": "Environmental Justice and Siting Impacts",
+          "body": "Energy systems can impose uneven burdens. Communities near highways, power plants, refineries, or coal ash ponds may face higher air and water pollution. Environmental justice focuses on fair distribution of both benefits and harms, and on meaningful community participation in decision-making. Renewable projects also have siting concerns (land use, wildlife impacts), so equitable planning considers local impacts, compensation, and long-term community benefits. Policies such as emissions controls, clean energy investments in affected areas, and stronger monitoring can reduce disparities.",
+          "keyTerms": [
+            "environmental justice",
+            "siting",
+            "air pollution",
+            "refinery",
+            "coal ash",
+            "community participation",
+            "monitoring"
+          ]
+        },
+        {
+          "heading": "Affordability, Reliability, and Resilience",
+          "body": "Equity is not only about access but also about affordability and reliability. Programs like weatherization, bill assistance, and efficient appliances can reduce energy burdens for low‑income households. Resilient energy systems reduce outage impacts during storms or heatwaves; strategies include microgrids for critical facilities, undergrounding lines where feasible, and backup power for medical equipment. As societies electrify transportation and heating, equitable planning must ensure that infrastructure upgrades and clean technologies are available to everyone, not only those who can afford early adoption.",
+          "keyTerms": [
+            "energy burden",
+            "weatherization",
+            "bill assistance",
+            "resilience",
+            "microgrid",
+            "outage",
+            "electrification"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nrg_15",
+      "title": "Future Energy Systems",
+      "sections": [
+        {
+          "heading": "Electrification and Deep Decarbonization",
+          "body": "Many future energy pathways emphasize electrification: shifting vehicles, heating, and some industrial processes from direct fuel combustion to electricity. Decarbonizing electricity supply (renewables, nuclear, low‑carbon fuels with capture) amplifies the benefits of electrification because the same clean grid can power multiple sectors. Deep decarbonization also requires efficiency improvements, better building envelopes, smart demand management, and expansion of transmission. Hard‑to‑electrify sectors may rely on clean fuels such as hydrogen, ammonia, or synthetic fuels, depending on cost and infrastructure.",
+          "keyTerms": [
+            "electrification",
+            "decarbonization",
+            "clean grid",
+            "efficiency",
+            "transmission expansion",
+            "synthetic fuels",
+            "ammonia"
+          ]
+        },
+        {
+          "heading": "Emerging Technologies and Breakthrough Areas",
+          "body": "Emerging energy technologies include advanced batteries, long‑duration storage, high‑temperature heat pumps, next‑generation nuclear, and improved carbon capture systems. Grid‑forming inverters can help stabilize grids with fewer traditional rotating generators. Power‑to‑X technologies convert electricity into fuels or chemicals (hydrogen, e‑fuels), potentially decarbonizing shipping, aviation, and industry. Fusion is a potential long‑term source of abundant power, but requires breakthroughs in confinement, materials, and economics. Innovation also includes better materials (catalysts, membranes), smarter controls, and manufacturing scale‑up.",
+          "keyTerms": [
+            "long-duration storage",
+            "grid-forming inverter",
+            "power-to-X",
+            "carbon capture",
+            "advanced nuclear",
+            "fusion",
+            "catalyst"
+          ]
+        },
+        {
+          "heading": "System Integration: Grids, Storage, and Flexibility",
+          "body": "A future energy system must integrate variable renewables with storage and flexible demand. Flexibility can come from batteries, pumped hydro, demand response, and controllable industrial loads. Electric vehicles can act as flexible loads, and in some cases provide vehicle‑to‑grid services. Regional interconnection and expanded transmission reduce variability by sharing resources across wider areas. Forecasting improvements and digital control platforms help operators anticipate ramps in wind and solar output. A systems approach evaluates reliability, cost, land use, and environmental impacts together rather than optimizing any single technology in isolation.",
+          "keyTerms": [
+            "system integration",
+            "flexibility",
+            "demand response",
+            "vehicle-to-grid",
+            "interconnection",
+            "forecasting",
+            "digital control"
+          ]
+        },
+        {
+          "heading": "Long‑Term Outlook and Tradeoffs",
+          "body": "Future energy choices involve tradeoffs among cost, reliability, speed of deployment, and environmental impacts. Rapidly scaling clean energy requires materials, manufacturing capacity, skilled labor, and permitting. Some technologies reduce emissions quickly but may raise other concerns (land use, mining impacts, waste). Planning must consider resilience to extreme weather, supply chain risks, and geopolitical factors. Ultimately, the long‑term energy outlook depends on innovation, policy, investment, and public acceptance, with multiple pathways likely working together rather than a single “perfect” solution.",
+          "keyTerms": [
+            "deployment",
+            "permitting",
+            "supply chain",
+            "land use",
+            "mining impacts",
+            "resilience",
+            "policy",
+            "public acceptance"
+          ]
         }
       ]
     }
