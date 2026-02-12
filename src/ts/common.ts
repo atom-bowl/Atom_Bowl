@@ -398,7 +398,7 @@
         left: 12px !important;
         right: 12px !important;
         bottom: 12px !important;
-        z-index: 1200;
+        z-index: 1200 !important;
       }
 
       @media (max-width: 820px) {
