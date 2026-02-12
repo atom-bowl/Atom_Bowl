@@ -49,6 +49,11 @@ The final update before Atom Bowl v1 will be AI Generate using Gemini API and ad
 
 ---
 
+## Features Under Development
+
+- Generate using AI (Gemini 3.0 and Llama)
+- Accounts (available for testing)
+
 ## Credits
 - Question Bank A goes to official DOE questions parsed by @arxenix. @arxenix did not contribute to code, only to sets
 - Question Bank B goes to SciBowlDB's official question bank.
