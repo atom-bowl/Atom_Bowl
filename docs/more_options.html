@@ -23,14 +23,22 @@
     </svg>
   </div>
 
-  <div class="nav" id="nav">
+  <!-- NAV -->
+    <div class="nav" id="nav">
     <h2 class="nav-title">&#x269B; Atom Bowl</h2>
-    <a href="index.html"><span class="icon">&#x1F3E0;</span> Home</a>
+    <a href="index.html" class="active"><span class="icon">&#x1F3E0;</span> Home</a>
     <a href="generate.html"><span class="icon">&#x1F916;</span> Generate</a>
     <a href="practice_home.html"><span class="icon">&#x26A1;</span> Practice</a>
     <a href="question_bank.html"><span class="icon">&#x1F4DA;</span> Question Bank</a>
+    <a href="learn.html"><span class="icon">&#x1F4D6;</span> Learn</a>
     <a href="settings.html"><span class="icon">&#x2699;&#xFE0F;</span> Settings</a>
-    <a href="more_options.html" class="active" data-hover="Game Clock"><span class="icon">...</span> More Options</a>
+    <div class="nav-more" data-nav-more>
+      <button class="nav-more-btn" type="button" aria-haspopup="true" aria-expanded="false">... More Tools</button>
+      <div class="nav-more-menu">
+        <a href="more_options.html">Game Clock</a>
+        <a href="buzzer_rooms.html">Buzzer Rooms</a>
+      </div>
+    </div>
   </div>
 
   <div class="overlay" id="overlay"></div>
