@@ -19,6 +19,7 @@ Built for students who want to grind questions the way real rounds feel.
   - Light mode
   - Interrupt
   - AtomScore(R)
+  - Learn using 90+ lessons across 6 topics
   - Practice Engine v0.3
   - Subtopics
   - Question Bank Upgrade 
