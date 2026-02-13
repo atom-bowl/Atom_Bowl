@@ -34,6 +34,8 @@ Note: Atom Bowl v1 is coming! It will include AI Generate using Gemini API, a wo
   - Biology
   - Earth & Space Science
   - Math
+  - General Science
+  - Astronomy
 
 - ⚡ **Instant loading**
   - Pure HCJ Stack for Frontend
@@ -48,6 +50,11 @@ Note: Atom Bowl v1 is coming! It will include AI Generate using Gemini API, a wo
 - 🧩 **Multiple question sets**
   - Clean JSON-based data
   - Easy to expand and maintain
+
+- 📖 **Over 90+ target-based lessons**
+  - Easy-to-access JSON-based datta
+  - Mainstream focused NSB-oriented lessons
+  - Throughout all 6 official NSB categories + General Science
 
 - 🎯 **Practice-focused design**
   - Straight to the question
