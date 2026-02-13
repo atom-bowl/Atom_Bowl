@@ -1,12 +1,12 @@
 # Atom Bowl - Info Docs Tutorial
 
 ## Step 1 - Go to the Website
-- Head to the [https://atom-bowl.github.io/Atom_Bowl](Atom Bowl) website to get started
+- Head to the [Atom Bowl](https://atom-bowl.github.io/Atom_Bowl) website to get started
 - Ensure you have JavaScript enabled
 - Recommendation: use a mainstream browser like Microsoft Edge, Google Chrome, Mozilla Firefox, or Safari
 
 ## Step 2 - Practice
-- On the home page, click on the Practice tile, or click [https://atom-bowl.github.io/Atom_Bowl/practice_home.html](this link)
+- On the home page, click on the Practice tile, or click [this link](https://atom-bowl.github.io/Atom_Bowl/practice_home.html)
 - Put in your desired filters and supertopics for practicing
 - Uncheck the `No timer` switch if you would not like a timer for you to buzz. This is based on personal preferences: if you check it, you'll have 5 seconds after the question is read to buzz on tossups and 20 seconds after the question is read to buzz on bonuses (this is purely to emulate true NSB situations) 
 - Click the `Advanced Filters` button to explore 20+ subtopics of the main NSB topics
@@ -69,21 +69,21 @@
 - Turn on the extremely powerful AtomCorrect(R) powered by Python
 
 ## Step 7 - Game Clock
-- Click the `Buzzers` dropdown and then select Game Clock or click [https://atom-bowl.github.io/Atom_Bowl/game_clock.html](this link)
+- Click the `Buzzers` dropdown and then select Game Clock or click [this link](https://atom-bowl.github.io/Atom_Bowl/game_clock.html)
 - Change the team names and start a variety of different timers and clocks equipped with notifications and sound beeps
 - Add tossup and bonus scores along with penalties
 
 ## Step 8 - Buzzer Rooms
 - This will be split into two sections - Moderators and Players
 ### Players
-- To join a buzzer room, get the code or the link invite from your moderator and paste it into the join box [https://atom-bowl.github.io/Atom_Bowl/buzzer_rooms.html](here)
+- To join a buzzer room, get the code or the link invite from your moderator and paste it into the join box [here](https://atom-bowl.github.io/Atom_Bowl/buzzer_rooms.html)
 - The teams will auto-update and you will be able to select your team
 - Enter your display name and click join
 - Once the host starts the game, hit the `spacebar` to buzz or click the buzzer box
 - You will be able to see the timer controls and who buzzed or outbuzzed you
 - Just click the `Leave Room` button or Ctrl+W to leave the room
 ### Moderators
-- To create a room, select the `Create Room` button or head [https://atom-bowl.github.io/Atom_Bowl/buzzer_create.html](here)
+- To create a room, select the `Create Room` button or head [here](https://atom-bowl.github.io/Atom_Bowl/buzzer_create.html)
 - Enter the team names, your name, and whether you want to follow NSB official rules or not
 - If you don't want to, you will get a dropdown for advanced settings
 - Once in, share the join code with your players by clicking the `Copy` button to get an invite or copy-pasting the join code
@@ -91,6 +91,6 @@
 - Click the `Open Bonus` button to open a bonus and select which team you're opening the bonus for
 - You can always end the room by clicking the `End Room` button or hitting Ctrl+W
 
-# Now what are you waiting for? You don't need a tutorial to use Atom Bowl! [https://atom-bowl.github.io/Atom_Bowl](Head there now!)
+# Now what are you waiting for? You don't need a tutorial to use Atom Bowl! [Head there now!](https://atom-bowl.github.io/Atom_Bowl)
 
 *Updated 2/12/2026 at 6:19 PM*

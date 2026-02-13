@@ -11,6 +11,7 @@ Built for students who want to grind questions the way real rounds feel and host
 Note: Atom Bowl v1 is coming! It will include AI Generate using Gemini API, a working Accounts and Authentication system, along with adding a Bank C with more questions!
 
 🔗 **Live site:** https://atom-bowl.github.io/Atom_Bowl/
+ℹ️ **Info Docs (How to Use)** [Info Docs](https://www.github.com/atom-bowl/Atom_Bowl/info_docs.md)
 
 ---
 
