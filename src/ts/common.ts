@@ -969,6 +969,11 @@
   ensurePageTransitionStyle();
   ensureModernRefreshStyle();
 
+  // Re-apply theme after DOM is fully loaded to ensure it's applied correctly
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => applySettings(loadSettings()));
+  }
+
   function ensurePageShell() {
     if (!document.body) return;
     if (document.querySelector('.page-shell')) return;
