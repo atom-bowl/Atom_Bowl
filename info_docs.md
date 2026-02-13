@@ -94,6 +94,6 @@
 - Click the `Open Bonus` button to open a bonus and select which team you're opening the bonus for
 - You can always end the room by clicking the `End Room` button or hitting Ctrl+W
 
-# Now what are you waiting for? You don't need a tutorial to use Atom Bowl! [Head there now!](https://atom-bowl.github.io/Atom_Bowl)
+## Now what are you waiting for? You don't need a tutorial to use Atom Bowl! [Head there now!](https://atom-bowl.github.io/Atom_Bowl)
 
 *Last updated 2/12/2026 at 6:28 PM*

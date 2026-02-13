@@ -74,6 +74,6 @@ Note: Atom Bowl v1 is coming! It will include AI Generate using Gemini API, a wo
 - Question Bank B goes to SciBowlDB's official question bank.
 - Question Bank C is coming soon from smaller invitationals and niche competitions.
 
-# Get going at <https://atom-bowl.github.io/Atom_Bowl/>
+## Get going at <https://atom-bowl.github.io/Atom_Bowl/>
 
 *Last updated 2/12/2026 at 6:28 PM*
