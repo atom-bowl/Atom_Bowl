@@ -140,6 +140,58 @@ app.get("/api/search", async (req, res) => {
   }
 });
 
+app.get("/api/stats", async (req, res) => {
+  const script = path.join(ROOT, "server", "ruby", "stats.rb");
+  const payload = {
+    bank: req.query.bank || "ALL"
+  };
+
+  try {
+    const result = await runScript(RUBY, [script], payload, 6000);
+    res.json(result || {});
+  } catch (err) {
+    res.status(500).json({ error: "stats-failed", detail: String(err.message || err) });
+  }
+});
+
+app.get("/api/validate", async (req, res) => {
+  const script = path.join(ROOT, "server", "ruby", "validator.rb");
+  const checksParam = req.query.checks;
+  const checks = checksParam ? checksParam.split(",").map(s => s.trim()).filter(Boolean) : [];
+  const payload = {
+    bank: req.query.bank || "ALL",
+    checks: checks.length ? checks : undefined
+  };
+
+  try {
+    const result = await runScript(RUBY, [script], payload, 8000);
+    res.json(result || {});
+  } catch (err) {
+    res.status(500).json({ error: "validate-failed", detail: String(err.message || err) });
+  }
+});
+
+app.post("/api/difficulty", async (req, res) => {
+  const { questionText, parsedAnswer, category, type, level } = req.body || {};
+  if (typeof questionText !== "string") {
+    return res.status(400).json({ error: "questionText-required" });
+  }
+
+  const script = path.join(ROOT, "server", "python", "difficulty.py");
+  try {
+    const result = await runScript(PYTHON, [script], {
+      questionText,
+      parsedAnswer,
+      category,
+      type,
+      level
+    }, 3500);
+    res.json(result || {});
+  } catch (err) {
+    res.status(500).json({ error: "difficulty-failed", detail: String(err.message || err) });
+  }
+});
+
 app.use(express.static(path.join(ROOT, "docs")));
 
 app.listen(PORT, () => {
