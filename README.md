@@ -36,8 +36,14 @@ Note: Atom Bowl v1 is coming! It will include AI Generate using Gemini API, a wo
   - Math
 
 - ⚡ **Instant loading**
-  - Pure HTML / CSS / JavaScript
+  - Pure HCJ Stack for Frontend
   - No frameworks, no bloat
+
+- 🧑‍💻 **Used Languages**
+  - HTML / CSS / JavaScript for frontend loader
+  - Python for Autocorrect using Render Docker
+  - Ruby for Filter Searching using Render Docker
+  - TypeScript for source code, built using `tsc config`
 
 - 🧩 **Multiple question sets**
   - Clean JSON-based data
