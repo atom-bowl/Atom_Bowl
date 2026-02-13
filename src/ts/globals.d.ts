@@ -32,6 +32,17 @@ type AutoChecker = {
   }): AutoCheckerResult;
 };
 
+type PracticeScoreStats = {
+  answered: number;
+  correct: number;
+  totalTime: number;
+  slowCorrect: number;
+};
+
+type AtomScoreEngine = {
+  compute: (stats: PracticeScoreStats) => number;
+};
+
 declare global {
   interface Window {
     atomSettings?: AtomSettings;
@@ -40,6 +51,7 @@ declare global {
     ATOM_API_BASE?: string;
     startRun?: (mode: string) => void;
     bank?: unknown[];
+    atomScoreEngine?: AtomScoreEngine;
     atomAccount?: {
       getUser: () => unknown | null;
       getProfile?: () => {
