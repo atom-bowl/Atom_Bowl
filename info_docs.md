@@ -27,6 +27,7 @@
 
 ## Step 3 - Question Bank
 - Explore our vast bank of 25K+ questions, more than any other science bowl prepping website!
+- Head there now using the nav on the website or [here](https://atom-bowl.github.io/Atom_Bowl/question_bank.html)
 - The question bank consists of 25,658 total questions (TU + BO) across two formats: text and image
 - There are currently 11,046 total questions (TU + BO) in Bank A (image format)
 - There are currently 14,528 total questions (TU + BO) in Bank B (text format)
@@ -43,12 +44,13 @@
 - Click this button to open the question in the Atom Engine
 - This feature is currently experiencing bugs, so do not expect it to work (Updated 2/12/2026)
 ### Tutor
-- This feature will use AI to explain the question to you
+- This feature will use AI to explain the question to you, it can be viewed [here](https://atom-bowl.github.io/Atom_Bowl/tutor.html)
 - This feature is currently **unavailable**
 - It will be shipped in Atom Bowl **v1.0**
 
 ## Step 4 - Learn
 - Learn using 90+ detailed lessons created from multiple practice tests and curated by Opus 4.6 and GPT-5.2
+- Head there now using the nav in the website or [here](https://atom-bowl.github.io/Atom_Bowl/learn.html)
 - Across all 5 science bowl topics along with the now-defunct General Science
 - Browse through the entire lesson book and filter by topic
 - Each topic contains 15 lessons, each of which containing 4 sections
@@ -56,12 +58,13 @@
 - We will soon ship a Glossary containing all of the key terms across all 90 lessons
 
 ## Step 5 - Generate
-- As of now, Generate is currently **unavailable**
+- As of now, Generate is currently **unavailable**, but you can visit the landing page [here](https://atom-bowl.github.io/Atom_Bowl/generate.html)
 - But shipping in **v1.0**, Generate will allow you to create AI-generated lessons based on your preferences, topic, and difficulty
 - It will also contain division-wise filters and options to save and open in the all powerful Atom Engine
 
 ## Step 6 - Settings
 - Customize your preferences in Settings
+- Visit it using the nav on the website or [here](https://atom-bowl.github.io/Atom_Bowl/settings.html)
 - Just change what you need and go back to practicing, no saving necessary
 - Everything is cached and stored on your browser, so you don't need to update your preferences every time you refresh the page
 - Use Ctrl+Shift+R or the `Reset to Defaults` button to reset to default settings and preferences
@@ -93,4 +96,4 @@
 
 # Now what are you waiting for? You don't need a tutorial to use Atom Bowl! [Head there now!](https://atom-bowl.github.io/Atom_Bowl)
 
-*Updated 2/12/2026 at 6:19 PM*
+*Last updated 2/12/2026 at 6:28 PM*
