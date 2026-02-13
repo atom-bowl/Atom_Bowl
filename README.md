@@ -1,6 +1,7 @@
 # ⚛️ Atom Bowl
 
 **Atom Bowl** (current version 0.9.1) is a fast, clean, browser-based question platform designed for **National Science Bowl (NSB)** preparation and it also contains live NSB-like buzzer rooms and game clock settings using Firebase.
+Note: website has changed to [shankar-sachin.github.io/Atom_Bowl](https://shankar-sachin.github.io/Atom_Bowl)
 It focuses on realism, speed, and accuracy along with low latency servers designed for the pros.
 
 ![Demo](docs/data/demo.gif)
@@ -10,7 +11,7 @@ Built for students who want to grind questions the way real rounds feel and host
 
 Note: Atom Bowl v1 is coming! It will include AI Generate using Gemini API, a working Accounts and Authentication system, along with adding a Bank C with more questions!
 
-🔗 **Live site:** https://atom-bowl.github.io/Atom_Bowl/
+🔗 **Live site:** [shankar-sachin.github.io/Atom_Bowl](https://shankar-sachin.github.io/Atom_Bowl)
 ℹ️ **Info Docs (How to Use)** <https://www.github.com/atom-bowl/Atom_Bowl/info_docs.md>
 
 ---
