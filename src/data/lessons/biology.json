@@ -1,0 +1,1037 @@
+{
+  "subject": "biology",
+  "lessons": [
+    {
+      "id": "bio_01",
+      "title": "Cell Structure & Function",
+      "sections": [
+        {
+          "heading": "Introduction to Cells",
+          "body": "All living organisms are composed of cells, the basic unit of life. The cell theory states that all living things are made of cells, cells are the basic unit of structure and function, and all cells come from pre-existing cells. Cells range in size from about 1 micrometer (bacteria) to over 100 micrometers (some plant and animal cells).",
+          "keyTerms": [
+            "cell theory",
+            "micrometer"
+          ],
+          "keyTermsDefs": {
+            "cell theory": "The principle that all life is made of cells",
+            "micrometer": "One millionth of a meter (\u03bcm)"
+          }
+        },
+        {
+          "heading": "Prokaryotic vs Eukaryotic Cells",
+          "body": "Prokaryotic cells lack a membrane-bound nucleus and organelles. They include bacteria and archaea. Their DNA is found in a nucleoid region and they often have plasmids (small circular DNA). Eukaryotic cells have a true nucleus enclosed by a nuclear envelope, membrane-bound organelles, and are generally larger. Eukaryotes include animals, plants, fungi, and protists.",
+          "keyTerms": [
+            "prokaryotic",
+            "eukaryotic",
+            "nucleoid",
+            "plasmid",
+            "nuclear envelope"
+          ]
+        },
+        {
+          "heading": "Organelles and Their Functions",
+          "body": "The nucleus stores genetic information and controls cell activities. The endoplasmic reticulum (ER) comes in rough (with ribosomes, for protein synthesis) and smooth (lipid synthesis, detoxification) forms. The Golgi apparatus modifies, packages, and ships proteins. Mitochondria are the powerhouses of the cell, generating ATP through cellular respiration. Lysosomes contain digestive enzymes for breaking down waste. The cytoskeleton provides structural support and aids in cell movement. Plant cells additionally have chloroplasts (for photosynthesis), a cell wall (made of cellulose), and a large central vacuole.",
+          "keyTerms": [
+            "nucleus",
+            "endoplasmic reticulum",
+            "Golgi apparatus",
+            "mitochondria",
+            "ATP",
+            "lysosomes",
+            "cytoskeleton",
+            "chloroplasts",
+            "cell wall",
+            "central vacuole"
+          ]
+        },
+        {
+          "heading": "Cell Membrane",
+          "body": "The cell membrane (plasma membrane) is a phospholipid bilayer with embedded proteins, described by the fluid mosaic model. Phospholipids have hydrophilic heads and hydrophobic tails. Integral proteins span the membrane while peripheral proteins attach to the surface. The membrane is selectively permeable, controlling what enters and exits the cell. Transport mechanisms include passive transport (diffusion, osmosis, facilitated diffusion) which requires no energy, and active transport (pumps, endocytosis, exocytosis) which requires ATP.",
+          "keyTerms": [
+            "phospholipid bilayer",
+            "fluid mosaic model",
+            "selectively permeable",
+            "diffusion",
+            "osmosis",
+            "facilitated diffusion",
+            "active transport",
+            "endocytosis",
+            "exocytosis"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bio_02",
+      "title": "Cell Division & Genetics",
+      "sections": [
+        {
+          "heading": "The Cell Cycle",
+          "body": "The cell cycle consists of interphase and the mitotic (M) phase. Interphase includes G1 (cell growth), S phase (DNA replication), and G2 (preparation for division). The cell cycle is regulated by cyclins and cyclin-dependent kinases (CDKs). Checkpoints at G1, G2, and during mitosis ensure proper progression. Uncontrolled cell division can lead to cancer.",
+          "keyTerms": [
+            "cell cycle",
+            "interphase",
+            "G1 phase",
+            "S phase",
+            "G2 phase",
+            "cyclins",
+            "CDKs"
+          ]
+        },
+        {
+          "heading": "Mitosis",
+          "body": "Mitosis produces two genetically identical daughter cells. It consists of prophase (chromosomes condense, spindle forms), metaphase (chromosomes align at the metaphase plate), anaphase (sister chromatids separate), and telophase (nuclear envelopes reform). Cytokinesis divides the cytoplasm. In animal cells, a cleavage furrow forms; in plant cells, a cell plate develops.",
+          "keyTerms": [
+            "mitosis",
+            "prophase",
+            "metaphase",
+            "anaphase",
+            "telophase",
+            "cytokinesis",
+            "cleavage furrow",
+            "cell plate"
+          ]
+        },
+        {
+          "heading": "Meiosis",
+          "body": "Meiosis produces four genetically unique haploid cells from one diploid cell. It consists of two divisions: meiosis I (homologous chromosomes separate) and meiosis II (sister chromatids separate). Crossing over during prophase I exchanges genetic material between homologous chromosomes, increasing genetic diversity. Independent assortment during metaphase I further increases variation. Meiosis is essential for sexual reproduction and produces gametes (sperm and eggs).",
+          "keyTerms": [
+            "meiosis",
+            "haploid",
+            "diploid",
+            "crossing over",
+            "independent assortment",
+            "gametes",
+            "homologous chromosomes"
+          ]
+        },
+        {
+          "heading": "Mendelian Genetics",
+          "body": "Gregor Mendel established fundamental laws of inheritance. The Law of Segregation states that allele pairs separate during gamete formation. The Law of Independent Assortment states that genes on different chromosomes sort independently. Dominant alleles mask recessive alleles. A Punnett square predicts offspring genotype and phenotype ratios. Incomplete dominance produces a blended phenotype. Codominance expresses both alleles simultaneously (e.g., AB blood type). Sex-linked traits are carried on the X chromosome.",
+          "keyTerms": [
+            "allele",
+            "dominant",
+            "recessive",
+            "Punnett square",
+            "genotype",
+            "phenotype",
+            "incomplete dominance",
+            "codominance",
+            "sex-linked"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bio_03",
+      "title": "Molecular Biology",
+      "sections": [
+        {
+          "heading": "DNA Structure",
+          "body": "DNA (deoxyribonucleic acid) is a double helix consisting of two antiparallel strands of nucleotides. Each nucleotide contains a deoxyribose sugar, a phosphate group, and a nitrogenous base. The four bases are adenine (A), thymine (T), guanine (G), and cytosine (C). Adenine pairs with thymine via two hydrogen bonds, and guanine pairs with cytosine via three hydrogen bonds (Chargaff's rules). The structure was described by Watson and Crick in 1953.",
+          "keyTerms": [
+            "DNA",
+            "double helix",
+            "nucleotide",
+            "adenine",
+            "thymine",
+            "guanine",
+            "cytosine",
+            "Chargaff's rules",
+            "Watson and Crick"
+          ]
+        },
+        {
+          "heading": "DNA Replication",
+          "body": "DNA replication is semiconservative, meaning each new molecule contains one original and one new strand. Helicase unwinds the double helix at the replication fork. DNA polymerase synthesizes new strands in the 5' to 3' direction. The leading strand is synthesized continuously while the lagging strand is made in Okazaki fragments joined by DNA ligase. Primase lays down RNA primers to initiate synthesis. Proofreading by DNA polymerase ensures high fidelity.",
+          "keyTerms": [
+            "semiconservative",
+            "helicase",
+            "DNA polymerase",
+            "replication fork",
+            "leading strand",
+            "lagging strand",
+            "Okazaki fragments",
+            "DNA ligase",
+            "primase"
+          ]
+        },
+        {
+          "heading": "Transcription and Translation",
+          "body": "Transcription converts DNA to messenger RNA (mRNA) in the nucleus. RNA polymerase reads the template strand 3' to 5' and builds mRNA 5' to 3'. In eukaryotes, pre-mRNA undergoes processing: a 5' cap and 3' poly-A tail are added, and introns are spliced out, leaving exons. Translation occurs at ribosomes in the cytoplasm. Transfer RNA (tRNA) carries amino acids matching mRNA codons via anticodons. Translation begins at the start codon AUG (methionine) and ends at a stop codon (UAA, UAG, or UGA).",
+          "keyTerms": [
+            "transcription",
+            "mRNA",
+            "RNA polymerase",
+            "introns",
+            "exons",
+            "translation",
+            "tRNA",
+            "codon",
+            "anticodon",
+            "start codon",
+            "stop codon",
+            "ribosome"
+          ]
+        },
+        {
+          "heading": "Gene Regulation",
+          "body": "Gene expression is regulated at multiple levels. In prokaryotes, operons (like the lac operon) control gene expression by grouping related genes under one promoter with an operator. In eukaryotes, regulation occurs through transcription factors, enhancers, silencers, and epigenetic modifications such as DNA methylation and histone acetylation. Post-transcriptional regulation includes alternative splicing, mRNA stability, and RNA interference (RNAi).",
+          "keyTerms": [
+            "gene expression",
+            "operon",
+            "lac operon",
+            "promoter",
+            "transcription factors",
+            "enhancers",
+            "epigenetic",
+            "DNA methylation",
+            "histone acetylation",
+            "RNA interference"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bio_04",
+      "title": "Evolution & Taxonomy",
+      "sections": [
+        {
+          "heading": "Natural Selection",
+          "body": "Charles Darwin proposed natural selection as the mechanism of evolution. It requires variation within a population, heritability of traits, differential survival and reproduction, and accumulation of favorable traits over generations. Fitness refers to an organism's ability to survive and reproduce in its environment. Types of selection include directional (favoring one extreme), stabilizing (favoring the average), and disruptive (favoring both extremes).",
+          "keyTerms": [
+            "natural selection",
+            "variation",
+            "fitness",
+            "directional selection",
+            "stabilizing selection",
+            "disruptive selection"
+          ]
+        },
+        {
+          "heading": "Evidence for Evolution",
+          "body": "Evidence includes the fossil record showing transitional forms, comparative anatomy revealing homologous structures (shared ancestry) and analogous structures (convergent evolution), embryology showing similar developmental stages, molecular biology comparing DNA and protein sequences, and biogeography showing species distribution patterns related to geographic isolation. Vestigial structures are remnants of organs that had a function in ancestors.",
+          "keyTerms": [
+            "fossil record",
+            "homologous structures",
+            "analogous structures",
+            "convergent evolution",
+            "vestigial structures",
+            "biogeography"
+          ]
+        },
+        {
+          "heading": "Speciation",
+          "body": "Speciation is the formation of new species. Allopatric speciation occurs when populations are geographically separated. Sympatric speciation occurs without geographic isolation, often through polyploidy in plants. Reproductive isolation mechanisms include prezygotic barriers (habitat, temporal, behavioral, mechanical, gametic isolation) and postzygotic barriers (hybrid inviability, hybrid sterility, hybrid breakdown). The biological species concept defines species as groups that can interbreed and produce fertile offspring.",
+          "keyTerms": [
+            "speciation",
+            "allopatric",
+            "sympatric",
+            "polyploidy",
+            "reproductive isolation",
+            "prezygotic",
+            "postzygotic",
+            "biological species concept"
+          ]
+        },
+        {
+          "heading": "Classification and Taxonomy",
+          "body": "Taxonomy organizes organisms into hierarchical categories: Domain, Kingdom, Phylum, Class, Order, Family, Genus, Species. The three domains are Bacteria, Archaea, and Eukarya. Binomial nomenclature (developed by Linnaeus) assigns each species a two-part Latin name (genus + species). Modern phylogenetics uses DNA sequence data and cladistics to construct evolutionary trees (cladograms). A monophyletic group (clade) includes an ancestor and all its descendants.",
+          "keyTerms": [
+            "taxonomy",
+            "domain",
+            "binomial nomenclature",
+            "Linnaeus",
+            "phylogenetics",
+            "cladistics",
+            "cladogram",
+            "monophyletic",
+            "clade"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bio_05",
+      "title": "Ecology & Ecosystems",
+      "sections": [
+        {
+          "heading": "Levels of Ecological Organization",
+          "body": "Ecology studies interactions at multiple levels: individual organisms, populations (same species in an area), communities (all species in an area), ecosystems (community plus abiotic factors), biomes (large geographic areas with similar climate and organisms), and the biosphere (all living things on Earth). Abiotic factors include temperature, water, light, and soil. Biotic factors include predators, prey, competitors, and parasites.",
+          "keyTerms": [
+            "population",
+            "community",
+            "ecosystem",
+            "biome",
+            "biosphere",
+            "abiotic",
+            "biotic"
+          ]
+        },
+        {
+          "heading": "Energy Flow and Trophic Levels",
+          "body": "Energy flows through ecosystems in one direction. Producers (autotrophs) convert sunlight to chemical energy through photosynthesis. Primary consumers (herbivores) eat producers. Secondary consumers eat primary consumers. Tertiary consumers eat secondary consumers. Decomposers break down dead organic matter. Only about 10% of energy transfers between trophic levels (10% rule). Energy pyramids illustrate this loss. Food webs show complex feeding relationships in an ecosystem.",
+          "keyTerms": [
+            "producers",
+            "autotrophs",
+            "consumers",
+            "herbivores",
+            "decomposers",
+            "trophic levels",
+            "10% rule",
+            "food web",
+            "energy pyramid"
+          ]
+        },
+        {
+          "heading": "Biogeochemical Cycles",
+          "body": "Matter cycles through ecosystems via biogeochemical cycles. The carbon cycle involves photosynthesis, respiration, decomposition, and combustion of fossil fuels. The nitrogen cycle includes nitrogen fixation (by bacteria converting N2 to NH3), nitrification, assimilation, ammonification, and denitrification. The water cycle involves evaporation, transpiration, condensation, precipitation, and runoff. The phosphorus cycle lacks a significant atmospheric component and moves through rocks, soil, water, and organisms.",
+          "keyTerms": [
+            "carbon cycle",
+            "nitrogen cycle",
+            "nitrogen fixation",
+            "nitrification",
+            "denitrification",
+            "water cycle",
+            "phosphorus cycle",
+            "transpiration"
+          ]
+        },
+        {
+          "heading": "Population Ecology",
+          "body": "Population growth can be exponential (J-curve, unlimited resources) or logistic (S-curve, limited by carrying capacity K). Growth rate depends on birth rate, death rate, immigration, and emigration. Density-dependent factors (competition, predation, disease) increase with population density. Density-independent factors (natural disasters, climate) affect populations regardless of density. r-selected species produce many offspring with little parental care, while K-selected species produce few offspring with extensive parental care.",
+          "keyTerms": [
+            "exponential growth",
+            "logistic growth",
+            "carrying capacity",
+            "density-dependent",
+            "density-independent",
+            "r-selected",
+            "K-selected"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bio_06",
+      "title": "Human Body Systems",
+      "sections": [
+        {
+          "heading": "Nervous System",
+          "body": "The nervous system consists of the central nervous system (CNS: brain and spinal cord) and the peripheral nervous system (PNS: nerves and ganglia). Neurons transmit electrical signals (action potentials) along axons. Neurotransmitters cross synapses to relay signals between neurons. The brain includes the cerebrum (higher functions), cerebellum (coordination), and brainstem (vital functions). The autonomic nervous system has sympathetic (fight-or-flight) and parasympathetic (rest-and-digest) divisions.",
+          "keyTerms": [
+            "CNS",
+            "PNS",
+            "neuron",
+            "action potential",
+            "axon",
+            "neurotransmitter",
+            "synapse",
+            "cerebrum",
+            "cerebellum",
+            "sympathetic",
+            "parasympathetic"
+          ]
+        },
+        {
+          "heading": "Circulatory System",
+          "body": "The human heart has four chambers: right atrium, right ventricle, left atrium, and left ventricle. Deoxygenated blood enters the right atrium, goes to the right ventricle, then to the lungs via pulmonary arteries. Oxygenated blood returns via pulmonary veins to the left atrium, then left ventricle, and out through the aorta. Arteries carry blood away from the heart, veins return blood, and capillaries enable gas exchange. Blood contains red blood cells (carry oxygen via hemoglobin), white blood cells (immune defense), platelets (clotting), and plasma.",
+          "keyTerms": [
+            "atrium",
+            "ventricle",
+            "pulmonary",
+            "aorta",
+            "arteries",
+            "veins",
+            "capillaries",
+            "hemoglobin",
+            "red blood cells",
+            "white blood cells",
+            "platelets",
+            "plasma"
+          ]
+        },
+        {
+          "heading": "Respiratory System",
+          "body": "Air enters through the nasal cavity, passes through the pharynx and larynx, down the trachea, through the bronchi and bronchioles, and into the alveoli. Gas exchange occurs at the alveoli, where oxygen diffuses into the blood and carbon dioxide diffuses out. The diaphragm contracts during inhalation, expanding the chest cavity and reducing pressure. Exhalation is typically passive as the diaphragm relaxes. Oxygen binds to hemoglobin in red blood cells for transport.",
+          "keyTerms": [
+            "trachea",
+            "bronchi",
+            "bronchioles",
+            "alveoli",
+            "gas exchange",
+            "diaphragm",
+            "inhalation",
+            "exhalation"
+          ]
+        },
+        {
+          "heading": "Immune System",
+          "body": "The innate immune system provides non-specific defense through skin barriers, mucous membranes, phagocytes (neutrophils, macrophages), natural killer cells, and inflammation. The adaptive immune system provides specific defense through B cells (produce antibodies for humoral immunity) and T cells (cell-mediated immunity, including helper T cells and cytotoxic T cells). Antibodies are Y-shaped proteins that bind to specific antigens. Memory cells provide long-term immunity after initial exposure. Vaccines stimulate adaptive immunity by introducing weakened or inactivated pathogens.",
+          "keyTerms": [
+            "innate immunity",
+            "adaptive immunity",
+            "phagocytes",
+            "B cells",
+            "T cells",
+            "antibodies",
+            "antigens",
+            "memory cells",
+            "vaccines",
+            "humoral immunity",
+            "cell-mediated immunity"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bio_07",
+      "title": "Photosynthesis & Cellular Respiration",
+      "sections": [
+        {
+          "heading": "Photosynthesis Overview",
+          "body": "Photosynthesis converts light energy into chemical energy stored in glucose. The overall equation is 6CO2 + 6H2O + light \u2192 C6H12O6 + 6O2. Photosynthesis occurs in chloroplasts and consists of light-dependent reactions (in thylakoid membranes) and light-independent reactions (in the stroma). Chlorophyll absorbs red and blue light while reflecting green light, giving plants their green color.",
+          "keyTerms": [
+            "photosynthesis",
+            "chloroplasts",
+            "light-dependent reactions",
+            "light-independent reactions",
+            "thylakoid",
+            "stroma",
+            "chlorophyll"
+          ],
+          "keyTermsDefs": {
+            "photosynthesis": "Process converting light energy into chemical energy",
+            "chloroplasts": "Organelles where photosynthesis occurs",
+            "light-dependent reactions": "Stage requiring light to produce ATP and NADPH",
+            "light-independent reactions": "Calvin cycle; produces glucose without direct light",
+            "thylakoid": "Membrane-bound compartment in chloroplasts",
+            "stroma": "Fluid-filled space surrounding thylakoids",
+            "chlorophyll": "Green pigment that absorbs light energy"
+          }
+        },
+        {
+          "heading": "Light Reactions and Calvin Cycle",
+          "body": "Light reactions occur in photosystem II and I, using light energy to split water (photolysis), release oxygen, and generate ATP and NADPH through photophosphorylation. The Calvin cycle uses ATP and NADPH to fix CO2 into 3-carbon molecules via RuBisCO enzyme. Three turns of the cycle produce one G3P (glyceraldehyde-3-phosphate) molecule. Two G3P molecules combine to form glucose.",
+          "keyTerms": [
+            "photosystem II",
+            "photosystem I",
+            "photolysis",
+            "photophosphorylation",
+            "Calvin cycle",
+            "RuBisCO",
+            "carbon fixation",
+            "G3P"
+          ],
+          "keyTermsDefs": {
+            "photosystem II": "First protein complex in light reactions",
+            "photosystem I": "Second protein complex producing NADPH",
+            "photolysis": "Light-driven splitting of water molecules",
+            "photophosphorylation": "ATP synthesis using light energy",
+            "Calvin cycle": "Light-independent reactions producing sugar",
+            "RuBisCO": "Enzyme that catalyzes carbon fixation",
+            "carbon fixation": "Incorporation of CO2 into organic molecules",
+            "G3P": "3-carbon sugar produced by Calvin cycle"
+          }
+        },
+        {
+          "heading": "Cellular Respiration Overview",
+          "body": "Cellular respiration breaks down glucose to produce ATP, the energy currency of cells. The complete aerobic respiration equation is C6H12O6 + 6O2 \u2192 6CO2 + 6H2O + ATP. It consists of glycolysis (in cytoplasm), the Krebs cycle (in mitochondrial matrix), and the electron transport chain (on inner mitochondrial membrane). One glucose molecule yields approximately 36-38 ATP molecules.",
+          "keyTerms": [
+            "cellular respiration",
+            "glycolysis",
+            "Krebs cycle",
+            "electron transport chain",
+            "aerobic respiration",
+            "mitochondrial matrix"
+          ],
+          "keyTermsDefs": {
+            "cellular respiration": "Process breaking down glucose for ATP",
+            "glycolysis": "Glucose breakdown to two pyruvate molecules",
+            "Krebs cycle": "Citric acid cycle producing electron carriers",
+            "electron transport chain": "Series of proteins producing most ATP",
+            "aerobic respiration": "Respiration requiring oxygen",
+            "mitochondrial matrix": "Innermost compartment of mitochondria"
+          }
+        },
+        {
+          "heading": "Anaerobic Respiration and Fermentation",
+          "body": "When oxygen is absent, cells use anaerobic pathways. Glycolysis still occurs, but pyruvate undergoes fermentation instead of entering the Krebs cycle. Lactic acid fermentation occurs in muscle cells and produces lactate. Alcoholic fermentation occurs in yeast and produces ethanol and CO2. Fermentation regenerates NAD+ needed for glycolysis to continue, but yields only 2 ATP per glucose compared to 36-38 from aerobic respiration.",
+          "keyTerms": [
+            "anaerobic respiration",
+            "fermentation",
+            "lactic acid fermentation",
+            "alcoholic fermentation",
+            "pyruvate",
+            "NAD+"
+          ],
+          "keyTermsDefs": {
+            "anaerobic respiration": "ATP production without oxygen",
+            "fermentation": "Anaerobic regeneration of NAD+",
+            "lactic acid fermentation": "Produces lactate from pyruvate",
+            "alcoholic fermentation": "Produces ethanol and CO2 from pyruvate",
+            "pyruvate": "3-carbon product of glycolysis",
+            "NAD+": "Electron carrier needed for glycolysis"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bio_08",
+      "title": "Plant Structure & Function",
+      "sections": [
+        {
+          "heading": "Plant Tissues and Organs",
+          "body": "Plants have three main organs: roots (anchor and absorb water/nutrients), stems (support and transport), and leaves (photosynthesis). Meristematic tissue contains actively dividing cells at root and shoot apices (apical meristems) and in vascular cambium (lateral meristem). Dermal tissue (epidermis) covers and protects the plant. Ground tissue includes parenchyma (photosynthesis, storage), collenchyma (support), and sclerenchyma (rigid support).",
+          "keyTerms": [
+            "meristematic tissue",
+            "apical meristem",
+            "vascular cambium",
+            "epidermis",
+            "parenchyma",
+            "collenchyma",
+            "sclerenchyma"
+          ],
+          "keyTermsDefs": {
+            "meristematic tissue": "Regions of actively dividing cells",
+            "apical meristem": "Growth tissue at root and shoot tips",
+            "vascular cambium": "Lateral meristem producing secondary growth",
+            "epidermis": "Outer protective layer of plant",
+            "parenchyma": "Cells for photosynthesis and storage",
+            "collenchyma": "Flexible support tissue",
+            "sclerenchyma": "Dead cells providing rigid support"
+          }
+        },
+        {
+          "heading": "Vascular Tissue and Transport",
+          "body": "Xylem transports water and minerals from roots to shoots via dead, hollow tracheids and vessel elements. Water moves up through cohesion (water molecules stick together), adhesion (water sticks to xylem walls), and transpiration pull. Phloem transports sugars and organic compounds bidirectionally through living sieve tube elements and companion cells. Translocation in phloem follows the pressure flow hypothesis, moving from source (leaves) to sink (roots, fruits).",
+          "keyTerms": [
+            "xylem",
+            "phloem",
+            "tracheids",
+            "vessel elements",
+            "sieve tube elements",
+            "transpiration",
+            "cohesion",
+            "translocation"
+          ],
+          "keyTermsDefs": {
+            "xylem": "Vascular tissue transporting water upward",
+            "phloem": "Vascular tissue transporting sugars bidirectionally",
+            "tracheids": "Long, narrow xylem cells",
+            "vessel elements": "Wide xylem cells stacked end-to-end",
+            "sieve tube elements": "Living phloem cells for sugar transport",
+            "transpiration": "Water loss from leaves via stomata",
+            "cohesion": "Water molecules attracted to each other",
+            "translocation": "Movement of sugars through phloem"
+          }
+        },
+        {
+          "heading": "Leaf Structure and Gas Exchange",
+          "body": "Leaves have a waxy cuticle to reduce water loss. The epidermis contains guard cells that regulate stomata (pores for gas exchange). The mesophyll includes palisade cells (tightly packed, high chloroplast density) and spongy mesophyll (loosely arranged with air spaces). C4 and CAM plants have adaptations to minimize photorespiration in hot, dry environments by temporally or spatially separating carbon fixation from the Calvin cycle.",
+          "keyTerms": [
+            "cuticle",
+            "guard cells",
+            "stomata",
+            "mesophyll",
+            "palisade cells",
+            "C4 plants",
+            "CAM plants",
+            "photorespiration"
+          ],
+          "keyTermsDefs": {
+            "cuticle": "Waxy coating preventing water loss",
+            "guard cells": "Cells controlling stomatal opening",
+            "stomata": "Pores for gas exchange",
+            "mesophyll": "Internal leaf tissue for photosynthesis",
+            "palisade cells": "Columnar cells beneath upper epidermis",
+            "C4 plants": "Plants with 4-carbon CO2 fixation pathway",
+            "CAM plants": "Plants opening stomata at night",
+            "photorespiration": "Wasteful pathway when RuBisCO binds O2"
+          }
+        },
+        {
+          "heading": "Plant Hormones",
+          "body": "Plant hormones (phytohormones) regulate growth and development. Auxins promote cell elongation, apical dominance, and phototropism. Gibberellins stimulate stem elongation and seed germination. Cytokinins promote cell division and delay senescence. Abscisic acid (ABA) promotes stomatal closure during drought and seed dormancy. Ethylene triggers fruit ripening and leaf abscission.",
+          "keyTerms": [
+            "auxins",
+            "gibberellins",
+            "cytokinins",
+            "abscisic acid",
+            "ethylene",
+            "phototropism",
+            "apical dominance",
+            "abscission"
+          ],
+          "keyTermsDefs": {
+            "auxins": "Hormones promoting cell elongation and growth",
+            "gibberellins": "Hormones stimulating stem and seed growth",
+            "cytokinins": "Hormones promoting cell division",
+            "abscisic acid": "Stress hormone closing stomata",
+            "ethylene": "Gas hormone triggering ripening",
+            "phototropism": "Growth response to light direction",
+            "apical dominance": "Suppression of lateral bud growth",
+            "abscission": "Shedding of leaves or fruit"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bio_09",
+      "title": "Animal Behavior",
+      "sections": [
+        {
+          "heading": "Innate vs. Learned Behavior",
+          "body": "Innate behaviors are genetically programmed and do not require learning. Examples include reflexes (automatic responses), kinesis (random movement in response to stimulus), and taxis (directed movement toward or away from stimulus). Fixed action patterns (FAPs) are stereotyped behaviors triggered by sign stimuli. Learned behaviors result from experience and include habituation (decreased response to repeated harmless stimulus), classical conditioning (associating two stimuli), and operant conditioning (learning through consequences).",
+          "keyTerms": [
+            "innate behavior",
+            "reflex",
+            "kinesis",
+            "taxis",
+            "fixed action pattern",
+            "habituation",
+            "classical conditioning",
+            "operant conditioning"
+          ],
+          "keyTermsDefs": {
+            "innate behavior": "Genetically programmed behavior",
+            "reflex": "Automatic response to stimulus",
+            "kinesis": "Random movement in response to stimulus",
+            "taxis": "Directed movement toward or from stimulus",
+            "fixed action pattern": "Innate sequence triggered by sign stimulus",
+            "habituation": "Decreased response to repeated harmless stimulus",
+            "classical conditioning": "Associating neutral stimulus with response",
+            "operant conditioning": "Learning through rewards or punishments"
+          }
+        },
+        {
+          "heading": "Social Behavior and Communication",
+          "body": "Many animals live in social groups with dominance hierarchies that reduce aggression and clarify resource access. Communication occurs through visual displays, vocalizations, chemical signals (pheromones), and tactile cues. Altruistic behavior appears to reduce individual fitness but can increase inclusive fitness by helping relatives (kin selection). Reciprocal altruism involves helping unrelated individuals with expectation of future benefit.",
+          "keyTerms": [
+            "dominance hierarchy",
+            "pheromones",
+            "altruistic behavior",
+            "inclusive fitness",
+            "kin selection",
+            "reciprocal altruism"
+          ],
+          "keyTermsDefs": {
+            "dominance hierarchy": "Ranking system within social groups",
+            "pheromones": "Chemical signals for communication",
+            "altruistic behavior": "Behavior benefiting others at personal cost",
+            "inclusive fitness": "Individual plus relatives' reproductive success",
+            "kin selection": "Helping relatives pass on shared genes",
+            "reciprocal altruism": "Helping non-relatives expecting future return"
+          }
+        },
+        {
+          "heading": "Mating Systems and Reproduction",
+          "body": "Animals exhibit various mating systems including monogamy (one male, one female), polygyny (one male, multiple females), polyandry (one female, multiple males), and promiscuity (no lasting bonds). Sexual selection favors traits that increase mating success through intrasexual selection (competition within sex) or intersexual selection (mate choice). Parental investment theory explains differences in reproductive strategies between sexes based on energy invested in offspring.",
+          "keyTerms": [
+            "monogamy",
+            "polygyny",
+            "polyandry",
+            "sexual selection",
+            "intrasexual selection",
+            "intersexual selection",
+            "parental investment"
+          ],
+          "keyTermsDefs": {
+            "monogamy": "Mating system with one partner",
+            "polygyny": "One male mating with multiple females",
+            "polyandry": "One female mating with multiple males",
+            "sexual selection": "Selection for traits increasing mating success",
+            "intrasexual selection": "Competition within one sex for mates",
+            "intersexual selection": "Mate choice by one sex",
+            "parental investment": "Energy and resources devoted to offspring"
+          }
+        },
+        {
+          "heading": "Foraging and Migration",
+          "body": "Optimal foraging theory predicts animals maximize energy gain while minimizing energy expenditure and predation risk. Search images help predators locate common prey types more efficiently. Migration involves seasonal movement between habitats for breeding or feeding. Animals navigate using the sun, stars, Earth's magnetic field, landmarks, and olfactory cues. Circadian rhythms are internal 24-hour biological clocks regulated by environmental light-dark cycles.",
+          "keyTerms": [
+            "optimal foraging",
+            "search image",
+            "migration",
+            "navigation",
+            "magnetic field",
+            "circadian rhythm"
+          ],
+          "keyTermsDefs": {
+            "optimal foraging": "Strategy maximizing energy gain per effort",
+            "search image": "Mental template for locating prey",
+            "migration": "Seasonal movement between habitats",
+            "navigation": "Directional orientation during movement",
+            "magnetic field": "Earth's field used for orientation",
+            "circadian rhythm": "Internal 24-hour biological clock"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bio_10",
+      "title": "Microbiology & Viruses",
+      "sections": [
+        {
+          "heading": "Prokaryotic Microorganisms",
+          "body": "Bacteria are unicellular prokaryotes with cell walls containing peptidoglycan. They reproduce asexually through binary fission and possess genetic material in the nucleoid region plus plasmids. Archaea are prokaryotes that thrive in extreme environments (hot springs, salt lakes, deep ocean vents). Both bacteria and archaea have flagella for movement and can perform various metabolic pathways. Some bacteria form biofilms (multicellular communities) for protection and nutrient sharing.",
+          "keyTerms": [
+            "bacteria",
+            "prokaryotes",
+            "peptidoglycan",
+            "binary fission",
+            "archaea",
+            "flagella",
+            "biofilms"
+          ]
+        },
+        {
+          "heading": "Virus Structure and Replication",
+          "body": "Viruses are obligate intracellular parasites consisting of genetic material (DNA or RNA) surrounded by a protein coat (capsid) and sometimes a lipid envelope. Viruses replicate by injecting genetic material into host cells, hijacking cellular machinery to produce viral components, then assembling and releasing new viruses. The lytic cycle destroys the host cell; the lysogenic cycle integrates viral DNA into the host genome (in bacteria, forming a prophage). Retroviruses carry reverse transcriptase to synthesize DNA from RNA.",
+          "keyTerms": [
+            "capsid",
+            "envelope",
+            "lytic cycle",
+            "lysogenic cycle",
+            "prophage",
+            "reverse transcriptase",
+            "obligate intracellular parasite"
+          ]
+        },
+        {
+          "heading": "Disease and Pathogenesis",
+          "body": "Pathogens cause disease through toxin production, invasion and destruction of tissues, blocking nutrient absorption, or triggering excessive immune responses. Virulence factors include adhesins (attachment), invasins (tissue penetration), and toxins. Infectious diseases spread via direct contact, fomites (contaminated surfaces), airborne droplets, vectors (organisms transmitting disease), or contaminated food/water. Antibiotic resistance arises from overuse and natural selection of resistant strains.",
+          "keyTerms": [
+            "pathogen",
+            "virulence",
+            "toxins",
+            "adhesins",
+            "vectors",
+            "fomites",
+            "antibiotic resistance"
+          ]
+        },
+        {
+          "heading": "Microbial Genetics and Evolution",
+          "body": "Bacteria exchange genetic material via conjugation (direct DNA transfer), transformation (uptake of environmental DNA), and transduction (transfer via bacteriophages). Horizontal gene transfer allows rapid acquisition of new traits like antibiotic resistance. Microbial evolution occurs rapidly due to short generation times and large population sizes. Genetic drift and natural selection shape microbial populations. Phylogenetic analysis using ribosomal RNA sequences reveals evolutionary relationships among microorganisms.",
+          "keyTerms": [
+            "conjugation",
+            "transformation",
+            "transduction",
+            "horizontal gene transfer",
+            "bacteriophages",
+            "genetic drift",
+            "phylogenetic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bio_11",
+      "title": "Biotechnology",
+      "sections": [
+        {
+          "heading": "DNA Manipulation and Cloning",
+          "body": "Restriction endonucleases cut DNA at specific recognition sequences, producing sticky ends or blunt ends. DNA ligase joins DNA fragments. Plasmids (small circular DNA) serve as vectors to introduce genes into cells. Polymerase chain reaction (PCR) amplifies specific DNA sequences exponentially using repeated heating and cooling cycles. PCR uses heat-stable DNA polymerase, typically Taq polymerase from thermophilic bacteria. DNA fingerprinting uses variable number tandem repeats (VNTRs) or short tandem repeats (STRs) for identification.",
+          "keyTerms": [
+            "restriction endonucleases",
+            "sticky ends",
+            "blunt ends",
+            "DNA ligase",
+            "plasmids",
+            "PCR",
+            "Taq polymerase",
+            "DNA fingerprinting"
+          ]
+        },
+        {
+          "heading": "Genetic Engineering and GMOs",
+          "body": "Genetic engineering introduces genes into organisms using recombinant DNA technology. The process involves isolating desired genes, inserting them into vectors, and introducing vectors into host cells. Genetically modified organisms (GMOs) include crops engineered for herbicide resistance, pest resistance, or nutritional content. CRISPR-Cas9 is a modern gene-editing tool adapted from bacterial immune systems, enabling precise DNA cuts and edits. Gene therapy aims to treat genetic diseases by introducing functional genes into patients.",
+          "keyTerms": [
+            "genetic engineering",
+            "recombinant DNA",
+            "GMO",
+            "CRISPR",
+            "Cas9",
+            "gene therapy",
+            "gene editing"
+          ]
+        },
+        {
+          "heading": "Protein Production and Expression",
+          "body": "Recombinant proteins are produced by expressing genes in host organisms like bacteria, yeast, or mammalian cells. E. coli (Escherichia coli) is commonly used for bacterial expression due to rapid growth and ease of manipulation. Proteins can be tagged with affinity sequences (His-tag, FLAG-tag) for easy purification using affinity chromatography. Monoclonal antibodies produced by hybridoma technology combine antibody-producing B cells with myeloma cancer cells. Biotechnologically produced proteins include insulin, growth hormone, and vaccines.",
+          "keyTerms": [
+            "recombinant proteins",
+            "E. coli",
+            "affinity tags",
+            "hybridoma",
+            "monoclonal antibodies",
+            "chromatography",
+            "protein expression"
+          ]
+        },
+        {
+          "heading": "Genomics and Bioinformatics",
+          "body": "Genomics studies entire sets of genes within organisms. DNA sequencing technologies range from Sanger sequencing (gold standard, accurate, slower) to next-generation sequencing (NGS, fast, massive data). The Human Genome Project identified approximately 20,000-25,000 genes in humans. Bioinformatics uses computational tools to analyze DNA sequences, identify genes, predict protein structures, and compare genomes across species. Database resources like GenBank and Ensembl provide reference sequences and annotations.",
+          "keyTerms": [
+            "genomics",
+            "DNA sequencing",
+            "Sanger sequencing",
+            "NGS",
+            "Human Genome Project",
+            "bioinformatics",
+            "GenBank"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bio_12",
+      "title": "Developmental Biology",
+      "sections": [
+        {
+          "heading": "Early Embryonic Development",
+          "body": "Development begins with fertilization, where sperm and egg nuclei fuse, restoring diploidy and activating the egg. Cleavage divisions rapidly multiply cells while decreasing cell size. The blastula is a hollow ball of cells; the blastocoel is the fluid-filled cavity. Gastrulation reorganizes cells into three germ layers: ectoderm (outer, forms nervous system and skin), mesoderm (middle, forms muscle and connective tissue), and endoderm (inner, forms digestive and respiratory systems). Morphogenesis (shaping of body form) involves cell migration, proliferation, and death.",
+          "keyTerms": [
+            "fertilization",
+            "cleavage",
+            "blastula",
+            "blastocoel",
+            "gastrulation",
+            "ectoderm",
+            "mesoderm",
+            "endoderm",
+            "morphogenesis"
+          ]
+        },
+        {
+          "heading": "Induction and Differentiation",
+          "body": "Cellular differentiation is the process by which cells become specialized. Induction occurs when one tissue signals to another, determining its developmental fate. Organizers are regions that influence development of surrounding tissue. The Spemann organizer in amphibians was the first identified organizer. Transcription factors and signaling molecules (morphogens) create concentration gradients that pattern the embryo. Morphogens like BMP and Wnt proteins activate different genes at different concentrations, establishing body axes and regions.",
+          "keyTerms": [
+            "cellular differentiation",
+            "induction",
+            "organizers",
+            "Spemann organizer",
+            "transcription factors",
+            "morphogens",
+            "concentration gradients"
+          ]
+        },
+        {
+          "heading": "Organ Development and Pattern Formation",
+          "body": "Organ development (organogenesis) follows gastrulation. The neural plate forms from ectoderm (neurulation), folding into the neural tube which becomes the brain and spinal cord. Limb buds appear and develop through interactions between the apical ectodermal ridge (AER) and underlying mesoderm. Hox genes (homeobox genes) control broad body plan patterning and segment identity. Mutations in Hox genes cause homeotic transformations (e.g., developing legs where antennae should be in Drosophila).",
+          "keyTerms": [
+            "organogenesis",
+            "neural plate",
+            "neurulation",
+            "neural tube",
+            "limb bud",
+            "apical ectodermal ridge",
+            "Hox genes",
+            "homeotic"
+          ]
+        },
+        {
+          "heading": "Apoptosis and Programmed Cell Death",
+          "body": "Apoptosis (programmed cell death) is essential for development, removing webbing between fingers, sculpting neural networks, and eliminating abnormal cells. Apoptosis differs from necrosis (traumatic cell death causing inflammation). Apoptotic cells shrink, their DNA fragments, and membrane-bound packages form that prevent leakage. Caspases are proteases triggering apoptosis. The p53 tumor suppressor protein activates apoptosis when cells are damaged beyond repair. Defects in apoptosis regulation contribute to cancer and autoimmune diseases.",
+          "keyTerms": [
+            "apoptosis",
+            "programmed cell death",
+            "necrosis",
+            "caspases",
+            "p53",
+            "tumor suppressor",
+            "cell death pathways"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bio_13",
+      "title": "Comparative Anatomy",
+      "sections": [
+        {
+          "heading": "Homologous and Analogous Structures",
+          "body": "Homologous structures are anatomically similar organs in different species, inherited from a common ancestor despite different functions (e.g., human arm, bat wing, whale flipper all have similar bone structure). Homology indicates evolutionary relationships. Analogous structures perform similar functions but lack common ancestry, resulting from convergent evolution (e.g., bird wings and insect wings). Vestigial structures like human tailbones and appendices are remnants of functional organs in ancestral species. Studying anatomical similarities and differences reveals evolutionary relationships.",
+          "keyTerms": [
+            "homologous structures",
+            "homology",
+            "analogous structures",
+            "convergent evolution",
+            "vestigial structures"
+          ]
+        },
+        {
+          "heading": "Skeletal System Comparisons",
+          "body": "The vertebrate skeleton supports the body and protects organs. Bone is a living tissue with osteocytes in lacunae, served by blood vessels and nerves. The skeleton includes axial parts (skull, vertebral column, ribs, sternum) and appendicular parts (limbs and girdles). Fish have cartilaginous or bony skeletons. Amphibians and reptiles have similar tetrapod skeletons adapted for different environments. Mammalian skeletons show specialized adaptations (e.g., elongated limbs in horses, modified limbs in whales and bats).",
+          "keyTerms": [
+            "vertebrate skeleton",
+            "osteocytes",
+            "axial skeleton",
+            "appendicular skeleton",
+            "tetrapod",
+            "cartilaginous",
+            "bony skeleton"
+          ]
+        },
+        {
+          "heading": "Muscular System Variations",
+          "body": "Muscle tissue is classified as skeletal (voluntary, striated), cardiac (involuntary, striated, heart), and smooth (involuntary, non-striated, internal organs). Skeletal muscles attach to bones via tendons and work in antagonistic pairs (flexors and extensors). Muscle contraction follows the sliding filament theory: actin and myosin filaments slide past each other using ATP energy and calcium regulation. Comparative anatomy shows muscle arrangement varies between species to suit locomotion and lifestyle. Some animals have specialized muscles (electric fish with electric organs, fast-twitch sprinters vs. slow-twitch endurance animals).",
+          "keyTerms": [
+            "skeletal muscle",
+            "cardiac muscle",
+            "smooth muscle",
+            "tendons",
+            "actin",
+            "myosin",
+            "sliding filament",
+            "antagonistic pairs"
+          ]
+        },
+        {
+          "heading": "Digestive System Diversity",
+          "body": "Digestive systems vary based on diet and food sources. Herbivores have longer digestive tracts and often specialized structures like crop (birds) or rumen (cattle) for microbial fermentation. Carnivores have shorter, more acidic digestive tracts optimized for protein digestion. Omnivores have intermediate adaptations. Teeth structure differs: incisors and canines in carnivores, flat molars in herbivores. The esophagus, stomach, small intestine (duodenum, jejunum, ileum), large intestine, and rectum process food. Enzymes, bile, and hormones coordinate digestion and nutrient absorption.",
+          "keyTerms": [
+            "herbivores",
+            "carnivores",
+            "omnivores",
+            "crop",
+            "rumen",
+            "esophagus",
+            "stomach",
+            "small intestine",
+            "enzyme digestion"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bio_14",
+      "title": "Biochemistry",
+      "sections": [
+        {
+          "heading": "Carbohydrates and Energy",
+          "body": "Carbohydrates consist of carbon, hydrogen, and oxygen in an approximately 1:2:1 ratio. Monosaccharides (glucose, fructose) are simple sugars. Disaccharides (sucrose, lactose) contain two monosaccharides. Polysaccharides store energy (starch in plants, glycogen in animals) or provide structure (cellulose in plants, chitin in arthropods). Glycolysis converts glucose to pyruvate, yielding 2 ATP and 2 NADH. Carbohydrates are the primary energy source for cells, with 1 gram providing 4 calories.",
+          "keyTerms": [
+            "carbohydrates",
+            "monosaccharides",
+            "disaccharides",
+            "polysaccharides",
+            "glucose",
+            "glycogen",
+            "starch",
+            "cellulose",
+            "glycolysis"
+          ]
+        },
+        {
+          "heading": "Lipids and Membranes",
+          "body": "Lipids are hydrophobic molecules including fats, oils, phospholipids, and steroids. Triglycerides (fats and oils) consist of glycerol and three fatty acids, serving as energy storage. Saturated fats have no double bonds between carbons and are typically solid; unsaturated fats have double bonds and are typically liquid. Phospholipids form bilayers in cell membranes with hydrophilic heads and hydrophobic tails. Cholesterol is a steroid that regulates membrane fluidity. One gram of fat provides 9 calories, more than twice that of carbohydrates.",
+          "keyTerms": [
+            "lipids",
+            "triglycerides",
+            "glycerol",
+            "fatty acids",
+            "saturated fats",
+            "unsaturated fats",
+            "phospholipids",
+            "cholesterol"
+          ]
+        },
+        {
+          "heading": "Proteins and Enzymes",
+          "body": "Proteins are polymers of amino acids linked by peptide bonds. The 20 standard amino acids differ in their R groups (side chains). Primary structure is the amino acid sequence. Secondary structures include alpha helices and beta sheets, stabilized by hydrogen bonds. Tertiary structure is the 3D shape maintained by hydrophobic interactions, disulfide bonds, and ionic interactions. Quaternary structure involves multiple polypeptide chains. Enzymes are proteins that catalyze reactions by lowering activation energy. Substrate specificity and induced fit are key enzyme properties.",
+          "keyTerms": [
+            "proteins",
+            "amino acids",
+            "peptide bonds",
+            "primary structure",
+            "secondary structure",
+            "tertiary structure",
+            "quaternary structure",
+            "enzymes",
+            "substrate",
+            "activation energy"
+          ]
+        },
+        {
+          "heading": "Nucleic Acids and Information",
+          "body": "Nucleic acids (DNA and RNA) store and transmit genetic information. Nucleotides consist of a sugar (deoxyribose in DNA, ribose in RNA), a phosphate group, and a nitrogenous base. DNA uses bases A, T, G, C; RNA uses A, U, G, C. DNA is typically double-stranded and stable; RNA is typically single-stranded. mRNA carries genetic instructions from DNA to ribosomes. tRNA brings amino acids to the ribosome. rRNA is a structural and catalytic component of ribosomes. ATP, GTP, and other nucleotides also serve as energy molecules.",
+          "keyTerms": [
+            "nucleic acids",
+            "DNA",
+            "RNA",
+            "nucleotides",
+            "deoxyribose",
+            "ribose",
+            "mRNA",
+            "tRNA",
+            "rRNA",
+            "ATP"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bio_15",
+      "title": "Advanced Genetics",
+      "sections": [
+        {
+          "heading": "Chromosomal Inheritance",
+          "body": "Chromosomes contain many genes linearly arranged. Linkage occurs when genes are on the same chromosome and tend to be inherited together. Crossing over during meiosis I recombines linked genes at frequencies related to their distance apart (measured in map units or centimorgans). The further apart genes are, the more likely crossing over separates them. Linked genes don't follow typical Mendelian ratios. Chromosome mapping uses recombination frequencies to determine gene order and relative distances on chromosomes.",
+          "keyTerms": [
+            "chromosomes",
+            "linkage",
+            "crossing over",
+            "map units",
+            "centimorgans",
+            "chromosome mapping",
+            "recombination frequencies"
+          ]
+        },
+        {
+          "heading": "Mutations and Genetic Variation",
+          "body": "Mutations are changes in DNA sequence and can be beneficial, harmful, or neutral. Point mutations affect single nucleotides: missense mutations (codon for different amino acid), nonsense mutations (stop codon), and silent mutations (no amino acid change). Insertion and deletion mutations shift the reading frame (frameshift mutations), often severely damaging proteins. Chromosomal mutations include deletions, duplications, inversions, and translocations. Spontaneous mutations occur from DNA replication errors or radiation. Induced mutations result from mutagens like chemicals or UV light. Genetic variation is essential for evolution.",
+          "keyTerms": [
+            "mutations",
+            "point mutations",
+            "missense",
+            "nonsense",
+            "silent mutations",
+            "frameshift",
+            "chromosomal mutations",
+            "mutagens"
+          ]
+        },
+        {
+          "heading": "Population Genetics",
+          "body": "Population genetics studies genetic composition and variation in populations. Allele frequency (p + q = 1) describes genetic makeup. The Hardy-Weinberg equilibrium states that allele frequencies remain constant if no evolution occurs (no mutation, selection, migration, or genetic drift). Genotype frequencies follow p² + 2pq + q² = 1. Deviations from Hardy-Weinberg indicate evolutionary forces at work. Genetic drift causes random changes in allele frequency, especially in small populations. Gene flow (migration) introduces new alleles. Natural selection changes allele frequencies based on fitness differences.",
+          "keyTerms": [
+            "population genetics",
+            "allele frequency",
+            "Hardy-Weinberg equilibrium",
+            "genotype frequency",
+            "genetic drift",
+            "gene flow",
+            "natural selection",
+            "fitness"
+          ]
+        },
+        {
+          "heading": "Complex Inheritance Patterns",
+          "body": "Many traits are controlled by multiple genes (polygenic inheritance), resulting in continuous variation (e.g., human height). Pleiotropy occurs when one gene influences multiple traits. Epistasis occurs when one gene's expression depends on another gene's genotype. Environmental factors also influence phenotype (phenotypic plasticity). Twin studies compare monozygotic (identical) and dizygotic (fraternal) twins to estimate heritability. Heritability indicates the proportion of phenotypic variation due to genetic variation. Some traits show genomic imprinting, where allele expression depends on parent of origin.",
+          "keyTerms": [
+            "polygenic inheritance",
+            "pleiotropy",
+            "epistasis",
+            "phenotypic plasticity",
+            "monozygotic",
+            "dizygotic",
+            "heritability",
+            "genomic imprinting"
+          ]
+        }
+      ]
+    }
+  ]
+}

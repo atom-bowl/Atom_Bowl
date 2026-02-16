@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Buzzer Rooms | Atom Bowl</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0f14" />
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/buzzer_rooms.css?v=20260204c">
+</head>
+<body class="nav-collapsed">
+  <header class="topbar">
+    <a href="index.html" class="back-link" aria-label="Back to Home">←</a>
+    <div class="topbar-title">Buzzer Rooms</div>
+  </header>
+
+  <main class="main">
+    <section class="hero">
+      <h1>Buzzer Rooms</h1>
+      <p>Create a room, share a code, and run a live match with moderation tools.</p>
+    </section>
+
+    <section class="panel-grid">
+      <div class="panel">
+        <h2>Create Room</h2>
+        <p class="muted">Set rules and tools for a live match.</p>
+        <button id="goCreateBtn" class="btn primary">Create Room</button>
+      </div>
+
+      <div class="panel">
+        <h2>Join Room</h2>
+        <label class="label">Room Code</label>
+        <input id="joinCode" type="text" maxlength="6" placeholder="ABCDE" />
+        <label class="label">Display Name</label>
+        <input id="displayName" type="text" maxlength="20" placeholder="Your name" />
+        <label class="label">Team</label>
+        <select id="teamSelect"></select>
+        <p id="teamHint" class="muted">Teams will load when a valid code is entered.</p>
+        <button id="joinRoomBtn" class="btn">Join Room</button>
+        <p id="joinError" class="error"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/common.js"></script>
+  <script type="module" src="js/buzzer_landing.js?v=20260204b"></script>
+</body>
+</html>
+
+

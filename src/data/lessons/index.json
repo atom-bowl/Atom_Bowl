@@ -1,0 +1,142 @@
+{
+  "subjects": [
+    {
+      "id": "biology",
+      "label": "Biology",
+      "icon": "🧬",
+      "file": "biology.json",
+      "lessons": [
+        { "id": "bio_01", "title": "Cell Structure & Function", "description": "Prokaryotic vs eukaryotic cells, organelles, and cellular organization.", "order": 1 },
+        { "id": "bio_02", "title": "Cell Division & Genetics", "description": "Mitosis, meiosis, DNA replication, and inheritance patterns.", "order": 2 },
+        { "id": "bio_03", "title": "Molecular Biology", "description": "DNA, RNA, protein synthesis, and gene expression.", "order": 3 },
+        { "id": "bio_04", "title": "Evolution & Taxonomy", "description": "Natural selection, speciation, phylogenetics, and classification.", "order": 4 },
+        { "id": "bio_05", "title": "Ecology & Ecosystems", "description": "Biomes, food webs, population dynamics, and biogeochemical cycles.", "order": 5 },
+        { "id": "bio_06", "title": "Human Body Systems", "description": "Nervous, circulatory, respiratory, immune, and digestive systems.", "order": 6 },
+        { "id": "bio_07", "title": "Photosynthesis & Cellular Respiration", "description": "Light reactions, Calvin cycle, glycolysis, Krebs cycle, and ATP production.", "order": 7 },
+        { "id": "bio_08", "title": "Plant Structure & Function", "description": "Plant tissues, vascular systems, leaf structure, and hormones.", "order": 8 },
+        { "id": "bio_09", "title": "Animal Behavior", "description": "Innate and learned behaviors, communication, mating, and migration.", "order": 9 },
+        { "id": "bio_10", "title": "Microbiology & Viruses", "description": "Bacteria, archaea, viruses, and their genetics and pathogenesis.", "order": 10 },
+        { "id": "bio_11", "title": "Biotechnology", "description": "DNA manipulation, PCR, genetic engineering, GMOs, and genomics.", "order": 11 },
+        { "id": "bio_12", "title": "Developmental Biology", "description": "Embryonic development, gastrulation, organogenesis, and apoptosis.", "order": 12 },
+        { "id": "bio_13", "title": "Comparative Anatomy", "description": "Homologous structures, skeletal and muscular variations, digestive diversity.", "order": 13 },
+        { "id": "bio_14", "title": "Biochemistry", "description": "Carbohydrates, lipids, proteins, nucleic acids, and enzyme structure.", "order": 14 },
+        { "id": "bio_15", "title": "Advanced Genetics", "description": "Chromosomal inheritance, mutations, population genetics, and complex traits.", "order": 15 }
+      ]
+    },
+    {
+      "id": "chemistry",
+      "label": "Chemistry",
+      "icon": "⚗️",
+      "file": "chemistry.json",
+      "lessons": [
+        { "id": "chem_01", "title": "Atomic Structure", "description": "Subatomic particles, electron configuration, and periodic trends.", "order": 1 },
+        { "id": "chem_02", "title": "Chemical Bonding", "description": "Ionic, covalent, and metallic bonds; VSEPR theory and molecular geometry.", "order": 2 },
+        { "id": "chem_03", "title": "Stoichiometry & Reactions", "description": "Balancing equations, mole concept, limiting reagents, and yield.", "order": 3 },
+        { "id": "chem_04", "title": "States of Matter & Solutions", "description": "Gas laws, phase diagrams, colligative properties, and solubility.", "order": 4 },
+        { "id": "chem_05", "title": "Acids, Bases & Equilibrium", "description": "pH, buffers, titration, Le Chatelier's principle, and Ksp.", "order": 5 },
+        { "id": "chem_06", "title": "Thermodynamics & Kinetics", "description": "Enthalpy, entropy, Gibbs free energy, reaction rates, and catalysis.", "order": 6 },
+        { "id": "chem_07", "title": "Electrochemistry", "description": "Redox reactions, galvanic cells, electrolysis, and batteries.", "order": 7 },
+        { "id": "chem_08", "title": "Organic Chemistry", "description": "Hydrocarbons, functional groups, isomerism, and nomenclature.", "order": 8 },
+        { "id": "chem_09", "title": "Nuclear Chemistry", "description": "Radioactive decay, half-life, fission, fusion, and applications.", "order": 9 },
+        { "id": "chem_10", "title": "Transition Metals & Coordination", "description": "Transition metal properties, complex ions, and crystal field theory.", "order": 10 },
+        { "id": "chem_11", "title": "Spectroscopy & Analysis", "description": "IR, UV-Vis, NMR spectroscopy, and mass spectrometry.", "order": 11 },
+        { "id": "chem_12", "title": "Polymers & Materials", "description": "Addition and condensation polymers, properties, and applications.", "order": 12 },
+        { "id": "chem_13", "title": "Environmental Chemistry", "description": "Pollution, ozone depletion, acid rain, and green chemistry.", "order": 13 },
+        { "id": "chem_14", "title": "Biochemistry", "description": "Carbohydrates, lipids, proteins, nucleic acids, and metabolism.", "order": 14 },
+        { "id": "chem_15", "title": "Industrial Chemistry", "description": "Haber process, contact process, petroleum refining, and synthesis.", "order": 15 }
+      ]
+    },
+    {
+      "id": "earth_space",
+      "label": "Earth & Space",
+      "icon": "🌍",
+      "file": "earth_space.json",
+      "lessons": [
+        { "id": "es_01", "title": "Earth's Interior & Plate Tectonics", "description": "Layers of the Earth, plate boundaries, earthquakes, and volcanism.", "order": 1 },
+        { "id": "es_02", "title": "Rocks & Minerals", "description": "Rock cycle, mineral identification, igneous, sedimentary, and metamorphic rocks.", "order": 2 },
+        { "id": "es_03", "title": "Atmosphere & Weather", "description": "Atmospheric layers, pressure systems, fronts, and severe weather.", "order": 3 },
+        { "id": "es_04", "title": "Oceanography", "description": "Ocean currents, tides, salinity, and marine geology.", "order": 4 },
+        { "id": "es_05", "title": "Astronomy & the Solar System", "description": "Planets, moons, stars, galaxies, and cosmology.", "order": 5 },
+        { "id": "es_06", "title": "Earth's History & Geologic Time", "description": "Fossils, relative and absolute dating, eras, and mass extinctions.", "order": 6 },
+        { "id": "es_07", "title": "Water Cycle & Hydrology", "description": "Precipitation, runoff, groundwater, aquifers, and watersheds.", "order": 7 },
+        { "id": "es_08", "title": "Soil Science", "description": "Soil formation, horizons, composition, and erosion.", "order": 9 },
+        { "id": "es_09", "title": "Natural Resources", "description": "Renewable and nonrenewable resources, mining, and conservation.", "order": 9 },
+        { "id": "es_10", "title": "Natural Hazards", "description": "Earthquakes, volcanoes, floods, hurricanes, and disaster preparedness.", "order": 10 },
+        { "id": "es_11", "title": "Climate Patterns", "description": "El Niño, La Niña, monsoons, and global circulation patterns.", "order": 11 },
+        { "id": "es_12", "title": "Planetary Science", "description": "Comparative planetology, exoplanets, and planetary exploration.", "order": 12 },
+        { "id": "es_13", "title": "Stellar Astronomy", "description": "Star formation, life cycles, nucleosynthesis, and stellar remnants.", "order": 13 },
+        { "id": "es_14", "title": "Remote Sensing & GIS", "description": "Satellite imagery, GPS, mapping, and geographic analysis.", "order": 14 },
+        { "id": "es_15", "title": "Space Exploration", "description": "History of space missions, current programs, and future prospects.", "order": 15 }
+      ]
+    },
+    {
+      "id": "energy",
+      "label": "Energy",
+      "icon": "🔋",
+      "file": "energy.json",
+      "lessons": [
+        { "id": "nrg_01", "title": "Forms & Conservation of Energy", "description": "Kinetic, potential, thermal energy, and the law of conservation.", "order": 1 },
+        { "id": "nrg_02", "title": "Thermodynamics", "description": "Laws of thermodynamics, heat transfer, and entropy.", "order": 2 },
+        { "id": "nrg_03", "title": "Electricity & Magnetism", "description": "Circuits, Ohm's law, electromagnetic induction, and motors.", "order": 3 },
+        { "id": "nrg_04", "title": "Fossil Fuels & Nuclear Energy", "description": "Coal, oil, natural gas, fission, fusion, and radioactivity.", "order": 4 },
+        { "id": "nrg_05", "title": "Renewable Energy Sources", "description": "Solar, wind, hydroelectric, geothermal, and biomass energy.", "order": 5 },
+        { "id": "nrg_06", "title": "Energy Policy & Environmental Impact", "description": "Climate change, carbon footprint, energy efficiency, and sustainability.", "order": 6 },
+        { "id": "nrg_07", "title": "Energy Storage Technologies", "description": "Batteries, capacitors, flywheels, pumped hydro, and hydrogen storage.", "order": 7 },
+        { "id": "nrg_08", "title": "Power Generation & Distribution", "description": "Power plants, electrical grids, transmission, and smart grids.", "order": 8 },
+        { "id": "nrg_09", "title": "Transportation Energy", "description": "Combustion engines, electric vehicles, hybrid systems, and biofuels.", "order": 9 },
+        { "id": "nrg_10", "title": "Building Energy Systems", "description": "HVAC, insulation, passive design, and net-zero buildings.", "order": 10 },
+        { "id": "nrg_11", "title": "Advanced Nuclear Technologies", "description": "Generation IV reactors, thorium, fusion research, and safety.", "order": 11 },
+        { "id": "nrg_12", "title": "Ocean Energy", "description": "Tidal, wave, ocean thermal energy conversion, and potential.", "order": 12 },
+        { "id": "nrg_13", "title": "Energy Economics", "description": "Energy markets, pricing, subsidies, and cost-benefit analysis.", "order": 13 },
+        { "id": "nrg_14", "title": "Energy Access & Equity", "description": "Energy poverty, global disparities, and development solutions.", "order": 14 },
+        { "id": "nrg_15", "title": "Future Energy Systems", "description": "Emerging technologies, fusion breakthrough, and long-term outlook.", "order": 15 }
+      ]
+    },
+    {
+      "id": "mathematics",
+      "label": "Mathematics",
+      "icon": "📊",
+      "file": "mathematics.json",
+      "lessons": [
+        { "id": "math_01", "title": "Algebra & Functions", "description": "Polynomials, rational expressions, function notation, and graphing.", "order": 1 },
+        { "id": "math_02", "title": "Geometry & Trigonometry", "description": "Triangles, circles, coordinate geometry, trig identities, and unit circle.", "order": 2 },
+        { "id": "math_03", "title": "Probability & Statistics", "description": "Combinatorics, distributions, mean, median, standard deviation.", "order": 3 },
+        { "id": "math_04", "title": "Number Theory", "description": "Primes, divisibility, modular arithmetic, and Diophantine equations.", "order": 4 },
+        { "id": "math_05", "title": "Sequences & Series", "description": "Arithmetic, geometric, recursive sequences, and convergence.", "order": 5 },
+        { "id": "math_06", "title": "Calculus Fundamentals", "description": "Limits, derivatives, integrals, and the fundamental theorem.", "order": 6 },
+        { "id": "math_07", "title": "Vectors & Matrices", "description": "Vector operations, dot and cross products, matrix algebra.", "order": 7 },
+        { "id": "math_08", "title": "Complex Numbers", "description": "Imaginary unit, complex plane, polar form, and De Moivre's theorem.", "order": 8 },
+        { "id": "math_09", "title": "Exponential & Logarithmic Functions", "description": "Properties, graphs, equations, and applications.", "order": 9 },
+        { "id": "math_10", "title": "Conic Sections", "description": "Circles, ellipses, parabolas, hyperbolas, and equations.", "order": 10 },
+        { "id": "math_11", "title": "Logic & Proofs", "description": "Mathematical reasoning, direct and indirect proofs, induction.", "order": 11 },
+        { "id": "math_12", "title": "Differential Equations", "description": "First-order, second-order, separable equations, and applications.", "order": 12 },
+        { "id": "math_13", "title": "Multivariable Calculus", "description": "Partial derivatives, multiple integrals, and gradient vectors.", "order": 13 },
+        { "id": "math_14", "title": "Discrete Mathematics", "description": "Graph theory, combinatorics, recurrence relations, and algorithms.", "order": 14 },
+        { "id": "math_15", "title": "Advanced Topics", "description": "Group theory, abstract algebra, topology, and real analysis.", "order": 15 }
+      ]
+    },
+    {
+      "id": "physics",
+      "label": "Physics",
+      "icon": "⚙️",
+      "file": "physics.json",
+      "lessons": [
+        { "id": "phys_01", "title": "Kinematics & Motion", "description": "Displacement, velocity, acceleration, and projectile motion.", "order": 1 },
+        { "id": "phys_02", "title": "Forces & Newton's Laws", "description": "Free-body diagrams, friction, tension, and circular motion.", "order": 2 },
+        { "id": "phys_03", "title": "Work, Energy & Momentum", "description": "Work-energy theorem, conservation laws, impulse, and collisions.", "order": 3 },
+        { "id": "phys_04", "title": "Waves & Optics", "description": "Wave properties, sound, light, reflection, refraction, and diffraction.", "order": 4 },
+        { "id": "phys_05", "title": "Electricity & Circuits", "description": "Coulomb's law, electric fields, capacitors, and DC circuits.", "order": 5 },
+        { "id": "phys_06", "title": "Modern Physics", "description": "Relativity, quantum mechanics, atomic models, and nuclear physics.", "order": 6 },
+        { "id": "phys_07", "title": "Rotational Motion", "description": "Angular velocity, torque, moment of inertia, and angular momentum.", "order": 7 },
+        { "id": "phys_08", "title": "Gravitation", "description": "Universal gravitation, orbital mechanics, and Kepler's laws.", "order": 8 },
+        { "id": "phys_09", "title": "Fluid Mechanics", "description": "Pressure, buoyancy, Pascal's and Bernoulli's principles, and flow.", "order": 9 },
+        { "id": "phys_10", "title": "Thermodynamics", "description": "Temperature, heat transfer, ideal gas law, and thermodynamic cycles.", "order": 10 },
+        { "id": "phys_11", "title": "Oscillations & Simple Harmonic Motion", "description": "Springs, pendulums, resonance, and damped oscillations.", "order": 11 },
+        { "id": "phys_12", "title": "AC Circuits & Electromagnetic Waves", "description": "Alternating current, RLC circuits, and EM spectrum.", "order": 12 },
+        { "id": "phys_13", "title": "Quantum Mechanics", "description": "Wave functions, uncertainty principle, tunneling, and quantum states.", "order": 13 },
+        { "id": "phys_14", "title": "Particle Physics", "description": "Standard model, quarks, leptons, bosons, and fundamental forces.", "order": 14 },
+        { "id": "phys_15", "title": "Astrophysics", "description": "Stellar evolution, cosmology, dark matter, and black holes.", "order": 15 }
+      ]
+    }
+  ]
+}

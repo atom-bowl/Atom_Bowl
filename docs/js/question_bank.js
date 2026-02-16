@@ -59,8 +59,8 @@
     }
     async function loadBank() {
         const sources = [
-            { id: 'data/set_A.json', label: 'Bank A' },
-            { id: 'data/set_B.json', label: 'Bank B' }
+            { id: 'data/set_A.json', label: 'Dynamazar (Set A)' },
+            { id: 'data/set_B.json', label: 'Scalazar (Set B)' }
         ];
         const results = await Promise.all(sources.map(async (source) => {
             const res = await fetch(`./${source.id}`, { cache: 'no-store' });

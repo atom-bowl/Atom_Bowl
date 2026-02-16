@@ -47,6 +47,7 @@ declare global {
   interface Window {
     atomSettings?: AtomSettings;
     atomNavigate?: (url: string) => void;
+    go?: (page: string) => void;
     autoChecker?: AutoChecker;
     ATOM_API_BASE?: string;
     startRun?: (mode: string) => void;

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Atom Bowl - Account</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0f14" />
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/account.css">
+</head>
+<body class="page-transition page-enter">
+  <div class="waves" aria-hidden="true">
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path class="wave1" fill="rgba(79,124,255,0.20)" d="M0,224L48,229.3C96,235,192,245,288,229.3C384,213,480,171,576,154.7C672,139,768,149,864,176C960,203,1056,245,1152,250.7C1248,256,1344,224,1392,208L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+      <path class="wave2" fill="rgba(57,217,138,0.10)" d="M0,256L60,229.3C120,203,240,149,360,138.7C480,128,600,160,720,170.7C840,181,960,171,1080,186.7C1200,203,1320,245,1380,266.7L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+    </svg>
+  </div>
+
+  <div class="nav" id="nav">
+    <h2 class="nav-title"><a class="nav-title-link" href="index.html">&#x269B; Atom Bowl</a></h2>
+    <a href="generate.html"><span class="icon">&#x1F916;</span> Generate</a>
+    <a href="practice_home.html"><span class="icon">&#x26A1;</span> Practice</a>
+    <a href="question_bank.html"><span class="icon">&#x1F4DA;</span> Question Bank</a>
+    <a href="settings.html"><span class="icon">&#x2699;&#xFE0F;</span> Settings</a>
+    <a href="learn.html"><span class="icon">&#x1F4D6;</span> Learn</a>
+    <div class="nav-quick-controls">
+      <div class="nav-more" data-nav-more>
+        <button class="nav-more-btn" type="button" aria-haspopup="true" aria-expanded="false">...</button>
+        <div class="nav-more-menu">
+          <a href="game_clock.html">Game Clock</a>
+          <a href="buzzer_rooms.html">Buzzer Rooms</a>
+        </div>
+      </div>
+      <a href="account.html" class="nav-account active" aria-label="Account" title="Account"><span class="icon" aria-hidden="true">&#128100;</span><span class="label">Account</span></a>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <div class="hamburger" id="hamburger">&#9776;</div>
+
+  <div class="main">
+    <div class="header">
+      <div>
+        <h1 class="title">Account</h1>
+        <div class="subtitle">Profile, identity, and stats sync across devices.</div>
+      </div>
+    </div>
+
+    <section class="card profile-card">
+      <div class="profile">
+        <img id="profilePhoto" class="avatar" src="favicon.png" alt="Profile photo" />
+        <div class="profile-meta">
+          <div class="profile-name" id="profilePlayerName">Guest</div>
+          <div class="profile-username">Username: <span id="profileUsername">Sign In</span></div>
+          <div class="profile-email" id="profileEmail">No account connected</div>
+        </div>
+      </div>
+      <div class="status">
+        <div class="status-text" id="statusText">Not Signed In</div>
+        <div class="status-sub" id="statusSub">Sign in to sync your profile and stats.</div>
+        <div class="guest-row">Cache username: <code id="guestTag">------------</code></div>
+      </div>
+
+      <div id="signedOutActions" class="button-row">
+        <button class="btn" id="openSignInBtn" type="button" data-auth-action>Sign In</button>
+        <button class="btn ghost" id="openSignUpBtn" type="button" data-auth-action>Sign Up</button>
+      </div>
+
+      <div id="signedInPanel" class="hidden">
+        <h2>Account Homepage</h2>
+        <div class="form-grid">
+          <div>
+            <label class="label">Username (locked)</label>
+            <input class="input input-readonly" type="text" id="usernameLockedInput" placeholder="Set on sign-up" readonly />
+          </div>
+          <div>
+            <label class="label">Email (locked)</label>
+            <input class="input input-readonly" type="text" id="emailLockedInput" placeholder="Linked email" readonly />
+          </div>
+          <div>
+            <label class="label">Player Name</label>
+            <input class="input" type="text" id="playerNameInput" placeholder="Name shown in game" />
+          </div>
+          <div>
+            <label class="label">First Name</label>
+            <input class="input" type="text" id="firstNameInput" placeholder="First name" />
+          </div>
+          <div>
+            <label class="label">Last Name</label>
+            <input class="input" type="text" id="lastNameInput" placeholder="Last name" />
+          </div>
+          <div>
+            <label class="label">Phone (optional)</label>
+            <input class="input" type="text" id="phoneInput" placeholder="Phone number" />
+          </div>
+          <div class="full-span">
+            <label class="label">Upload Profile Picture</label>
+            <input class="input" type="file" id="photoUploadInput" accept="image/*" />
+          </div>
+        </div>
+        <div class="button-row">
+          <button class="btn" id="saveProfileBtn" type="button" data-auth-action>Save Profile</button>
+          <button class="btn danger" id="signOutBtn" type="button" data-auth-action>Sign Out</button>
+        </div>
+      </div>
+      <p id="accountError" class="error"></p>
+    </section>
+
+    <section class="card stats-card">
+      <h2>Practice Stats</h2>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-label">Games Played</div>
+          <div class="stat-value" id="statRuns">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Average Score</div>
+          <div class="stat-value" id="statAvgScore">0.0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Time Played</div>
+          <div class="stat-value" id="statTimePlayed">0m</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Accuracy</div>
+          <div class="stat-value" id="statAccuracy">0%</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <nav class="bottom-nav" aria-label="Primary">
+    <a href="index.html"><span class="icon">&#x269B;</span><span>Home</span></a>
+    <a href="generate.html"><span class="icon">&#x1F916;</span><span>Generate</span></a>
+    <a href="practice_home.html"><span class="icon">&#x26A1;</span><span>Practice</span></a>
+    <a href="question_bank.html"><span class="icon">&#x1F4DA;</span><span>Bank</span></a>
+    <a href="account.html" class="active"><span class="icon">&#x1F464;</span><span>Account</span></a>
+    <div class="bottom-nav-more">
+      <button type="button" aria-haspopup="true" aria-expanded="false" onclick="toggleBottomNavMore(event)">
+        <span class="icon">&#x22EF;</span><span>More</span>
+      </button>
+      <div class="bottom-nav-more-menu">
+        <a href="game_clock.html"><span class="icon">&#x23F1;&#xFE0F;</span> Game Clock</a>
+        <a href="buzzer_rooms.html"><span class="icon">&#x1F6A8;</span> Buzzer Rooms</a>
+        <a href="learn.html"><span class="icon">&#x1F4D6;</span> Learn</a>
+        <a href="settings.html"><span class="icon">&#x2699;&#xFE0F;</span> Settings</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="modal hidden" id="authModal" role="dialog" aria-modal="true" aria-label="Authentication">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>Create Account</h2>
+        <button class="icon-btn" id="closeAuthModal" type="button">&times;</button>
+      </div>
+      <div class="tab-row">
+        <button class="tab" id="showSignInTab" type="button">Sign In</button>
+        <button class="tab active" id="showSignUpTab" type="button">Sign Up</button>
+      </div>
+
+      <div id="signInFormPanel">
+        <div class="provider-row">
+          <button class="btn provider google" id="googleBtn" type="button" data-auth-action>
+            <img class="brand-icon" src="Google-Symbol.png" alt="" aria-hidden="true" />
+            Continue with Google
+          </button>
+          <button class="btn provider microsoft" id="microsoftBtn" type="button" data-auth-action>
+            <img class="brand-icon" src="microsoft.svg" alt="" aria-hidden="true" />
+            Continue with Microsoft
+          </button>
+        </div>
+        <div class="divider"><span>or use Email</span></div>
+        <label class="label">Email or Username</label>
+        <input class="input" id="signinIdentifierInput" type="text" placeholder="scibowl@atombowl.com or username" />
+        <label class="label">Password</label>
+        <input class="input" id="signinPasswordInput" type="password" placeholder="Password" />
+        <button class="btn" id="signinBtn" type="button" data-auth-action>Sign In</button>
+        <p class="tiny-link">Don't have an account? <a href="#" id="gotoSignupLink">Sign up</a></p>
+      </div>
+
+      <div id="signUpFormPanel" class="hidden">
+        <div class="form-grid">
+          <div>
+            <label class="label">First Name*</label>
+            <input class="input" id="signupFirstName" type="text" />
+          </div>
+          <div>
+            <label class="label">Last Name*</label>
+            <input class="input" id="signupLastName" type="text" />
+          </div>
+          <div>
+            <label class="label">Email*</label>
+            <input class="input" id="signupEmail" type="email" />
+          </div>
+          <div>
+            <label class="label">Phone</label>
+            <input class="input" id="signupPhone" type="text" />
+          </div>
+          <div>
+            <label class="label">Username*</label>
+            <input class="input" id="signupUsername" type="text" placeholder="3-20 lowercase letters/numbers" />
+            <div id="usernameStatus" class="status-note"></div>
+          </div>
+          <div class="full-span">
+            <label class="label">Player Name</label>
+            <input class="input" id="signupPlayerName" type="text" placeholder="Defaults to First + Last name" />
+          </div>
+          <div>
+            <label class="label">Password*</label>
+            <input class="input" id="signupPassword" type="password" />
+          </div>
+          <div>
+            <label class="label">Confirm Password*</label>
+            <input class="input" id="signupPassword2" type="password" />
+          </div>
+        </div>
+        <button class="btn" id="signupBtn" type="button" data-auth-action>Create Account</button>
+        <p class="tiny-link">Already have an account? <a href="#" id="gotoSigninLink">Sign in</a></p>
+      </div>
+
+      <p id="authError" class="error"></p>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script type="module" src="js/account.js"></script>
+</body>
+</html>
